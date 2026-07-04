@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 1"
-date: 2024-01-01
+date: 2026-05-18
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
@@ -14,13 +14,13 @@ pre: " <b> 1.1. </b> "
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Thứ | Công việc                                                                                                                                                                                                                 | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                          |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | --------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                                                           | 18/05/2026   | 18/05/2026      | https://policies.fcjuni.com/            |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ...                                                                               | 19/05/2026   | 19/05/2026      | https://cloudjourney.awsstudygroup.com/ |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài đặt & cấu hình AWS CLI <br> &emsp; + Các lệnh cơ bản với AWS CLI                    | 20/05/2026   | 20/05/2026      | https://cloudjourney.awsstudygroup.com/ |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types, AMI, EBS <br> - Các phương thức kết nối SSH vào EC2 <br> - Tìm hiểu về Elastic IP                                                                                     | 21/05/2026   | 21/05/2026      | https://cloudjourney.awsstudygroup.com/ |
-| 6   | - **Thực hành Cloud:** <br>&emsp; + Tạo EC2 instance, gắn EBS volume <br>&emsp; + Kết nối SSH thành công <br> - **Dự án Snaptic:** <br>&emsp; + Chốt scope quản lý chi tiêu <br>&emsp; + Phác thảo sơ đồ Database ban đầu | 22/05/2026   | 22/05/2026      | https://cloudjourney.awsstudygroup.com/ |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập | 18/05/2026 | 18/05/2026 | https://policies.fcjuni.com/ |
+| 3 | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... | 19/05/2026 | 19/05/2026 | https://cloudjourney.awsstudygroup.com/ <br> https://www.youtube.com/watch?v=HxYZAK1coOI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br> https://www.youtube.com/watch?v=IK59Zdd1poE&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br> https://www.youtube.com/watch?v=pjr5a-HYAjI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br> https://www.youtube.com/watch?v=pjr5a-HYAjI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br> https://www.youtube.com/watch?v=2PQYqH_HkXw&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i  |
+| 4 | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài đặt & cấu hình AWS CLI <br> &emsp; + Các lệnh cơ bản với AWS CLI | 20/05/2026 | 20/05/2026 | https://000001.awsstudygroup.com <br> https://000011.awsstudygroup.com/ <br> https://www.youtube.com/watch?v=waR5S_lljrk&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br> https://www.youtube.com/watch?v=2PQYqH_HkXw&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br> |
+| 5 | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types, AMI, EBS <br> - Các phương thức kết nối SSH vào EC2 <br> - Tìm hiểu về Elastic IP | 21/05/2026 | 21/05/2026 | https://000004.awsstudygroup.com/ <br> https://www.youtube.com/watch?v=duJEdF_g1To&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br> https://www.youtube.com/watch?v=wWu67GyrUNY&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br> https://www.youtube.com/watch?v=7NjNTnXon5s&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i |
+| 6 | - **Thực hành Cloud:** <br>&emsp; + Tạo EC2 instance, gắn EBS volume <br>&emsp; + Kết nối SSH thành công <br> - **Dự án Snaptic:** <br>&emsp; + Chốt scope quản lý chi tiêu <br>&emsp; + Phác thảo sơ đồ Database ban đầu | 22/05/2026 | 22/05/2026 | https://www.youtube.com/watch?v=duJEdF_g1To&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br> https://www.youtube.com/watch?v=wWu67GyrUNY&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i <br>  |
 
 ### Kết quả đạt được tuần 1:
 
