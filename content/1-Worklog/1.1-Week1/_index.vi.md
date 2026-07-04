@@ -8,7 +8,7 @@ pre: " <b> 1.1. </b> "
 
 ### Mục tiêu tuần 1:
 
-- Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
+- Nắm vững quy chế và hướng dẫn của đợt thực tập First Cloud Journey.
 - Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
 
 ### Các công việc cần triển khai trong tuần này:
