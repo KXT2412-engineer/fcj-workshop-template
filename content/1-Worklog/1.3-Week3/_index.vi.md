@@ -5,24 +5,20 @@ weight: 1
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
 ### Mục tiêu tuần 3:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Nắm vững các phương pháp kết nối mạng nâng cao trên AWS (VPC Peering, VPN, Transit Gateway).
+- Tìm hiểu chuyên sâu về các loại Cân bằng tải (Elastic Load Balancing - ALB, NLB) và cấu hình EC2 nâng cao.
+- **Dự án Snaptic:** Xây dựng hệ thống định danh người dùng (Authentication), triển khai bảo mật API bằng JWT Token và tính năng gửi mã OTP qua Email.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   | **Kết nối mạng nâng cao:** <br>&emsp; + Học về VPC Peering (Kết nối trực tiếp 2 VPC) <br>&emsp; + Tìm hiểu Transit Gateway | 01/06/2026 | 01/06/2026 | <a href="https://cloudjourney.awsstudygroup.com/">AWS Study Group</a> <br> <a href="https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i">FCJ Bootcamp Playlist</a> |
+| 3   | - **Mạng lai (Hybrid Cloud) & VPN:** <br>&emsp; + Học về Direct Connect Gateway <br>&emsp; + VPN Site-to-Site (VGW, CGW) <br>&emsp; + VPN Client-to-Site | 02/06/2026 | 02/06/2026 | <a href="https://cloudjourney.awsstudygroup.com/">AWS Study Group</a> <br> <a href="https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i">FCJ Bootcamp Playlist</a> |
+| 4   | **Elastic Load Balancing (ELB) & EC2:** <br>&emsp; + Phân biệt ALB, NLB, CLB, GWLB <br>&emsp; + Thực hành tạo EC2 instance nâng cao <br>&emsp; + Test kết nối qua EC2 Instance Connect Endpoint | 03/06/2026   | 03/06/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | - **Dự án Snaptic - Authentication:** <br>&emsp; + Cài đặt thư viện Microsoft.AspNetCore.Authentication.JwtBearer <br>&emsp; + Viết logic cấp phát JWT Token (Login/Register) <br>&emsp; + Bảo vệ các endpoint bằng attribute `[Authorize]`                  | 04/06/2026   | 04/06/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 6   | - **Dự án Snaptic - OTP & Security:** <br>&emsp; + Tích hợp SMTP gửi email mã OTP xác thực <br>&emsp; + Test luồng đăng nhập toàn vẹn qua Postman/Swagger <br>&emsp; + Chuẩn bị kịch bản đẩy API lên EC2 sau này | 05/06/2026   | 05/06/2026      | <https://cloudjourney.awsstudygroup.com/> |
 
 
 ### Kết quả đạt được tuần 3:
