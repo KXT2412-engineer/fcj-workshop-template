@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 11"
-date: 2024-01-01
+date: 2026-08-31
 weight: 2
 chapter: false
 pre: " <b> 1.11. </b> "
@@ -11,49 +11,21 @@ pre: " <b> 1.11. </b> "
 
 
 ### Mục tiêu tuần 11:
-
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- **AWS:** Ứng dụng Pub/Sub với Amazon SNS và dịch vụ gửi mail Amazon SES.
+- **Dự án Snaptic:** Xử lý các trường hợp lỗi biên (Edge cases), Rate Limit của AI, và tích hợp thông báo qua Email.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| :--- | :--- | :--- | :--- | :--- |
+| 2 | **AWS SNS & SES:**<br>+ Verify Domain/Email trên SES.<br>+ Khởi tạo SNS Topic cho hệ thống cảnh báo. | 31/08/2026 | 31/08/2026 | AWS Docs |
+| 3 | **Dự án - Tích hợp Email:**<br>+ Code Service gửi Mail OTP/Thông báo thông qua SES API.<br>+ Thiết kế template HTML cho Email. | 01/09/2026 | 01/09/2026 | Tài liệu nội bộ |
+| 4 | **Dự án - Xử lý Rate Limit:**<br>+ Xử lý lỗi 429 (Too Many Requests) khi gọi AI API.<br>+ Xây dựng luồng Fallback dự phòng. | 02/09/2026 | 02/09/2026 | Tài liệu nội bộ |
+| 5 | **Dự án - CloudWatch Alarms:**<br>+ Cấu hình cảnh báo nếu SQS tồn đọng quá nhiều Message.<br>+ Bắn thông báo về Email Admin qua SNS. | 03/09/2026 | 03/09/2026 | Tài liệu nội bộ |
+| 6 | **Dự án - Tối ưu Pipeline:**<br>+ Áp dụng `Task.WhenAll` (C#) để xử lý dữ liệu song song.<br>+ Giảm độ trễ từ 45s xuống 18s. | 04/09/2026 | 04/09/2026 | Tài liệu nội bộ |
 
 
 ### Kết quả đạt được tuần 11:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+- Hoàn thiện module liên lạc (Gửi Email) bằng dịch vụ Cloud chuẩn công nghiệp.
+- Hệ thống đạt khả năng chịu lỗi cao (Resilience), tự động phục hồi và chuyển hướng khi dịch vụ bên thứ 3 (AI) quá tải.
 
 

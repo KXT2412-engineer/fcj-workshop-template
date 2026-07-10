@@ -1,59 +1,31 @@
 ---
 title: "Worklog Tuần 10"
-date: 2024-01-01
+date: 2026-08-24
 weight: 2
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
+
 {{% notice warning %}}
 ⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
 {{% /notice %}}
 
-
 ### Mục tiêu tuần 10:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- **AWS:** Triển khai hạ tầng Serverless với AWS Fargate/ECS, đóng gói ứng dụng bằng Docker.
+- **Dự án Snaptic:** Tối ưu hóa Container Image, cấu hình Event-Driven Architecture.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Công việc                                                                                                                                | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu  |
+| :-- | :--------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :-------------- | :-------------- |
+| 2   | **Dự án - Dockerizing Backend:**<br>+ Viết Dockerfile cho project ASP.NET Core.<br>+ Build và test Image dưới Local.                     | 24/08/2026   | 24/08/2026      | Docker Docs     |
+| 3   | **Dự án - Tối ưu Container:**<br>+ Giảm dung lượng Image (loại bỏ thư viện thừa, chuyển sang base image Alpine).                         | 25/08/2026   | 25/08/2026      | Tài liệu nội bộ |
+| 4   | **AWS ECS & Fargate:**<br>+ Đẩy Image lên Amazon ECR.<br>+ Tạo ECS Cluster và Task Definition (Fargate).                                 | 26/08/2026   | 26/08/2026      | AWS Study Group |
+| 5   | **Dự án - Fix SQS Polling:**<br>+ Refactor Worker Service chống vòng lặp quá nhanh (Smart Polling).<br>+ Set Visibility Timeout phù hợp. | 27/08/2026   | 27/08/2026      | Tài liệu nội bộ |
+| 6   | **Dự án - Event-Driven Flow:**<br>+ Kiểm thử luồng: User Upload -> S3 -> SQS -> ECS Worker xử lý -> Cập nhật DB.                         | 28/08/2026   | 28/08/2026      | Tài liệu nội bộ |
 
 ### Kết quả đạt được tuần 10:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Đóng gói thành công toàn bộ hệ thống bằng Docker.
+- Hiểu và triển khai được kiến trúc Serverless (Fargate), hệ thống tự động chạy mà không cần quản lý hệ điều hành máy chủ vật lý.

@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 7"
-date: 2024-01-01
+date: 2026-08-03
 weight: 1
 chapter: false
 pre: " <b> 1.7. </b> "
@@ -11,49 +11,22 @@ pre: " <b> 1.7. </b> "
 
 
 ### Mục tiêu tuần 7:
-
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- **AWS:** Triển khai S3 Static Website, tích hợp CloudFront và hiểu Shared Responsibility Model.
+- **Dự án Snaptic:** Cấu trúc lại code (Refactor) bằng Dependency Injection và phát triển nghiệp vụ API lõi.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| :--- | :--- | :--- | :--- | :--- |
+| 2 | **AWS S3 & CloudFront:**<br>+ Bật Static Website Hosting.<br>+ Cấu hình CloudFront CDN phân phối nội dung S3. | 03/08/2026 | 03/08/2026 | AWS Study Group |
+| 3 | **Dự án - Dependency Injection:**<br>+ Gom nhóm Service/Repository vào Extension Methods.<br>+ Clean up `Program.cs` cho gọn gàng. | 04/08/2026 | 04/08/2026 | Tài liệu nội bộ |
+| 4 | **Dự án - Unit of Work:**<br>+ Triển khai Pattern Unit of Work quản lý Transaction.<br>+ Đảm bảo tính toàn vẹn dữ liệu khi CRUD. | 05/08/2026 | 05/08/2026 | Tài liệu nội bộ |
+| 5 | **Dự án - Logic Missing Price:**<br>+ Viết API `missing-prices` trả về item chưa có giá.<br>+ Viết API `confirm-prices` để update tổng hóa đơn. | 06/08/2026 | 06/08/2026 | Tài liệu nội bộ |
+| 6 | **Dự án - Bug Fixing:**<br>+ Fix lỗi tính toán thập phân (Decimal) trong hóa đơn.<br>+ Cập nhật tài liệu Swagger. | 07/08/2026 | 07/08/2026 | Tài liệu nội bộ |
 
 
 ### Kết quả đạt được tuần 7:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+- Source code Backend được tối ưu, dễ bảo trì nhờ kiến trúc Repository Pattern và DI.
+- Hoàn thiện hoàn toàn luồng xử lý hóa đơn thiếu giá (Missing Price Flow).
+- Biết cách dùng CDN CloudFront để tăng tốc độ tải file.
 
 
