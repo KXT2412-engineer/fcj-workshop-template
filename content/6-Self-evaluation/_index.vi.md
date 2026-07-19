@@ -67,7 +67,7 @@ Về tác phong, em luôn cố gắng:
 
 ### Lời cảm ơn
 
-Em xin chân thành cảm ơn **[Tên Công Ty/Tổ Chức]** đã tạo cơ hội cho em được làm việc và trải nghiệm môi trường phát triển phần mềm chuyên nghiệp. Đặc biệt, em xin gửi lời cảm ơn sâu sắc đến:
+Em xin chân thành cảm ơn **Công ty TNHH Amazon Web Services Viet Nam** đã tạo cơ hội cho em được làm việc và trải nghiệm môi trường phát triển phần mềm chuyên nghiệp. Đặc biệt, em xin gửi lời cảm ơn sâu sắc đến:
 
 - **Mentor và các anh chị trong team** đã nhiệt tình hướng dẫn, review code, chia sẻ kinh nghiệm thực chiến và tạo điều kiện tốt nhất để em phát triển.
 - **Các đồng nghiệp** đã luôn hỗ trợ, động viên và tạo môi trường làm việc thân thiện, tích cực.
