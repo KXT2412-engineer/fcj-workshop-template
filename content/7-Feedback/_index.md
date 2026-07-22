@@ -1,47 +1,45 @@
 ---
 title: "Sharing and Feedback"
-date: 2024-01-01
+date: 2026-08-07
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+### General Evaluation
 
-> Here, you can freely share your personal opinions about your experience participating in the First Cloud AI Journey program. This will help the FCAJ team improve any shortcomings based on the following aspects:
+**1. Working Environment**
+The environment at FCJ is extremely open and highly technology-driven. The workspace promotes autonomy, allowing interns the flexibility to manage their time to both learn new Cloud knowledge and apply it to real-world project code. The seniors are always ready to answer questions, creating a highly valuable knowledge-sharing community.
 
-### Overall Evaluation
+**2. Support from the mentor / admin team**  
+This is the point I appreciate the most. The mentor does not impose a specific way of doing things but acts as a facilitator. When I struggled with API architecture design or was hesitant about how to optimize Database queries, my mentor analyzed the pros and cons of each solution so I could make my own decisions. The admin team also provided very quick support in granting resource access permissions, ensuring the practical process was not interrupted.
 
-**1. Working Environment**  
-The working environment is very friendly and open. FCAJ members are always willing to help whenever I encounter difficulties, even outside working hours. The workspace is tidy and comfortable, helping me focus better. However, I think it would be nice to have more social gatherings or team bonding activities to strengthen relationships.
+**3. Alignment between work and major**  
+Highly aligned with my Software Engineering major. At university, I learned a lot about programming mindset and Backend development (C#, .NET), but mostly only running on localhost. The work process here provided a crucially important missing piece: **Cloud Deployment**. Integrating Backend code with Cloud services helped me clearly understand the real-world lifecycle of a software product.
 
-**2. Support from Mentor / Team Admin**  
-The mentor provides very detailed guidance, explains clearly when I don’t understand, and always encourages me to ask questions. The admin team supports administrative tasks, provides necessary documents, and creates favorable conditions for me to work effectively. I especially appreciate that the mentor allows me to try and solve problems myself instead of just giving the answer.
+**4. Opportunities for learning & skill development**  
+The internship was a significant leap in skills. Regarding hard skills, I had the opportunity to explore and discover how to design standard, more secure APIs, and learned how to package and deploy applications to a production environment. Regarding soft skills, I learned time management, how to read technical documentation, and teamwork skills to integrate APIs with the Frontend team.
 
-**3. Relevance of Work to Academic Major**  
-The tasks I was assigned align well with the knowledge I learned at university, while also introducing me to new areas I had never encountered before. This allowed me to both strengthen my foundational knowledge and gain practical skills.
+**5. Culture & Team spirit**  
+The "Fail Fast, Learn Fast" spirit is very clearly demonstrated. People are not afraid to share their mistakes (like misconfiguring environments or Database connection errors) so we can all learn together. Despite working at a fairly high intensity during the sprint phase of the Snaptic project, the team maintained cohesion and supported each other with cross code reviews.
 
-**4. Learning & Skill Development Opportunities**  
-During the internship, I learned many new skills such as using project management tools, teamwork skills, and professional communication in a corporate environment. The mentor also shared valuable real-world experiences that helped me better plan my career path.
+**6. Policies / Benefits for interns**  
+The program provides a structured learning roadmap, rich internal documentation, and optimal conditions for interns to gain practical experience. The internal experience-sharing workshops are a huge "privilege" for students.
 
-**5. Company Culture & Team Spirit**  
-The company culture is very positive: everyone respects each other, works seriously but still keeps things enjoyable. When there are urgent projects, everyone works together and supports one another regardless of their position. This made me feel like a real part of the team, even as an intern.
+### Other Questions
 
-**6. Internship Policies / Benefits**  
-The company provides an internship allowance and offers flexible working hours when needed. In addition, having the opportunity to join internal training sessions is a big plus.
+- What are you **most satisfied** with during the internship?  
+  What I am most proud of and satisfied with is the mindset shift. From someone who was only used to writing code running on a local machine, I now know how to methodically design Backend architectures, handle complex data flows, and confidently deploy C#/.NET APIs for the Snaptic project to a production environment.
+- What do you think the company **needs to improve** for future interns?
+  I hope the program can add an in-depth orientation session on "Cloud Cost Management and Optimization" right from Week 1. This will help new interns feel more confident when deploying infrastructure without the fear of accidentally incurring unintended costs.
+- If introducing it to friends, would you **recommend they intern here**? Why?  
+  Definitely yes. This place is a perfect launchpad for IT students who want to step out of the comfort zone of "just knowing how to code". The program helps students touch Industry Standards and forge the mindset of a true Software Engineer.
 
----
+### Proposals & Desires
 
-### Additional Questions
-- What did you find **most satisfying** during your internship?  
-- What do you think the company **should improve** for future interns?  
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
-
----
-
-### Suggestions & Expectations
-- Do you have any suggestions to improve the internship experience?  
-- Would you like to continue this program in the future?  
-- Any other comments (free sharing):
+- Do you have any proposals to improve the internship experience?  
+  It would be great if the program included "Mock Interview" sessions at the end of the term, based on the very features or APIs of the projects we just built (like Snaptic). This helps interns learn how to present their systems thinking and prepare themselves mentally as they enter the job market.
+- Do you want to continue this program in the future?
+  I strongly desire the opportunity to continue accompanying the company after graduation, especially delving deeper into Backend Architecture or DevOps to optimize the deployment process for large systems.
+- Other feedback (feel free to share):
+  I would like to send my sincere thanks to the company's leadership, the mentor team, and the admins for creating a highly practical and valuable environment. The past time has helped me clearly shape my career path. I wish the company continued growth and success in creating many generations of outstanding Engineers!
