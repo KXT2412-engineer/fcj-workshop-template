@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 11"
-date: 2025-08-31
+date: 2026-07-20
 weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
@@ -8,20 +8,21 @@ pre: " <b> 1.11. </b> "
 
 ### Mục tiêu tuần 11:
 
-- **AWS:** Ứng dụng Pub/Sub với Amazon SNS và dịch vụ gửi mail Amazon SES.
-- **Dự án Snaptic:** Xử lý các trường hợp lỗi biên (Edge cases), Rate Limit của AI, và tích hợp thông báo qua Email.
+- Hoàn thiện nghiệp vụ phức tạp nhất: **Vòng đời Ví định kỳ (Periodic Budget)**.
+- Tự động hóa bằng Background Jobs và Unit Testing.
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Thứ | Công việc                                                                                                                            | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu  |
-| :-- | :----------------------------------------------------------------------------------------------------------------------------------- | :----------- | :-------------- | :-------------- |
-| 2   | **AWS SNS & SES:**<br>+ Verify Domain/Email trên SES.<br>+ Khởi tạo SNS Topic cho hệ thống cảnh báo.                                 | 31/08/2026   | 31/08/2026      | AWS Docs        |
-| 3   | **Dự án - Tích hợp Email:**<br>+ Code Service gửi Mail OTP/Thông báo thông qua SES API.<br>+ Thiết kế template HTML cho Email.       | 01/09/2026   | 01/09/2026      | Tài liệu nội bộ |
-| 4   | **Dự án - Xử lý Rate Limit:**<br>+ Xử lý lỗi 429 (Too Many Requests) khi gọi AI API.<br>+ Xây dựng luồng Fallback dự phòng.          | 02/09/2026   | 02/09/2026      | Tài liệu nội bộ |
-| 5   | **Dự án - CloudWatch Alarms:**<br>+ Cấu hình cảnh báo nếu SQS tồn đọng quá nhiều Message.<br>+ Bắn thông báo về Email Admin qua SNS. | 03/09/2026   | 03/09/2026      | Tài liệu nội bộ |
-| 6   | **Dự án - Tối ưu Pipeline:**<br>+ Áp dụng `Task.WhenAll` (C#) để xử lý dữ liệu song song.<br>+ Giảm độ trễ từ 45s xuống 18s.         | 04/09/2026   | 04/09/2026      | Tài liệu nội bộ |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | **Snaptic - Income Flow:** Cập nhật và tối ưu lại toàn bộ luồng Income. | 20/07/2026 | 20/07/2026 | Snaptic Git |
+| 3 | **Snaptic - Hangfire Auto-renew:** Code cơ chế Bật/Tắt Hangfire. Xây dựng logic tự động gia hạn ví (Auto-renew) khi qua tháng. | 21/07/2026 | 21/07/2026 | Hangfire Docs |
+| 4 | **Snaptic - Budget Inheritance:** Kế thừa cài đặt ví (tên, isDefault, auto-renew) từ tháng cũ sang tháng mới. | 21/07/2026 | 21/07/2026 | Snaptic Git |
+| 5 | **Snaptic - Sync Income:** Tự động lấy/tạo income source theo user và bơm tiền vào ví định kỳ mới. | 21/07/2026 | 21/07/2026 | Snaptic Git |
+| 6 | **Snaptic - Unit Testing:** Viết Unit Test cho Budget Service, chốt lại 1 commit sửa test case cuối cùng. | 21/07/2026 | 21/07/2026 | Snaptic Git |
 
 ### Kết quả đạt được tuần 11:
 
-- Hoàn thiện module liên lạc (Gửi Email) bằng dịch vụ Cloud chuẩn công nghiệp.
-- Hệ thống đạt khả năng chịu lỗi cao (Resilience), tự động phục hồi và chuyển hướng khi dịch vụ bên thứ 3 (AI) quá tải.
+*   **Hoàn thiện nghiệp vụ:** Giải quyết thành công bài toán nghiệp vụ phức tạp nhất của dự án: "Vòng đời Ví định kỳ (Periodic Budget)".
+*   **Tự động hóa hoàn toàn:** Ứng dụng xuất sắc Hangfire để tự động hóa trọn vẹn quy trình Auto-renew: Tự chốt sổ ví cũ khi hết tháng, tự tạo ví mới, kế thừa các cài đặt (tên, isDefault), và đồng bộ chính xác nguồn thu định kỳ.
+*   **Đảm bảo chất lượng (QA):** Đảm bảo chất lượng mã nguồn (Code Quality) và độ tin cậy của hệ thống bằng các bộ Unit Test đạt độ phủ cao trước khi tiến hành đóng gói Release.

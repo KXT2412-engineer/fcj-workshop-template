@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 8"
-date: 2025-08-10
+date: 2026-06-29
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
@@ -8,21 +8,20 @@ pre: " <b> 1.8. </b> "
 
 ### Mục tiêu tuần 8:
 
-- **AWS:** Nắm vững hệ sinh thái Database (RDS, Aurora, ElastiCache) và AWS Systems Manager (Parameter Store).
-- **Dự án Snaptic:** Chuyển Database lên Cloud, phát triển các tính năng Filter, Pagination.
+- **AWS:** Triển khai Amazon SNS (Simple Notification Service).
+- **Snaptic:** Hoàn thiện Dashboard và logic cảnh báo chi tiêu.
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Thứ | Công việc                                                                                                                                          | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu  |
-| :-- | :------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :-------------- | :-------------- |
-| 2   | **AWS Database Services:**<br>+ Tìm hiểu kiến trúc Amazon RDS (Multi-AZ).<br>+ Cấu hình Security Group cho Database.                               | 10/08/2026   | 10/08/2026      | AWS Study Group |
-| 3   | **Dự án - DB Migration:**<br>+ Provision một instance RDS PostgreSQL/SQL Server.<br>+ Trỏ Connection String từ Local lên AWS RDS.                  | 11/08/2026   | 11/08/2026      | AWS Docs        |
-| 4   | **AWS Parameter Store:**<br>+ Lưu chuỗi Connection String an toàn vào SSM.<br>+ Config .NET để đọc secret từ AWS thay vì `appsettings`.            | 12/08/2026   | 12/08/2026      | AWS Docs        |
-| 5   | **Dự án - Advanced APIs:**<br>+ Cài đặt tính năng Phân trang (Pagination) cho danh sách hóa đơn.<br>+ Implement Lọc (Filtering) theo Date, Status. | 13/08/2026   | 13/08/2026      | Tài liệu nội bộ |
-| 6   | **Dự án - Audit Logging:**<br>+ Lưu vết lịch sử chỉnh sửa giá của User.<br>+ Testing toàn bộ flow với DB trên Cloud.                               | 14/08/2026   | 14/08/2026      | Tài liệu nội bộ |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | **Snaptic & AWS SNS:** Tích hợp Email notifications qua SNS cho Budget và Spending Insights. | 29/06/2026 | 29/06/2026 | AWS Docs |
+| 4 | **Snaptic - System Cleanup:** Sửa nội dung email verification, loại bỏ scheduled job cũ (chuyển qua Hangfire hoàn toàn). | 01/07/2026 | 01/07/2026 | Snaptic Git |
+| 5 | **Snaptic - Multi-Budget:** Cập nhật logic tạo nhiều budget và tự động trừ tiền qua lại giữa các quỹ. | 04/07/2026 | 05/07/2026 | Snaptic Git |
+| 6 | **Snaptic - Dashboard:** Đổ dữ liệu Data Analytics ra Dashboard Controller. | 05/07/2026 | 05/07/2026 | Snaptic Git |
 
 ### Kết quả đạt được tuần 8:
 
-- Chuyển đổi thành công môi trường Database từ Localhost lên Amazon RDS.
-- Đảm bảo an toàn bảo mật thông tin cấu hình nhờ AWS Systems Manager.
-- Tối ưu hóa API truy xuất dữ liệu lớn bằng cơ chế phân trang.
+*   **Hệ thống cảnh báo:** Làm chủ dịch vụ Amazon SNS (Simple Notification Service) để xây dựng hệ thống liên lạc chuẩn công nghiệp, có khả năng bắn thông báo Email (chủ động và bị động) cho người dùng.
+*   **Tối ưu Background Job:** Dọn dẹp thành công các logic cũ (scheduled job) để nhường chỗ cho hệ thống Hangfire hoạt động tối ưu và tập trung hơn.
+*   **Data Analytics:** API Dashboard đã xử lý tốt bài toán phân luồng trừ tiền song song trên nhiều Budget cùng lúc và trả về số liệu thống kê Data Analytics cực kỳ chi tiết.

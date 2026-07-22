@@ -1,57 +1,27 @@
 ---
-title: "Week 2 Worklog"
-date: 2024-01-01
-weight: 1
+title: "Worklog Week 2"
+date: 2026-05-18
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 2 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Gain a solid foundation in Amazon Virtual Private Cloud (VPC) and network security mechanisms.
+- Snaptic project: set up the .NET Core Web API backend environment and configure Entity Framework Core.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | Study Amazon VPC theory: subnets, route table, CIDR block, IGW. | 18/05/2026 | 18/05/2026 | <a href="https://000003.awsstudygroup.com/">000003.awsstudygroup.com</a> |
+| 3 | Learn VPC security: Security Groups (instance-level firewall) and Network ACLs (subnet-level firewall). | 19/05/2026 | 19/05/2026 |  |
+| 4 | Practice AWS VPC: create a custom VPC, public/private subnets, attach the IGW, configure the route table, and allow SSH in the Security Group. | 20/05/2026 | 20/05/2026 |  |
+| 5 | Snaptic backend initialization: create the .NET Core Web API solution, install Entity Framework Core (EF Core), and configure the initial database connection string. | 21/05/2026 | 21/05/2026 |  |
+| 6 | Snaptic database design: code the User, Budget, and Transaction models; handle relationships with Fluent API; run the migration successfully. | 22/05/2026 | 22/05/2026 |  |
 
 ### Week 2 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+*   **Network infrastructure:** Mastered the AWS VPC networking foundation, understood how to divide networks into Public/Private Subnets, and applied Security Groups/NACLs to build the system firewall layer.
+*   **Backend architecture:** Successfully initialized the .NET Core Web API project with a clear layered architecture (API, BLL, DAL).
+*   **Database:** Applied the Code-First approach in Entity Framework Core smoothly to model the entire expense-management domain into a real database structure and run the migration successfully.

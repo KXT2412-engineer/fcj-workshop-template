@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 6"
-date: 2025-07-27
+date: 2026-06-15
 weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
@@ -8,20 +8,20 @@ pre: " <b> 1.6. </b> "
 
 ### Mục tiêu tuần 6:
 
-- **AWS:** Tìm hiểu AWS Backup, nguyên lý IAM Roles/Policies.
-- **Dự án Snaptic:** Xây dựng hệ thống Role-Based Access Control (RBAC) và cơ chế cô lập dữ liệu người dùng (Data Isolation).
+- **AWS:** Tích hợp Amazon S3 để xử lý file và ảnh.
+- **Snaptic:** Thay đổi kiến trúc lưu trữ ảnh, xử lý bảo mật tài nguyên tĩnh.
 
 ### Các công việc cần triển khai trong tuần này:
 
-| Thứ | Công việc                                                                                                                             | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu  |
-| :-- | :------------------------------------------------------------------------------------------------------------------------------------ | :----------- | :-------------- | :-------------- |
-| 2   | **AWS Security & Backup:**<br>+ Cấu hình AWS Backup Plan.<br>+ Phân quyền IAM theo nguyên tắc đặc quyền tối thiểu.                    | 27/07/2026   | 27/07/2026      | AWS Study Group |
-| 3   | **Dự án - RBAC:**<br>+ Ánh xạ Roles từ Cognito sang `.NET Claims`.<br>+ Viết Custom Authorization Policies.                           | 28/07/2026   | 28/07/2026      | Tài liệu nội bộ |
-| 4   | **Dự án - Data Isolation:**<br>+ Sửa Repository, thêm điều kiện `.Where(x => x.UserId == currentUserId)`.                             | 29/07/2026   | 29/07/2026      | Tài liệu nội bộ |
-| 5   | **Dự án - Refactor Controllers:**<br>+ Áp dụng Data Isolation cho Budget & Transaction.<br>+ Xóa mock data, lấy UserID từ Token thực. | 30/07/2026   | 30/07/2026      | Tài liệu nội bộ |
-| 6   | **Dự án - API Testing:**<br>+ Tạo 2 user khác nhau test chéo API.<br>+ Bắt lỗi 403 Forbidden và 401 Unauthorized.                     | 31/07/2026   | 31/07/2026      | Postman/Swagger |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 3 | **Snaptic - AWS S3 Integration:** Cài SDK S3, tích hợp lưu trữ ảnh lên Cloud thay vì Local. | 16/06/2026 | 17/06/2026 | AWS Docs |
+| 4 | **Snaptic - S3 Pre-signed URL:** Xử lý chia sẻ link an toàn qua Pre-signed URL. Đổi Data Model `ImageUrl` thành `ImageKey`. | 18/06/2026 | 18/06/2026 | AWS Docs |
+| 5 | **Snaptic - Refactor AI Upload:** Sửa luồng upload ảnh trong AiController & TransactionController. | 19/06/2026 | 19/06/2026 | Snaptic Git |
+| 6 | **Snaptic - Secure Download:** Cấu hình S3Controller để lấy ảnh bảo mật từ Cloud. Cải thiện xử lý lỗi (Exception). | 20/06/2026 | 21/06/2026 | Snaptic Git |
 
 ### Kết quả đạt được tuần 6:
 
-- Đảm bảo tính bảo mật dữ liệu tuyệt đối: Dữ liệu của user nào chỉ user đó được truy cập thông qua luồng Claims Extraction từ JWT.
-- Hệ thống Backup AWS được thiết lập tự động hóa.
+*   **Kiến trúc Cloud-Native:** Áp dụng thành công tư duy phân tách hệ thống (Decoupling) bằng cách chuyển hoàn toàn việc lưu trữ file vật lý lên nền tảng đám mây Amazon S3 thay vì lưu ở Local.
+*   **Bảo mật dữ liệu tĩnh:** Giải quyết trọn vẹn bài toán bảo mật tài nguyên tĩnh thông qua kỹ thuật sinh Pre-signed URL và đổi cấu trúc quản lý từ `ImageUrl` sang `ImageKey` an toàn hơn.
+*   **Tối ưu API:** Hoàn thiện API S3Controller cho phép Frontend lấy và hiển thị ảnh mượt mà, đồng thời nâng cấp hệ thống bắt lỗi (Exception Handling) trong luồng Upload.
