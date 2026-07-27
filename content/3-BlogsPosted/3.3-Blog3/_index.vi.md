@@ -12,7 +12,7 @@ Xin chào mọi người,
 
 Website thương mại điện tử thường có lượng truy cập thay đổi rất lớn, đặc biệt trong các chương trình khuyến mãi hoặc mùa mua sắm cao điểm. Nếu toàn bộ request chỉ được xử lý trên một máy chủ và truy cập trực tiếp vào database, hệ thống rất dễ bị chậm, quá tải hoặc gián đoạn.
 
-![Kiến trúc website thương mại điện tử có khả năng mở rộng trên AWS](755694557_1060914093084170_2834855221066632026_n.jpg)
+![Kiến trúc website thương mại điện tử có khả năng mở rộng trên AWS](Image.jpg)
 
 Một kiến trúc có khả năng mở rộng trên AWS có thể được xây dựng theo luồng:
 

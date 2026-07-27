@@ -5,27 +5,40 @@ weight: 1
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# SESSION POLICIES IN AMAZON EKS POD IDENTITY
+# SCALABLE E-COMMERCE WEBSITE ARCHITECTURE ON AWS
 
-Amazon EKS Pod Identity has recently added the session policies feature, allowing you to narrow IAM permissions flexibly and precisely for each pod without needing to create many separate IAM roles. This is an important step forward that helps apply the principle of least privilege more effectively in large-scale Kubernetes environments.
+Hello everyone,
 
-Key points to know:
+E-commerce websites often experience highly variable traffic, especially during promotions or peak shopping seasons. If all requests are handled by a single server and access the database directly, the system can easily become slow, overloaded, or disrupted.
 
-* A session policy is an inline IAM policy specified when creating or updating a Pod Identity association.
-* Effective permissions = intersection between the IAM role permissions and the session policy → the session policy can only narrow permissions, not expand them.
-* Helps avoid over-permissioning when reusing a single IAM role for multiple workloads with different needs.
-* Supports both same-account and cross-account (via IAM role chaining).
-* Significantly reduces the number of IAM roles that need to be managed, helping avoid hitting IAM quota limits in large clusters.
-* Easily configured through the AWS Management Console, AWS CLI, or AWS SDK when creating an association between a Kubernetes ServiceAccount and an IAM role.
+![Scalable e-commerce website architecture on AWS](Image.jpg)
 
-This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
+A scalable architecture on AWS can be built following this flow:
 
-...Image...
+**User → Route 53 → CloudFront → AWS WAF → Application Load Balancer → ECS Fargate → ElastiCache/Aurora**
 
-...Link...
+### When a user accesses the website:
 
-...Guide...
+- **Amazon Route 53:** Routes requests to the system.
+- **Amazon CloudFront:** Distributes content from locations close to users, helping to reduce latency.
+- **AWS WAF:** Inspects and blocks requests with suspicious signs.
+- **Application Load Balancer:** Distributes requests to Backend containers running on Amazon ECS with AWS Fargate.
+- **Amazon Cognito:** Supports user registration, login, and authentication.
+- **Amazon ElastiCache:** Temporarily stores frequently accessed data, helping to reduce the load on the database.
+- **Amazon Aurora Serverless v2:** Stores primary data such as users, products, inventory, and orders.
+
+Additionally, **Amazon CloudWatch** monitors the operations of ECS and Aurora. When it detects high CPU usage, numerous application errors, or abnormal database resource utilization, a CloudWatch Alarm triggers **Amazon SNS** to send alerts via email or SMS.
+
+### Alert flow:
+
+> **CloudWatch → CloudWatch Alarm → Amazon SNS → Email/SMS**
+
+By combining these services, the website can accelerate access speed, improve security, reduce database load, scale flexibly, and detect issues early when user traffic spikes.
+
+---
+
+### References:
+
+- 🔗 **[Guidance for Web Store on AWS](https://docs.aws.amazon.com/solutions/web-store-on-aws/)**
+- 🔗 **[Guidance for Building a Containerized and Scalable Web Application on AWS](https://docs.aws.amazon.com/solutions/building-a-containerized-and-scalable-web-application-on-aws/)**
