@@ -5,27 +5,40 @@ weight: 1
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# SESSION POLICIES TRONG AMAZON EKS POD IDENTITY
+# KIẾN TRÚC WEBSITE THƯƠNG MẠI ĐIỆN TỬ CÓ KHẢ NĂNG MỞ RỘNG TRÊN AWS
 
-Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+Xin chào mọi người,
 
-Các điểm chính cần nắm:
+Website thương mại điện tử thường có lượng truy cập thay đổi rất lớn, đặc biệt trong các chương trình khuyến mãi hoặc mùa mua sắm cao điểm. Nếu toàn bộ request chỉ được xử lý trên một máy chủ và truy cập trực tiếp vào database, hệ thống rất dễ bị chậm, quá tải hoặc gián đoạn.
 
-* Session policy là một IAM policy inline được chỉ định khi tạo hoặc cập nhật Pod Identity association.
-* Quyền hiệu quả = intersection (giao) giữa permissions của IAM role và session policy → session policy chỉ có thể thu hẹp, không thể mở rộng quyền.
-* Giúp tránh tình trạng over-permissioning khi reuse chung một IAM role cho nhiều workloads có nhu cầu khác nhau.
-* Hỗ trợ cả same-account và cross-account (qua IAM role chaining).
-* Giảm đáng kể số lượng IAM roles cần quản lý, tránh chạm giới hạn quota IAM trong cluster lớn.
-* Cấu hình dễ dàng qua AWS Management Console, AWS CLI hoặc AWS SDK khi tạo association giữa Kubernetes ServiceAccount và IAM role.
+![Kiến trúc website thương mại điện tử có khả năng mở rộng trên AWS](755694557_1060914093084170_2834855221066632026_n.jpg)
 
-Tính năng này đặc biệt hữu ích khi bạn có nhiều ứng dụng chạy trên cùng một IAM role nhưng cần giới hạn quyền khác nhau (ví dụ: một pod chỉ đọc S3 bucket cụ thể, pod khác chỉ gọi một số API nhất định).
+Một kiến trúc có khả năng mở rộng trên AWS có thể được xây dựng theo luồng:
 
-...Hình ảnh...
+**User → Route 53 → CloudFront → AWS WAF → Application Load Balancer → ECS Fargate → ElastiCache/Aurora**
 
-...Link...
+### Khi người dùng truy cập website:
 
-...Hướng dẫn...
+- **Amazon Route 53:** Định tuyến request đến hệ thống.
+- **Amazon CloudFront:** Phân phối nội dung từ vị trí gần người dùng, giúp giảm độ trễ.
+- **AWS WAF:** Kiểm tra và chặn các request có dấu hiệu bất thường.
+- **Application Load Balancer:** Phân phối request đến các container Backend chạy trên Amazon ECS với AWS Fargate.
+- **Amazon Cognito:** Hỗ trợ đăng ký, đăng nhập và xác thực người dùng.
+- **Amazon ElastiCache:** Lưu tạm dữ liệu được truy cập thường xuyên, giúp giảm tải cho database.
+- **Amazon Aurora Serverless v2:** Lưu trữ dữ liệu chính như người dùng, sản phẩm, tồn kho và đơn hàng.
+
+Bên cạnh đó, **Amazon CloudWatch** theo dõi hoạt động của ECS và Aurora. Khi phát hiện CPU tăng cao, ứng dụng xuất hiện nhiều lỗi hoặc database sử dụng tài nguyên bất thường, CloudWatch Alarm sẽ kích hoạt **Amazon SNS** để gửi cảnh báo qua email hoặc SMS.
+
+### Luồng cảnh báo:
+
+> **CloudWatch → CloudWatch Alarm → Amazon SNS → Email/SMS**
+
+Nhờ kết hợp các dịch vụ trên, website có thể tăng tốc độ truy cập, cải thiện bảo mật, giảm tải cơ sở dữ liệu, mở rộng linh hoạt và phát hiện sự cố sớm khi lượng người dùng tăng cao.
+
+---
+
+### Bài viết tham khảo:
+
+- 🔗 **[Guidance for Web Store on AWS](https://docs.aws.amazon.com/solutions/web-store-on-aws/)**
+- 🔗 **[Guidance for Building a Containerized and Scalable Web Application on AWS](https://docs.aws.amazon.com/solutions/building-a-containerized-and-scalable-web-application-on-aws/)**
