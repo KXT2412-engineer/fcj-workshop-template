@@ -7,22 +7,20 @@ pre: " <b> 1.11. </b> "
 ---
 
 ### Mục tiêu tuần 11:
-
 - Hoàn thiện nghiệp vụ phức tạp nhất: **Vòng đời Ví định kỳ (Periodic Budget)**.
 - Tự động hóa bằng Background Jobs và Unit Testing.
 
 ### Các công việc cần triển khai trong tuần này:
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
-| --- | --- | --- | --- | --- |
-| 2 | **Snaptic - Income Flow:** Cập nhật và tối ưu lại toàn bộ luồng Income. | 20/07/2026 | 20/07/2026 | Snaptic Git |
-| 3 | **Snaptic - Hangfire Auto-renew:** Code cơ chế Bật/Tắt Hangfire. Xây dựng logic tự động gia hạn ví (Auto-renew) khi qua tháng. | 21/07/2026 | 21/07/2026 | Hangfire Docs |
-| 4 | **Snaptic - Budget Inheritance:** Kế thừa cài đặt ví (tên, isDefault, auto-renew) từ tháng cũ sang tháng mới. | 21/07/2026 | 21/07/2026 | Snaptic Git |
-| 5 | **Snaptic - Sync Income:** Tự động lấy/tạo income source theo user và bơm tiền vào ví định kỳ mới. | 21/07/2026 | 21/07/2026 | Snaptic Git |
-| 6 | **Snaptic - Unit Testing:** Viết Unit Test cho Budget Service, chốt lại 1 commit sửa test case cuối cùng. | 21/07/2026 | 21/07/2026 | Snaptic Git |
+|---|---|---|---|---|
+| 2 | - **Snaptic - Income Refactor:** <br>&emsp; + Cập nhật và tối ưu lại toàn bộ luồng cho bảng Income <br>&emsp; + Kiểm tra luồng dữ liệu liên đới | 20/07/2026 | 20/07/2026 | Snaptic Git |
+| 3 | - **Snaptic - Hangfire Auto-renew:** <br>&emsp; + Bật/tắt Hangfire, thêm gia hạn tự động <br>&emsp; + Logic luồng lấy/tạo income source, commit sửa test | 21/07/2026 | 21/07/2026 | Snaptic Git |
+| 4 | - **Học AWS Database Protection:** <br>&emsp; + Tìm hiểu AWS Backup <br>&emsp; + Thiết lập cơ chế bảo vệ dữ liệu RDS tự động | 22/07/2026 | 22/07/2026 | AWS Docs |
+| 5 | - **Snaptic - API Backdoor:** <br>&emsp; + Xây dựng API trigger để test ép luồng Rollover <br>&emsp; + Chạy giả lập trực tiếp trên Swagger | 23/07/2026 | 23/07/2026 | Tài liệu nội bộ |
+| 6 | - **Snaptic - Release Preparation:** <br>&emsp; + Review lại toàn bộ Unit Test cho Budget Service <br>&emsp; + Đóng gói mã nguồn chuẩn bị Release | 24/07/2026 | 24/07/2026 | Snaptic Git |
 
 ### Kết quả đạt được tuần 11:
-
 *   **Hoàn thiện nghiệp vụ:** Giải quyết thành công bài toán nghiệp vụ phức tạp nhất của dự án: "Vòng đời Ví định kỳ (Periodic Budget)".
 *   **Tự động hóa hoàn toàn:** Ứng dụng xuất sắc Hangfire để tự động hóa trọn vẹn quy trình Auto-renew: Tự chốt sổ ví cũ khi hết tháng, tự tạo ví mới, kế thừa các cài đặt (tên, isDefault), và đồng bộ chính xác nguồn thu định kỳ.
 *   **Đảm bảo chất lượng (QA):** Đảm bảo chất lượng mã nguồn (Code Quality) và độ tin cậy của hệ thống bằng các bộ Unit Test đạt độ phủ cao trước khi tiến hành đóng gói Release.
