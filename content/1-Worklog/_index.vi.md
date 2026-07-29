@@ -32,7 +32,7 @@ Tài liệu này ghi chép lại tiến trình công việc chi tiết trong 12 
 
 **Tuần 11:** [Xử lý Vòng đời Ví định kỳ (Periodic Budget), Auto-renew & Unit Test](1.11-week11/)
 
-**Tuần 12:** [](1.12-week12/)
+**Tuần 12:** [Hoàn thiện Hệ thống Quản trị (Admin), Cổng Hỗ Trợ (Support Ticket) & Chế độ Bảo trì (Maintenance Mode)](1.12-week12/)
 
 ---
 

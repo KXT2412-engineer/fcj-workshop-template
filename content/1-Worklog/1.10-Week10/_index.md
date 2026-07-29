@@ -17,7 +17,7 @@ pre: " <b> 1.10. </b> "
 | Monday | - **Snaptic - Analytics Summary:** <br>&emsp; + Add category summary endpoint <br>&emsp; + Design response DTO to support analysis | 13/07/2026 | 13/07/2026 |  |
 | Tuesday | - **Learn AWS Services:** <br>&emsp; + Explore Event-driven with Amazon EventBridge <br>&emsp; + Message Queue with Amazon SQS | 14/07/2026 | 14/07/2026 | <a href="https://000077.awsstudygroup.com">000077.awsstudygroup.com</a> |
 | Wednesday | - **Snaptic - Recurring Income:** <br>&emsp; + Handle monthly recurring income flow <br>&emsp; + Add `isExpense` flag, comparison & trend summary endpoints | 15/07/2026 | 15/07/2026 |  |
-| Thursday | - **Learn AWS Billing:** <br>&emsp; + Explore AWS Billing & Cost Management <br>&emsp; + How to configure Budget & Alerts for budget management | 16/07/2026 | 16/07/2026 | <a href="https://www.youtube.com/watch?v=IY61YlmXQe8">YT: AWS Cost Optimization</a><br><a href="https://www.youtube.com/watch?v=_a09nLVw6Sg">YT: Create AWS Budget</a><br><a href="https://000007.awsstudygroup.com">000007.awsstudygroup.com</a> |
+| Thursday | - **Learn AWS Billing:** <br>&emsp; + Explore AWS Billing & Cost Management <br>&emsp; + How to configure Budget & Alerts for budget management | 16/07/2026 | 16/07/2026 | <a href="https://000007.awsstudygroup.com">000007.awsstudygroup.com</a> |
 | Friday | - **Snaptic - API Testing:** <br>&emsp; + Code Refactor the entire new Income flow <br>&emsp; + Internal API Testing via Swagger | 17/07/2026 | 17/07/2026 |  |
 
 ### Week 10 Results Achieved:

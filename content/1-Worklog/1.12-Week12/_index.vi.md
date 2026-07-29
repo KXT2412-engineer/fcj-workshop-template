@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 12"
-date: 2025-08-21
+date: 2026-07-27
 weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
@@ -15,11 +15,11 @@ pre: " <b> 1.12. </b> "
 
 | Thứ | Công việc                                                                                                              | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu  |
 | :-- | :--------------------------------------------------------------------------------------------------------------------- | :----------- | :-------------- | :-------------- |
-| 2   | **AWS Deployment:**<br>+ Đóng gói môi trường lên Elastic Beanstalk.<br>+ Map Domain, cấu hình SSL/HTTPS.               | 07/09/2026   | 07/09/2026      | AWS Study Group |
-| 3   | **AWS Cloud Map:**<br>+ Cấu hình Service Discovery cho các Microservices nội bộ giao tiếp với nhau ổn định.            | 08/09/2026   | 08/09/2026      | AWS Docs        |
-| 4   | **Dự án - System Testing:**<br>+ Chạy End-to-End Test toàn bộ luồng Hóa đơn & Ngân sách.<br>+ Rà soát bảo mật API.     | 09/09/2026   | 09/09/2026      | Tài liệu nội bộ |
-| 5   | **Tài liệu & Pháp lý:**<br>+ Viết đặc tả SRS (IEEE 830-1998).<br>+ Rà soát logic hóa đơn theo Thông tư 78/2021/TT-BTC. | 10/09/2026   | 10/09/2026      | Tài liệu nội bộ |
-| 6   | **Tổng kết:**<br>+ Hoàn thiện Slide Demo và file Báo cáo Thực tập (Word/PDF).<br>+ Bàn giao Source code.               | 11/09/2026   | 11/09/2026      | Tài liệu nội bộ |
+| 2   | **AWS Deployment:**<br>+ Đóng gói môi trường lên Elastic Beanstalk.<br>+ Map Domain, cấu hình SSL/HTTPS.               | 27/07/2026   | 27/07/2026      | AWS Study Group |
+| 3   | **AWS Cloud Map:**<br>+ Cấu hình Service Discovery cho các Microservices nội bộ giao tiếp với nhau ổn định.            | 28/07/2026   | 28/07/2026      | AWS Docs        |
+| 4   | **Dự án - System Testing:**<br>+ Chạy End-to-End Test toàn bộ luồng Hóa đơn & Ngân sách.<br>+ Rà soát bảo mật API.     | 29/07/2026   | 29/07/2026      | Tài liệu nội bộ |
+| 5   | **Tài liệu & Pháp lý:**<br>+ Viết đặc tả SRS (IEEE 830-1998).<br>+ Rà soát logic hóa đơn theo Thông tư 78/2021/TT-BTC. | 30/07/2026   | 30/07/2026      | Tài liệu nội bộ |
+| 6   | **Tổng kết:**<br>+ Hoàn thiện Slide Demo và file Báo cáo Thực tập (Word/PDF).<br>+ Bàn giao Source code.               | 31/07/2026   | 31/07/2026      | Tài liệu nội bộ |
 
 ### Kết quả đạt được tuần 12:
 
