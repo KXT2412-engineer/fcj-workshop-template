@@ -1,4 +1,4 @@
----
+﻿---
 title: "Worklog Tuần 8"
 date: 2026-06-29
 weight: 8
@@ -14,11 +14,11 @@ pre: " <b> 1.8. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
-| 2 | - **Snaptic & AWS SNS:** <br>&emsp; + Thêm email notifications qua SNS cho budget <br>&emsp; + Hoàn thiện AI assistant insights chủ/bị động | 29/06/2026 | 29/06/2026 |  |
-| 3 | - **Học AWS Monitoring:** <br>&emsp; + Tìm hiểu Amazon CloudWatch Dashboard <br>&emsp; + Thiết lập Alarms giám sát tài nguyên EC2/RDS | 30/06/2026 | 30/06/2026 | <a href="https://000008.awsstudygroup.com">000008.awsstudygroup.com</a> |
-| 4 | - **Snaptic - Cleanup System:** <br>&emsp; + Sửa lỗi email verification login <br>&emsp; + Bỏ scheduled job trong Program.cs dọn đường cho Hangfire | 01/07/2026 | 01/07/2026 |  |
-| 5 | - **Học AWS Compute Scale:** <br>&emsp; + Tìm hiểu kiến trúc Auto Scaling <br>&emsp; + Ứng dụng Elastic Load Balancer (ELB) | 02/07/2026 | 02/07/2026 | <a href="https://000006.awsstudygroup.com">000006.awsstudygroup.com</a> |
-| 6 | - **Snaptic - Dashboard API:** <br>&emsp; + Cập nhật dashboard <br>&emsp; + Thêm logic tạo nhiều budget và trừ tiền budget tự động | 03/07/2026 | 03/07/2026 |  |
+| 2 | - **Snaptic - Dashboard & AWS SNS:** <br>&emsp; + Đổ dữ liệu Analytics ra Dashboard Controller <br>&emsp; + Bắn thông báo Email qua AWS SNS | 29/06/2026 | 29/06/2026 | <a href="https://000077.awsstudygroup.com">000077.awsstudygroup.com</a><br><a href="https://docs.aws.amazon.com/sns/">Amazon SNS Docs</a> |
+| 3 | - **Học AWS Monitoring:** <br>&emsp; + Tìm hiểu Amazon CloudWatch Dashboard <br>&emsp; + Thực hành tạo metrics và giám sát hệ thống | 30/06/2026 | 30/06/2026 | <a href="https://000008.awsstudygroup.com">000008.awsstudygroup.com</a><br><a href="https://docs.aws.amazon.com/cloudwatch/">CloudWatch Docs</a> |
+| 4 | - **Snaptic - System Cleanup:** <br>&emsp; + Sửa lỗi email verification login <br>&emsp; + Bỏ cấu hình scheduled job cũ trong Program.cs | 01/07/2026 | 01/07/2026 |  |
+| 5 | - **Học AWS Compute Scale:** <br>&emsp; + Tìm hiểu kiến trúc Auto Scaling <br>&emsp; + Ứng dụng EC2 Auto Scaling Groups | 02/07/2026 | 02/07/2026 | <a href="https://000006.awsstudygroup.com">000006.awsstudygroup.com</a> |
+| 6 | - **Snaptic - Budget Updates:** <br>&emsp; + Cập nhật dashboard <br>&emsp; + Thêm logic tạo nhiều budget và tự động trừ tiền | 03/07/2026 | 03/07/2026 |  |
 
 ### Kết quả đạt được tuần 8:
 *   **Hệ thống cảnh báo:** Làm chủ dịch vụ Amazon SNS (Simple Notification Service) để xây dựng hệ thống liên lạc chuẩn công nghiệp, có khả năng bắn thông báo Email.

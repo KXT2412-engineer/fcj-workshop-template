@@ -1,4 +1,4 @@
----
+﻿---
 title: "Worklog Week 3"
 date: 2026-05-25
 weight: 3
@@ -16,9 +16,9 @@ pre: " <b> 1.3. </b> "
 |---|---|---|---|---|
 | Monday | - **Learn advanced networking:** <br>&emsp; + Explore VPC Peering <br>&emsp; + Analyze AWS Transit Gateway | 25/05/2026 | 25/05/2026 | <a href="https://000019.awsstudygroup.com">000019.awsstudygroup.com</a><br><a href="https://000020.awsstudygroup.com">000020.awsstudygroup.com</a> |
 | Tuesday | - **Hybrid Network & Load Balancing:** <br>&emsp; + Site-to-Site VPN model <br>&emsp; + Differentiate between ALB and NLB | 26/05/2026 | 26/05/2026 | <a href="https://000092.awsstudygroup.com">000092.awsstudygroup.com</a> |
-| Wednesday | - **Secure configuration management:** <br>&emsp; + Store Connection String with AWS Parameter Store <br>&emsp; + Set up environment variable security | 27/05/2026 | 27/05/2026 |  |
-| Thursday | - **Snaptic - Auth Design:** <br>&emsp; + Write Base Repository <br>&emsp; + Design Token Service flow diagram | 28/05/2026 | 28/05/2026 | Internal documents |
-| Friday | - **Snaptic - Setup IAM:** <br>&emsp; + Configure specialized IAM Roles <br>&emsp; + Prepare the authorization environment for Backend programming | 29/05/2026 | 29/05/2026 |  |
+| Wednesday | - **Secure configuration management:** <br>&emsp; + Store Connection String with AWS Parameter Store <br>&emsp; + Set up environment variable security | 27/05/2026 | 27/05/2026 | <a href="https://docs.aws.amazon.com/systems-manager/">AWS Systems Manager Docs</a> |
+| Thursday | - **Snaptic - Auth Design:** <br>&emsp; + Write Base Repository <br>&emsp; + Design Token Service flow diagram | 28/05/2026 | 28/05/2026 |  |
+| Friday | - **Snaptic - Setup IAM:** <br>&emsp; + Configure specialized IAM Roles <br>&emsp; + Prepare the authorization environment for Backend programming | 29/05/2026 | 29/05/2026 | <a href="https://000002.awsstudygroup.com">000002.awsstudygroup.com</a><br><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/">AWS IAM Docs</a> |
 
 ### Week 3 Results Achieved:
 *   **AWS Knowledge:** Grasp advanced network connection methods on AWS (Peering, Transit Gateway, VPN) and the Elastic Load Balancing (ELB) mechanism.

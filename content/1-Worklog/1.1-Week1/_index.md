@@ -1,4 +1,4 @@
----
+﻿---
 title: "Worklog Week 1"
 date: 2026-05-11
 weight: 1
@@ -16,9 +16,9 @@ pre: " <b> 1.1. </b> "
 | Day | Task | Start Date | End Date | Resources |
 |---|---|---|---|---|
 | Monday | - **Onboarding:** <br>&emsp; + Read and note the internal rules and regulations at the internship unit <br>&emsp; + Analyze Snaptic project requirements | 11/05/2026 | 11/05/2026 | <a href="https://policies.fcjuni.com/">policies.fcjuni.com</a> |
-| Tuesday | - **Learn basic AWS:** <br>&emsp; + Explore Cloud service types <br>&emsp; + Compute, Storage, Networking, Database | 12/05/2026 | 12/05/2026 |  |
+| Tuesday | - **Learn basic AWS:** <br>&emsp; + Introduction to Cloud Computing & AWS <br>&emsp; + Global Infrastructure & Management Tools | 12/05/2026 | 12/05/2026 | |
 | Wednesday | - **AWS Practice:** <br>&emsp; + Create an AWS account <br>&emsp; + Install & configure AWS CLI | 13/05/2026 | 13/05/2026 | <a href="https://000001.awsstudygroup.com">000001.awsstudygroup.com</a><br><a href="https://000011.awsstudygroup.com">000011.awsstudygroup.com</a> |
-| Thursday | - **Learn about Compute:** <br>&emsp; + Learn basic EC2 <br>&emsp; + SSH connection methods to EC2 | 14/05/2026 | 14/05/2026 | <a href="https://000004.awsstudygroup.com">000004.awsstudygroup.com</a> |
+| Thursday | - **Learn about Compute:** <br>&emsp; + Learn basic EC2, AMI, Key Pair <br>&emsp; + SSH connection methods to EC2 | 14/05/2026 | 14/05/2026 | <a href="https://000004.awsstudygroup.com">000004.awsstudygroup.com</a> |
 | Friday | - **Snaptic - Initialize Database:** <br>&emsp; + Finalize the expense management scope <br>&emsp; + Draft the Database schema (Users, Budget, Transactions) | 15/05/2026 | 15/05/2026 |  |
 
 ### Week 1 Results Achieved:

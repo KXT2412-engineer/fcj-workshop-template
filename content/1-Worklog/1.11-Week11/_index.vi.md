@@ -1,4 +1,4 @@
----
+﻿---
 title: "Worklog Tuần 11"
 date: 2026-07-20
 weight: 11
@@ -14,11 +14,11 @@ pre: " <b> 1.11. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
-| 2 | - **Snaptic - Income Refactor:** <br>&emsp; + Cập nhật và tối ưu lại toàn bộ luồng cho bảng Income <br>&emsp; + Kiểm tra luồng dữ liệu liên đới | 20/07/2026 | 20/07/2026 |  |
-| 3 | - **Snaptic - Hangfire Auto-renew:** <br>&emsp; + Bật/tắt Hangfire, thêm gia hạn tự động <br>&emsp; + Logic luồng lấy/tạo income source, commit sửa test | 21/07/2026 | 21/07/2026 |  |
-| 4 | - **Học AWS Database Protection:** <br>&emsp; + Tìm hiểu AWS Backup <br>&emsp; + Thiết lập cơ chế bảo vệ dữ liệu RDS tự động | 22/07/2026 | 22/07/2026 | <a href="https://000013.awsstudygroup.com">000013.awsstudygroup.com</a> |
-| 5 | - **Snaptic - API Backdoor:** <br>&emsp; + Xây dựng API trigger để test ép luồng Rollover <br>&emsp; + Chạy giả lập trực tiếp trên Swagger | 23/07/2026 | 23/07/2026 |  |
-| 6 | - **Snaptic - Release Preparation:** <br>&emsp; + Review lại toàn bộ Unit Test cho Budget Service <br>&emsp; + Đóng gói mã nguồn chuẩn bị Release | 24/07/2026 | 24/07/2026 |  |
+| 2 | - **Snaptic - Income Refactor:** <br>&emsp; + Cập nhật và tối ưu lại toàn bộ luồng tạo Income Source <br>&emsp; + Kiểm tra luồng dữ liệu liên đới | 20/07/2026 | 20/07/2026 |  |
+| 3 | - **Snaptic - Wallet Budget:** <br>&emsp; + Tối ưu hóa API Budget Controller <br>&emsp; + Kiểm tra và sửa lỗi Unit Tests cho Budget | 21/07/2026 | 21/07/2026 |  |
+| 4 | - **Học AWS Database Protection:** <br>&emsp; + Tìm hiểu kiến trúc AWS Backup <br>&emsp; + Thực hành Create Backup plan bảo vệ dữ liệu | 22/07/2026 | 22/07/2026 | <a href="https://000013.awsstudygroup.com">000013.awsstudygroup.com</a> |
+| 5 | - **Snaptic - Hangfire Auto-renew:** <br>&emsp; + Tích hợp Hangfire xử lý vòng đời ví (Wallet Budget) <br>&emsp; + Code logic tự động gia hạn (Auto-renew) khi qua tháng | 23/07/2026 | 23/07/2026 |  |
+| 6 | - **Snaptic - Release Preparation:** <br>&emsp; + Review lại toàn bộ Codebase <br>&emsp; + Đóng gói mã nguồn chuẩn bị Release | 24/07/2026 | 24/07/2026 |  |
 
 ### Kết quả đạt được tuần 11:
 *   **Hoàn thiện nghiệp vụ:** Giải quyết thành công bài toán nghiệp vụ phức tạp nhất của dự án: "Vòng đời Ví định kỳ (Periodic Budget)".

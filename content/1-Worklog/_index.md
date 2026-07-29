@@ -1,4 +1,4 @@
----
+﻿---
 title: "Worklog"
 date: 2026-05-18
 weight: 1
@@ -32,7 +32,7 @@ This document records the detailed work progress throughout the internship at Fi
 
 **Week 11:** [Periodic Budget Lifecycle Handling, Auto-renew & Unit Testing](1.11-week11/)
 
-**Week 12:** [Doing task N...](1.12-week12/)
+**Week 12:** [Finalizing Admin System, Support Ticket & Maintenance Mode](1.12-week12/)
 
 ### Internship Journey Summary
 

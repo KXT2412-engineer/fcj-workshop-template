@@ -1,4 +1,4 @@
----
+﻿---
 title: "Worklog Week 2"
 date: 2026-05-18
 weight: 2
@@ -16,9 +16,9 @@ pre: " <b> 1.2. </b> "
 | Day | Task | Start Date | End Date | Resources |
 |---|---|---|---|---|
 | Monday | - **Learn Amazon VPC theory:** <br>&emsp; + Concepts: Subnets, Route Table <br>&emsp; + CIDR block, IGW | 18/05/2026 | 18/05/2026 | <a href="https://000003.awsstudygroup.com">000003.awsstudygroup.com</a> |
-| Tuesday | - **Explore VPC Security:** <br>&emsp; + Security Groups (Instance-level firewall) <br>&emsp; + Network ACLs (Subnet-level firewall) | 19/05/2026 | 19/05/2026 |  |
+| Tuesday | - **Explore VPC Security:** <br>&emsp; + Security Groups (Instance-level firewall) <br>&emsp; + Network ACLs (Subnet-level firewall) | 19/05/2026 | 19/05/2026 | |
 | Wednesday | - **AWS VPC Practice:** <br>&emsp; + Create Custom VPC, Public/Private Subnets <br>&emsp; + Attach IGW and configure Route Table <br>&emsp; + Configure Security Group to allow SSH | 20/05/2026 | 20/05/2026 | <a href="https://000003.awsstudygroup.com">000003.awsstudygroup.com</a> |
-| Thursday | - **Snaptic - Initialize Backend:** <br>&emsp; + Create .NET Core Web API solution <br>&emsp; + Install Entity Framework Core (EF Core) <br>&emsp; + Configure initial Database connection string | 21/05/2026 | 21/05/2026 |  |
+| Thursday | - **Snaptic - Initialize Backend:** <br>&emsp; + Create .NET Core Web API solution <br>&emsp; + Install Entity Framework Core (EF Core) <br>&emsp; + Configure initial Database connection string | 21/05/2026 | 21/05/2026 | Microsoft Docs |
 | Friday | - **Snaptic - Database Design:** <br>&emsp; + Code Models: User, Budget, Transaction <br>&emsp; + Handle Relationships using Fluent API <br>&emsp; + Run Migration command to create DB successfully | 22/05/2026 | 22/05/2026 |  |
 
 ### Week 2 Results Achieved:

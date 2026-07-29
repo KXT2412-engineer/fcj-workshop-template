@@ -1,4 +1,4 @@
----
+﻿---
 title: "Worklog Tuần 3"
 date: 2026-05-25
 weight: 3
@@ -16,9 +16,9 @@ pre: " <b> 1.3. </b> "
 |---|---|---|---|---|
 | 2 | - **Học mạng nâng cao:** <br>&emsp; + Tìm hiểu VPC Peering <br>&emsp; + Phân tích AWS Transit Gateway | 25/05/2026 | 25/05/2026 | <a href="https://000019.awsstudygroup.com">000019.awsstudygroup.com</a><br><a href="https://000020.awsstudygroup.com">000020.awsstudygroup.com</a> |
 | 3 | - **Mạng lai & Load Balancing:** <br>&emsp; + Mô hình VPN Site-to-Site <br>&emsp; + Phân biệt ALB và NLB | 26/05/2026 | 26/05/2026 | <a href="https://000092.awsstudygroup.com">000092.awsstudygroup.com</a> |
-| 4 | - **Quản lý cấu hình an toàn:** <br>&emsp; + Lưu Connection String với AWS Parameter Store <br>&emsp; + Thiết lập bảo mật biến môi trường | 27/05/2026 | 27/05/2026 |  |
+| 4 | - **Quản lý cấu hình an toàn:** <br>&emsp; + Lưu Connection String với AWS Parameter Store <br>&emsp; + Thiết lập bảo mật biến môi trường | 27/05/2026 | 27/05/2026 | <a href="https://docs.aws.amazon.com/systems-manager/">AWS Systems Manager Docs</a> |
 | 5 | - **Snaptic - Auth Design:** <br>&emsp; + Viết Base Repository <br>&emsp; + Thiết kế sơ đồ luồng Token Service | 28/05/2026 | 28/05/2026 |  |
-| 6 | - **Snaptic - Setup IAM:** <br>&emsp; + Cấu hình IAM Role riêng biệt <br>&emsp; + Chuẩn bị môi trường cấp quyền cho lập trình Backend | 29/05/2026 | 29/05/2026 |  |
+| 6 | - **Snaptic - Setup IAM:** <br>&emsp; + Cấu hình IAM Role riêng biệt <br>&emsp; + Chuẩn bị môi trường cấp quyền cho lập trình Backend | 29/05/2026 | 29/05/2026 | <a href="https://000002.awsstudygroup.com">000002.awsstudygroup.com</a><br><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/">AWS IAM Docs</a> |
 
 ### Kết quả đạt được tuần 3:
 *   **Kiến thức AWS:** Nắm bắt được các phương thức kết nối mạng nâng cao trên AWS (Peering, Transit Gateway, VPN) và cơ chế cân bằng tải Elastic Load Balancing (ELB).

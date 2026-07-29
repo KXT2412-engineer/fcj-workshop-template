@@ -1,4 +1,4 @@
----
+﻿---
 title: "Worklog Tuần 2"
 date: 2026-05-18
 weight: 2
@@ -15,9 +15,9 @@ pre: " <b> 1.2. </b> "
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
 | 2 | - **Học lý thuyết Amazon VPC:** <br>&emsp; + Các khái niệm: Subnets, Route Table <br>&emsp; + CIDR block, IGW | 18/05/2026 | 18/05/2026 | <a href="https://000003.awsstudygroup.com">000003.awsstudygroup.com</a> |
-| 3 | - **Tìm hiểu Bảo mật trong VPC:** <br>&emsp; + Security Groups (Tường lửa cấp Instance) <br>&emsp; + Network ACLs (Tường lửa cấp Subnet) | 19/05/2026 | 19/05/2026 |  |
+| 3 | - **Tìm hiểu Bảo mật trong VPC:** <br>&emsp; + Security Groups (Tường lửa cấp Instance) <br>&emsp; + Network ACLs (Tường lửa cấp Subnet) | 19/05/2026 | 19/05/2026 | |
 | 4 | - **Thực hành AWS VPC:** <br>&emsp; + Tạo Custom VPC, Public/Private Subnets <br>&emsp; + Gắn IGW và cấu hình Route Table <br>&emsp; + Cấu hình Security Group cho phép SSH | 20/05/2026 | 20/05/2026 | <a href="https://000003.awsstudygroup.com">000003.awsstudygroup.com</a> |
-| 5 | - **Snaptic - Khởi tạo Backend:** <br>&emsp; + Tạo solution .NET Core Web API <br>&emsp; + Cài đặt Entity Framework Core (EF Core) <br>&emsp; + Cấu hình chuỗi kết nối Database ban đầu | 21/05/2026 | 21/05/2026 |  |
+| 5 | - **Snaptic - Khởi tạo Backend:** <br>&emsp; + Tạo solution .NET Core Web API <br>&emsp; + Cài đặt Entity Framework Core (EF Core) <br>&emsp; + Cấu hình chuỗi kết nối Database ban đầu | 21/05/2026 | 21/05/2026 | Microsoft Docs |
 | 6 | - **Snaptic - Thiết kế Database:** <br>&emsp; + Code các Models: User, Budget, Transaction <br>&emsp; + Xử lý quan hệ (Relationships) bằng Fluent API <br>&emsp; + Chạy lệnh Migration tạo DB thành công | 22/05/2026 | 22/05/2026 |  |
 
 ### Kết quả đạt được tuần 2:
