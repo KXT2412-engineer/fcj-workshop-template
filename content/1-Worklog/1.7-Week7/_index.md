@@ -15,10 +15,10 @@ pre: " <b> 1.7. </b> "
 | Day | Task | Start Date | End Date | Resources |
 |---|---|---|---|---|
 | Monday | - **Snaptic - Admin Logic:** <br>&emsp; + Update budget, update AWS module <br>&emsp; + Add management functions for admin | 22/06/2026 | 22/06/2026 | Snaptic Git |
-| Tuesday | - **Snaptic - Notification Flow:** <br>&emsp; + Update general notifications <br>&emsp; + Separate notification creation flow by item | 23/06/2026 | 23/06/2026 | Snaptic Git |
+| Tuesday | - **Snaptic - Notification Flow:** <br>&emsp; + Update general notifications <br>&emsp; + Separate notification creation flow by item | 23/06/2026 | 23/06/2026 |  |
 | Wednesday | - **Learn AWS Email Service:** <br>&emsp; + Explore Amazon SES (Simple Email Service) <br>&emsp; + Setup Identity to serve OTP email sending | 24/06/2026 | 24/06/2026 | <a href="https://docs.aws.amazon.com/ses/">Amazon SES Docs</a> |
-| Thursday | - **Snaptic - OTP Flow:** <br>&emsp; + Improve registration OTP email template <br>&emsp; + Complete secure email verification flow using OTP code | 25/06/2026 | 25/06/2026 | Snaptic Git |
-| Friday | - **Snaptic - AI Assistant:** <br>&emsp; + Add AI assistant financial summary API <br>&emsp; + Update prompt with `AllCategoriesThisMonth` | 26/06/2026 | 26/06/2026 | Snaptic Git |
+| Thursday | - **Snaptic - OTP Flow:** <br>&emsp; + Improve registration OTP email template <br>&emsp; + Complete secure email verification flow using OTP code | 25/06/2026 | 25/06/2026 |  |
+| Friday | - **Snaptic - AI Assistant:** <br>&emsp; + Add AI assistant financial summary API <br>&emsp; + Update prompt with `AllCategoriesThisMonth` | 26/06/2026 | 26/06/2026 |  |
 
 ### Week 7 Results Achieved:
 *   **Account Security:** Upgrade user security system by successfully implementing a secure OTP code sending and verification flow via Email.

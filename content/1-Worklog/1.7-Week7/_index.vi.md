@@ -14,11 +14,11 @@ pre: " <b> 1.7. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
-| 2 | - **Snaptic - Logic quản trị:** <br>&emsp; + Cập nhật budget, cập nhật module AWS <br>&emsp; + Thêm các hàm quản trị cho admin | 22/06/2026 | 22/06/2026 | Snaptic Git |
-| 3 | - **Snaptic - Notification Flow:** <br>&emsp; + Cập nhật notification chung <br>&emsp; + Tách luồng tạo notification theo từng item | 23/06/2026 | 23/06/2026 | Snaptic Git |
+| 2 | - **Snaptic - Logic quản trị:** <br>&emsp; + Cập nhật budget, cập nhật module AWS <br>&emsp; + Thêm các hàm quản trị cho admin | 22/06/2026 | 22/06/2026 |  |
+| 3 | - **Snaptic - Notification Flow:** <br>&emsp; + Cập nhật notification chung <br>&emsp; + Tách luồng tạo notification theo từng item | 23/06/2026 | 23/06/2026 |  |
 | 4 | - **Học AWS Email Service:** <br>&emsp; + Tìm hiểu dịch vụ Amazon SES (Simple Email Service) <br>&emsp; + Setup Identity để phục vụ gửi mail OTP | 24/06/2026 | 24/06/2026 | <a href="https://docs.aws.amazon.com/ses/">Amazon SES Docs</a> |
-| 5 | - **Snaptic - OTP Flow:** <br>&emsp; + Cải thiện template email OTP đăng ký <br>&emsp; + Hoàn thiện flow xác minh email bằng mã OTP an toàn | 25/06/2026 | 25/06/2026 | Snaptic Git |
-| 6 | - **Snaptic - AI Assistant:** <br>&emsp; + Thêm API AI assistant financial summary <br>&emsp; + Cập nhật prompt với `AllCategoriesThisMonth` | 26/06/2026 | 26/06/2026 | Snaptic Git |
+| 5 | - **Snaptic - OTP Flow:** <br>&emsp; + Cải thiện template email OTP đăng ký <br>&emsp; + Hoàn thiện flow xác minh email bằng mã OTP an toàn | 25/06/2026 | 25/06/2026 | |
+| 6 | - **Snaptic - AI Assistant:** <br>&emsp; + Thêm API AI assistant financial summary <br>&emsp; + Cập nhật prompt với `AllCategoriesThisMonth` | 26/06/2026 | 26/06/2026 |  |
 
 ### Kết quả đạt được tuần 7:
 *   **Bảo mật tài khoản:** Nâng cấp hệ thống bảo mật người dùng bằng việc triển khai thành công luồng gửi và xác minh mã OTP qua Email một cách an toàn.
