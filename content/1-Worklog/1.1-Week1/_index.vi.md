@@ -6,14 +6,19 @@ chapter: false
 pre: " <b> 1.1. </b> "
 ---
 
+### Mục tiêu tuần 1:
+- Nắm vững quy chế và hướng dẫn của đợt thực tập First Cloud Journey.
+- Hiểu dịch vụ AWS cơ bản, làm quen với giao diện Console & AWS CLI.
+- Định hình ý tưởng và chuẩn bị nền móng kiến trúc Database ban đầu cho dự án cá nhân (Snaptic).
+
 ### Các công việc cần triển khai trong tuần này:
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
 | 2 | - **Onboarding:** <br>&emsp; + Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập <br>&emsp; + Phân tích yêu cầu dự án Snaptic | 11/05/2026 | 11/05/2026 | <a href="https://policies.fcjuni.com/">policies.fcjuni.com</a> |
-| 3 | - **Học AWS cơ bản:** <br>&emsp; + Tìm hiểu các loại dịch vụ Cloud <br>&emsp; + Compute, Storage, Networking, Database | 12/05/2026 | 12/05/2026 | <a href="https://www.youtube.com/watch?v=HxYZAK1coOI&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i">FCJ Bootcamp Playlist</a> |
-| 4 | - **Thực hành AWS:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài đặt & cấu hình AWS CLI | 13/05/2026 | 13/05/2026 | <a href="https://000011.awsstudygroup.com/">000011.awsstudygroup.com</a> |
-| 5 | - **Tìm hiểu Compute:** <br>&emsp; + Tìm hiểu EC2 cơ bản <br>&emsp; + Các phương thức kết nối SSH vào EC2 | 14/05/2026 | 14/05/2026 | <a href="https://000004.awsstudygroup.com/">000004.awsstudygroup.com</a> |
+| 3 | - **Học AWS cơ bản:** <br>&emsp; + Tìm hiểu các loại dịch vụ Cloud <br>&emsp; + Compute, Storage, Networking, Database | 12/05/2026 | 12/05/2026 | <a href="https://www.youtube.com/watch?v=HxYZAK1coOI">YT: Điện Toán Đám Mây Là Gì</a><br><a href="https://www.youtube.com/watch?v=IK59Zdd1poE">YT: Khác Biệt Của AWS</a><br><a href="https://www.youtube.com/watch?v=HSzrWGqo3ME">YT: Hành Trình Lên Mây</a><br><a href="https://www.youtube.com/watch?v=pjr5a-HYAjI">YT: Hạ Tầng Toàn Cầu AWS</a><br><a href="https://www.youtube.com/watch?v=2PQYqH_HkXw">YT: Công Cụ Quản Lý</a> |
+| 4 | - **Thực hành AWS:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài đặt & cấu hình AWS CLI | 13/05/2026 | 13/05/2026 | <a href="https://www.youtube.com/watch?v=waR5S_lljrk">YT: Create an AWS account</a><br><a href="https://000001.awsstudygroup.com">000001.awsstudygroup.com</a><br><a href="https://000011.awsstudygroup.com">000011.awsstudygroup.com</a> |
+| 5 | - **Tìm hiểu Compute:** <br>&emsp; + Tìm hiểu EC2 cơ bản <br>&emsp; + Các phương thức kết nối SSH vào EC2 | 14/05/2026 | 14/05/2026 | <a href="https://www.youtube.com/watch?v=-t5h4N6vfBs">YT: Compute VM on AWS</a><br><a href="https://www.youtube.com/watch?v=e7XeKdOVq40">YT: EC2 Instance type</a><br><a href="https://www.youtube.com/watch?v=yAR6QRT3N1k">YT: EC2 AMI / Key Pair</a><br><a href="https://000004.awsstudygroup.com">000004.awsstudygroup.com</a> |
 | 6 | - **Snaptic - Khởi tạo Database:** <br>&emsp; + Chốt scope quản lý chi tiêu <br>&emsp; + Phác thảo sơ đồ Database (Users, Budget, Transactions) | 15/05/2026 | 15/05/2026 | Tài liệu nội bộ |
 
 ### Kết quả đạt được tuần 1:

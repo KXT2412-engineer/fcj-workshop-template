@@ -7,21 +7,20 @@ pre: " <b> 1.3. </b> "
 ---
 
 ### Week 3 Objectives:
+- Master advanced network connection methods (Peering, VPN) and ELB.
+- **Snaptic Project:** Prepare the security infrastructure, design the Authentication system.
 
-- Master advanced networking methods on AWS (VPC Peering, VPN, Transit Gateway).
-- Snaptic project: build user authentication, secure the API with JWT, and use Email OTP.
+### Tasks to be implemented this week:
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | --- | --- | --- | --- |
-| 2 | Learn advanced networking: VPC Peering and Transit Gateway. | 25/05/2026 | 25/05/2026 | AWS Study Group |
-| 3 | Hybrid networking & ELB: learn VPN Site-to-Site and compare ALB/NLB. | 26/05/2026 | 26/05/2026 | AWS Study Group |
-| 4 | Snaptic - Systems Manager: store the connection string securely with AWS Parameter Store. | 27/05/2026 | 27/05/2026 | AWS Docs |
-| 5 | Snaptic - Auth Design: write the Base Repository and design the Token Service architecture. | 28/05/2026 | 28/05/2026 | Internal documents |
-| 6 | Snaptic - IAM Setup: configure a dedicated IAM Role to prepare for backend development. | 29/05/2026 | 29/05/2026 | AWS Docs |
+| Day | Task | Start Date | End Date | Resources |
+|---|---|---|---|---|
+| Monday | - **Learn advanced networking:** <br>&emsp; + Explore VPC Peering <br>&emsp; + Analyze AWS Transit Gateway | 25/05/2026 | 25/05/2026 | <a href="https://www.youtube.com/watch?v=sllYqAECBoM">YT: Setup VPC Peering</a><br><a href="https://www.youtube.com/watch?v=ybLa49z7FFg">YT: Setup Transit Gateway</a><br><a href="https://000019.awsstudygroup.com">000019.awsstudygroup.com</a><br><a href="https://000020.awsstudygroup.com">000020.awsstudygroup.com</a> |
+| Tuesday | - **Hybrid Network & Load Balancing:** <br>&emsp; + Site-to-Site VPN model <br>&emsp; + Differentiate between ALB and NLB | 26/05/2026 | 26/05/2026 | <a href="https://www.youtube.com/watch?v=CXU8D3kyxIc">YT: VPN, DirectConnect, ELB</a><br><a href="https://000092.awsstudygroup.com">000092.awsstudygroup.com</a> |
+| Wednesday | - **Secure configuration management:** <br>&emsp; + Store Connection String with AWS Parameter Store <br>&emsp; + Set up environment variable security | 27/05/2026 | 27/05/2026 | Internal documents |
+| Thursday | - **Snaptic - Auth Design:** <br>&emsp; + Write Base Repository <br>&emsp; + Design Token Service flow diagram | 28/05/2026 | 28/05/2026 | Internal documents |
+| Friday | - **Snaptic - Setup IAM:** <br>&emsp; + Configure specialized IAM Roles <br>&emsp; + Prepare the authorization environment for Backend programming | 29/05/2026 | 29/05/2026 | Internal documents |
 
-### Week 3 Achievements:
-
-*   **AWS knowledge:** Learned advanced AWS networking methods (Peering, Transit Gateway, VPN) and the Elastic Load Balancing (ELB) mechanism.
-*   **System security:** Solved secure configuration storage properly by using AWS Parameter Store to store the connection string safely.
-*   **Authentication design:** Completed the full Auth system design, including JWT token issuance and role-based access control, ready for the actual sprint coding phase.
+### Week 3 Results Achieved:
+*   **AWS Knowledge:** Grasp advanced network connection methods on AWS (Peering, Transit Gateway, VPN) and the Elastic Load Balancing (ELB) mechanism.
+*   **System Security:** Completely solve the information security problem (no hardcoding) by applying AWS Parameter Store to securely store the connection string.
+*   **Authentication Design:** Complete the entire Auth system design diagram, including the JWT Token issuance mechanism and Role-Based Access Control, ready for the actual Sprint code process.

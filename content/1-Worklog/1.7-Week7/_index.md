@@ -7,20 +7,20 @@ pre: " <b> 1.7. </b> "
 ---
 
 ### Week 7 Objectives:
+- Complete the OTP flow via email.
+- Develop the AI Assistant (Financial Virtual Assistant).
 
-- Complete the email-based OTP flow.
-- Develop the AI Assistant (financial virtual assistant).
+### Tasks to be implemented this week:
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | --- | --- | --- | --- |
-| 2 | Snaptic - Admin & Notifications: update item-based notifications and add admin management functions. | 22/06/2026 | 23/06/2026 | Snaptic Git |
-| 4 | Snaptic - OTP Flow: complete the secure email OTP verification flow. | 24/06/2026 | 25/06/2026 | Snaptic Git |
-| 5 | Snaptic - AI Summary: add the AI assistant financial summary feature. | 26/06/2026 | 26/06/2026 | Snaptic Git |
-| 6 | Snaptic - Prompt Engineering: add the `AllCategoriesThisMonth` property to the DTO and update the prompt so AI can analyze more accurately. | 27/06/2026 | 28/06/2026 | Snaptic Git |
+| Day | Task | Start Date | End Date | Resources |
+|---|---|---|---|---|
+| Monday | - **Snaptic - Admin Logic:** <br>&emsp; + Update budget, update AWS module <br>&emsp; + Add management functions for admin | 22/06/2026 | 22/06/2026 | Snaptic Git |
+| Tuesday | - **Snaptic - Notification Flow:** <br>&emsp; + Update general notifications <br>&emsp; + Separate notification creation flow by item | 23/06/2026 | 23/06/2026 | Snaptic Git |
+| Wednesday | - **Learn AWS Email Service:** <br>&emsp; + Explore Amazon SES (Simple Email Service) <br>&emsp; + Setup Identity to serve OTP email sending | 24/06/2026 | 24/06/2026 | <a href="https://docs.aws.amazon.com/ses/">Amazon SES Docs</a> |
+| Thursday | - **Snaptic - OTP Flow:** <br>&emsp; + Improve registration OTP email template <br>&emsp; + Complete secure email verification flow using OTP code | 25/06/2026 | 25/06/2026 | Snaptic Git |
+| Friday | - **Snaptic - AI Assistant:** <br>&emsp; + Add AI assistant financial summary API <br>&emsp; + Update prompt with `AllCategoriesThisMonth` | 26/06/2026 | 26/06/2026 | Snaptic Git |
 
-### Week 7 Achievements:
-
-*   **Account security:** Upgraded user security by successfully implementing a safe email-based OTP sending and verification flow.
-*   **Smart virtual assistant:** Delivered a major user experience improvement with the AI Assistant feature through Prompt Engineering (adding the `AllCategoriesThisMonth` context).
-*   **Personalization:** The AI assistant became smart enough to assess the overall situation, summarize, and provide personalized financial insights based on actual spending.
+### Week 7 Results Achieved:
+*   **Account Security:** Upgrade user security system by successfully implementing a secure OTP code sending and verification flow via Email.
+*   **Smart Virtual Assistant:** Create a breakthrough in user experience with the AI Assistant feature thanks to Prompt Engineering techniques (adding `AllCategoriesThisMonth` context).
+*   **Personalization:** The AI virtual assistant is "smart" enough to evaluate the overview, summarize, and provide personalized financial Insights based on actual spending levels.

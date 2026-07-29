@@ -6,22 +6,22 @@ chapter: false
 pre: " <b> 1.2. </b> "
 ---
 
+
 ### Week 2 Objectives:
+- Master the foundational knowledge of Amazon Virtual Private Cloud (VPC) and network security mechanisms.
+- **Snaptic Project**: Setup the .NET Core Web API Backend environment and configure Entity Framework Core.
 
-- Gain a solid foundation in Amazon Virtual Private Cloud (VPC) and network security mechanisms.
-- Snaptic project: set up the .NET Core Web API backend environment and configure Entity Framework Core.
+### Tasks to be implemented this week:
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | --- | --- | --- | --- |
-| 2 | Study Amazon VPC theory: subnets, route table, CIDR block, IGW. | 18/05/2026 | 18/05/2026 | <a href="https://000003.awsstudygroup.com/">000003.awsstudygroup.com</a> |
-| 3 | Learn VPC security: Security Groups (instance-level firewall) and Network ACLs (subnet-level firewall). | 19/05/2026 | 19/05/2026 |  |
-| 4 | Practice AWS VPC: create a custom VPC, public/private subnets, attach the IGW, configure the route table, and allow SSH in the Security Group. | 20/05/2026 | 20/05/2026 |  |
-| 5 | Snaptic backend initialization: create the .NET Core Web API solution, install Entity Framework Core (EF Core), and configure the initial database connection string. | 21/05/2026 | 21/05/2026 |  |
-| 6 | Snaptic database design: code the User, Budget, and Transaction models; handle relationships with Fluent API; run the migration successfully. | 22/05/2026 | 22/05/2026 |  |
+| Day | Task | Start Date | End Date | Resources |
+|---|---|---|---|---|
+| Monday | - **Learn Amazon VPC theory:** <br>&emsp; + Concepts: Subnets, Route Table <br>&emsp; + CIDR block, IGW | 18/05/2026 | 18/05/2026 | <a href="https://www.youtube.com/watch?v=O9Ac_vGHquM">YT: Intro to VPC</a><br><a href="https://www.youtube.com/watch?v=DHYgA94SefE">YT: VPC Subnets</a><br><a href="https://www.youtube.com/watch?v=dHoYmQR7FYs">YT: VPC Route table & IGW</a><br><a href="https://000003.awsstudygroup.com">000003.awsstudygroup.com</a> |
+| Tuesday | - **Explore VPC Security:** <br>&emsp; + Security Groups (Instance-level firewall) <br>&emsp; + Network ACLs (Subnet-level firewall) | 19/05/2026 | 19/05/2026 | <a href="https://www.youtube.com/watch?v=BPuD1l2hEQ4">YT: VPC Security Theory</a><br><a href="https://www.youtube.com/watch?v=B1qxOQLmavQ">YT: Practice Security Group</a><br><a href="https://www.youtube.com/watch?v=GVDsDu9dOFY">YT: Practice Network ACLs</a> |
+| Wednesday | - **AWS VPC Practice:** <br>&emsp; + Create Custom VPC, Public/Private Subnets <br>&emsp; + Attach IGW and configure Route Table <br>&emsp; + Configure Security Group to allow SSH | 20/05/2026 | 20/05/2026 | <a href="https://www.youtube.com/watch?v=I-5gTPDCOI8">YT: Create VPC, Subnet, IGW</a><br><a href="https://000003.awsstudygroup.com">000003.awsstudygroup.com</a> |
+| Thursday | - **Snaptic - Initialize Backend:** <br>&emsp; + Create .NET Core Web API solution <br>&emsp; + Install Entity Framework Core (EF Core) <br>&emsp; + Configure initial Database connection string | 21/05/2026 | 21/05/2026 | Microsoft Docs |
+| Friday | - **Snaptic - Database Design:** <br>&emsp; + Code Models: User, Budget, Transaction <br>&emsp; + Handle Relationships using Fluent API <br>&emsp; + Run Migration command to create DB successfully | 22/05/2026 | 22/05/2026 | Internal documents |
 
-### Week 2 Achievements:
-
-*   **Network infrastructure:** Mastered the AWS VPC networking foundation, understood how to divide networks into Public/Private Subnets, and applied Security Groups/NACLs to build the system firewall layer.
-*   **Backend architecture:** Successfully initialized the .NET Core Web API project with a clear layered architecture (API, BLL, DAL).
-*   **Database:** Applied the Code-First approach in Entity Framework Core smoothly to model the entire expense-management domain into a real database structure and run the migration successfully.
+### Week 2 Results Achieved:
+*   **Network Infrastructure:** Master the AWS VPC network platform, clearly understand how to divide the network (Public/Private Subnets) and apply Security Group/NACL to establish a firewall layer to protect the system.
+*   **Backend Architecture:** Successfully initialize the .NET Core Web API project with a clear layered architecture (API, BLL, DAL).
+*   **Database:** Smoothly apply the Code-First approach in Entity Framework Core to model the entire expense management business into an actual Database structure and run Migration successfully.

@@ -7,21 +7,21 @@ pre: " <b> 1.11. </b> "
 ---
 
 ### Week 11 Objectives:
-
-- Complete the most complex business flow: **Periodic Budget lifecycle**.
+- Complete the most complex business logic: **Periodic Budget Lifecycle**.
 - Automate with Background Jobs and Unit Testing.
 
-### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | --- | --- | --- | --- |
-| 2 | Snaptic - Income Flow: update and optimize the entire Income flow. | 20/07/2026 | 20/07/2026 | Snaptic Git |
-| 3 | Snaptic - Hangfire Auto-renew: code a Hangfire on/off mechanism; build auto-renew budget logic when the month changes. | 21/07/2026 | 21/07/2026 | Hangfire Docs |
-| 4 | Snaptic - Budget Inheritance: inherit budget settings (name, isDefault, auto-renew) from the previous month into the new month. | 21/07/2026 | 21/07/2026 | Snaptic Git |
-| 5 | Snaptic - Sync Income: automatically fetch or create an income source per user and inject money into the new periodic budget. | 21/07/2026 | 21/07/2026 | Snaptic Git |
-| 6 | Snaptic - Unit Testing: write unit tests for Budget Service and finalize one last commit to fix the test case. | 21/07/2026 | 21/07/2026 | Snaptic Git |
+### Tasks to be implemented this week:
 
-### Week 11 Achievements:
+| Day | Task | Start Date | End Date | Resources |
+|---|---|---|---|---|
+| Monday | - **Snaptic - Income Refactor:** <br>&emsp; + Update and optimize the entire flow for the Income table <br>&emsp; + Check associated data flows | 20/07/2026 | 20/07/2026 | Snaptic Git |
+| Tuesday | - **Snaptic - Hangfire Auto-renew:** <br>&emsp; + Enable/disable Hangfire, add auto-renewal <br>&emsp; + Income source fetch/create flow logic, commit test fixes | 21/07/2026 | 21/07/2026 | Snaptic Git |
+| Wednesday | - **Learn AWS Database Protection:** <br>&emsp; + Explore AWS Backup <br>&emsp; + Set up automatic RDS data protection mechanism | 22/07/2026 | 22/07/2026 | <a href="https://www.youtube.com/watch?v=7r_-MnOO64s">YT: Deploy AWS Backup</a><br><a href="https://www.youtube.com/watch?v=-1ivCChsGFo">YT: Create Backup Plan</a><br><a href="https://000013.awsstudygroup.com">000013.awsstudygroup.com</a> |
+| Thursday | - **Snaptic - API Backdoor:** <br>&emsp; + Build trigger API to force test the Rollover flow <br>&emsp; + Run simulation directly on Swagger | 23/07/2026 | 23/07/2026 | Internal documents |
+| Friday | - **Snaptic - Release Preparation:** <br>&emsp; + Review all Unit Tests for Budget Service <br>&emsp; + Package source code in preparation for Release | 24/07/2026 | 24/07/2026 | Snaptic Git |
 
-*   **Business completion:** Successfully solved the project's most complex business problem: the "Periodic Budget lifecycle." 
-*   **Full automation:** Used Hangfire effectively to fully automate the auto-renew workflow: close the old budget at month-end, create a new budget, inherit settings (name, isDefault), and sync the recurring income source accurately.
-*   **Quality assurance (QA):** Ensured code quality and system reliability with high-coverage unit tests before packaging the release.
+### Week 11 Results Achieved:
+*   **Business Logic Completion:** Successfully solve the project's most complex business problem: "Periodic Budget Lifecycle".
+*   **Full Automation:** Excellently apply Hangfire to fully automate the Auto-renew process: Automatically close the old budget at the end of the month, create a new budget, inherit settings (name, isDefault), and accurately synchronize recurring income.
+*   **Quality Assurance (QA):** Ensure Code Quality and system reliability with high-coverage Unit Test suites before packaging for Release.
+
