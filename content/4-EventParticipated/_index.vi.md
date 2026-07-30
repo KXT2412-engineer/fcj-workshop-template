@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích, cùng với đó là nhứng món quà và những khoảnh khắc rất tuyệt vời.
+Trong quá trình thực tập, tôi đã có cơ hội tuyệt vời để tham gia hai sự kiện. Mỗi sự kiện đều là một trải nghiệm thực sự đáng nhớ, giúp tôi mở rộng góc nhìn với những kiến thức mới mẻ và giá trị, đồng thời để lại trong tôi những khoảnh khắc vô cùng tuyệt vời.
 
 ### [Event 1](4.1-Event1/)
 
 &emsp;**Tên sự kiện:** AI From Scratch
 
-&emsp;**Thời gian:** 09:00 ngày 13/08/2025
+&emsp;**Thời gian:** Ngày 18 tháng 7 năm 2026
 
 &emsp;**Địa điểm:** Phòng LB 24 (Lầu 2) - Thư viện FPTU HCMC
 
@@ -20,10 +20,11 @@ Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là
 
 ### [Event 2](4.2-Event2/)
 
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
+&emsp;**Tên sự kiện:** FCAJ – Agentic AI Build Week
 
-&emsp;**Thời gian:** 09:00 ngày 18/07/2026
+&emsp;**Thời gian:** Ngày 4 tháng 7 năm 2026
 
-&emsp;**Địa điểm:**
+&emsp;**Địa điểm:** Tòa nhà Bitexco Financial Tower, Quận 1, TP. Hồ Chí Minh
 
 &emsp;**Vai trò trong sự kiện:** Người tham dự
+

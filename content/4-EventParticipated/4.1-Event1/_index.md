@@ -1,126 +1,98 @@
 ---
 title: "Event 1"
-date: 2024-01-01
+date: 2026-07-18
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# Event: “FCAJ X FPTU CLOUD MASTERY: AI FROM SCRATCH”
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+### Purpose of the Event
+- This event helped me grasp the most fundamental concepts of Artificial Intelligence (AI) as well as the trending Generative AI.
+- Provided me with a clear perspective on how to integrate AI services from the AWS ecosystem into modern software applications.
+- Created an opportunity for me to listen to practical, real-world experiences from senior engineers currently working at AWS.
+- Stimulated my eagerness to learn through tech demos and engaging interactive games.
 
-### Event Objectives
-
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
-
-### Speakers
-
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+### List of Speakers
+- **Nguyen Cong Minh** - DevOps Engineer, FCAJ AWS
+- **Nguyen Tuan Thinh** - DevSecOps Engineer, STYL Solution
+- **Nguyen Van Duy Khiem** - DevSecOps Engineer, STYL Solution
+- **Huynh An Khuong** - Full-stack Developer, VALSEA
+- **Mai Quoc Anh** - Full-stack Developer
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Changing the Approach to Artificial Intelligence
+- I noticed a very interesting point mentioned regarding the current trend of AI application. Instead of struggling to build the infrastructure from scratch, cloud computing platforms now provide fully managed services. This makes my application development process much lighter and more optimized.
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+#### Building a Complete Multilingual AI Agent
+The event was truly an "eye-opener" for me through a specific example of creating a Customer Support Agent using a continuous 6-step process, illustrating how to piece together different services:
+- **Transcribe:** Listen and convert speech to text (Speech to Text).
+- **Translate:** Multilingual translation.
+- **Comprehend:** Context analysis, sentiment, and topic understanding.
+- **Lex:** Intent recognition and variable (slots) extraction.
+- **Backend:** Where logic connects to APIs or Databases.
+- **Polly:** Respond to customers using natural voice (Text to Speech).
 
-#### Transitioning to modern application architecture – Microservices
+#### RAG Architecture and Vector Store Solutions
+To overcome the "hallucination" weakness of GenAI, the RAG (Retrieval-Augmented Generation) architecture was introduced. I understood that the Vector storage system plays a core role in this, with options like:
+- **Bedrock Managed Knowledge Base**: An all-in-one, easy-to-deploy solution.
+- **Aurora PostgreSQL**: Combined storage of vector data and relational transactional data.
+- **Neptune Analytics**: Processing knowledge graphs (GraphRAG) with complex relational data.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+### What I Learned
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+#### Grasped the AWS AI Services Ecosystem
+Through the event, I systematized a list of core AWS tools specifically designed for Artificial Intelligence tasks:
+- **AI & Generative AI Services Group:** 
+  + `Amazon Bedrock`: Platform for building GenAI and integrating Foundation Models.
+  + `Amazon Lex`: Natural language processing brain for creating Chatbots/Voicebots.
+  + `Amazon Polly`: Transforms text into natural speech.
+  + `Amazon Transcribe`: Recognizes and converts speech to text.
+  + `Amazon Translate`: Automatic language translation.
+  + `Amazon Comprehend`: Analyzes nuances, sentiment, and text context.
+- **Extended Data Processing Group (Extra Inputs):** 
+  + `Amazon Textract`: Reads and extracts data from documents and invoices.
+  + `Amazon Rekognition`: Analyzes and recognizes image details.
+- **Vector Storage & Knowledge Graph Group (Vector Store Options):** 
+  + `Amazon Bedrock Managed Knowledge Base`: Comprehensive RAG infrastructure.
+  + `Amazon Aurora PostgreSQL`: Relational database combined with vector storage.
+  + `Amazon Neptune Analytics`: Knowledge graph storage and querying (GraphRAG).
 
-#### Domain-Driven Design (DDD)
-
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
-
-#### Event-Driven Architecture
-
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
-
-#### Compute Evolution
-
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
-
-#### Amazon Q Developer
-
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
-
-### Key Takeaways
-
-#### Design Mindset
-
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+#### Design Thinking
+- I realized that modern AI system design prioritizes flexibility. By combining multiple available AWS services, I can build a complete smart conversational system without having to start from absolute zero.
 
 #### Technical Architecture
+- I gained a clearer understanding of the RAG technique's architecture flow, as well as the indispensable role of Knowledge Bases and Vector Stores in improving the accuracy of Generative AI applications.
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+#### Deployment Strategy
+- Through the presentations, I grasped modern software development methods and learned how to evaluate and choose cloud deployment solutions best suited for specific project requirements.
 
-#### Modernization Strategy
+### Application to Work
+- I plan to experiment with the `Amazon Bedrock` service for my upcoming personal cloud projects.
+- I will delve deeper into researching the RAG technique and how to set up Knowledge Bases.
+- I plan to practice connecting the quartet of `Amazon Transcribe`, `Comprehend`, `Lex`, and `Polly` to build a practical personal project.
+- I will diligently participate in tech communities to continuously sharpen my Cloud and AI skills.
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+### My Experience at the Event
 
-### Applying to Work
+Attending "AI From Scratch" was truly a milestone that helped me clearly see the massive AI ecosystem of AWS.
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+#### Learning from Highly Specialized Speakers
+Besides imparting theory, the engineers shared real-life career stories. Those vivid examples helped me thoroughly understand how to apply AI to solve tough business problems.
 
-### Event Experience
+#### Practical Technical Experience
+For me, witnessing AI services operate and connect with each other in live demos felt much more "satisfying" than just reading dry documentation. It helped dispel my fears about the complexity of Artificial Intelligence.
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+#### Unexpected Reward from Team Spirit
+At the end of the program, there was a highly exciting interactive game. Although I wasn't the direct representative on stage, thanks to being in the same team with a very talented friend who volunteered and won, I also "piggybacked" on the prize of **1 month of ChatGPT Plus**. This experience made me very happy and left a lasting impression.
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+#### Networking and Exchanging Ideas
+The dynamic atmosphere of the seminar broke down barriers of hesitation, creating a wonderful space for me to interact and ask direct questions to experts and friends sharing the same tech passion.
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+#### Key Takeaway
+The current development speed of AI is incredibly fast. Through this event, I realized that continuous learning is mandatory. Seminars like this are perfect stimulants, helping me maintain my enthusiasm and gain more motivation to conquer the long journey ahead.
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
-
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
-
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+#### Some Pictures Taken at the Event
+![](image-1.png)

@@ -1,126 +1,74 @@
 ---
 title: "Event 2"
-date: 2024-01-01
-weight: 1
+date: 2026-07-25
+weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# Event: “FCAJ x Agentic AI Build Week: Show Up. Build. Pitch. WIN!”
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+### Purpose of the Event
+- Created a practical playground (Hackathon) for me and other builders to have the opportunity to get hands-on in building Agentic AI applications that solve real-world problems.
+- Encouraged the spirit of "Show Up. Build. Pitch. WIN!" – daring to show up, daring to build, daring to pitch ideas, and pushing personal limits within an extremely short time frame (24-48 hours).
+- Provided me with a space for networking, teamwork, and direct learning from AWS Solution Architects and investment funds (like JI Fund).
 
-### Event Objectives
-
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
-
-### Speakers
-
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+### List of Speakers & Guests
+- **Mr. Joseph Marazota** – Head of Technology of ASEAN, AWS (Inspiring opening speech).
+- **Mr. Nguyen Gia Hung** – Head of Solution Architect of Vietnam, AWS.
+- Representatives from outstanding competing teams sharing their solutions (One Team, Signal Scout, Team Plan, 3K, Six Pillar).
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Mindset-Shaping Advice from AWS Experts
+The event opened with deeply insightful sharing from Mr. Joseph Marazota. I realized that the current generation of young developers has a massive advantage: we aren't bound by tech "legacies" from 20 years ago. Instead of sticking to a "make the system run stable" mindset, we were encouraged to constantly challenge limits, apply AI Agents to automate everything, and become leaders of the tech era in the next 2-3 years.
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+#### A Feast of Breakthrough AI Agent Ideas from Competing Teams
+The brightest spot of the event was the Pitching and Demo session by the teams. I was truly overwhelmed by what they could achieve in just 1-2 days:
+- **Multi-channel Ordering Bot Project (One Team):** Solved the pain point of users being too lazy to download apps (App fatigue) by creating an AI Agent to order KFC directly on Zalo/WhatsApp extremely smoothly.
+- **Competitor Analysis System (Signal Scout):** Used AI Agents to automatically crawl data, analyze competitors' strategies, and forecast revenue.
+- **Automated SA Assistant (Team Plan):** A solution helping Solution Architects automatically draw Architecture Diagrams and generate Terraform/CloudFormation code purely from natural language descriptions.
+- **Crowd Monitoring System (Team 3K):** Applied Computer Vision (YOLO) combined with Bedrock Agent to analyze security cameras at airports and supermarkets to coordinate human traffic and avoid congestion.
+- **Anti-Money Laundering (AML) (Six Pillar):** Applied Agentic AI to financial operations, automatically reviewing KYC profiles, cross-referencing laws (legal/typology), and minimizing false positives for banks.
 
-#### Transitioning to modern application architecture – Microservices
+#### The Importance of Business Value
+A standout point throughout the presentations was: No matter how advanced the technology is, it's meaningless if it doesn't solve the market's "pain points." Drawing a Business Model Canvas and answering the question "Who will use this system?" is just as important as writing code.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+### What I Learned
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+#### Grasped the AWS Services Ecosystem
+By analyzing the Architecture of the competing teams, I gathered and systematized how to combine AWS services for real-world problems:
+- **Core AI & LLM:** `Amazon Bedrock` (the heart of the Agent system), `Bedrock Guardrails` (controlling hallucination), `Bedrock Knowledge Bases` (for RAG).
+- **Compute & Integration:** `AWS Lambda` (flexible logic processing), `AWS Step Functions` (orchestrating Multi-Agent workflows).
+- **Data & Streaming:** `Amazon Kinesis Video Streams` (collecting realtime video for AI Vision), `Amazon DynamoDB` (storing metadata and Agent chat history).
+- **Security & Front-end:** `AWS WAF`, `Amazon Cognito` (authentication), and `AWS Amplify` (rapid frontend deployment).
 
-#### Domain-Driven Design (DDD)
+#### Design Thinking & AI Risk Management
+- I learned how to design a **Human-in-the-loop** architecture (Always having humans at the final step). For example, when Team Six Pillar worked on finance, the AI Agent only synthesized evidence, while the decision to "Escalate" or "Dismiss" remained with a human.
+- Using multiple specialized Sub-agents instead of one mother Agent handling all tasks makes debugging easier and increases accuracy.
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+#### Hackathon "Survival" Skills
+- **Scope Control:** Don't be greedy and try to build too many features. Focus on building a Minimum Viable Product (MVP) just enough to live-demo for the Judges. A product on paper will never win.
 
-#### Event-Driven Architecture
+### How I Will Apply This to My Work
+- I will draw motivation from this event to boldly register for a Hackathon in the near future, not prioritizing the prize, but to hone my coding skills under high pressure.
+- When implementing my upcoming capstone project, I will apply a clear process: Draft Business Value -> Finalize Scope -> Draw Architecture diagram -> Delegate tasks -> Code and Deploy.
+- Experiment with integrating Multi-Agent systems using Amazon Bedrock into personal projects.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+### My Practical Experience at the Event
 
-#### Compute Evolution
+#### Learning from "Laugh-Out-Loud" Stories
+The behind-the-scenes sharing from the teams made me feel very empathetic and grounded. From heated arguments due to high egos, taking a walk at 1 AM because the code wouldn't run, staying up until 4-5 AM drinking Redbull, to "self-destructive" moments like accidentally pushing a `.env` file to GitHub or running out of API Tokens right before the pitch. It all painted an incredibly vivid picture of the programming profession.
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+#### Practical Technical Experience
+Witnessing the live demos firsthand (such as AI automatically recognizing and counting people via a camera in real-time) brought me a sense of immense excitement. Seeing the architecture on a slide transform into real running software right on stage infused me with immense inspiration.
 
-#### Amazon Q Developer
+#### Networking and Understanding the Value of Teamwork
+I realized that in the AI era, no one can learn and do everything alone. The most critical skill isn't being the best coder, but the ability to set aside one's ego, trust teammates, and divide the work (one on frontend, one on architecture design, one on presenting) to strive toward a common goal.
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+#### Key Takeaway
+"Just by daring to start, you have already conquered yourself." The FCAJ x Agentic AI Build Week event didn't just give me knowledge about Cloud or AI, but also handed me the courage to step out of my comfort zone. Technology is always evolving, and the best way not to be left behind is to roll up your sleeves, find like-minded teammates, and start to "Build."
 
-### Key Takeaways
-
-#### Design Mindset
-
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
-
-#### Technical Architecture
-
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
-
-#### Modernization Strategy
-
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
-
-### Applying to Work
-
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
-
-### Event Experience
-
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
-
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
-
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
-
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
-
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
-
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+#### Some Pictures Taken at the Event
+![](6C7A2983.jpg)
+![](6C7A2921.JPG)
