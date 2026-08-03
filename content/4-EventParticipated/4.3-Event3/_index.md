@@ -57,7 +57,8 @@ Through the extensive 1-hour theoretical video segment, I accumulated:
 Even though this is an L300 topic (very heavy on cloud architecture), Mr. Nghia's practical and visual delivery style prevented me from feeling overwhelmed. Right after the intensive theory session, the emphasis on jumping straight into the hands-on lab was truly a fantastic approach, helping me and the attendees systematize all the knowledge and become much more confident when deploying Agentic AI systems in reality.
 
 
-#### Hình ?nh s? ki?n / Event Images
+#### Event Images
 ![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.jpg)
+![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.1.jpg)
 
 

@@ -57,7 +57,8 @@ Thông qua đoạn video kéo dài hơn 1 giờ lý thuyết vô cùng đồ s�
 Dù đây là một chủ đề L300 (rất nặng về kiến trúc đám mây), nhưng cách truyền đạt thực tế và trực quan của anh Nghĩa đã giúp mình không bị "ngợp". Ngay sau phần lý thuyết chuyên sâu, việc được nhấn mạnh sẽ bắt tay ngay vào phần thực hành (hands-on lab) thực sự là một phương pháp tuyệt vời, giúp mình và những người tham dự có thể hệ thống hóa lại toàn bộ kiến thức và tự tin hơn rất nhiều khi triển khai hệ thống Agentic AI vào thực tế.
 
 
-#### H�nh ?nh s? ki?n / Event Images
+#### Hình ảnh sự kiện 
 ![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.jpg)
+![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.1.jpg)
 
 
