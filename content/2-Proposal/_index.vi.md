@@ -6,96 +6,287 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# SMARTINVOICE SHIELD
+# ĐỀ XUẤT DỰ ÁN SNAPTICS
 
-## Hệ thống Quản trị & Rà soát Rủi ro Hóa đơn Điện tử trên nền tảng AWS
+**Tên dự án:** SNAPTICS – AI-Powered Personal Expense Management and Receipt Scanning Platform
+*Nền tảng quản lý, phân tích chi tiêu và quét hóa đơn ứng dụng trí tuệ nhân tạo trên AWS*
 
-### 1. Tổng quan dự án
+---
 
-SmartInvoice Shield là một hệ thống SaaS (Software as a Service) được thiết kế chuyên biệt nhằm cung cấp giải pháp toàn diện cho các doanh nghiệp Việt Nam trong việc quản trị và rà soát rủi ro hóa đơn điện tử. Nền tảng tự động hóa quy trình trích xuất dữ liệu đa định dạng (XML, PDF, Ảnh) thông qua AI, đồng thời thực thi bộ quy tắc kiểm tra tuân thủ 3 lớp (Cấu trúc Lược đồ XML, Chữ ký số điện tử chuẩn W3C, Logic Nghiệp vụ & Dòng tiền) tối ưu hóa theo Nghị định 123/2020/NĐ-CP và Quyết định 78/QĐ-TCT.
+## 1. Tổng quan dự án
+Snaptics là nền tảng quản lý tài chính cá nhân và gia đình, hỗ trợ người dùng ghi nhận, theo dõi và phân tích các khoản chi tiêu một cách trực quan. Thay vì phải nhập thủ công từng giao dịch, người dùng có thể chụp hoặc tải lên hình ảnh hóa đơn. Hệ thống sử dụng công nghệ OCR và trí tuệ nhân tạo để nhận diện thông tin trên hóa đơn, bao gồm tên cửa hàng, ngày giao dịch, tổng tiền, danh mục chi tiêu và các mặt hàng liên quan.
 
-Bằng việc tận dụng sức mạnh của các dịch vụ AWS Serverless và Managed Services (Elastic Beanstalk, ECS Fargate, S3, RDS, Cognito, SQS), SmartInvoice Shield chuyển đổi hệ thống lưu trữ thụ động thành một rào chắn kiểm duyệt chủ động (active firewall). Nó mang lại trải nghiệm xử lý tự động khối lượng dữ liệu khổng lồ với độ trễ thấp, đảm bảo tính khả dụng cao (Multi-AZ), tối ưu chi phí vận hành và bảo vệ hoàn hảo trước mạng lưới lây nhiễm rủi ro tài chính.
+Sau khi dữ liệu được xử lý, Snaptics tự động lưu giao dịch, phân loại chi tiêu và cập nhật vào bảng điều khiển tài chính của người dùng. Hệ thống cung cấp biểu đồ, báo cáo, ngân sách, ví dùng chung và các gợi ý tài chính dựa trên thói quen chi tiêu.
 
-### 2. Đặt vấn đề
+Snaptics được xây dựng theo mô hình ứng dụng web SaaS và dự kiến triển khai trên nền tảng AWS. Kiến trúc hệ thống sử dụng các dịch vụ như AWS Amplify, Amazon CloudFront, Amazon ECS Fargate, Application Load Balancer, Amazon SQS, Amazon S3, Amazon ECR, Amazon CloudWatch và SQL Server theo mô hình Primary/Standby. Các tác vụ AI được tích hợp với Azure Document Intelligence, Gemini API và OpenAI API.
 
-**Vấn đề hiện tại**
-Tại nhiều doanh nghiệp, quy trình xử lý hóa đơn đầu vào vẫn phụ thuộc vào việc nhập liệu thủ công, tiêu tốn 5-10 phút cho mỗi hóa đơn với tỷ lệ sai sót lên đến 15-20%. Nghiêm trọng hơn, các doanh nghiệp đang đối mặt với hiệu ứng "lây nhiễm rủi ro" phi tập trung trong chuỗi cung ứng. Dựa theo bộ tiêu chí chấm điểm tại Quyết định 78/QĐ-TCT của Tổng cục Thuế với lưới lọc ma trận đa chiều, việc vô tình tiếp nhận và hạch toán hóa đơn từ danh sách đen (Blacklist) dẫn tới hệ lụy tàn liệt: bị loại trừ toàn bộ chi phí hợp lý khi tính thuế TNDN và bị từ chối khấu trừ thuế GTGT.
+Hệ thống có hai nhóm người dùng chính:
+- **User:** Quản lý giao dịch, hóa đơn, ngân sách, ví cá nhân hoặc ví gia đình, xem báo cáo và nhận gợi ý tài chính.
+- **Admin:** Quản lý người dùng, thông báo, yêu cầu hỗ trợ (ticket), cấu hình hệ thống, theo dõi các tác vụ nền và giám sát hoạt động của ứng dụng.
 
-**Giải pháp**
-SmartInvoice Shield kiến tạo lại chức năng kế toán bằng một hệ sinh thái kiểm soát dữ liệu tự động:
+---
 
-- **Động cơ Nhập liệu Trí tuệ Nhân tạo (AI-Driven Ingestion Engine):** Tự động bóc tách và chuyển đổi dữ liệu (ETL) các cấu trúc dạng cây phân cấp XML phức tạp chuẩn Quyết định 1450/1510/QĐ-TCT. Cùng với AI (AWS ECS Fargate), hệ thống đọc và số hóa các dữ liệu PDF/Ảnh trực quan.
-- **Rà soát Rủi ro Đa Tầng (Multi-tier Risk Alerting):** (1) Kiểm định Lược đồ XSD nguyên bản; (2) Giải mã chứng thực toàn vẹn Chữ ký số cùng hệ thống xác thực chuỗi Mã CQT; (3) Rà soát logic toán học cực kỳ chặt chẽ và tương tác trực tiếp API đối soát để lọc bỏ các Nhà cung cấp nằm trong danh sách đen cảnh báo rủi ro.
-- **Lưu trữ Bất biến & Truy vết (Immutable Storage):** Lưu trữ gốc tệp blob XML vô hướng trên Amazon S3 mã hóa AES-256. Hệ thống vận hành Audit Trail bất biến không cho phép thao tác ghi đè theo yêu cầu thanh tra.
-- **Giao diện Khám nghiệm Trực quan (Visual Diagnostic GUI):** Tự động phân tách cấu trúc XML khó khan thành bảng điều khiển mã hóa màu sắc, giúp Kế toán trưởng dễ dàng nhận diện mã lỗi kỹ thuật và ra quyết định phê duyệt nghiệp vụ.
+## 2. Mục tiêu dự án
 
-### 3. Kiến trúc giải pháp
+### 2.1. Mục tiêu tổng quát
+Xây dựng một nền tảng quản lý chi tiêu thông minh, giúp người dùng giảm thời gian nhập liệu, kiểm soát ngân sách và hiểu rõ hơn về tình hình tài chính cá nhân thông qua dữ liệu và trí tuệ nhân tạo.
 
-Dự án áp dụng mô hình kiến trúc lai (Hybrid Architecture) kết hợp giữa Layered Monolith (cho hệ thống Backend lõi .NET) và Microservices (cho dịch vụ AI OCR), giao tiếp bất đồng bộ qua hệ thống Message Queue.
+### 2.2. Mục tiêu cụ thể
+- Tự động nhận diện thông tin từ hình ảnh hóa đơn bằng công nghệ OCR.
+- Tự động tạo và phân loại giao dịch dựa trên nội dung hóa đơn.
+- Cho phép người dùng nhập giao dịch thủ công khi không có hóa đơn.
+- Quản lý nhiều ví, ngân sách cá nhân và ngân sách gia đình.
+- Hỗ trợ nhiều thành viên cùng theo dõi một ngân sách hoặc ví dùng chung.
+- Hiển thị báo cáo chi tiêu theo ngày, tuần, tháng và danh mục.
+- Phân tích thói quen chi tiêu và cung cấp gợi ý tài chính bằng AI.
+- Gửi cảnh báo khi người dùng sắp hoặc đã vượt ngân sách.
+- Xây dựng hệ thống thông báo tập trung để truyền tải cảnh báo và lời khuyên.
+- Cung cấp trang trò chuyện với AI và lưu lịch sử trao đổi.
+- Xây dựng trang quản trị để theo dõi người dùng, yêu cầu hỗ trợ, thông báo và các tác vụ nền.
+- Triển khai hệ thống trên AWS với khả năng mở rộng, bảo mật và giám sát tập trung.
+- Xây dựng quy trình CI/CD nhằm tự động hóa việc kiểm thử và triển khai phiên bản mới.
 
-![SmartInvoice Shield Architecture](/images/2-Proposal/architecture_diagram.jpg) _(Nhớ thay đường dẫn ảnh kiến trúc của ông vào đây)_
+---
 
-**Dịch vụ AWS sử dụng**
+## 3. Vấn đề cần giải quyết
 
-- **AWS Elastic Beanstalk & ALB:** Cung cấp môi trường Auto Scaling Group cốt lõi cho Backend .NET 9 API, triển khai Multi-AZ đảm bảo High Availability.
-- **AWS ECS Fargate:** Trái tim xử lý AI, chạy dưới dạng Serverless Container (Pay-As-You-Go), tự động tắt (Scale-to-Zero) khi không có hóa đơn để tiết kiệm 100% chi phí chạy ngầm.
-- **Amazon RDS for PostgreSQL:** Lưu trữ cơ sở dữ liệu quan hệ (Multi-AZ) ẩn trong Private Subnet.
-- **Amazon S3:** Lưu trữ file hóa đơn (XML, PDF) với mã hóa SSE-S3. Tích hợp Lifecycle Policy chuyển dữ liệu cũ (>90 ngày) sang Glacier Deep Archive.
-- **Amazon SQS:** Xử lý hàng đợi bất đồng bộ (Long-polling) cho các luồng công việc nặng như OCR và xác minh mã số thuế.
-- **Amazon Route 53:** Quản lý phân giải DNS và tên miền tùy chỉnh, định tuyến an toàn lưu lượng truy cập internet.
-- **AWS Amplify & CloudFront:** Hosting, tự động CI/CD và cung cấp CDN biên cho ứng dụng Frontend React SPA.
-- **AWS Cloud Map:** Cung cấp giải pháp Service Discovery nội bộ, hoạt động như một "danh bạ DNS" giữa Backend EC2 và AI OCR Container.
-- **Amazon Cognito:** Quản lý định danh (Identity Provider), cấp phát JWT Token và bảo mật người dùng chuẩn quốc tế.
-- **AWS Systems Manager (Parameter Store):** Két sắt nội bộ quản lý bảo mật các thông tin nhạy cảm (Database Password, API Keys).
+### 3.1. Việc ghi chép chi tiêu còn thủ công
+Phần lớn người dùng vẫn ghi lại chi tiêu bằng sổ tay, Excel hoặc nhập thủ công vào ứng dụng. Quá trình này mất thời gian, dễ nhập sai số tiền và thường bị bỏ quên sau một thời gian sử dụng. Snaptics giải quyết vấn đề này bằng cách cho phép người dùng chụp hóa đơn và tự động trích xuất dữ liệu giao dịch.
 
-### 4. Triển khai kỹ thuật
+### 3.2. Dữ liệu tài chính bị phân tán
+Thông tin chi tiêu có thể nằm ở nhiều nguồn khác nhau như hóa đơn giấy, ứng dụng ngân hàng, ví điện tử hoặc ghi chú cá nhân. Người dùng khó có được một cái nhìn tổng quan về toàn bộ dòng tiền. Snaptics tập trung dữ liệu giao dịch vào một hệ thống duy nhất để người dùng có thể theo dõi và phân tích thuận tiện hơn.
 
-Hệ thống được thiết kế để triển khai end-to-end trên nền tảng AWS thông qua các giai đoạn:
+### 3.3. Khó kiểm soát ngân sách
+Người dùng thường chỉ nhận ra mình đã chi tiêu quá mức sau khi ngân sách đã bị vượt. Các công cụ quản lý thông thường chủ yếu hiển thị số liệu nhưng chưa đưa ra cảnh báo hoặc lời khuyên kịp thời. Snaptics theo dõi mức sử dụng ngân sách và gửi thông báo khi người dùng tiến gần đến giới hạn đã đặt.
 
-1. **Thiết lập Networking & Security:** Tạo VPC với Public/Private Subnets trên 2 AZs. Áp dụng chiến lược tối ưu chi phí bằng cách loại bỏ NAT Gateway, khóa bảo mật hoàn toàn bằng Security Groups.
-2. **Thiết lập Database & Storage:** Khởi tạo RDS PostgreSQL trong mạng nội bộ, thiết lập các S3 Buckets và đăng ký Docker Images lên ECR.
-3. **Triển khai Core & AI Services:** Khởi chạy ECS Fargate Spot cho dịch vụ OCR và cấu hình Elastic Beanstalk cho Backend .NET. Thiết lập AWS Cloud Map để định tuyến giao tiếp nội bộ.
-4. **Triển khai Frontend & Domain:** Triển khai mã nguồn React lên AWS Amplify. Tích hợp Amazon Route 53 để cấu hình tên miền tùy chỉnh.
-5. **Giám sát & Quản trị:** Thiết lập CloudWatch Alarms (giám sát CPU, Queue depth, Storage) và SNS Topic để gửi cảnh báo tự động.
+### 3.4. Thiếu khả năng phân tích hành vi chi tiêu
+Các giao dịch riêng lẻ không cung cấp nhiều giá trị nếu không được tổng hợp và phân tích. Người dùng cần biết mình đang chi tiêu nhiều nhất vào đâu, khoản chi nào đang tăng và có thể điều chỉnh như thế nào. Snaptics sử dụng AI để phân tích lịch sử giao dịch, phát hiện xu hướng và đưa ra các gợi ý phù hợp với tình hình tài chính của từng người dùng.
 
-### 5. Lộ trình & Mốc triển khai
+### 3.5. Khó quản lý chi tiêu gia đình
+Trong một gia đình, các thành viên có thể cùng đóng góp và sử dụng một nguồn ngân sách. Nếu dữ liệu không được cập nhật tập trung, các thành viên khó biết tổng số tiền đã chi hoặc ngân sách còn lại. Snaptics cung cấp ví gia đình và ngân sách dùng chung, cho phép nhiều người dùng cùng theo dõi và ghi nhận giao dịch.
 
-Thời gian thực hiện dự kiến là 3 tháng (12 tuần) với sự tập trung vào Software Engineering, AI và Cloud Architecture:
+### 3.6. Khả năng mở rộng của hệ thống AI
+Quá trình OCR và phân tích AI có thể mất nhiều thời gian hơn các API thông thường. Nếu xử lý trực tiếp trong cùng một request, hệ thống dễ xảy ra timeout hoặc quá tải khi có nhiều người dùng quét hóa đơn cùng lúc. Dự án sử dụng Amazon SQS để xử lý các tác vụ AI theo cơ chế bất đồng bộ, giúp giảm tải cho Backend API và tăng khả năng mở rộng.
 
-- **Tuần 1 - 4 (Nghiên cứu & Nền tảng):** Tập trung vào việc học tập chuyên sâu, làm chủ các dịch vụ cốt lõi của AWS. Đồng thời, thiết kế kiến trúc hệ thống (Architecture Design) và xây dựng cấu trúc cơ sở dữ liệu (Database Schema).
-- **Tuần 5 - 9 (Phát triển Tính năng Cốt lõi):** Bắt tay vào lập trình các module phức tạp. Tích hợp mô hình AI OCR, xây dựng các API xử lý logic nghiệp vụ, và thiết lập giao tiếp bất đồng bộ qua hàng đợi Amazon SQS.
-- **Tuần 10 - 12 (Triển khai Đám mây & Hoàn thiện):** Chuyển đổi toàn bộ hệ thống từ môi trường local lên AWS Cloud (Production). Đóng gói Docker, thực hiện kiểm thử chịu tải (Load testing), rà soát bảo mật toàn diện và hoàn thiện tài liệu báo cáo dự án.
+---
 
-### 6. Ước tính ngân sách
+## 4. Kiến trúc giải pháp
+Snaptics sử dụng kiến trúc cloud-native trên AWS, kết hợp ứng dụng web, container, hàng đợi xử lý bất đồng bộ, cơ sở dữ liệu có khả năng dự phòng và các dịch vụ AI bên ngoài.
 
-Hệ thống áp dụng chiến lược **Cost-Optimization Multi-AZ**, loại bỏ các thành phần hạ tầng dư thừa, giúp tiết kiệm tối đa ngân sách vận hành. Dựa trên bảng giá AWS tại khu vực Singapore (ap-southeast-1), chi phí dự kiến như sau:
+### 4.1. Frontend
+Frontend của Snaptics được xây dựng dưới dạng Single Page Application (SPA) và triển khai bằng AWS Amplify.
+AWS Amplify chịu trách nhiệm:
+- Tự động build và deploy mã nguồn Frontend.
+- Kết nối trực tiếp với GitHub Repository.
+- Quản lý các phiên bản triển khai.
+- Cung cấp HTTPS cho ứng dụng.
+- Tự động triển khai lại khi có thay đổi trên nhánh được cấu hình.
+Amazon Route 53 được sử dụng để quản lý tên miền. Amazon CloudFront phân phối nội dung thông qua hệ thống CDN, giúp cải thiện tốc độ truy cập của người dùng.
 
-- **Amazon RDS PostgreSQL (db.t3.micro Multi-AZ):** ~$40.00 USD _(Bao gồm cả node Primary và Standby dự phòng)_
-- **AWS Elastic Beanstalk (2x EC2 t3.micro + 1 Application Load Balancer):** ~$42.00 USD
-- **Amazon VPC (2x NAT Gateway cho 2 AZ):** ~$86.00 USD
-- **ECS Fargate Spot (AI OCR):** Trả phí linh hoạt theo phần nghìn giây khi có hóa đơn _(~$7.00 USD)_
-- **Amazon CloudFront, S3, SQS & Cloud Map:** ~$5.00 USD
-- **AWS Amplify, Amazon Cognito & Route 53:** 0 USD _(Nằm trong Free Tier / Không đáng kể)_
+### 4.2. Backend API
+Backend API được đóng gói thành Docker Image và lưu trữ trên Amazon Elastic Container Registry – ECR.
+Các container được triển khai trong Amazon ECS Cluster bằng AWS Fargate. Fargate cho phép hệ thống vận hành container mà không phải trực tiếp quản lý hạ tầng máy chủ. Các request từ người dùng được chuyển qua Application Load Balancer trước khi đến các Fargate Task. Load Balancer phân phối request giữa nhiều container, giúp tăng tính sẵn sàng và tránh phụ thuộc vào một máy chủ duy nhất. Hệ thống sử dụng Auto Scaling để tăng hoặc giảm số lượng Fargate Task dựa trên lưu lượng truy cập và tài nguyên sử dụng.
 
-**Tổng chi phí ước tính:** ~180.00 USD/tháng cho một môi trường Production bảo mật, chống chịu lỗi (Fault-Tolerant) và sẵn sàng phục vụ doanh nghiệp 24/7.
+### 4.3. Cơ sở dữ liệu
+Dữ liệu nghiệp vụ của hệ thống được lưu trong SQL Server, bao gồm:
+- Thông tin người dùng.
+- Giao dịch, Danh mục chi tiêu, Hóa đơn.
+- Ví cá nhân và ví gia đình.
+- Ngân sách và Thành viên ngân sách.
+- Thông báo, Lịch sử trò chuyện với AI.
+- Yêu cầu hỗ trợ (ticket) và Nhật ký hoạt động hệ thống.
 
-### 7. Đánh giá rủi ro
+Cơ sở dữ liệu được thiết kế theo mô hình SQL Server Primary/Standby và đặt trong các Private Subnet thuộc hai Availability Zone khác nhau. Cơ sở dữ liệu Primary xử lý các hoạt động chính. Cơ sở dữ liệu Standby được sử dụng để tăng khả năng dự phòng và hỗ trợ khôi phục khi hệ thống chính gặp sự cố.
 
-**Ma trận rủi ro**
+### 4.4. Lưu trữ hình ảnh
+Amazon S3 được sử dụng để lưu trữ:
+- Hình ảnh hóa đơn do người dùng tải lên.
+- Tệp dữ liệu liên quan đến giao dịch.
+- Hình ảnh trước và sau quá trình xử lý.
+- Các tệp cần lưu trữ lâu dài.
+Việc tách hình ảnh khỏi cơ sở dữ liệu giúp giảm dung lượng lưu trữ trong database và hỗ trợ mở rộng không gian lưu trữ linh hoạt.
 
-- **Nhận diện AI sai lệch (đối với ảnh mờ, rách):** Ảnh hưởng trung bình, xác suất trung bình.
-- **Độ trễ từ API bên thứ 3 (VietQR API quá tải):** Ảnh hưởng nhỏ, xác suất cao.
-- **Lưu lượng truy cập đột biến (Spike traffic cuối tháng khai thuế):** Ảnh hưởng cao, xác suất thấp.
+### 4.5. Xử lý OCR và AI
+Khi người dùng tải lên một hóa đơn, Backend lưu hình ảnh vào S3 và gửi một thông điệp đến hàng đợi Amazon SQS `snaptics-ai-queue`. AI Worker chạy trên ECS Fargate sẽ lấy thông điệp từ hàng đợi và thực hiện các bước:
+1. Đọc thông tin tệp hóa đơn.
+2. Gửi hình ảnh đến Azure Document Intelligence để nhận diện nội dung.
+3. Chuẩn hóa dữ liệu được trích xuất.
+4. Sử dụng Gemini API hoặc OpenAI API để phân loại và phân tích giao dịch.
+5. Lưu kết quả vào cơ sở dữ liệu.
+6. Tạo thông báo hoặc gợi ý tài chính cho người dùng.
 
-**Chiến lược giảm thiểu**
+Các thông điệp xử lý thất bại nhiều lần sẽ được chuyển vào Dead Letter Queue. Điều này giúp đội ngũ phát triển kiểm tra lỗi mà không làm mất dữ liệu hoặc chặn toàn bộ hàng đợi chính.
 
-- **Đối với AI:** Cung cấp giao diện "Khám nghiệm Dữ liệu Trực quan" cho phép kế toán viên so sánh kết quả trích xuất và bản gốc để chỉnh sửa thủ công (Manual override).
-- **Đối với API ngoại vi:** Áp dụng mẫu thiết kế Circuit Breaker và Retry Pattern với Exponential Backoff để chống lỗi dây chuyền.
-- **Đối với Traffic:** Auto Scaling Group tự động tăng EC2 (Max 4 nodes) và ECS Task (Max 10 tasks) dựa trên số lượng tin nhắn tồn đọng trong SQS.
+### 4.6. Hệ thống thông báo
+Thông báo trong ứng dụng được lưu trữ và quản lý tập trung trong cơ sở dữ liệu. Amazon SNS được sử dụng để hỗ trợ phân phối các cảnh báo hoặc thông báo cần gửi ra ngoài hệ thống. Thông báo có thể bao gồm:
+- Kết quả xử lý hóa đơn, Cảnh báo sắp/đã vượt ngân sách.
+- Gợi ý chi tiêu từ AI, Thông báo mời tham gia ví.
+- Thông báo đánh giá sản phẩm hoặc đồ dùng, Thông báo hệ thống, Phản hồi từ bộ phận hỗ trợ.
 
-**Kế hoạch dự phòng:** Sử dụng kiến trúc Multi-AZ giúp hệ thống tự động Failover khi một Availability Zone (AZ) gặp sự cố phần cứng. Dữ liệu RDS được backup tự động (Point-In-Time Recovery) kết hợp với CloudWatch Alarms theo dõi 24/7.
+### 4.7. Bảo mật
+Thông tin nhạy cảm như chuỗi kết nối cơ sở dữ liệu, API Key và các thông số cấu hình được lưu trong AWS Systems Manager Parameter Store. Các thành phần Backend và Database được đặt trong Private Subnet. Chỉ Application Load Balancer được phép tiếp nhận request từ Internet.
+Hệ thống áp dụng các biện pháp:
+- Xác thực và phân quyền bằng access token.
+- Phân chia quyền Admin và User.
+- Không lưu API Key trực tiếp trong mã nguồn.
+- Mã hóa kết nối bằng HTTPS.
+- Giới hạn quyền truy cập theo nguyên tắc least privilege.
+- Kiểm tra định dạng và kích thước tệp tải lên.
+- Ghi nhận lịch sử hoạt động quan trọng, Sao lưu cơ sở dữ liệu định kỳ.
 
-### 8. Kết quả kỳ vọng
+### 4.8. CI/CD
+Quy trình CI/CD của Snaptics được thực hiện thông qua GitHub và GitHub Actions.
+Quy trình Backend:
+1. Developer đẩy mã nguồn lên GitHub Repository.
+2. GitHub Actions kiểm tra và build dự án.
+3. Docker Image được tạo và đẩy lên Amazon ECR.
+4. ECS Service được cập nhật.
+5. Fargate Task mới kéo Docker Image từ ECR.
+6. Hệ thống thay thế phiên bản cũ bằng phiên bản mới.
 
-- **Cải tiến kỹ thuật:** Hệ thống vận hành trơn tru theo hướng sự kiện (Event-Driven), đáp ứng độ trễ API P95 < 2s. Độ chính xác trích xuất AI (Textract/VietOCR) cam kết đạt trên 85% đối với các hóa đơn tiếng Việt phức tạp. Khả năng mở rộng ngang (Horizontal Scaling) chịu tải hàng nghìn hóa đơn đồng thời.
-- **Giá trị dài hạn:** Cung cấp cho doanh nghiệp một "tấm khiên" vững chắc để chuyển đổi số nghiệp vụ kế toán. Triệt tiêu hoàn toàn sai sót vật lý, minh bạch hóa quy trình phê duyệt, và xây dựng một kho lưu trữ dữ liệu hoàn hảo sẵn sàng cho mọi cuộc thanh tra kiểm toán thuế trong 10 năm tới.
+Đối với Frontend, AWS Amplify tự động build và deploy khi phát hiện thay đổi trên GitHub Repository.
+
+### 4.9. Giám sát và quản lý chi phí
+Amazon CloudWatch được sử dụng để:
+- Thu thập log của Backend và AI Worker.
+- Theo dõi CPU và bộ nhớ của Fargate Task.
+- Theo dõi số lượng thông điệp trong SQS.
+- Phát hiện request lỗi, Thiết lập cảnh báo khi hệ thống gặp sự cố.
+AWS Budgets được sử dụng để theo dõi chi phí và gửi cảnh báo khi chi phí AWS vượt quá giới hạn được thiết lập.
+
+### 4.10. Luồng xử lý chính
+Luồng xử lý quét hóa đơn được thực hiện như sau:
+1. Người dùng đăng nhập vào Snaptics.
+2. Người dùng chụp hoặc tải lên hình ảnh hóa đơn.
+3. Frontend gửi hình ảnh đến Backend API.
+4. Backend lưu hình ảnh vào Amazon S3.
+5. Backend tạo thông điệp trong Amazon SQS.
+6. AI Worker nhận thông điệp từ SQS.
+7. Hình ảnh được xử lý bằng Azure Document Intelligence.
+8. Gemini API hoặc OpenAI API phân loại và phân tích dữ liệu.
+9. Kết quả được lưu vào SQL Server.
+10. Backend tạo giao dịch và thông báo cho người dùng.
+11. Dashboard và báo cáo chi tiêu được cập nhật.
+
+### 4.11. Sơ đồ kiến trúc tổng thể
+*(Vui lòng thêm sơ đồ kiến trúc vào đây)*
+![Architecture Diagram](/fcj-workshop-template/images/2-Proposal/architecture_diagram.jpg)
+
+---
+
+## 5. Timeline dự án
+Thời gian thực hiện dự kiến là 12 tuần.
+
+**Tuần 1–2: Phân tích yêu cầu và thiết kế hệ thống**
+- Xác định đối tượng người dùng, Phân tích yêu cầu chức năng và phi chức năng.
+- Xây dựng Use Case và User Flow, Thiết kế cơ sở dữ liệu, Thiết kế kiến trúc AWS.
+- Xác định công nghệ Frontend, Backend và AI.
+*Kết quả kỳ vọng:* Tài liệu yêu cầu, Database Schema và sơ đồ kiến trúc tổng thể.
+
+**Tuần 3–5: Phát triển chức năng nền tảng**
+- Xây dựng chức năng đăng ký/đăng nhập, phân quyền Admin và User.
+- Quản lý giao dịch, danh mục chi tiêu, ví.
+- Ngân sách cá nhân và ngân sách gia đình, Phát triển Dashboard tổng quan.
+*Kết quả kỳ vọng:* Người dùng có thể quản lý giao dịch, ví và ngân sách trên hệ thống.
+
+**Tuần 6–8: Tích hợp OCR và AI**
+- Xây dựng giao diện quét hóa đơn, Tích hợp Azure Document Intelligence.
+- Xây dựng quy trình tải hình ảnh lên S3, Thiết lập SQS và Dead Letter Queue.
+- Tích hợp Gemini API và OpenAI API, Tự động phân loại giao dịch.
+- Xây dựng chức năng AI Insight và hệ thống thông báo.
+*Kết quả kỳ vọng:* Hệ thống có thể tự động xử lý hóa đơn và cung cấp gợi ý chi tiêu.
+
+**Tuần 9–10: Hoàn thiện chức năng quản trị**
+- Trang quản lý người dùng, yêu cầu hỗ trợ, thông báo.
+- Cấu hình và kiểm tra các tác vụ nền, Trang cài đặt hệ thống.
+- Hoàn thiện giao diện responsive trên điện thoại.
+*Kết quả kỳ vọng:* Admin có thể theo dõi và quản lý các hoạt động chính của hệ thống.
+
+**Tuần 11: Triển khai AWS và CI/CD**
+- Cấu hình VPC, Public/Private Subnet.
+- Triển khai SQL Server Primary/Standby.
+- Tạo S3 Bucket, SQS, DLQ và SNS.
+- Build Docker Image và đẩy lên ECR, Triển khai Backend và AI Worker trên ECS Fargate.
+- Cấu hình ALB, Triển khai Frontend bằng AWS Amplify.
+- Cấu hình Route 53 và CloudFront, Thiết lập GitHub Actions.
+*Kết quả kỳ vọng:* Hệ thống được triển khai trên môi trường AWS.
+
+**Tuần 12: Kiểm thử và hoàn thiện**
+- Kiểm thử chức năng, tích hợp, giao diện trên nhiều thiết bị.
+- Kiểm thử quy trình OCR và AI, Kiểm tra bảo mật.
+- Kiểm tra khả năng xử lý lỗi của SQS và DLQ.
+- Theo dõi log bằng CloudWatch.
+- Hoàn thiện tài liệu và chuẩn bị demo.
+*Kết quả kỳ vọng:* Phiên bản thử nghiệm của Snaptics được hoàn thiện, sẵn sàng trình bày, kiểm thử và thu thập phản hồi.
+
+---
+
+## 6. Ngân sách dự kiến
+Chi phí thực tế phụ thuộc vào lượng người dùng, số hóa đơn được xử lý, dung lượng hình ảnh, thời gian chạy của container và số lượng request đến các AI API.
+
+### 6.1. Môi trường phát triển và demo
+| Hạng mục | Chi phí dự kiến mỗi tháng |
+| --- | --- |
+| AWS Amplify, CloudFront và Route 53 | 5–15 USD |
+| Amazon S3 | 1–5 USD |
+| ECS Fargate cho Backend và AI Worker | 20–50 USD |
+| Application Load Balancer | 18–25 USD |
+| SQL Server môi trường phát triển | 30–80 USD |
+| Amazon SQS, SNS và ECR | 2–10 USD |
+| CloudWatch và AWS Budgets | 2–10 USD |
+| Azure Document Intelligence, Gemini và OpenAI | Phụ thuộc số lượt sử dụng |
+| **Tổng dự kiến** | **80–200 USD/tháng** |
+
+### 6.2. Môi trường Production Multi-AZ
+| Hạng mục | Chi phí dự kiến mỗi tháng |
+| --- | --- |
+| ECS Fargate và Application Load Balancer | 60–150 USD |
+| SQL Server Primary/Standby | 150–300 USD |
+| Hai NAT Gateway và chi phí truyền dữ liệu | 70–120 USD |
+| S3, CloudFront, SQS, SNS, ECR và CloudWatch | 20–60 USD |
+| Dịch vụ AI bên ngoài | Phụ thuộc số lượt sử dụng |
+| **Tổng dự kiến** | **300–600 USD/tháng** |
+
+Trong giai đoạn phát triển và demo, dự án có thể sử dụng cấu hình nhỏ, mô hình Single-AZ hoặc giới hạn thời gian chạy của một số dịch vụ để tối ưu chi phí. Khi triển khai Production, hệ thống dự kiến chuyển sang kiến trúc Multi-AZ và Auto Scaling.
+
+---
+
+## 7. Rủi ro dự án
+
+### 7.1. Sai lệch trong quá trình nhận diện hóa đơn
+- **Mức độ:** Cao.
+- **Biện pháp giảm thiểu:** Cho phép người dùng xem lại và chỉnh sửa kết quả nhận diện, Hiển thị hình ảnh gốc bên cạnh dữ liệu, Kiểm tra tính hợp lệ của ngày/số tiền, Đưa các trường độ tin cậy thấp vào trạng thái cần xác nhận.
+
+### 7.2. Phụ thuộc vào dịch vụ AI bên ngoài
+- **Mức độ:** Cao.
+- **Biện pháp giảm thiểu:** Xử lý AI thông qua SQS, Áp dụng Retry với Exponential Backoff, Chuyển tác vụ thất bại vào Dead Letter Queue, Xây dựng lớp AI Service dễ thay đổi nhà cung cấp, Cho phép nhập thủ công.
+
+### 7.3. Rò rỉ dữ liệu tài chính
+- **Mức độ:** Rất cao.
+- **Biện pháp giảm thiểu:** Sử dụng HTTPS, Lưu secret trong Parameter Store, Phân quyền rõ ràng Admin/User, Kiểm tra quyền sở hữu dữ liệu, Mã hóa dữ liệu lưu trữ.
+
+### 7.4. Chi phí AWS và AI tăng ngoài dự kiến
+- **Mức độ:** Trung bình đến cao.
+- **Biện pháp giảm thiểu:** Thiết lập AWS Budgets và cảnh báo, Nén hình ảnh, Thiết lập Lifecycle Policy cho S3, Giới hạn kích thước hóa đơn, Cache kết quả.
+
+### 7.5. Quá tải khi có nhiều yêu cầu quét hóa đơn
+- **Mức độ:** Trung bình.
+- **Biện pháp giảm thiểu:** Sử dụng Amazon SQS, Tự động tăng số lượng AI Worker dựa trên Queue Depth, Giới hạn số task tối đa, Tách riêng Backend API và AI Worker.
+
+### 7.6. Lỗi trong quá trình triển khai phiên bản mới
+- **Mức độ:** Trung bình.
+- **Biện pháp giảm thiểu:** Tự động build và kiểm tra thông qua CI/CD, Quản lý biến môi trường riêng, Triển khai rolling update trên ECS, Kiểm tra health check, Lưu lại Docker Image ổn định để rollback.
+
+### 7.7. Kết quả phân tích AI chưa phù hợp
+- **Mức độ:** Trung bình.
+- **Biện pháp giảm thiểu:** Chỉ sử dụng dữ liệu đã được xác nhận, Trình bày AI Insight dưới dạng gợi ý tham khảo, Cải thiện prompt dựa trên phản hồi.
+
+---
+
+## 8. Kỳ vọng của dự án
+Với phạm vi và kiến trúc đã đề xuất, nhóm kỳ vọng Snaptics sẽ tạo ra một phiên bản thử nghiệm có thể vận hành xuyên suốt từ ghi nhận hóa đơn đến phân tích và hiển thị kết quả cho người dùng. Các kết quả kỳ vọng gồm:
+- Hoàn thiện các chức năng cốt lõi gồm quản lý giao dịch, ví, ngân sách cá nhân và gia đình, quét hóa đơn, thông báo, AI Insight và trang quản trị.
+- Giảm thao tác nhập liệu thủ công thông qua quy trình OCR có bước xác nhận và chỉnh sửa dữ liệu trước khi lưu.
+- Hỗ trợ người dùng theo dõi chi tiêu tập trung, nhận biết xu hướng và kiểm soát ngân sách chủ động hơn.
+- Chứng minh khả năng vận hành của kiến trúc cloud-native trên AWS, bao gồm xử lý bất đồng bộ, giám sát, dự phòng và CI/CD.
+- Tạo nền tảng để nhóm thử nghiệm với người dùng, thu thập phản hồi và tiếp tục cải thiện độ chính xác cũng như trải nghiệm sử dụng.
