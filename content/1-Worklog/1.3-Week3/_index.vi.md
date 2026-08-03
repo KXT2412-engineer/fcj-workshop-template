@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Worklog Tuần 3"
 date: 2026-05-25
 weight: 3
@@ -7,21 +7,21 @@ pre: " <b> 1.3. </b> "
 ---
 
 ### Mục tiêu tuần 3:
-- Nắm vững các phương thức kết nối mạng nâng cao (Peering, VPN) và ELB.
-- **Dự án Snaptic:** Chuẩn bị hạ tầng bảo mật, thiết kế hệ thống Authentication.
+- Nghiên cứu kiến trúc mạng nâng cao (VPC Peering, Transit Gateway) và thiết lập môi trường mạng lai (Hybrid Network).
+- Làm chủ dịch vụ lưu trữ AWS S3 và cách quản lý bảo mật tài nguyên lưu trữ tĩnh.
+- Bước đầu làm quen với hệ thống giám sát Amazon CloudWatch.
 
 ### Các công việc cần triển khai trong tuần này:
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
-| 2 | - **Học mạng nâng cao:** <br>&emsp; + Tìm hiểu VPC Peering <br>&emsp; + Phân tích AWS Transit Gateway | 25/05/2026 | 25/05/2026 | <a href="https://000019.awsstudygroup.com">000019.awsstudygroup.com</a><br><a href="https://000020.awsstudygroup.com">000020.awsstudygroup.com</a> |
-| 3 | - **Mạng lai & Load Balancing:** <br>&emsp; + Mô hình VPN Site-to-Site <br>&emsp; + Phân biệt ALB và NLB | 26/05/2026 | 26/05/2026 | <a href="https://000092.awsstudygroup.com">000092.awsstudygroup.com</a> |
-| 4 | - **Quản lý cấu hình an toàn:** <br>&emsp; + Lưu Connection String với AWS Parameter Store <br>&emsp; + Thiết lập bảo mật biến môi trường | 27/05/2026 | 27/05/2026 | <a href="https://docs.aws.amazon.com/systems-manager/">AWS Systems Manager Docs</a> |
-| 5 | - **Snaptic - Auth Design:** <br>&emsp; + Viết Base Repository <br>&emsp; + Thiết kế sơ đồ luồng Token Service | 28/05/2026 | 28/05/2026 |  |
-| 6 | - **Snaptic - Setup IAM:** <br>&emsp; + Cấu hình IAM Role riêng biệt <br>&emsp; + Chuẩn bị môi trường cấp quyền cho lập trình Backend | 29/05/2026 | 29/05/2026 | <a href="https://000002.awsstudygroup.com">000002.awsstudygroup.com</a><br><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/">AWS IAM Docs</a> |
+| 2 | - **Mạng nâng cao (Advanced Networking):** <br>&emsp; + Tìm hiểu VPC Peering <br>&emsp; + Phân tích AWS Transit Gateway | 25/05/2026 | 25/05/2026 | <a href="https://000019.awsstudygroup.com">000019.awsstudygroup.com</a><br><a href="https://000020.awsstudygroup.com">000020.awsstudygroup.com</a> |
+| 3 | - **Mạng Lai & Load Balancing:** <br>&emsp; + Mô hình Site-to-Site VPN <br>&emsp; + Phân biệt ALB và NLB | 26/05/2026 | 26/05/2026 | <a href="https://000092.awsstudygroup.com">000092.awsstudygroup.com</a> |
+| 4 | - **Lưu trữ AWS S3 (Storage):** <br>&emsp; + Lý thuyết và khởi tạo S3 Bucket <br>&emsp; + Cấu hình Static Website Hosting | 27/05/2026 | 27/05/2026 | <a href="https://000057.awsstudygroup.com">000057.awsstudygroup.com</a> |
+| 5 | - **Bảo mật S3:** <br>&emsp; + Thiết lập Public Access Block <br>&emsp; + Cấu hình CORS an toàn | 28/05/2026 | 28/05/2026 | <a href="https://000069.awsstudygroup.com">000069.awsstudygroup.com</a> |
+| 6 | - **Giám sát hệ thống:** <br>&emsp; + Giới thiệu Amazon CloudWatch <br>&emsp; + Khởi tạo Dashboard và cấu hình metrics | 29/05/2026 | 29/05/2026 | <a href="https://000008.awsstudygroup.com">000008.awsstudygroup.com</a> |
 
 ### Kết quả đạt được tuần 3:
-*   **Kiến thức AWS:** Nắm bắt được các phương thức kết nối mạng nâng cao trên AWS (Peering, Transit Gateway, VPN) và cơ chế cân bằng tải Elastic Load Balancing (ELB).
-*   **Bảo mật hệ thống:** Xử lý trọn vẹn bài toán bảo mật thông tin (không hardcode) nhờ ứng dụng AWS Parameter Store để lưu trữ chuỗi kết nối an toàn.
-*   **Thiết kế Authentication:** Hoàn thiện toàn bộ sơ đồ thiết kế hệ thống Auth, bao gồm cơ chế cấp phát JWT Token và phân quyền (Role-Based Access) chuẩn bị cho quá trình Sprint code thực tế.
-
+*   **Mạng nâng cao:** Triển khai thành công các kiến trúc liên kết mạng phức tạp trên AWS thông qua VPC Peering và Transit Gateway.
+*   **Lưu trữ Đám mây:** Triển khai tĩnh ứng dụng qua Amazon S3, đồng thời nắm bắt sâu các cấu hình bảo mật dữ liệu lưu trữ chống rò rỉ thông tin public.
+*   **Giám sát:** Cấu hình thành công CloudWatch để theo dõi tài nguyên, tạo tiền đề cho quá trình vận hành sau này.

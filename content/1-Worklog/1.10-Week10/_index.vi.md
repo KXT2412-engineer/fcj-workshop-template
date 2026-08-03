@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Worklog Tuần 10"
 date: 2026-07-13
 weight: 10
@@ -7,21 +7,20 @@ pre: " <b> 1.10. </b> "
 ---
 
 ### Mục tiêu tuần 10:
-- Cung cấp các công cụ phân tích xu hướng (Trend Analysis).
-- Khởi tạo luồng nghiệp vụ **Thu nhập định kỳ (Recurring Income)**.
+- Rà soát toàn diện vấn đề bảo mật hệ thống (Security Review).
+- Dọn dẹp tài nguyên (Resource Cleanup) để tránh lãng phí và thực hành tối ưu hóa chi phí (Cost Optimization).
+- Tìm hiểu khung kiến trúc chuẩn của AWS (Well-Architected Framework).
 
 ### Các công việc cần triển khai trong tuần này:
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
-| 2 | - **Snaptic - Analytics & Reporting:** <br>&emsp; + Thêm endpoint category summary <br>&emsp; + Phản hồi DTO hỗ trợ phân tích tài chính | 13/07/2026 | 13/07/2026 |  |
-| 3 | - **Học AWS Services (Events):** <br>&emsp; + Messaging Systems với Amazon SQS & SNS <br>&emsp; + Khám phá EventBridge | 14/07/2026 | 14/07/2026 | <a href="https://000077.awsstudygroup.com">000077.awsstudygroup.com</a><br><a href="https://docs.aws.amazon.com/eventbridge/">EventBridge Docs</a><br><a href="https://docs.aws.amazon.com/sqs/">Amazon SQS Docs</a> |
-| 4 | - **Snaptic - Recurring Income:** <br>&emsp; + Xử lý luồng thu nhập định kỳ hàng tháng <br>&emsp; + Thêm cờ `isExpense`, endpoint so sánh & trend summary | 15/07/2026 | 15/07/2026 |  |
-| 5 | - **Học AWS Cost Management:** <br>&emsp; + AWS Cost Optimization <br>&emsp; + Thực hành tạo Budget Alert quản lý ngân sách | 16/07/2026 | 16/07/2026 | <a href="https://000007.awsstudygroup.com">000007.awsstudygroup.com</a> |
-| 6 | - **Snaptic - API Testing:** <br>&emsp; + Code Refactor toàn bộ luồng Income mới <br>&emsp; + Chạy giả lập và API Testing qua Swagger | 17/07/2026 | 17/07/2026 |  |
+| 2 | - **Security Review:** <br>&emsp; + Đánh giá lại toàn bộ hệ thống IAM Policies <br>&emsp; + Cấu hình chuyên sâu Security Groups | 13/07/2026 | 13/07/2026 | <a href="https://000030.awsstudygroup.com">000030.awsstudygroup.com</a><br><a href="https://000018.awsstudygroup.com">000018.awsstudygroup.com</a> |
+| 3 | - **Tối ưu hóa chi phí:** <br>&emsp; + Phân tích chiến lược tiết kiệm chi phí AWS <br>&emsp; + Xem xét AWS Cost Explorer | 14/07/2026 | 14/07/2026 | <a href="https://000034.awsstudygroup.com">000034.awsstudygroup.com</a><br><a href="https://000042.awsstudygroup.com">000042.awsstudygroup.com</a> |
+| 4 | - **Resource Cleanup:** <br>&emsp; + Xóa bỏ các tài nguyên EC2, VPC, S3 dư thừa <br>&emsp; + Ngăn chặn phát sinh phí ngoài ý muốn | 15/07/2026 | 15/07/2026 | <a href="https://000064.awsstudygroup.com">000064.awsstudygroup.com</a> |
+| 5 | - **AWS Well-Architected Framework:** <br>&emsp; + Tìm hiểu 6 trụ cột (Pillars) của hệ thống Cloud tốt <br>&emsp; + So sánh đối chiếu với dự án Snaptic | 16/07/2026 | 16/07/2026 | <a href="https://000098.awsstudygroup.com">000098.awsstudygroup.com</a> |
+| 6 | - **Ôn tập Cloud Monitoring:** <br>&emsp; + Đánh giá lại Amazon CloudWatch và các báo động <br>&emsp; + Lên kế hoạch cảnh báo lỗi tự động | 17/07/2026 | 17/07/2026 | <a href="https://000036.awsstudygroup.com">000036.awsstudygroup.com</a><br><a href="https://000029.awsstudygroup.com">000029.awsstudygroup.com</a> |
 
 ### Kết quả đạt được tuần 10:
-*   **Phân tích tài chính:** Xây dựng hệ thống Báo cáo (Analytics) cực kỳ mạnh mẽ với các endpoint thống kê danh mục, so sánh chi tiêu theo tháng và phân tích xu hướng (Trend Summary).
-*   **Cấu trúc dữ liệu:** Mở rộng nghiệp vụ quản lý dòng tiền bằng cách phân tách rõ ràng luồng Thu/Chi trong bảng thông qua cờ `isExpense`.
-*   **Nguồn thu tự động:** Triển khai thành công logic hệ thống cốt lõi xử lý luồng Thu nhập định kỳ (Recurring Income), làm tiền đề cho vòng đời Ví định kỳ.
-
+*   **Bảo mật & Tối ưu:** Hệ thống được tinh gọn, an toàn và tối ưu chi phí hơn thông qua chiến dịch dọn dẹp (Cleanup) và review bảo mật toàn diện.
+*   **Chuẩn hóa Kiến trúc:** Nắm vững triết lý thiết kế hệ thống chuẩn mực (Well-Architected Framework) của AWS, lấy đó làm kim chỉ nam để mở rộng dự án ở những tuần nước rút cuối cùng.

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Worklog Tuần 5"
 date: 2026-06-08
 weight: 5
@@ -7,20 +7,20 @@ pre: " <b> 1.5. </b> "
 ---
 
 ### Mục tiêu tuần 5:
-- Tích hợp dịch vụ Trí tuệ nhân tạo (AI) vào việc phân tích hóa đơn.
-- Phát triển module Review và Budget của Snaptic.
+- Tìm hiểu các dịch vụ gửi thông báo và email của AWS (Amazon SES và Amazon SNS).
+- Làm quen với quản lý cấu hình tập trung bằng AWS Parameter Store và cơ bản về DevOps (Dockerfile).
+- **Snaptic**: Refactor và tối ưu hóa luồng API cốt lõi, đặc biệt là các Job xử lý dữ liệu ngầm.
 
 ### Các công việc cần triển khai trong tuần này:
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
-| 2 | - **Snaptic - AI & Entities:** <br>&emsp; + Thêm entity Budget, Notification <br>&emsp; + Implement AI service phân tích ảnh hóa đơn | 08/06/2026 | 08/06/2026 |  |
-| 3 | - **Snaptic - Auto-Transaction:** <br>&emsp; + Viết logic tạo transaction từ bill AI trả về <br>&emsp; + Mở rộng AI service tạo/quản lý category | 09/06/2026 | 09/06/2026 |  |
-| 4 | - **Snaptic - Refactor Flow:** <br>&emsp; + Cập nhật TransactionService <br>&emsp; + Tối ưu hóa luồng xử lý Transaction | 10/06/2026 | 10/06/2026 |  |
-| 5 | - **Snaptic - Flow Review:** <br>&emsp; + Thêm API `need-review` <br>&emsp; + Cập nhật flow review item inventory | 11/06/2026 | 11/06/2026 |  |
-| 6 | - **Snaptic - Logic & Thuật toán:** <br>&emsp; + Refactor Flow 3 (ConfirmPrices, MissingPriceJob) <br>&emsp; + Thêm Levenshtein similarity để match item thông minh | 12/06/2026 | 12/06/2026 |  |
+| 2 | - **Dịch vụ Email (SES):** <br>&emsp; + Tìm hiểu Amazon SES (Simple Email Service) <br>&emsp; + Cấu hình Identity để gửi email | 08/06/2026 | 08/06/2026 | <a href="https://000077.awsstudygroup.com">000077.awsstudygroup.com</a> |
+| 3 | - **Dịch vụ Thông báo (SNS):** <br>&emsp; + Tìm hiểu Amazon SNS (Simple Notification Service) <br>&emsp; + Tạo Topic và Subscriptions | 09/06/2026 | 09/06/2026 | <a href="https://000077.awsstudygroup.com">000077.awsstudygroup.com</a> |
+| 4 | - **Quản lý Cấu hình an toàn:** <br>&emsp; + Tìm hiểu AWS Systems Manager Parameter Store <br>&emsp; + Lưu trữ thông tin nhạy cảm (Connection Strings) | 10/06/2026 | 10/06/2026 | <a href="https://000076.awsstudygroup.com">000076.awsstudygroup.com</a> |
+| 5 | - **Thực hành DevOps cơ bản:** <br>&emsp; + Viết Dockerfile cơ bản để đóng gói ứng dụng <br>&emsp; + Build Image tối ưu cho dự án .NET Core | 11/06/2026 | 11/06/2026 | |
+| 6 | - **Snaptic - Refactor luồng API:** <br>&emsp; + Refactor toàn bộ API Flow 3 (ConfirmPrices) <br>&emsp; + Cập nhật logic cho MissingPriceJob | 12/06/2026 | 12/06/2026 | |
 
 ### Kết quả đạt được tuần 5:
-*   **Tích hợp AI:** Bước đầu đưa AI vào ứng dụng thực tế bằng cách tích hợp dịch vụ trích xuất dữ liệu từ hóa đơn ảnh và tự động tạo giao dịch (Auto-Transaction).
-*   **Xử lý thuật toán:** Nâng cấp hệ thống bằng Machine Learning thông qua thuật toán Levenshtein để tính toán độ tương đồng (similarity) cho việc match item một cách thông minh.
-*   **Tối ưu hệ thống:** Tích hợp Hangfire làm Background Job để chạy ngầm tiến trình scan notification, giúp tối ưu hóa hiệu năng thay vì xử lý đồng bộ.
+*   **Hạ tầng AWS:** Làm quen với các dịch vụ tương tác người dùng của AWS (SES, SNS) và cách bảo mật các biến môi trường thông qua Parameter Store. Đóng gói thành công ứng dụng bằng Docker.
+*   **Tối ưu Snaptic:** Refactor thành công các API cốt lõi, giải quyết triệt để các luồng dữ liệu phức tạp (như xác nhận giá và các tác vụ ngầm) giúp ứng dụng hoạt động ổn định và mượt mà hơn.

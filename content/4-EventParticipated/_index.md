@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-During my internship, I had the great opportunity to participate in two events. Each one was a truly memorable experience that broadened my perspective with fresh and valuable knowledge, while also leaving me with fantastic moment
+During my internship, I had the great opportunity to participate in three events. Each one was a truly memorable experience that broadened my perspective with fresh and valuable knowledge, while also leaving me with fantastic moments.
 
 ### [Event 1](4.1-Event1/)  
 &emsp;**Event Name:** AI From Scratch 
@@ -27,3 +27,15 @@ During my internship, I had the great opportunity to participate in two events. 
 &emsp;**Location:** 26th Floor, Bitexco Financial Tower, District 1, Ho Chi Minh City 
 
 &emsp;**Role:** Attendee  
+
+---
+
+### [Event 3](4.3-Event3/)  
+&emsp;**Event Name:** AWS FCAJ Agent Forge - Deepdive 
+
+&emsp;**Date & Time:** August 3, 2026  
+
+&emsp;**Location:** Online / AWS Study Group
+
+&emsp;**Role:** Attendee  
+

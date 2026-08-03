@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Worklog Tuần 8"
 date: 2026-06-29
 weight: 8
@@ -7,21 +7,20 @@ pre: " <b> 1.8. </b> "
 ---
 
 ### Mục tiêu tuần 8:
-- **AWS:** Triển khai Amazon SNS (Simple Notification Service).
-- **Snaptic:** Hoàn thiện Dashboard và logic cảnh báo chi tiêu.
+- Tìm hiểu các dịch vụ điều phối luồng sự kiện và hàng đợi của AWS (EventBridge, SQS).
+- **Snaptic**: Tích hợp hệ thống ghi log chuyên nghiệp (Serilog) với Amazon CloudWatch, hoàn thiện giao diện và API cho trang Dashboard tổng quan.
 
 ### Các công việc cần triển khai trong tuần này:
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
-| 2 | - **Snaptic - Dashboard & AWS SNS:** <br>&emsp; + Đổ dữ liệu Analytics ra Dashboard Controller <br>&emsp; + Bắn thông báo Email qua AWS SNS | 29/06/2026 | 29/06/2026 | <a href="https://000077.awsstudygroup.com">000077.awsstudygroup.com</a><br><a href="https://docs.aws.amazon.com/sns/">Amazon SNS Docs</a> |
-| 3 | - **Học AWS Monitoring:** <br>&emsp; + Tìm hiểu Amazon CloudWatch Dashboard <br>&emsp; + Thực hành tạo metrics và giám sát hệ thống | 30/06/2026 | 30/06/2026 | <a href="https://000008.awsstudygroup.com">000008.awsstudygroup.com</a><br><a href="https://docs.aws.amazon.com/cloudwatch/">CloudWatch Docs</a> |
-| 4 | - **Snaptic - System Cleanup:** <br>&emsp; + Sửa lỗi email verification login <br>&emsp; + Bỏ cấu hình scheduled job cũ trong Program.cs | 01/07/2026 | 01/07/2026 |  |
-| 5 | - **Học AWS Compute Scale:** <br>&emsp; + Tìm hiểu kiến trúc Auto Scaling <br>&emsp; + Ứng dụng EC2 Auto Scaling Groups | 02/07/2026 | 02/07/2026 | <a href="https://000006.awsstudygroup.com">000006.awsstudygroup.com</a> |
-| 6 | - **Snaptic - Budget Updates:** <br>&emsp; + Cập nhật dashboard <br>&emsp; + Thêm logic tạo nhiều budget và tự động trừ tiền | 03/07/2026 | 03/07/2026 |  |
+| 2 | - **Điều phối sự kiện (Events):** <br>&emsp; + Tìm hiểu kiến trúc Event-Driven <br>&emsp; + Khám phá Amazon EventBridge | 29/06/2026 | 29/06/2026 | <a href="https://000077.awsstudygroup.com">000077.awsstudygroup.com</a> |
+| 3 | - **Hệ thống hàng đợi (Messaging):** <br>&emsp; + Tìm hiểu Amazon SQS (Simple Queue Service) <br>&emsp; + Phân biệt SQS và SNS trong kiến trúc thực tế | 30/06/2026 | 30/06/2026 | <a href="https://000077.awsstudygroup.com">000077.awsstudygroup.com</a> |
+| 4 | - **Snaptic - Tích hợp CloudWatch:** <br>&emsp; + Cài đặt Serilog và kết nối tới Amazon CloudWatch <br>&emsp; + Thiết lập inheritance (kế thừa) cho các Controllers | 01/07/2026 | 01/07/2026 | |
+| 5 | - **Ôn tập Kiến trúc Cloud:** <br>&emsp; + Review lại các mô hình kiến trúc serverless cơ bản <br>&emsp; + Đánh giá mô hình Backend hiện tại | 02/07/2026 | 02/07/2026 | <a href="https://000101.awsstudygroup.com">000101.awsstudygroup.com</a> |
+| 6 | - **Snaptic - Hoàn thiện Dashboard:** <br>&emsp; + Cập nhật toàn diện trang Dashboard (theo Ngày/Tháng/Năm) <br>&emsp; + Refactor lại mã nguồn phần Budget | 03/07/2026 | 03/07/2026 | |
 
 ### Kết quả đạt được tuần 8:
-*   **Hệ thống cảnh báo:** Làm chủ dịch vụ Amazon SNS (Simple Notification Service) để xây dựng hệ thống liên lạc chuẩn công nghiệp, có khả năng bắn thông báo Email.
-*   **Tối ưu Background Job:** Dọn dẹp thành công các logic cũ (scheduled job) để nhường chỗ cho hệ thống Hangfire hoạt động tối ưu và tập trung hơn.
-*   **Data Analytics:** API Dashboard đã xử lý tốt bài toán phân luồng trừ tiền song song trên nhiều Budget cùng lúc và trả về số liệu thống kê Data Analytics cực kỳ chi tiết.
-
+*   **Hạ tầng AWS:** Có cái nhìn sâu sắc về kiến trúc hướng sự kiện (Event-driven) thông qua các dịch vụ SQS và EventBridge, phục vụ cho việc mở rộng dự án sau này.
+*   **Giám sát & Quản trị:** Tích hợp thành công thư viện Serilog để đẩy thẳng toàn bộ log hoạt động của hệ thống lên Amazon CloudWatch, giúp quá trình theo dõi lỗi (tracking) trở nên dễ dàng và chuyên nghiệp hơn.
+*   **Tính năng ứng dụng:** Hoàn thành trang Dashboard với dữ liệu tổng hợp trực quan, mang lại giá trị cốt lõi cho người dùng cuối.

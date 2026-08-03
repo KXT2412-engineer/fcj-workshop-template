@@ -12,7 +12,7 @@ Hello everyone,
 
 E-commerce websites often experience highly variable traffic, especially during promotions or peak shopping seasons. If all requests are handled by a single server and access the database directly, the system can easily become slow, overloaded, or disrupted.
 
-![Scalable e-commerce website architecture on AWS](Image.jpg)
+![Scalable e-commerce website architecture on AWS](/fcj-workshop-template/images/3-BlogsPosted/3.3-Blog3/blog3.jpg)
 
 A scalable architecture on AWS can be built following this flow:
 

@@ -16,7 +16,7 @@ Gần đây, AWS đã chia sẻ về cách Amazon Cognito được nâng cấp l
 
 Điều khiến mình thấy thú vị không chỉ nằm ở các tính năng mới, mà còn ở cách AWS thực hiện migration quy mô lớn với mục tiêu zero downtime.
 
-![Sơ đồ kiến trúc chuyển đổi không gián đoạn của Amazon Cognito](image.jpg)
+![Sơ đồ kiến trúc chuyển đổi không gián đoạn của Amazon Cognito](/fcj-workshop-template/images/3-BlogsPosted/3.1-Blog1/blog1.jpg)
 
 ---
 

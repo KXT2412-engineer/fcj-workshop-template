@@ -71,7 +71,7 @@ Mình nhận ra rằng, trong kỷ nguyên AI, không ai có thể học và là
 
 #### Một số hình ảnh khi tham gia sự kiện
 
-![](6C7A2983.jpg)
-![](6C7A2921.JPG)
+![](/fcj-workshop-template/images/4-EventParticipated/4.2-Event2/event2.jpg)
+![](/fcj-workshop-template/images/4-EventParticipated/4.2-Event2/event2.1.jpg)
 
 

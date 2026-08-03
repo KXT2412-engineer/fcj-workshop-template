@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Worklog Week 7"
 date: 2026-06-22
 weight: 7
@@ -7,20 +7,20 @@ pre: " <b> 1.7. </b> "
 ---
 
 ### Week 7 Objectives:
-- Complete the OTP flow via email.
-- Develop the AI Assistant (Financial Virtual Assistant).
+- Complete the Notification flow and the Budget system for the project.
+- Initialize the API set for the Dashboard.
+- Review AWS security knowledge and optimize DevOps processes.
 
 ### Tasks to be implemented this week:
 
 | Day | Task | Start Date | End Date | Resources |
 |---|---|---|---|---|
-| Monday | - **Snaptic - Admin Logic & Cleanup:** <br>&emsp; + Update Budget API <br>&emsp; + Code AWS destroy / resource cleanup functions | 22/06/2026 | 22/06/2026 |  |
-| Tuesday | - **Snaptic - Notification Flow:** <br>&emsp; + Write cleanup logic (Notification Cleanup Job) <br>&emsp; + Separate notification creation flow by item | 23/06/2026 | 23/06/2026 |  |
-| Wednesday | - **Learn AWS Email Service:** <br>&emsp; + Explore Amazon SES (Simple Email Service) <br>&emsp; + Setup Identity to serve OTP email sending | 24/06/2026 | 24/06/2026 | <a href="https://docs.aws.amazon.com/ses/">Amazon SES Docs</a><br><a href="https://000077.awsstudygroup.com">000077.awsstudygroup.com</a> |
-| Thursday | - **Snaptic - OTP Flow:** <br>&emsp; + Complete email verification flow using OTP code <br>&emsp; + Improve registration OTP email template | 25/06/2026 | 25/06/2026 |  |
-| Friday | - **Snaptic - AI Assistant:** <br>&emsp; + Add AI assistant financial summary API <br>&emsp; + Update prompt with `AllCategoriesThisMonth` | 26/06/2026 | 26/06/2026 |  |
+| Monday | - **Snaptic - Budget Optimization:** <br>&emsp; + Update Budget management logic <br>&emsp; + Remove old AWS test configurations | 22/06/2026 | 22/06/2026 | |
+| Tuesday | - **Snaptic - Notification Update:** <br>&emsp; + Upgrade Notification module <br>&emsp; + Write logic to clean up redundant notification data | 23/06/2026 | 23/06/2026 | |
+| Wednesday | - **AWS Security Review:** <br>&emsp; + Review IAM Best Practices principles <br>&emsp; + Check the system's current access security | 24/06/2026 | 24/06/2026 | <a href="https://000002.awsstudygroup.com">000002.awsstudygroup.com</a> |
+| Thursday | - **DevOps Practice:** <br>&emsp; + Optimize Docker Image <br>&emsp; + Prepare the environment for application packaging | 25/06/2026 | 25/06/2026 | |
+| Friday | - **Snaptic - Dashboard API:** <br>&emsp; + Start designing API flow for Dashboard <br>&emsp; + Extract overview data for users | 26/06/2026 | 26/06/2026 | |
 
 ### Week 7 Results Achieved:
-*   **Account Security:** Upgrade user security system by successfully implementing a secure OTP code sending and verification flow via Email.
-*   **Smart Virtual Assistant:** Create a breakthrough in user experience with the AI Assistant feature thanks to Prompt Engineering techniques (adding `AllCategoriesThisMonth` context).
-*   **Personalization:** The AI virtual assistant is "smart" enough to evaluate the overview, summarize, and provide personalized financial Insights based on actual spending levels.
+*   **Snaptic Progress:** Completely resolved outstanding logic errors in the Budget and Notification sections. Began building the most important feature of the application - the overview Dashboard page.
+*   **DevOps & Security:** Consolidated cloud security knowledge and successfully optimized the Docker build process in preparation for the deployment phase.

@@ -16,7 +16,7 @@ Recently, AWS shared how Amazon Cognito was upgraded to a next-generation infras
 
 What I find interesting is not just the new features, but also how AWS executed a large-scale migration with a zero downtime goal.
 
-![Zero downtime migration architecture diagram of Amazon Cognito](image.jpg)
+![Zero downtime migration architecture diagram of Amazon Cognito](/fcj-workshop-template/images/3-BlogsPosted/3.1-Blog1/blog1.jpg)
 
 ---
 
