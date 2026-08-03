@@ -15,11 +15,11 @@ pre: " <b> 1.1. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 |---|---|---|---|---|
-| 2 | - **Onboarding:** <br>&emsp; + Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập <br>&emsp; + Phân tích yêu cầu dự án Snaptic | 11/05/2026 | 11/05/2026 | <a href="https://policies.fcjuni.com/">policies.fcjuni.com</a> |
+| 2 | - **Onboarding:** <br>&emsp; + Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập <br>&emsp; + Phân tích yêu cầu dự án | 11/05/2026 | 11/05/2026 | <a href="https://policies.fcjuni.com/">policies.fcjuni.com</a> |
 | 3 | - **Học AWS cơ bản:** <br>&emsp; + Giới thiệu Điện Toán Đám Mây & AWS <br>&emsp; + Hạ tầng toàn cầu & Công cụ quản lý | 12/05/2026 | 12/05/2026 | |
 | 4 | - **Thực hành AWS:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài đặt & cấu hình AWS CLI | 13/05/2026 | 13/05/2026 | <a href="https://000001.awsstudygroup.com">000001.awsstudygroup.com</a><br><a href="https://000011.awsstudygroup.com">000011.awsstudygroup.com</a> |
 | 5 | - **Tìm hiểu Compute:** <br>&emsp; + Tìm hiểu EC2, AMI, Key Pair <br>&emsp; + Các phương thức kết nối SSH vào EC2 | 14/05/2026 | 14/05/2026 | <a href="https://000004.awsstudygroup.com">000004.awsstudygroup.com</a> |
-| 6 | - **Snaptic - Khởi tạo Database:** <br>&emsp; + Chốt scope quản lý chi tiêu <br>&emsp; + Phác thảo sơ đồ Database (Users, Budget, Transactions) | 15/05/2026 | 15/05/2026 |  |
+| 6 | - **Dự án - Khởi tạo Database:** <br>&emsp; + Chốt scope quản lý chi tiêu <br>&emsp; + Phác thảo sơ đồ Database (Users, Budget, Transactions) | 15/05/2026 | 15/05/2026 |  |
 
 ### Kết quả đạt được tuần 1:
 *   **Kiến thức Cloud:** Nắm vững bức tranh tổng quan về hệ sinh thái Đám mây (Cloud Computing) của AWS và các dịch vụ cốt lõi (EC2, S3, VPC, RDS).
