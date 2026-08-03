@@ -169,7 +169,6 @@ Luồng xử lý quét hóa đơn được thực hiện như sau:
 11. Dashboard và báo cáo chi tiêu được cập nhật.
 
 ### 4.11. Sơ đồ kiến trúc tổng thể
-*(Vui lòng thêm sơ đồ kiến trúc vào đây)*
 ![Architecture Diagram](/fcj-workshop-template/images/2-Proposal/architecture_diagram.jpg)
 
 ---
