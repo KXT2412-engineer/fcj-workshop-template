@@ -6,11 +6,10 @@ chapter: false
 pre: " <b> 5.5. </b> "
 ---
 
-# Tích hợp AI & Hàng đợi Xử lý ngầm
 
 Trái tim sức mạnh của Snaptics nằm ở khả năng xử lý bất đồng bộ. Việc gọi API bóc tách ảnh hóa đơn có thể mất từ 5-10 giây, do đó ta không thể bắt người dùng ngồi nhìn vòng tròn xoay loading. Thay vào đó, ta sẽ quăng tác vụ đó vào hàng đợi SQS.
 
-## 1. Cấu hình SQS & Hàng đợi chết (Dead Letter Queue)
+## 1. Cấu hình SQS & Dead Letter Queue 
 
 Trong môi trường Enterprise, chỉ tạo 1 Queue là không đủ an toàn. Giả sử API AI của Azure bị sập tạm thời, hệ thống đọc hóa đơn thất bại, message đó sẽ cứ bị đẩy lại vào Queue và gây ra vòng lặp lỗi vô tận (Infinite Loop). Để chặn đứng việc này, ta phải tạo **Dead Letter Queue (DLQ)**.
 
@@ -20,7 +19,7 @@ Trong môi trường Enterprise, chỉ tạo 1 Queue là không đủ an toàn. 
 - **Name:** Đặt là `snaptics-ai-queue-dlq` (Có hậu tố DLQ).
 - Các cài đặt khác giữ nguyên, bấm Create.
 
-### B. Tạo Hàng đợi Chính (Main Queue)
+### B. Tạo Main Queue 
 - Quay lại và bấm **Create queue**.
 - **Type:** Standard.
 - **Name:** Đặt chính xác là `snaptics-ai-queue` (Khớp 100% với sơ đồ kiến trúc).
@@ -30,14 +29,14 @@ Trong môi trường Enterprise, chỉ tạo 1 Queue là không đủ an toàn. 
 - **Maximum receives:** Đặt là `3`. *(Điều này có nghĩa là: Code C# trên ECS chỉ được phép thử quét hóa đơn lỗi tối đa 3 lần. Nếu lần thứ 3 vẫn thất bại do AI sập, SQS sẽ tự động hất cái message lỗi đó sang chuồng DLQ để cách ly, giúp hệ thống không bị kẹt).*
 - Bấm Create.
 
-## 2. Tích hợp AI (Trí tuệ nhân tạo)
+## 2. Tích hợp AI 
 
 ECS Container sẽ móc message từ Queue ra và âm thầm gọi sang 2 con AI hàng đầu thế giới để xử lý:
 
-### Azure Document Intelligence (OCR)
+### Azure Document Intelligence - OCR
 Khi ảnh hóa đơn nằm trên S3, AWS sẽ gọi Azure để bóc tách text:
 ```csharp
-// Lấy Key bảo mật từ AWS Secrets Manager thay vì gõ cứng
+// Lấy Key bảo mật từ AWS Systems Manager Parameter Store thay vì gõ cứng
 var credential = new AzureKeyCredential(_secrets["AzureDocIntelKey"]);
 var client = new DocumentAnalysisClient(new Uri(_secrets["AzureDocIntelEndpoint"]), credential);
 
@@ -45,7 +44,7 @@ var client = new DocumentAnalysisClient(new Uri(_secrets["AzureDocIntelEndpoint"
 AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-receipt", new Uri(preSignedUrl));
 var result = operation.Value;
 
-// Nhặt tên Cửa hàng và Giá tiền lưu vào Database Aurora
+// Nhặt tên Cửa hàng và Giá tiền lưu vào Database SQL Server
 string merchantName = result.Documents[0].Fields["MerchantName"].Value.AsString();
 double total = result.Documents[0].Fields["Total"].Value.AsDouble();
 ```
@@ -67,7 +66,7 @@ var response = await _httpClient.PostAsJsonAsync(
 Bên cạnh SQS xử lý sự kiện tức thời, Snaptics còn dùng Hangfire để chạy các Cron Job định kỳ (ví dụ: Chốt sổ tài chính lúc nửa đêm).
 
 ```csharp
-// Hangfire tận dụng luôn cụm Aurora Database siêu mạnh để lưu trạng thái Job
+// Hangfire tận dụng luôn cụm SQL Server Database siêu mạnh để lưu trạng thái Job
 builder.Services.AddHangfire(config => config
     .UseMySQLStorage(_secrets["DbConnectionString"]));
 builder.Services.AddHangfireServer();

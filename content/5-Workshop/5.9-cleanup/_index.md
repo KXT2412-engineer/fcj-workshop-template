@@ -6,9 +6,8 @@ chapter: false
 pre: " <b> 5.9. </b> "
 ---
 
-# Resources Cleanup
 
-Because this is a massive Enterprise-grade architecture, keeping it running 24/7 will incur significant AWS charges (especially Aurora Multi-AZ, WAF, and NAT Gateway). You MUST tear it down immediately after testing.
+Because this is a massive Enterprise-grade architecture, keeping it running 24/7 will incur significant AWS charges (especially SQL Server Multi-AZ, WAF, and NAT Gateway). You MUST tear it down immediately after testing.
 
 Follow this exact reverse order to prevent dependency lock errors:
 
@@ -24,8 +23,8 @@ Follow this exact reverse order to prevent dependency lock errors:
 - **Target Groups:** Delete `snaptics-ecs-tg`.
 
 ### 3. Data & Storage Layer
-- **Amazon Aurora:** Go to RDS ➔ Databases. Select the `snaptics-aurora-cluster`. Click Actions ➔ **Delete**. *Crucial: Uncheck "Create final snapshot", acknowledge the warnings, and type `delete me`.*
-- **AWS Secrets Manager:** Select `SnapticsProdSecret` ➔ Actions ➔ **Schedule secret deletion** (set to 7 days).
+- **Amazon RDS for SQL Server:** Go to RDS ➔ Databases. Select the `snaptics-aurora-cluster`. Click Actions ➔ **Delete**. *Crucial: Uncheck "Create final snapshot", acknowledge the warnings, and type `delete me`.*
+- **AWS Systems Manager Parameter Store:** Select `/snaptics/prod/db-connection` ➔ Actions ➔ **Schedule secret deletion** (set to 7 days).
 - **Amazon S3:** Go to your bucket. Click **Empty** to permanently delete all uploaded invoices. Then click **Delete** to remove the bucket itself.
 - **Amazon ECR:** Delete the `snaptics-api` repository containing your Docker images.
 

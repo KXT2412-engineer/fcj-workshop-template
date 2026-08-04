@@ -6,13 +6,12 @@ chapter: false
 pre: " <b> 5.4. </b> "
 ---
 
-# Database, Storage & Secrets chuẩn Doanh nghiệp
 
-Ở bài này, chúng ta sẽ xây dựng tầng lưu trữ. Vì hệ thống hướng tới môi trường Production, ta sẽ loại bỏ các DB thông thường và file cấu hình thô sơ để thay thế bằng Aurora và AWS Secrets Manager.
+Ở bài này, chúng ta sẽ xây dựng tầng lưu trữ. Vì hệ thống hướng tới môi trường Production, ta sẽ loại bỏ các DB thông thường và file cấu hình thô sơ để thay thế bằng SQL Server và AWS Systems Manager Parameter Store.
 
-## 1. Cơ sở dữ liệu Cốt lõi (Amazon Aurora Multi-AZ)
+## 1. Cơ sở dữ liệu Cốt lõi (Amazon RDS for SQL Server Multi-AZ)
 
-Snaptics yêu cầu một DB không bao giờ được phép sập (High Availability). Aurora tự động sao chép dữ liệu của bạn ra nhiều Availability Zones khác nhau.
+Snaptics yêu cầu một DB không bao giờ được phép sập (High Availability). SQL Server tự động sao chép dữ liệu của bạn ra nhiều Availability Zones khác nhau.
 
 ### A. Khởi tạo DB Subnet Group
 - Vào **Amazon RDS ➔ Subnet groups ➔ Create DB subnet group**.
@@ -20,9 +19,9 @@ Snaptics yêu cầu một DB không bao giờ được phép sập (High Availab
 - **VPC:** Chọn `snaptics-vpc`.
 - **Subnets:** Ở mục này phải chọn cẩn thận! Chọn 2 Availability Zones và chỉ tick vào **2 mạng Private Subnets** (`10.0.3.0/24` và `10.0.4.0/24`).
 
-### B. Khởi tạo Cụm Aurora Cluster
+### B. Khởi tạo Cụm SQL Server Cluster
 - Vào **RDS ➔ Databases ➔ Create database**.
-- **Engine options:** Bắt buộc chọn **Amazon Aurora**.
+- **Engine options:** Bắt buộc chọn **Amazon RDS for SQL Server**.
 - **Edition:** Chọn MySQL hoặc PostgreSQL (Tùy thuộc vào thư viện EF Core bạn gắn trong code C#).
 - **Templates:** Production.
 - **Settings:**
@@ -30,13 +29,13 @@ Snaptics yêu cầu một DB không bao giờ được phép sập (High Availab
   - Master username: `admin`
   - Master password: Gõ một mật khẩu thật mạnh (Ví dụ `SnapticsAurora2024!`).
 - **Instance configuration:** Chọn cấu hình máy chủ ảo, ví dụ `db.t3.medium`.
-- **Availability & Durability:** Chọn **Create an Aurora Replica/Reader node in a different AZ** (Đây chính là tính năng Multi-AZ thần thánh).
+- **Availability & Durability:** Chọn **Create an SQL Server Replica/Reader node in a different AZ** (Đây chính là tính năng Multi-AZ thần thánh).
 - **Connectivity:**
   - VPC: Chọn `snaptics-vpc`
   - DB subnet group: `snaptics-db-subnet-group`
   - **Public access: No** (Rất quan trọng, để No để hacker không thể quét ra cổng DB của bạn).
   - VPC security group: Chọn `snaptics-aurora-sg`.
-- Bấm **Create database**. Cụm Aurora sẽ mất khoảng 15 phút để tạo. Sau khi xong, copy lấy chuỗi **Writer Endpoint**.
+- Bấm **Create database**. Cụm SQL Server sẽ mất khoảng 15 phút để tạo. Sau khi xong, copy lấy chuỗi **Writer Endpoint**.
 
 ## 2. Kho lưu trữ Hóa đơn (Amazon S3)
 
@@ -57,11 +56,11 @@ Vì ở bài trước chúng ta đã tạo **VPC Gateway Endpoint**, Code C# ch�
 ]
 ```
 
-## 3. Két sắt Bí mật (AWS Secrets Manager)
+## 3. Két sắt Bí mật (AWS Systems Manager Parameter Store)
 
-TUYỆT ĐỐI KHÔNG lưu mật khẩu Aurora hay API Key của AI vào file `appsettings.json` và đẩy lên GitHub! Thay vì dùng SSM Parameter Store cơ bản, hệ thống Enterprise ưa chuộng **AWS Secrets Manager** vì nó có tính năng tự động đổi mật khẩu (Auto-rotation).
+TUYỆT ĐỐI KHÔNG lưu mật khẩu SQL Server hay API Key của AI vào file `appsettings.json` và đẩy lên GitHub! Thay vì dùng SSM Parameter Store cơ bản, hệ thống Enterprise ưa chuộng **AWS Systems Manager Parameter Store** vì nó có tính năng tự động đổi mật khẩu (Auto-rotation).
 
-- Vào **AWS Secrets Manager ➔ Store a new secret**.
+- Vào **AWS Systems Manager Parameter Store ➔ Store a new secret**.
 - **Secret type:** Chọn **Other type of secret**.
 - **Key/value pairs:** Tạo lần lượt các key sau và điền value tương ứng:
   - `DbConnectionString`: `Server=<AURORA_ENDPOINT>,3306;Database=SnapticsDB;Uid=admin;Pwd=SnapticsAurora2024!;`
@@ -69,7 +68,7 @@ TUYỆT ĐỐI KHÔNG lưu mật khẩu Aurora hay API Key của AI vào file `a
   - `GeminiApiKey`: `Dán_Key_Google_AI_Của_Bạn`
   - `AzureDocIntelKey`: `Dán_Key_Azure_OCR`
   - `AzureDocIntelEndpoint`: `Dán_Đường_Dẫn_Azure`
-- **Secret name:** Đặt tên là `SnapticsProdSecret`.
+- **Secret name:** Đặt tên là `/snaptics/prod/db-connection`.
 - Bấm **Next** và **Store**.
 
-Ở trong code `.NET`, bạn chỉ cần xài SDK để gọi tên `SnapticsProdSecret`, AWS sẽ trả về toàn bộ cụm JSON chứa mật khẩu, giữ cho mã nguồn của bạn hoàn toàn sạch sẽ và an toàn.
+Ở trong code `.NET`, bạn chỉ cần xài SDK để gọi tên `/snaptics/prod/db-connection`, AWS sẽ trả về toàn bộ cụm JSON chứa mật khẩu, giữ cho mã nguồn của bạn hoàn toàn sạch sẽ và an toàn.

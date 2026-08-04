@@ -6,11 +6,10 @@ chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-# CI/CD Tự động hóa với GitHub Actions
 
-Quên mấy cái script gõ bằng tay ở máy Local đi! Trong môi trường Enterprise thực thụ, Developer chỉ có một nhiệm vụ duy nhất là viết code và Commit lên GitHub. Mọi thao tác Build, Test, và Deploy cho cả Backend (.NET) và Frontend (React) sẽ do **GitHub Actions** tự động gánh vác 100%.
+Quên mấy cái script gõ bằng tay ở máy Local đi! Trong môi trường Enterprise thực thụ, Developer chỉ có một nhiệm vụ duy nhất là viết code và Commit lên GitHub. Mọi thao tác Build, Test, và Deploy cho cả Backend (.NET) và Frontend (Angular) sẽ do **GitHub Actions** tự động gánh vác 100%.
 
-## 1. Thiết lập GitHub Secrets (Bảo mật Khóa)
+## 1. Thiết lập GitHub Secrets 
 
 GitHub Actions cần quyền vào tài khoản AWS của bạn để đẩy Docker Image và gọi lệnh Deploy.
 1. Mở repository Snaptics của bạn trên GitHub.
@@ -77,13 +76,13 @@ Dòng lệnh cuối cùng `--force-new-deployment` kích hoạt cơ chế **Roll
 
 ## 3. Pipeline Triển khai Frontend (AWS Amplify)
 
-Việc Hosting một trang React SPA lên AWS cực kỳ dễ dàng nhờ **AWS Amplify**. Bạn thậm chí không cần viết file YAML lằng nhằng, Amplify có sẵn cổng giao tiếp với GitHub.
+Việc Hosting một trang Angular SPA lên AWS cực kỳ dễ dàng nhờ **AWS Amplify**. Bạn thậm chí không cần viết file YAML lằng nhằng, Amplify có sẵn cổng giao tiếp với GitHub.
 
 ### Thiết lập Amplify Auto-Deploy
 1. Vào AWS Console, mở dịch vụ **AWS Amplify**.
 2. Bấm **Create new app** ➔ Chọn nguồn là **GitHub**.
 3. Cấp quyền đăng nhập GitHub và trỏ vào repository `Snaptics` của bạn.
-4. Trỏ vào thư mục `Frontend` (nơi chứa code React).
+4. Trỏ vào thư mục `Frontend` (nơi chứa code Angular).
 5. Amplify sẽ tự động nhận diện lệnh build chuẩn (ví dụ `npm run build`).
 6. Bấm **Save and Deploy**.
 

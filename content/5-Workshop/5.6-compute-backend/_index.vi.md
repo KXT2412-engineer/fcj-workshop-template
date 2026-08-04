@@ -6,11 +6,10 @@ chapter: false
 pre: " <b> 5.6. </b> "
 ---
 
-# Compute & Load Balancing (ECS Fargate)
 
 Hệ thống Backend của Snaptics hoạt động trên nền tảng Serverless Containers. Ta sẽ bọc ứng dụng `.NET` thành một gói Docker và quăng nó lên chạy trên cụm Amazon ECS Fargate.
 
-## 1. Mạng phân tải (Application Load Balancer)
+## 1. Application Load Balancer
 
 Vì các Server Fargate nằm nấp ở mạng Private, ta phải xây một con ALB đứng ngoài mạng Public để nhận request từ CloudFront và chia đều tải vào trong.
 
@@ -43,7 +42,7 @@ Trước khi cấu hình ECS, ta cần một kho chứa an toàn để GitHub Ac
 
 ## 3. Khởi tạo ECS Cluster & Task Definition
 
-### A. Tạo Cụm Cluster
+### A. Tạo Cluster
 - Vào **Amazon ECS ➔ Clusters ➔ Create Cluster**.
 - **Name:** `Snaptics-Cluster`.
 - **Infrastructure:** AWS Fargate.

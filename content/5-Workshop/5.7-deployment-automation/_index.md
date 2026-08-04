@@ -6,9 +6,8 @@ chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-# CI/CD Automation (GitHub Actions)
 
-Forget manual deployment scripts! In a true Enterprise architecture, the developer only needs to write code and commit to GitHub. **GitHub Actions** will completely automate the build, test, and deployment processes for both the Backend (.NET) and the Frontend (React).
+Forget manual deployment scripts! In a true Enterprise architecture, the developer only needs to write code and commit to GitHub. **GitHub Actions** will completely automate the build, test, and deployment processes for both the Backend (.NET) and the Frontend (Angular).
 
 ## 1. Configuring GitHub Secrets
 
@@ -77,14 +76,14 @@ The final command `--force-new-deployment` executes an intelligent **Rolling Upd
 
 ## 3. Frontend CI/CD Pipeline (AWS Amplify)
 
-AWS Amplify makes hosting React SPAs incredibly easy. Instead of writing a complex YAML file for Amplify, AWS provides direct GitHub integration.
+AWS Amplify makes hosting Angular SPAs incredibly easy. Instead of writing a complex YAML file for Amplify, AWS provides direct GitHub integration.
 
 ### Setting up Amplify Auto-Deploy
 1. Go to the AWS Console, open **AWS Amplify**.
 2. Click **Create new app** ➔ Select **GitHub**.
 3. Authenticate with GitHub and select your `Snaptics` repository.
 4. Point to the `Frontend` branch or folder.
-5. Amplify will auto-detect the React build settings (e.g., `npm run build`).
+5. Amplify will auto-detect the Angular build settings (e.g., `npm run build`).
 6. Click **Save and Deploy**.
 
 From now on, whenever a developer pushes a frontend change to the repository, Amplify automatically catches the webhook, rebuilds the site, and pushes the new assets to its edge CDN instantly.

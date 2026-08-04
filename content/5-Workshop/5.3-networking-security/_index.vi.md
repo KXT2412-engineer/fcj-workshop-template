@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.3. </b> "
 ---
 
-# Mạng, CDN & Tường lửa Bảo mật
 
 Trong kiến trúc Enterprise, tầng Mạng đóng vai trò quyết định. Chúng ta phải bảo vệ luồng truy cập từ bên ngoài bằng CloudFront + WAF, đồng thời tối ưu hóa luồng mạng nội bộ bằng VPC Endpoints để giảm thiểu chi phí băng thông đắt đỏ.
 
@@ -45,8 +44,8 @@ Tạo mạng nội bộ (`snaptics-vpc`) với dải IP `10.0.0.0/16`.
 Tạo 4 Subnet tại `ap-southeast-1`:
 1. `snaptics-public-1a`: `10.0.1.0/24` (Bật auto-assign public IPv4)
 2. `snaptics-public-1b`: `10.0.2.0/24` (Bật auto-assign public IPv4)
-3. `snaptics-private-1a`: `10.0.3.0/24` (Nơi chứa ECS & Database Aurora)
-4. `snaptics-private-1b`: `10.0.4.0/24` (Nơi chứa ECS & Database Aurora)
+3. `snaptics-private-1a`: `10.0.3.0/24` (Nơi chứa ECS & Database SQL Server)
+4. `snaptics-private-1b`: `10.0.4.0/24` (Nơi chứa ECS & Database SQL Server)
 
 ## 4. Gateways & VPC Endpoints (Tuyệt chiêu tiết kiệm chi phí)
 
@@ -75,5 +74,5 @@ Bạn phải cấu hình Firewall cứng (Security Group) theo nguyên tắc t�
   - *Mẹo bảo mật cao cấp:* Bạn có thể giới hạn Source IP chỉ cho phép dải IP của AWS CloudFront gọi vào, qua đó chặn đứng mọi kẻ lạ cố tình gọi thẳng IP của ALB!
 - **ECS Security Group (`snaptics-ecs-sg`):**
   - Mở cổng Custom TCP `8080`. Source CHỈ CHO PHÉP gọi từ `snaptics-alb-sg`.
-- **Aurora Security Group (`snaptics-aurora-sg`):**
+- **SQL Server Security Group (`snaptics-aurora-sg`):**
   - Mở cổng DB (Ví dụ 1433 nếu dùng SQL Server hoặc 3306/5432). Source CHỈ CHO PHÉP gọi từ `snaptics-ecs-sg`.

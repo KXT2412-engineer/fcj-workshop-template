@@ -6,9 +6,8 @@ chapter: false
 pre: " <b> 5.8. </b> "
 ---
 
-# Kiểm thử Toàn hệ thống (End-to-End Testing)
 
-Chúc mừng bạn đã dựng xong khối kiến trúc Enterprise đồ sộ! Giờ là lúc kiểm chứng xem mọi mảnh ghép (CloudFront ➔ WAF ➔ ALB ➔ ECS ➔ Aurora/S3/SQS) có đang mượt mà vắt chéo nhau không.
+Chúc mừng bạn đã dựng xong khối kiến trúc Enterprise đồ sộ! Giờ là lúc kiểm chứng xem mọi mảnh ghép (CloudFront ➔ WAF ➔ ALB ➔ ECS ➔ SQL Server/S3/SQS) có đang mượt mà vắt chéo nhau không.
 
 ## 1. Kiểm chứng Tường lửa WAF & CloudFront
 
@@ -19,7 +18,7 @@ Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duy�
 
 ## 2. Kiểm thử API & Trí tuệ Nhân tạo (Swagger)
 
-1. **Đăng nhập (Auth):** Dùng Endpoint `/api/Auth/register` rồi `/api/Auth/login`. Bước này chứng minh ECS Container đã đọc được mật khẩu từ **Secrets Manager** và kết nối thành công tới **Aurora Database**!
+1. **Đăng nhập (Auth):** Dùng Endpoint `/api/Auth/register` rồi `/api/Auth/login`. Bước này chứng minh ECS Container đã đọc được mật khẩu từ **Parameter Store** và kết nối thành công tới **SQL Server Database**!
 2. **Upload Hóa đơn:** Dùng Endpoint `/api/Transactions/scan-receipt` tải lên một bức ảnh hóa đơn thật.
 3. **Xác thực Luồng Data:**
    - Mở **S3**, bức ảnh đã nằm đó (Chứng minh **VPC Gateway Endpoint** xuyên mạng nội bộ thành công).

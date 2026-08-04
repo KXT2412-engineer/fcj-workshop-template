@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.6. </b> "
 ---
 
-# Compute & Load Balancing (ECS Fargate)
 
 Snaptics backend operates on a Serverless Container architecture. We package the `.NET` application into a Docker container and run it on Amazon ECS Fargate.
 

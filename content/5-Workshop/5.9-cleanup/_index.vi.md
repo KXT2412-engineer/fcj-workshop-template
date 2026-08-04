@@ -7,7 +7,7 @@ pre: " <b> 5.9. </b> "
 ---
 
 
-Vì đây là kiến trúc Enterprise siêu to khổng lồ, việc để nó chạy qua đêm sẽ "đốt" của bạn một lượng tiền không nhỏ (đặc biệt là Database Aurora Multi-AZ, WAF và NAT Gateway). BẠN BẮT BUỘC PHẢI DỌN DẸP NGAY SAU KHI THỰC HÀNH XONG!
+Vì đây là kiến trúc Enterprise siêu to khổng lồ, việc để nó chạy qua đêm sẽ "đốt" của bạn một lượng tiền không nhỏ (đặc biệt là Database SQL Server Multi-AZ, WAF và NAT Gateway). BẠN BẮT BUỘC PHẢI DỌN DẸP NGAY SAU KHI THỰC HÀNH XONG!
 
 Hãy làm đúng trình tự ngược từ ngoài vào trong dưới đây để tránh bị lỗi "tài nguyên đang bị khóa":
 
@@ -23,8 +23,8 @@ Hãy làm đúng trình tự ngược từ ngoài vào trong dưới đây để
 - **Target Groups:** Nhảy qua tab Target Groups, xóa `snaptics-ecs-tg`.
 
 ### 3. Tầng Dữ liệu & Storage (Nơi đốt tiền nhiều nhất)
-- **Amazon Aurora:** Vào RDS ➔ Databases. Chọn cụm `snaptics-aurora-cluster`. Bấm Actions ➔ **Delete**. *Cực kỳ cẩn thận: BỎ tick dòng "Create final snapshot", tick đồng ý mọi cảnh báo rủi ro, gõ chữ `delete me` vào ô xác nhận.*
-- **AWS Secrets Manager:** Chọn `SnapticsProdSecret` ➔ Actions ➔ **Schedule secret deletion** (Hẹn 7 ngày sau tự xóa vĩnh viễn).
+- **Amazon RDS for SQL Server:** Vào RDS ➔ Databases. Chọn cụm `snaptics-aurora-cluster`. Bấm Actions ➔ **Delete**. *Cực kỳ cẩn thận: BỎ tick dòng "Create final snapshot", tick đồng ý mọi cảnh báo rủi ro, gõ chữ `delete me` vào ô xác nhận.*
+- **AWS Systems Manager Parameter Store:** Chọn `/snaptics/prod/db-connection` ➔ Actions ➔ **Schedule secret deletion** (Hẹn 7 ngày sau tự xóa vĩnh viễn).
 - **Amazon S3:** Vào Bucket của bạn. Bấm **Empty** để dọn sạch rác hóa đơn ảnh bên trong. Sau đó mới bấm **Delete** Bucket được.
 - **Amazon ECR:** Xóa Repository chứa file Docker.
 - **SQS & SNS:** Xóa hàng đợi `snaptics-ai-queue` (và cái DLQ của nó), xóa luôn Topic cảnh báo.

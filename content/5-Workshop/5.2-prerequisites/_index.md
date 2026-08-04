@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.2. </b> "
 ---
 
-# Prerequisites
 
 To ensure the deployment of Snaptics Enterprise goes smoothly, you must set up your Cloud environments properly. Since we are using an automated CI/CD approach instead of manual deployments, the requirements are heavily focused on Cloud permissions rather than installing local software.
 
@@ -39,7 +38,7 @@ Since GitHub Actions will be deploying infrastructure on your behalf, it needs p
 
 ## 3. AWS IAM Roles for ECS Containers
 
-When the .NET code runs inside the ECS Fargate container, it needs permissions to talk to S3, SQS, and Secrets Manager. We must create 2 specific IAM Roles.
+When the .NET code runs inside the ECS Fargate container, it needs permissions to talk to S3, SQS, and Parameter Store. We must create 2 specific IAM Roles.
 
 Go to **IAM ➔ Roles ➔ Create role**:
 
@@ -52,7 +51,7 @@ This role allows the underlying ECS platform to pull your Docker image from ECR 
 ### B. Snaptics ECS Task Role (`snaptics-ecs-task-role`)
 This role grants permissions to your **C# code** executing inside the container.
 - **Trusted Entity:** `Elastic Container Service Task`
-- **Inline Policy (JSON):** Create an inline policy and paste the following JSON to grant access to S3, SQS, SNS, and Secrets Manager.
+- **Inline Policy (JSON):** Create an inline policy and paste the following JSON to grant access to S3, SQS, SNS, and Parameter Store.
 
 ```json
 {
@@ -65,7 +64,7 @@ This role grants permissions to your **C# code** executing inside the container.
                 "secretsmanager:GetSecretValue",
                 "secretsmanager:DescribeSecret"
             ],
-            "Resource": "arn:aws:secretsmanager:ap-southeast-1:*:secret:SnapticsProdSecret-*"
+            "Resource": "arn:aws:secretsmanager:ap-southeast-1:*:secret:/snaptics/prod/db-connection-*"
         },
         {
             "Sid": "AllowS3Storage",
@@ -97,4 +96,4 @@ This role grants permissions to your **C# code** executing inside the container.
 ```
 
 > [!TIP]
-> By strictly defining these roles, we follow the **Principle of Least Privilege**. If a hacker somehow gains access to the container, they still cannot delete your Aurora database because this role has no RDS deletion permissions!
+> By strictly defining these roles, we follow the **Principle of Least Privilege**. If a hacker somehow gains access to the container, they still cannot delete your SQL Server database because this role has no RDS deletion permissions!

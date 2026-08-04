@@ -6,9 +6,8 @@ chapter: false
 pre: " <b> 5.8. </b> "
 ---
 
-# System-Wide Testing (End-to-End Testing)
 
-Congratulations on deploying the Enterprise architecture! Now it's time to verify that all components (CloudFront ➔ WAF ➔ ALB ➔ ECS ➔ Aurora/S3/SQS) are communicating perfectly.
+Congratulations on deploying the Enterprise architecture! Now it's time to verify that all components (CloudFront ➔ WAF ➔ ALB ➔ ECS ➔ SQL Server/S3/SQS) are communicating perfectly.
 
 ## 1. CloudFront & WAF Verification
 
@@ -19,7 +18,7 @@ Instead of hitting the ALB directly, open your browser and navigate to your **Cl
 
 ## 2. API & AI Integration Testing (Swagger)
 
-1. **Auth:** Call `/api/Auth/register` then `/api/Auth/login`. This proves the ECS container can successfully connect to the **Aurora Database** to verify credentials using the password fetched from **Secrets Manager**.
+1. **Auth:** Call `/api/Auth/register` then `/api/Auth/login`. This proves the ECS container can successfully connect to the **SQL Server Database** to verify credentials using the password fetched from **Parameter Store**.
 2. **Upload Invoice:** Call `/api/Transactions/scan-receipt` and upload an image file.
 3. **Verify Pipeline:**
    - Go to **S3**, you should see the image. (Proving the **VPC Gateway Endpoint** works).

@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.3. </b> "
 ---
 
-# Networking, CDN & Security
 
 In an Enterprise architecture, the networking layer is highly complex. We must secure incoming traffic at the edge (CloudFront + WAF) and optimize internal backend traffic (VPC Endpoints) to reduce bandwidth costs.
 
@@ -46,8 +45,8 @@ Create the internal network (`snaptics-vpc`) with CIDR `10.0.0.0/16`.
 Create 4 subnets in `ap-southeast-1`:
 1. `snaptics-public-1a`: `10.0.1.0/24` (Enable auto-assign public IPv4)
 2. `snaptics-public-1b`: `10.0.2.0/24` (Enable auto-assign public IPv4)
-3. `snaptics-private-1a`: `10.0.3.0/24` (For ECS & Aurora)
-4. `snaptics-private-1b`: `10.0.4.0/24` (For ECS & Aurora)
+3. `snaptics-private-1a`: `10.0.3.0/24` (For ECS & SQL Server)
+4. `snaptics-private-1b`: `10.0.4.0/24` (For ECS & SQL Server)
 
 ## 4. Gateways & VPC Endpoints
 
@@ -76,5 +75,5 @@ Strictly control traffic flow using Security Groups:
   - *Advanced:* You can restrict the source IP to only CloudFront prefix lists, completely blocking direct internet access to the ALB!
 - **ECS Security Group (`snaptics-ecs-sg`):**
   - Allow Custom TCP `8080` ONLY from `snaptics-alb-sg`.
-- **Aurora Security Group (`snaptics-aurora-sg`):**
-  - Allow MySQL/Aurora (3306) or PostgreSQL (5432) ONLY from `snaptics-ecs-sg`.
+- **SQL Server Security Group (`snaptics-aurora-sg`):**
+  - Allow MySQL/SQL Server (3306) or PostgreSQL (5432) ONLY from `snaptics-ecs-sg`.

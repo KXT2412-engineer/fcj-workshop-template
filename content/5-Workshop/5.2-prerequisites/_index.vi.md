@@ -6,11 +6,10 @@ chapter: false
 pre: " <b> 5.2. </b> "
 ---
 
-# Chuẩn bị Môi trường (Prerequisites)
 
 Để triển khai kiến trúc Enterprise khổng lồ của Snaptics một cách mượt mà, bạn cần thiết lập kỹ lưỡng các quyền hạn trên Cloud. Khác với cách làm thủ công cũ, chúng ta sẽ dùng CI/CD hoàn toàn tự động, do đó bạn không cần phải cài đặt Docker hay AWS CLI ở máy tính local nữa. Trọng tâm bây giờ là **Phân quyền**.
 
-## 1. Các Tài khoản & API Ngoại vi
+## 1. Các Tài khoản & APIS
 
 Trước khi đụng vào AWS, hãy chuẩn bị sẵn 3 thứ sau:
 
@@ -39,7 +38,7 @@ Vì GitHub Actions đóng vai trò là một "con robot" tự động đẩy cod
 
 ## 3. Phân quyền IAM Roles cho ECS
 
-Khi mã nguồn C# .NET chạy bên trong Container trên ECS Fargate, nó cần quyền để kết nối tới S3, SQS và lấy mật khẩu DB từ Secrets Manager. Thay vì nhúng Access Key vào code rất nguy hiểm, AWS sử dụng IAM Roles.
+Khi mã nguồn C# .NET chạy bên trong Container trên ECS Fargate, nó cần quyền để kết nối tới S3, SQS và lấy mật khẩu DB từ Parameter Store. Thay vì nhúng Access Key vào code rất nguy hiểm, AWS sử dụng IAM Roles.
 
 Vào **IAM ➔ Roles ➔ Create role** và tạo lần lượt 2 Role sau:
 
@@ -52,7 +51,7 @@ Role này cấp quyền cho nền tảng phần cứng ECS để nó tự độn
 ### B. Snaptics ECS Task Role (`snaptics-ecs-task-role`)
 Role này cấp quyền cho **chính mã nguồn C#** của bạn.
 - **Trusted Entity:** `Elastic Container Service Task`
-- **Inline Policy (JSON):** Tạo một policy dạng JSON và dán đoạn code sau vào. Nó chỉ cho phép C# gọi S3, SQS, SNS và đọc Secrets Manager.
+- **Inline Policy (JSON):** Tạo một policy dạng JSON và dán đoạn code sau vào. Nó chỉ cho phép C# gọi S3, SQS, SNS và đọc Parameter Store.
 
 ```json
 {
@@ -65,7 +64,7 @@ Role này cấp quyền cho **chính mã nguồn C#** của bạn.
                 "secretsmanager:GetSecretValue",
                 "secretsmanager:DescribeSecret"
             ],
-            "Resource": "arn:aws:secretsmanager:ap-southeast-1:*:secret:SnapticsProdSecret-*"
+            "Resource": "arn:aws:secretsmanager:ap-southeast-1:*:secret:/snaptics/prod/db-connection-*"
         },
         {
             "Sid": "AllowS3Storage",

@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.5. </b> "
 ---
 
-# Messaging & AI Integration
 
 The core strength of Snaptics lies in its asynchronous processing capabilities. By utilizing Amazon SQS and AI services, Snaptics provides a seamless user experience even during heavy analytical tasks.
 
@@ -37,7 +36,7 @@ The `.NET` container pulls messages from `snaptics-ai-queue` and calls external 
 ### Azure Document Intelligence (OCR)
 When a user uploads a receipt, Azure extracts specific fields (Merchant, Total, Tax) automatically.
 ```csharp
-// Fetch the secure key injected from Secrets Manager
+// Fetch the secure key injected from Parameter Store
 var credential = new AzureKeyCredential(_secrets["AzureDocIntelKey"]);
 var client = new DocumentAnalysisClient(new Uri(_secrets["AzureDocIntelEndpoint"]), credential);
 
@@ -45,7 +44,7 @@ var client = new DocumentAnalysisClient(new Uri(_secrets["AzureDocIntelEndpoint"
 AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-receipt", new Uri(preSignedUrl));
 var result = operation.Value;
 
-// Save extracted fields to Aurora
+// Save extracted fields to SQL Server
 string merchantName = result.Documents[0].Fields["MerchantName"].Value.AsString();
 double total = result.Documents[0].Fields["Total"].Value.AsDouble();
 ```
@@ -68,7 +67,7 @@ var response = await _httpClient.PostAsJsonAsync(
 For scheduled tasks (like rolling over budget limits at midnight), Snaptics uses Hangfire running concurrently inside the Fargate containers.
 
 ```csharp
-// Hangfire uses the same Aurora Database for job storage
+// Hangfire uses the same SQL Server Database for job storage
 builder.Services.AddHangfire(config => config
     .UseMySQLStorage(_secrets["DbConnectionString"]));
 builder.Services.AddHangfireServer();
