@@ -1,6 +1,6 @@
 ---
 title: "Bản đề xuất"
-date: 2026-05-18
+date: 2024-01-01
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
@@ -18,7 +18,7 @@ pre: " <b> 2. </b> "
 
 Bên cạnh quy trình quét hóa đơn tự động, Snaptics tích hợp toàn diện các tính năng: ghi nhận giao dịch thủ công, quản lý đa ví (ví cá nhân và ví gia đình dùng chung), thiết lập và cảnh báo ngân sách, báo cáo thống kê đa chiều, thông báo tập trung, phân tích hành vi chi tiêu (AI Insight) và trợ lý tương tác thông minh (AI Chatbot). Hệ thống cung cấp giao diện quản trị (Admin Panel) giúp quản trị viên theo dõi người dùng, xử lý yêu cầu hỗ trợ (ticket), phát hành thông báo, cấu hình tham số và giám sát các tác vụ nền qua Hangfire.
 
-Snaptics được xây dựng theo mô hình ứng dụng web SaaS và triển khai trên nền tảng Cloud-Native AWS. Kiến trúc hệ thống sử dụng các dịch vụ như **AWS Amplify**, **Amazon CloudFront**, **Amazon Route 53**, **Amazon ECS Fargate**, **Application Load Balancer (ALB)**, **Amazon SQS / Dead Letter Queue (DLQ)**, **Amazon S3**, **Amazon ECR**, **AWS Systems Manager Parameter Store**, **Amazon CloudWatch**, **AWS Budgets** và **Amazon RDS for SQL Server**. Các tác vụ AI được tích hợp với **Azure Document Intelligence**, **Gemini API** và **OpenAI API**.
+Snaptics được xây dựng theo mô hình ứng dụng web SaaS và triển khai trên nền tảng Cloud-Native AWS. Kiến trúc hệ thống sử dụng các dịch vụ như **AWS Amplify**, **Amazon CloudFront**, **Amazon Route 53**, **Amazon ECS Fargate**, **Application Load Balancer (ALB)**, **Amazon SQS / Dead Letter Queue (DLQ)**, **Amazon S3**, **Amazon ECR**, **AWS Systems Manager Parameter Store**, **Amazon CloudWatch**, **AWS Budgets** và **Amazon RDS for SQL Server**. Các tác vụ AI được tích hợp với **Azure Document Intelligence** và **Gemini API**.
 
 #### 1.2. Nhóm người dùng
 * **User (Người dùng cá nhân/gia đình)**: Quản lý giao dịch thu/chi, hóa đơn, ví tài chính, ngân sách và xem báo cáo thống kê; nhận cảnh báo và gợi ý tài chính thông minh từ AI; khởi tạo và tham gia chia sẻ ví hoặc ngân sách dùng chung trong gia đình.
@@ -84,7 +84,7 @@ Snaptics được thiết kế theo kiến trúc Cloud-Native trên nền tảng
 
 * **Frontend**: Single Page Application (SPA) triển khai bằng **AWS Amplify**. Kết nối với GitHub Repository để tự động build/deploy, tích hợp **Amazon Route 53** quản lý tên miền và **Amazon CloudFront** (CDN) tối ưu phân phối nội dung qua HTTPS.
 * **Backend API**: Đóng gói thành Docker Image lưu trên **Amazon ECR**, chạy trên **AWS Fargate (Amazon ECS Cluster)**. Lưu lượng truy cập được phân phối bởi **Application Load Balancer (ALB)** kết hợp **Auto Scaling** tự động điều chỉnh số lượng Fargate Task.
-* **AI Worker**: Worker chạy trên ECS Fargate, nhận message từ Amazon SQS, gọi **Azure Document Intelligence** để trích xuất OCR, sau đó gọi **Gemini API** / **OpenAI API** để phân loại và tạo gợi ý tài chính trước khi lưu vào cơ sở dữ liệu.
+* **AI Worker**: Worker chạy trên ECS Fargate, nhận message từ Amazon SQS, gọi **Azure Document Intelligence** để trích xuất OCR, sau đó gọi **Gemini API** để phân loại và tạo gợi ý tài chính trước khi lưu vào cơ sở dữ liệu.
 * **Cơ sở dữ liệu**: **Amazon RDS for SQL Server** đặt trong Private Subnet, quản lý dữ liệu người dùng, giao dịch, hóa đơn, ví, ngân sách, thông báo, lịch sử chat AI, ticket hỗ trợ và system audit log.
 * **Lưu trữ hình ảnh**: **Amazon S3** dùng để lưu trữ ảnh hóa đơn thô, tệp giao dịch và hình ảnh đã qua xử lý, giúp tách biệt dữ liệu phương tiện khỏi cơ sở dữ liệu.
 * **Hàng đợi xử lý bất đồng bộ**: **Amazon SQS** tiếp nhận tác vụ OCR/AI; **Dead Letter Queue (DLQ)** giữ các message thất bại vượt quá số lần retry để phục vụ kiểm tra lỗi.
@@ -99,7 +99,7 @@ Snaptics được thiết kế theo kiến trúc Cloud-Native trên nền tảng
 2. Frontend gửi ảnh đến Backend API -> Backend lưu ảnh vào **Amazon S3**.
 3. Backend đẩy message chứa thông tin ảnh vào **Amazon SQS**.
 4. **AI Worker** nhận message từ SQS, gọi **Azure Document Intelligence** để trích xuất text/bảng.
-5. AI Worker gửi dữ liệu đến **Gemini API / OpenAI API** để chuẩn hóa và phân loại danh mục.
+5. AI Worker gửi dữ liệu đến **Gemini API** để chuẩn hóa và phân loại danh mục.
 6. AI Worker lưu kết quả giao dịch vào **Amazon RDS for SQL Server** và tạo thông báo cho người dùng.
 7. Dashboard và Báo cáo tài chính trên Frontend tự động cập nhật.
 

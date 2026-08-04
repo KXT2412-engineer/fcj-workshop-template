@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Kiểm thử WebSocket (SignalR)"
 date: 2024-01-01
 weight: 2
@@ -23,4 +23,4 @@ Tính năng "Real-time Notification" của Snaptics yêu cầu kết nối 2 chi
 - Bạn sẽ thấy Server chủ động đẩy (Push) một cục JSON về cho Client với nội dung:
   `{"type": "NEW_TRANSACTION_ADDED", "amount": 50000, "message": "Giao dịch mới đã được lưu!"}`
 
-Điều này chứng minh ALB đang hoạt động định tuyến chính xác cả luồng HTTP và luồng WebSocket vào các container `ECS Fargate`. Kiến trúc Backend của bạn đã chính thức sẵn sàng cho hàng triệu người dùng!
+Điều này chứng minh ALB đang hoạt động định tuyến chính xác cả luồng HTTP và luồng WebSocket vào các container `ECS Fargate`. Kiến trúc được thiết kế theo hướng có khả năng mở rộng thông qua ECS Service Auto Scaling.

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "WebSocket Testing (SignalR)"
 date: 2024-01-01
 weight: 2
@@ -23,4 +23,4 @@ Snaptics' "Real-time Notification" feature requires a continuous 2-way connectio
 - You will see the Server proactively push a JSON object to the Client with the content:
   `{"type": "NEW_TRANSACTION_ADDED", "amount": 50000, "message": "New transaction has been saved!"}`
 
-This proves the ALB is functioning correctly, accurately routing both the HTTP stream and the WebSocket stream into the `ECS Fargate` containers. Your Backend architecture is officially ready for millions of users!
+This proves the ALB is functioning correctly, accurately routing both the HTTP stream and the WebSocket stream into the `ECS Fargate` containers. The architecture is designed for scalability via ECS Service Auto Scaling.
