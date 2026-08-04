@@ -28,17 +28,19 @@ When the application boots up on ECS Fargate, Hangfire automatically creates a s
 At the application startup, Snaptics schedules several Recurring Jobs:
 
 ```csharp
-// Runs every day at 8 AM to remind users to review transactions
-RecurringJob.AddOrUpdate<IReviewService>(
-    "daily-review-reminder",
-    service => service.SendRemindersAsync(),
-    "0 8 * * *"); // Cron expression
+// Runs every day at 8 PM to remind users to review transactions
+recurringJobManager.AddOrUpdate<IItemReviewJobService>(
+    "remind-item-review-daily",
+    job => job.ScanAndSendNotificationAsync(30),
+    "0 20 * * *"
+);
 
-// Calculates AI financial report at the end of each month
-RecurringJob.AddOrUpdate<IAiInsightService>(
+// Calculates AI financial report at the beginning of each month
+recurringJobManager.AddOrUpdate<IMonthlyAiInsightJobService>(
     "monthly-ai-insight",
-    service => service.GenerateMonthlyInsightAsync(),
-    Cron.Monthly());
+    job => job.GenerateMonthlyInsightsAsync(),
+    "0 0 1 * *" 
+);
 ```
 
 > [!TIP]
