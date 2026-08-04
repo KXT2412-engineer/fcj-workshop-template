@@ -6,287 +6,174 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# SNAPTICS PROJECT PROPOSAL
-
-**Project Name:** SNAPTICS – AI-Powered Personal Expense Management and Receipt Scanning Platform
-*An AI-powered personal finance, expense analysis, and receipt scanning platform on AWS*
+# SNAPTICS – AI-Powered Personal Expense Management and Receipt Scanning Platform
+## Cloud-Native AWS Expense Management & AI Receipt Scanning Platform
 
 ---
 
-## 1. Project Overview
-Snaptics is a personal and family financial management platform that helps users record, track, and analyze expenses intuitively. Instead of manually entering each transaction, users can capture or upload images of receipts. The system utilizes OCR and Artificial Intelligence to recognize information on the receipt, including store name, transaction date, total amount, expense category, and related items.
+### 1. Executive Summary
 
-Once the data is processed, Snaptics automatically saves the transaction, categorizes the expense, and updates the user's financial dashboard. The system provides charts, reports, budgets, shared wallets, and financial suggestions based on spending habits.
+#### 1.1. Introduction
+**Snaptics** is a personal and family financial management platform proposed to transform spending tracking from manual entry into an automated, centralized, and intelligent analysis model. Users can snap a photo or upload an image of a receipt; Optical Character Recognition (OCR) and Artificial Intelligence (AI) technologies automatically extract key information including merchant name, transaction date, total amount, category, and line-item details. After user review and confirmation, Snaptics automatically creates transaction records, updates wallet balances, synchronizes budgets, and reflects data on the financial dashboard.
 
-Snaptics is built as a SaaS web application and is planned for deployment on the AWS platform. The system architecture leverages services such as AWS Amplify, Amazon CloudFront, Amazon ECS Fargate, Application Load Balancer, Amazon SQS, Amazon S3, Amazon ECR, Amazon CloudWatch, and SQL Server following a Primary/Standby model. AI tasks are integrated with Azure Document Intelligence, Gemini API, and OpenAI API.
+Beyond automated receipt scanning, Snaptics provides comprehensive features: manual transaction logging, multi-wallet management (personal & shared family wallets), budget setting and threshold alerts, multi-dimensional statistical reporting, a centralized notification hub, spending behavioral analysis (AI Insight), and an interactive smart assistant (AI Chatbot). The system includes an Admin Panel enabling administrators to monitor users, handle support tickets, issue system announcements, configure runtime settings, and manage background jobs via Hangfire.
 
-The system has two main user groups:
-- **User:** Manages transactions, receipts, budgets, personal or shared family wallets, views reports, and receives financial suggestions.
-- **Admin:** Manages users, notifications, support tickets, system configurations, tracks background tasks, and monitors application activity.
+Snaptics is built as a SaaS web application deployed on AWS Cloud-Native infrastructure. The system architecture leverages services including **AWS Amplify**, **Amazon CloudFront**, **Amazon Route 53**, **Amazon ECS Fargate**, **Application Load Balancer (ALB)**, **Amazon SQS / Dead Letter Queue (DLQ)**, **Amazon S3**, **Amazon ECR**, **AWS Systems Manager Parameter Store**, **Amazon CloudWatch**, **AWS Budgets**, and **Amazon RDS for SQL Server**. AI capabilities are integrated with **Azure Document Intelligence**, **Gemini API**, and **OpenAI API**.
 
----
+#### 1.2. User Roles
+* **User (Personal / Family Member)**: Manages transactions, receipt images, wallets, and budgets; views analytical reports; receives AI financial advice; initializes and participates in shared family wallets/budgets.
+* **Admin (System Administrator)**: Manages user accounts, handles support tickets, broadcasts system notifications, configures system parameters, monitors Hangfire background schedules, and oversees platform health.
 
-## 2. Project Objectives
+#### 1.3. Functional Scope
+* **Authentication & Authorization**: User login, token authentication (JWT/OAuth2), and role-based access control (User/Admin).
+* **Receipt Processing Pipeline**: Image upload, automated OCR extraction, user verification and editing before saving.
+* **Transaction Management**: Creation, updates, automatic/manual categorization, and transaction history searching.
+* **Financial Wallet Management**: Personal wallet creation, shared family wallet management, and member access management.
+* **Budget Management**: Threshold setting, real-time usage calculation, and automatic threshold alerts.
+* **Analytics & Reports**: Visual dashboard displaying spending charts by time frame and category.
+* **AI Support Features**: Spending habit analysis (AI Insight), interactive conversational assistant (AI Chatbot) with conversation history.
+* **Notifications & Support**: Centralized in-app notifications and technical support ticket management.
+* **System Jobs & Background Execution**: Scheduled background tasks via Hangfire; asynchronous OCR/AI pipeline via Amazon SQS and Dead Letter Queue (DLQ).
+* **Cloud Operation**: AWS deployment, centralized performance monitoring (Amazon CloudWatch), and cost management (AWS Budgets).
 
-### 2.1. General Objectives
-Build an intelligent expense management platform that reduces manual data entry time, helps users control budgets, and provides a clearer understanding of personal finances through data and AI.
+#### 1.4. Proposal Scope Limitations
+The 13-week phase focuses on completing a responsive web application, automated receipt extraction, core expense/wallet/budget management, and end-to-end AWS cloud deployment under a cost-optimized demo configuration.
 
-### 2.2. Specific Objectives
-- Automatically extract information from receipt images using OCR technology.
-- Automatically create and categorize transactions based on receipt content.
-- Allow manual transaction entry when receipts are unavailable.
-- Manage multiple wallets, personal budgets, and family budgets.
-- Support multiple members in tracking a shared budget or wallet.
-- Display expense reports by day, week, month, and category.
-- Analyze spending habits and provide AI-driven financial suggestions.
-- Send alerts when users approach or exceed their budgets.
-- Build a centralized notification system to deliver alerts and advice.
-- Provide a chat interface with AI and save conversation history.
-- Build an administration page to monitor users, support requests, notifications, and background tasks.
-- Deploy the system on AWS with high scalability, security, and centralized monitoring.
-- Build a CI/CD pipeline to automate testing and deployment of new versions.
-
----
-
-## 3. Problems to Solve
-
-### 3.1. Manual Expense Recording
-Most users still record their expenses using notebooks, Excel, or by manually typing them into apps. This process is time-consuming, prone to errors (e.g., typos in amounts), and often abandoned after a short period. Snaptics solves this by allowing users to take a photo of their receipts and automatically extracting transaction data.
-
-### 3.2. Scattered Financial Data
-Spending information may be scattered across various sources such as paper receipts, banking apps, e-wallets, or personal notes. Users struggle to get a comprehensive view of their overall cash flow. Snaptics centralizes transaction data into a single system so users can track and analyze it more conveniently.
-
-### 3.3. Difficulty in Controlling Budgets
-Users often only realize they have overspent after their budget has already been exceeded. Standard management tools primarily display numbers but do not provide timely warnings or advice. Snaptics tracks budget utilization and sends notifications when users are nearing their set limits.
-
-### 3.4. Lack of Spending Behavior Analysis
-Individual transactions do not provide much value unless they are aggregated and analyzed. Users need to know where they spend the most, which expenses are increasing, and how to adjust. Snaptics uses AI to analyze transaction history, detect trends, and offer suggestions tailored to each user's financial situation.
-
-### 3.5. Difficulty in Managing Family Expenses
-In a family, members may contribute to and use a single budget pool. If data is not updated centrally, it is hard for members to know the total amount spent or the remaining budget. Snaptics provides family wallets and shared budgets, allowing multiple users to track and record transactions together.
-
-### 3.6. AI System Scalability
-OCR and AI analysis processes can take significantly longer than standard APIs. If processed directly within the same request, the system is prone to timeouts or overloads when many users scan receipts simultaneously. The project uses Amazon SQS to process AI tasks asynchronously, reducing the load on the Backend API and increasing scalability.
+Features reserved for future development orientation include:
+* Direct integration with Open Banking APIs or e-wallets (MoMo, ZaloPay).
+* Native mobile applications (iOS / Android).
+* Legally binding financial advisory recommendations.
+* Continuous 24/7 Multi-AZ Production operation at scale.
 
 ---
 
-## 4. Solution Architecture
-Snaptics utilizes a cloud-native architecture on AWS, combining a web application, containers, asynchronous processing queues, redundant databases, and external AI services.
+### 2. Project Goals
 
-### 4.1. Frontend
-The Frontend of Snaptics is built as a Single Page Application (SPA) and deployed using AWS Amplify.
-AWS Amplify is responsible for:
-- Automatically building and deploying the Frontend source code.
-- Connecting directly to the GitHub Repository.
-- Managing deployment versions.
-- Providing HTTPS for the application.
-- Automatically redeploying when changes are detected on the configured branch.
-Amazon Route 53 is used for domain management. Amazon CloudFront distributes content via its CDN, improving access speed for users.
+#### 2.1. General Objective
+Build the Snaptics intelligent expense management platform powered by cloud computing and artificial intelligence, enabling users to minimize manual data entry time, proactively control budgets, and enhance personal and family financial analysis capabilities through visual data insights.
 
-### 4.2. Backend API
-The Backend API is packaged into a Docker Image and stored on Amazon Elastic Container Registry (ECR).
-Containers are deployed in an Amazon ECS Cluster using AWS Fargate. Fargate allows the system to run containers without having to directly manage server infrastructure. User requests are routed through an Application Load Balancer before reaching the Fargate Tasks. The Load Balancer distributes requests across multiple containers, ensuring high availability and avoiding reliance on a single server. The system uses Auto Scaling to increase or decrease the number of Fargate Tasks based on traffic and resource utilization.
-
-### 4.3. Database
-Business data is stored in SQL Server, including:
-- User information.
-- Transactions, Expense categories, Receipts.
-- Personal and family wallets.
-- Budgets and Budget members.
-- Notifications, AI Chat history.
-- Support requests (tickets) and System activity logs.
-
-The database is designed with a SQL Server Primary/Standby model and deployed in Private Subnets across two different Availability Zones. The Primary database handles main operations. The Standby database is used for redundancy and to support recovery in case the primary system fails.
-
-### 4.4. Image Storage
-Amazon S3 is used to store:
-- Receipt images uploaded by users.
-- Data files related to transactions.
-- Images before and after processing.
-- Files requiring long-term storage.
-Separating images from the database reduces storage volume in the database and enables flexible storage scaling.
-
-### 4.5. OCR and AI Processing
-When a user uploads a receipt, the Backend saves the image to S3 and sends a message to the Amazon SQS queue `snaptics-ai-queue`. An AI Worker running on ECS Fargate retrieves the message from the queue and performs the following steps:
-1. Reads receipt file information.
-2. Sends the image to Azure Document Intelligence to extract content.
-3. Standardizes the extracted data.
-4. Uses Gemini API or OpenAI API to categorize and analyze the transaction.
-5. Saves the results to the database.
-6. Creates a notification or financial suggestion for the user.
-
-Messages that fail processing multiple times will be routed to a Dead Letter Queue. This allows the development team to inspect errors without losing data or blocking the main queue.
-
-### 4.6. Notification System
-In-app notifications are stored and managed centrally in the database. Amazon SNS is used to help distribute alerts or notifications that need to be sent outside the system. Notifications may include:
-- Receipt processing results, Alerts for nearing/exceeding budgets.
-- AI spending suggestions, Wallet invitation notifications.
-- Product/item review notifications, System notifications, Support feedback.
-
-### 4.7. Security
-Sensitive information such as database connection strings, API Keys, and configuration parameters are securely stored in AWS Systems Manager Parameter Store. Backend components and the Database are placed in Private Subnets. Only the Application Load Balancer is permitted to receive requests from the Internet.
-The system implements the following measures:
-- Authentication and authorization using access tokens.
-- Separation of Admin and User privileges.
-- API Keys are not hardcoded in the source code.
-- Connections are encrypted via HTTPS.
-- Access is restricted based on the principle of least privilege.
-- Uploaded file formats and sizes are validated.
-- Important activity logs are recorded, and the database is backed up periodically.
-
-### 4.8. CI/CD
-The CI/CD pipeline for Snaptics is implemented via GitHub and GitHub Actions.
-Backend Pipeline:
-1. Developers push code to the GitHub Repository.
-2. GitHub Actions tests and builds the project.
-3. A Docker Image is created and pushed to Amazon ECR.
-4. The ECS Service is updated.
-5. New Fargate Tasks pull the Docker Image from ECR.
-6. The system replaces the old version with the new version.
-
-For the Frontend, AWS Amplify automatically builds and deploys when it detects changes on the GitHub Repository.
-
-### 4.9. Monitoring and Cost Management
-Amazon CloudWatch is used to:
-- Collect logs from the Backend and AI Workers.
-- Monitor CPU and memory usage of Fargate Tasks.
-- Track the number of messages in SQS.
-- Detect failed requests and set alarms when system issues occur.
-AWS Budgets is used to track expenses and send alerts when AWS costs exceed established thresholds.
-
-### 4.10. Main Processing Flow
-The receipt scanning workflow is executed as follows:
-1. User logs into Snaptics.
-2. User captures or uploads a receipt image.
-3. Frontend sends the image to the Backend API.
-4. Backend saves the image to Amazon S3.
-5. Backend creates a message in Amazon SQS.
-6. AI Worker receives the message from SQS.
-7. The image is processed using Azure Document Intelligence.
-8. Gemini API or OpenAI API categorizes and analyzes the data.
-9. Results are saved into SQL Server.
-10. Backend creates a transaction and notifies the user.
-11. Dashboard and expense reports are updated.
-
-### 4.11. Overall Architecture Diagram
-*(Please insert the architecture diagram here)*
-![Architecture Diagram](/fcj-workshop-template/images/2-Proposal/architecture_diagram.jpg)
+#### 2.2. Specific Objectives
+* **Automation**: Automatically extract receipt data via OCR (Azure Document Intelligence); auto-create and categorize transactions upon user verification.
+* **Flexible Management**: Support manual transaction entry; manage multiple personal and family wallets/budgets; allow multi-member collaboration on shared financial resources.
+* **Analytics & Reporting**: Provide interactive dashboards and spending reports by day, week, month, and category; analyze spending habits with AI Insights; offer an interactive AI Chatbot with history.
+* **Alerts & Notifications**: Proactively monitor budget usage, sending alerts when limits are approached or exceeded; build a centralized notification center.
+* **System Administration**: Deliver an Admin Panel for managing users, support tickets, system announcements, configurations, and Hangfire background jobs.
+* **Cloud Operation & Deployment**: Deploy on AWS with scalability, security, and centralized monitoring (CloudWatch, AWS Budgets); establish CI/CD automation for testing and delivery.
 
 ---
 
-## 5. Project Timeline
-The expected implementation time is 12 weeks.
+### 3. Problem Statement
 
-**Week 1–2: Requirement Analysis and System Design**
-- Define the target audience, Analyze functional and non-functional requirements.
-- Build Use Cases and User Flows, Design the database, Design the AWS architecture.
-- Select Frontend, Backend, and AI technologies.
-*Expected Outcome:* Requirement document, Database Schema, and overall architecture diagram.
-
-**Week 3–5: Platform Functionality Development**
-- Build registration/login features, Admin and User role authorization.
-- Transaction management, expense categories, wallets.
-- Personal and family budgets, Develop the overview Dashboard.
-*Expected Outcome:* Users can manage transactions, wallets, and budgets on the system.
-
-**Week 6–8: OCR and AI Integration**
-- Build the receipt scanning interface, Integrate Azure Document Intelligence.
-- Build the process for uploading images to S3, Set up SQS and Dead Letter Queue.
-- Integrate Gemini API and OpenAI API, Automate transaction categorization.
-- Build the AI Insight feature and notification system.
-*Expected Outcome:* The system can automatically process receipts and provide spending suggestions.
-
-**Week 9–10: Administration Feature Finalization**
-- User management page, support requests, notifications.
-- Configure and test background tasks, System settings page.
-- Finalize responsive UI for mobile devices.
-*Expected Outcome:* Admins can track and manage the main operations of the system.
-
-**Week 11: AWS Deployment and CI/CD**
-- Configure VPC, Public/Private Subnets.
-- Deploy SQL Server Primary/Standby.
-- Create S3 Buckets, SQS, DLQ, and SNS.
-- Build Docker Image and push to ECR, Deploy Backend and AI Worker on ECS Fargate.
-- Configure ALB, Deploy Frontend using AWS Amplify.
-- Configure Route 53 and CloudFront, Set up GitHub Actions.
-*Expected Outcome:* The system is successfully deployed on the AWS environment.
-
-**Week 12: Testing and Finalization**
-- Functional testing, integration testing, cross-device UI testing.
-- Test the OCR and AI workflows, Security testing.
-- Test error handling capabilities of SQS and DLQ.
-- Monitor logs using CloudWatch.
-- Finalize documentation and prepare for a demo.
-*Expected Outcome:* The trial version of Snaptics is completed, ready for presentation, testing, and feedback collection.
+* **Manual Expense Entry & Data Error Risks**: Most users log expenses manually using notebooks, spreadsheets, or manual app entries, which is time-consuming, error-prone, and unsustainable. Snaptics automates receipt data capture via OCR while offering a review interface before persistence.
+* **Fragmented Financial Data**: Expense information is scattered across paper receipts, banking apps, and e-wallets. Snaptics consolidates all transactions into a single unified platform.
+* **Budget Control Challenges**: Users often realize overspending only after budget limits are breached. Snaptics tracks budget utilization in real-time and triggers proactive alerts.
+* **Lack of Spending Behavior Insights**: Raw transactions provide limited value without synthesis. Snaptics analyzes historical data across categories and time, detecting trends and providing actionable advice via AI Insight.
+* **Family Financial Coordination Issues**: Shared household spending lacks visibility without centralized tracking. Snaptics provides shared family wallets and joint budget pools.
+* **AI Service Latency & Bottleneck Risks**: Synchronous OCR and AI processing can cause API timeouts under high load. Snaptics utilizes Amazon SQS and AI Workers to decouple heavy processing from Backend APIs.
+* **Automated Background Job Scheduling**: Administrative tasks like periodic AI Insights generation, budget checks, and alert pushes require automated scheduling. Hangfire is integrated into the .NET backend with an Admin interface for job management.
 
 ---
 
-## 6. Estimated Budget
-Actual costs will depend on the number of users, processed receipts, image sizes, container runtime, and the number of requests to AI APIs.
+### 4. Solution Architecture
 
-### 6.1. Development and Demo Environment
-| Item | Estimated Cost per Month |
-| --- | --- |
-| AWS Amplify, CloudFront, and Route 53 | 5–15 USD |
-| Amazon S3 | 1–5 USD |
-| ECS Fargate for Backend and AI Worker | 20–50 USD |
-| Application Load Balancer | 18–25 USD |
-| SQL Server development environment | 30–80 USD |
-| Amazon SQS, SNS, and ECR | 2–10 USD |
-| CloudWatch and AWS Budgets | 2–10 USD |
-| Azure Document Intelligence, Gemini, and OpenAI | Depends on usage |
-| **Total Estimated** | **80–200 USD/month** |
+Snaptics utilizes an AWS Cloud-Native architecture combining a Single Page Application (SPA), containerized microservices, relational databases, object storage, asynchronous queues, and specialized external AI services. The architecture maintains clear separation between Frontend, Backend API, and AI Workers for independent deployment, scaling, and monitoring.
 
-### 6.2. Multi-AZ Production Environment
-| Item | Estimated Cost per Month |
-| --- | --- |
-| ECS Fargate and Application Load Balancer | 60–150 USD |
-| SQL Server Primary/Standby | 150–300 USD |
-| Two NAT Gateways and Data Transfer Costs | 70–120 USD |
-| S3, CloudFront, SQS, SNS, ECR, and CloudWatch | 20–60 USD |
-| External AI Services | Depends on usage |
-| **Total Estimated** | **300–600 USD/month** |
+![Sơ đồ kiến trúc hệ thống Snaptics trên AWS Cloud](/fcj-workshop-template/images/2-Proposal/snaptics-architecture.jpg)
 
-During the development and demo phase, the project may use minimal configurations, a Single-AZ model, or limit the runtime of certain services to optimize costs. For Production deployment, the system is expected to transition to a Multi-AZ and Auto Scaling architecture.
+#### 4.1. Key Components
 
----
+* **Frontend**: Single Page Application (SPA) deployed via **AWS Amplify**. Connected to GitHub Repository for automated builds/deploys, integrated with **Amazon Route 53** for DNS and **Amazon CloudFront** (CDN) for secure HTTPS delivery.
+* **Backend API**: Containerized via Docker stored on **Amazon ECR**, running on **AWS Fargate (Amazon ECS Cluster)** behind an **Application Load Balancer (ALB)** with **Auto Scaling**.
+* **AI Worker**: Worker running on ECS Fargate dequeuing messages from Amazon SQS, invoking **Azure Document Intelligence** for OCR, and sending structured data to **Gemini API** / **OpenAI API** for classification and insights.
+* **Database**: **Amazon RDS for SQL Server** deployed in Private Subnets, managing accounts, transactions, receipts, wallets, budgets, notifications, AI chat history, tickets, and audit logs.
+* **Media Storage**: **Amazon S3** stores raw receipt images, transaction attachments, and processed images, decoupling binary assets from database storage.
+* **Asynchronous Queue Pipeline**: **Amazon SQS** buffers OCR/AI tasks; **Dead Letter Queue (DLQ)** holds failed messages exceeding retry limits for fault handling.
+* **Background Jobs & Scheduling**: **Hangfire** runner running alongside the .NET Backend to schedule, trigger, and monitor periodic system tasks.
+* **Notification System**: Managed centrally in DB combined with **Amazon SNS** for pushing alerts (budget warnings, OCR status, AI tips, system updates).
+* **Security & Configuration**: Secrets stored in **AWS Systems Manager Parameter Store**, Private Subnets for Backend/Worker/DB, mandatory HTTPS, Access Token (JWT) auth, RBAC, and Audit Logging.
+* **CI/CD Pipeline**: Automated via **GitHub Actions** (Docker build, ECR push, ECS service update) and **AWS Amplify** (frontend builds).
+* **Monitoring & Cost Control**: **Amazon CloudWatch** (logs, container metrics, SQS depth) and **AWS Budgets** (cost alerts at configured thresholds).
 
-## 7. Project Risks
-
-### 7.1. Inaccuracies in Receipt Recognition
-- **Impact Level:** High.
-- **Mitigation Strategies:** Allow users to review and edit recognized results, display original images alongside extracted data, validate dates/amounts, and flag low-confidence fields for manual confirmation.
-
-### 7.2. Dependency on External AI Services
-- **Impact Level:** High.
-- **Mitigation Strategies:** Process AI via SQS, implement Retry with Exponential Backoff, route failed tasks to a Dead Letter Queue, build an AI Service layer to easily switch providers, and allow manual transaction entry.
-
-### 7.3. Financial Data Leakage
-- **Impact Level:** Very High.
-- **Mitigation Strategies:** Enforce HTTPS, store secrets in Parameter Store, clearly separate Admin/User roles, enforce data ownership checks, and encrypt stored data.
-
-### 7.4. Unexpected AWS and AI Costs
-- **Impact Level:** Medium to High.
-- **Mitigation Strategies:** Set up AWS Budgets and alerts, compress images, configure S3 Lifecycle Policies, limit receipt sizes, and cache results.
-
-### 7.5. Overload During High Receipt Scan Volume
-- **Impact Level:** Medium.
-- **Mitigation Strategies:** Use Amazon SQS, automatically scale AI Workers based on Queue Depth, set a maximum task limit, and separate the Backend API from the AI Worker.
-
-### 7.6. Errors During New Version Deployment
-- **Impact Level:** Medium.
-- **Mitigation Strategies:** Automate build and testing via CI/CD, manage separate environments, implement rolling updates on ECS, enforce health checks, and retain stable Docker Images for easy rollback.
-
-### 7.7. Inappropriate AI Analysis Results
-- **Impact Level:** Medium.
-- **Mitigation Strategies:** Only use user-confirmed data, present AI Insights as reference suggestions, and improve prompts based on user feedback.
+#### 4.2. Receipt Processing Flow
+1. User uploads a receipt image via the Frontend.
+2. Frontend sends image to Backend API -> Backend saves image to **Amazon S3**.
+3. Backend pushes a processing message to **Amazon SQS**.
+4. **AI Worker** retrieves message from SQS, calls **Azure Document Intelligence** for text/table extraction.
+5. AI Worker sends extracted data to **Gemini API / OpenAI API** for category normalization and transaction parsing.
+6. AI Worker saves transaction records into **Amazon RDS for SQL Server** and generates user notifications.
+7. Frontend Dashboard and Financial Reports automatically update.
 
 ---
 
-## 8. Project Expectations
-With the proposed scope and architecture, the team expects Snaptics to deliver a functional trial version that operates seamlessly from receipt capture to analysis and display. Expected outcomes include:
-- Finalizing core features such as transaction management, wallets, personal and family budgets, receipt scanning, notifications, AI Insights, and the admin dashboard.
-- Reducing manual data entry through an OCR workflow with a confirmation and editing step before saving.
-- Assisting users in centralized expense tracking, identifying trends, and proactively controlling their budgets.
-- Proving the operational capability of a cloud-native architecture on AWS, including asynchronous processing, monitoring, redundancy, and CI/CD.
-- Creating a foundation for the team to test with users, gather feedback, and continuously improve accuracy and user experience.
+### 5. Project Timeline (13 Weeks)
+
+| Phase | Duration | Focus & Core Tasks | Expected Outcomes |
+| :--- | :--- | :--- | :--- |
+| **Phase 1** | Week 1 | **Topic & AWS Cloud Research**: Research project requirements, expense tracking challenges, SaaS model & AWS services. | Cloud direction & research scope |
+| **Phase 2** | Week 2 | **Requirements Survey & Preliminary Design**: Analyze receipt scanning, wallets, budgets; research OCR/AI; select Angular, .NET, SQL Server & AWS. | Requirements spec & Architecture diagram |
+| **Phase 3** | Week 3 | **Snaptics Idea Formation**: Finalize project name, User/Admin roles, core features & demo scope; build product backlog. | Finalized concept & demo scope |
+| **Phase 4** | Week 4 | **Source Code Initialization**: Create GitHub Repository; initialize Angular Frontend & .NET Backend; organize code structure. | Repository structure ready for development |
+| **Phase 5** | Week 5 | **Transactions & Categories**: Develop APIs and UI for CRUD operations, searching transactions; category management. | Working core transaction system |
+| **Phase 6** | Week 6 | **Wallets & Budgets**: Develop personal/family wallets, shared members, budgets, and utilization logic. | Complete family wallet & budget system |
+| **Phase 7** | Week 7 | **Dashboard & S3 Storage**: Build Dashboard, charts, reports; develop receipt scanning UI; integrate Amazon S3 storage. | Interactive Dashboard & S3 integration |
+| **Phase 8** | Week 8 | **OCR, AI & Notifications**: Integrate Azure Document Intelligence; normalize results; integrate Gemini API; build AI Insights & Chatbot. | Automated OCR & complete AI advice pipeline |
+| **Phase 9** | Week 9 | **DLQ & Hangfire**: Create SQS Dead Letter Queue & async AI Worker; integrate HangfireController & Admin scheduler UI. | Async AI tasks via SQS/DLQ & Hangfire Admin |
+| **Phase 10** | Week 10 | **AWS Frontend & Database**: Connect AWS Amplify to GitHub; store secrets in Parameter Store; initialize demo RDS SQL Server. | Frontend live on Amplify & RDS SQL Server |
+| **Phase 11** | Week 11 | **VPC, SQS, ECR & Containerization**: Create VPC, SQS, Private Subnets; containerize Backend/Worker; ECR & GitHub Actions pipeline. | Private network & ECR container pipeline |
+| **Phase 12** | Week 12 | **ECS Fargate Deployment**: Create ECS Cluster/Service; deploy Backend & AI Worker; configure ALB, Auto Scaling, CloudWatch & Budgets. | Backend/Worker running smoothly on Fargate |
+| **Phase 13** | Week 13 | **Polishing, Testing & Demo**: Configure Route 53/CloudFront; end-to-end testing, responsive UI, RBAC, SQS/DLQ resilience; audit logs & costs. | Demo-ready Snaptics platform |
+
+---
+
+### 6. Budget Estimation
+
+#### 6.1. Demo Environment Estimated Budget (1 Month Development & Demo)
+
+| # | Service Component | Estimation Basis | Cost (USD) |
+| :---: | :--- | :--- | :---: |
+| **1** | AWS Amplify, CloudFront & Route 53 | Build/hosting Frontend, low traffic CDN and 01 Hosted Zone | $4.50 |
+| **2** | Amazon S3 | Store ~20 GB receipt images and upload/download requests | $1.00 |
+| **3** | ECS Fargate - Backend & AI Worker | Small task configs, total ~200-220 task-hours | $8.00 |
+| **4** | Application Load Balancer (ALB) | Active during deployment & demo phase, low traffic | $7.00 |
+| **5** | Amazon RDS for SQL Server | SQL Server Express, Single-AZ, 20 GB | $20.00 |
+| **6** | NAT Gateway & Data Transfer | 01 NAT Gateway, enabled limited time during integration | $13.00 |
+| **7** | Amazon SQS, SNS & ECR | OCR/AI Queue, basic alerting, and Docker Image storage | $1.00 |
+| **8** | CloudWatch, Parameter Store & Budgets | Logs, metrics, alarms, secrets, and budget alerts | $3.00 |
+| **9** | Azure Document Intelligence | ~1,000 pages using prebuilt invoice model | $10.00 |
+| **10** | Gemini API | Estimated 1M input tokens and 200k output tokens | $0.80 |
+
+#### 6.2. Production Multi-AZ Environment (Future Scaling Reference)
+
+| Service Component | Estimated Monthly Cost |
+| :--- | :--- |
+| ECS Fargate & Application Load Balancer (Auto Scaling) | $60 – $150 USD |
+| SQL Server Primary/Standby (Multi-AZ) | $150 – $300 USD |
+| Dual NAT Gateways & Data Transfer | $70 – $120 USD |
+| S3, CloudFront, SQS, SNS, ECR & CloudWatch | $20 – $60 USD |
+| External AI APIs (Azure Document Intelligence & Gemini) | Usage-based on actual receipt volume |
+| **Total Estimated Production Budget** | **$300 – $600 USD / month** *(excl. AI APIs)* |
+
+---
+
+### 7. Risk Assessment & Mitigation
+
+| # | Risk Description | Impact | Probability | Severity | Mitigation & Contingency Strategy |
+| :---: | :--- | :---: | :---: | :---: | :--- |
+| **1** | OCR Extraction Errors (blurry, wrinkled, skewed receipts) | High | Medium | **High** | Allow user review & edit before saving; display original image side-by-side; highlight low-confidence fields. |
+| **2** | Azure Document Intelligence or Gemini API Failure / Rate Limit | High | Medium | **High** | Asynchronous SQS processing; Exponential Backoff Retries; DLQ routing; decoupled AI Service layer; manual entry fallback. |
+| **3** | Financial Data Leakage or API Key Exposure | Critical | Low | **High** | Mandatory HTTPS; Secrets in SSM Parameter Store; Least-privilege IAM; Private Subnets for DB/Worker; Audit Logging. |
+| **4** | Unexpected AWS & AI Cost Overruns | High | Medium | **High** | AWS Budgets alerts at 50%, 80%, 100%; Auto Scaling caps; pre-upload image compression; S3 Lifecycle Policy; cleanup demo resources post-use. |
+| **5** | High Concurrency Receipt Scanning Queue Backlog | Medium | Medium | **Medium** | Monitor SQS Queue Depth; scale AI Workers within limits; display processing status UI; decouple Backend API from Workers. |
+| **6** | Deployment Regression Errors | Medium | Medium | **Medium** | Automated CI/CD build tests; ECS Health Checks; stable Docker Tags on ECR; Dev/Prod environment isolation; CloudWatch monitoring. |
+| **7** | Generic or Irrelevant AI Advice | Medium | Medium | **Medium** | Analyze only user-confirmed transactions; present AI Insights as advisory suggestions; collect user feedback to refine Prompts. |
+| **8** | Hangfire Misconfigurations or Failed Jobs | Medium | Medium | **Medium** | Verify timezone configs; Admin-only job management; limit concurrent executions; detailed logging & manual trigger capability. |
+| **9** | Scope Creep Beyond 13-Week Timeline | High | Medium | **High** | Prioritize core workflow; lock demo scope; split backlog into required vs optional; test early and defer non-essential features. |
+
+---
+
+### 8. Expected Outcomes
+
+* **Complete Web SaaS Solution**: Seamless end-to-end operation from receipt scanning, OCR extraction, personal & family budget management, to analytics reports and financial alerts.
+* **Demonstrated Cloud-Native AWS Architecture**: Proven container packaging (ECR, ECS Fargate), asynchronous queues (SQS, DLQ), relational database management (RDS SQL Server), security (SSM Parameter Store), centralized monitoring (CloudWatch, Budgets), and CI/CD automation.
+* **Stable Operations & Cost Management**: Health checks, comprehensive logging, DLQ fault handling, and cost-controlled demo model ($76.92 USD budget).
+* **Extensible Architecture**: Built to seamlessly scale from Single-AZ demo to Multi-AZ Production and support future enhancements (Open Banking, Native Mobile App).
