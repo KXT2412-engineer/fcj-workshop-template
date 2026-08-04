@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Amazon RDS SQL Server"
 date: 2024-01-01
 weight: 1
@@ -7,9 +7,11 @@ pre: " <b> 5.4.1. </b> "
 ---
 
 
-
 <!-- TODO: Insert screenshot of Amazon RDS Database showing the Endpoint here -->
 ![RDS Database](/images/5-Workshop/placeholder-rds.png)
+
+> [!NOTE]
+> **Architecture Diagram Difference:** In the overall architecture diagram, the RDS system is depicted following Production standards with a **Multi-AZ (Primary & Standby)** mechanism for fault tolerance. However, for the scope of this hands-on Workshop, we will only provision a **Single-AZ (Free Tier)** instance to optimize and save on demo costs.
 
 The Snaptics project uses C# with Entity Framework Core, making Microsoft SQL Server the most optimal choice.
 

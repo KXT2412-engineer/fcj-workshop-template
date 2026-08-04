@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Amazon RDS SQL Server"
 date: 2024-01-01
 weight: 1
@@ -7,9 +7,11 @@ pre: " <b> 5.4.1. </b> "
 ---
 
 
-
-<!-- TODO: ChÃ¨n áº£nh chá»¥p giao diá»‡n Amazon RDS (chá»— cÃ³ link Endpoint) vÃ o Ä‘Ã¢y -->
+<!-- TODO: Chèn ảnh chụp giao diện Amazon RDS (chỗ có link Endpoint) vào đây -->
 ![RDS Database](/images/5-Workshop/placeholder-rds.png)
+
+> [!NOTE]
+> **Khác biệt so với Sơ đồ Kiến trúc (Architecture Diagram):** Trong sơ đồ tổng thể, hệ thống RDS được vẽ theo chuẩn Production với cơ chế **Multi-AZ (Primary & Standby)** để dự phòng lỗi. Tuy nhiên, trong phạm vi bài Workshop thực hành này, chúng ta sẽ chỉ tạo bản **Single-AZ (Free Tier)** nhằm mục đích tối ưu hóa và tiết kiệm chi phí demo.
 
 Dự án Snaptics sử dụng C# với Entity Framework Core, do đó Microsoft SQL Server là lựa chọn tối ưu nhất.
 

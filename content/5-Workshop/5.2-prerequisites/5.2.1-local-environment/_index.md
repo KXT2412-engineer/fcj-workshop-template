@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Local Environment"
 date: 2024-01-01
 weight: 1
@@ -18,9 +18,9 @@ This is a mandatory tool to interact with AWS resources from the terminal, espec
 aws configure
 ```
 The system will prompt you for 4 parameters:
-- **AWS Access Key ID:** `AKIAIOSFODNN7EXAMPLE` (Get this from your IAM User)
-- **AWS Secret Access Key:** `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`
-- **Default region name:** `ap-southeast-1` (Must be ap-southeast-1 to match the deployment region)
+- **AWS Access Key ID:** `<YOUR_ACCESS_KEY_ID>` (Get this from your IAM User)
+- **AWS Secret Access Key:** `<YOUR_SECRET_ACCESS_KEY>`
+- **Default region name:** `ap-southeast-1` (Choose an appropriate region to get the lowest latency)
 - **Default output format:** `json`
 
 ### 2. Install Docker

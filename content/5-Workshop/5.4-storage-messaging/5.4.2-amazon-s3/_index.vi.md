@@ -7,10 +7,8 @@ pre: " <b> 5.4.2. </b> "
 ---
 
 
-
 <!-- TODO: ChÃ¨n áº£nh mÃ n hÃ¬nh danh sÃ¡ch Amazon S3 Bucket chá»©a áº£nh hÃ³a Ä‘Æ¡n vÃ o Ä‘Ã¢y -->
 ![S3 Bucket](/images/5-Workshop/placeholder-s3.png)
-
 Mỗi khi người dùng Snaptics tải lên một hóa đơn để hệ thống AI phân tích, bức ảnh đó không được lưu vào Database hay ổ cứng của Container, mà được đẩy lên S3.
 
 ### 1. Tạo Bucket S3

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Thiết lập Môi trường Local"
 date: 2024-01-01
 weight: 1
@@ -18,9 +18,9 @@ Bạn cần cài đặt các công cụ sau trên máy tính của mình.
 aws configure
 ```
 Hệ thống sẽ yêu cầu bạn nhập 4 thông số:
-- **AWS Access Key ID:** `AKIAIOSFODNN7EXAMPLE` (Lấy từ IAM User của bạn)
-- **AWS Secret Access Key:** `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`
-- **Default region name:** `ap-southeast-1` (Bắt buộc phải là ap-southeast-1 để khớp với khu vực triển khai)
+- **AWS Access Key ID:** `<YOUR_ACCESS_KEY_ID>` (Lấy từ IAM User của bạn)
+- **AWS Secret Access Key:** `<YOUR_SECRET_ACCESS_KEY>`
+- **Default region name:** `ap-southeast-1` (Nên chọn khu vực phù hợp để có được độ trễ thấp nhất)
 - **Default output format:** `json`
 
 ### 2. Cài đặt Docker

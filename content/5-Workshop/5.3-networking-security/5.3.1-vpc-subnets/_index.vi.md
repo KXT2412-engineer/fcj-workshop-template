@@ -7,10 +7,8 @@ pre: " <b> 5.3.1. </b> "
 ---
 
 
-
-<!-- TODO: ChÃ¨n áº£nh chá»¥p mÃ n hÃ¬nh giao diá»‡n AWS VPC Dashboard (danh sÃ¡ch Subnet) cá»§a báº¡n vÃ o Ä‘Ã¢y -->
+<!-- TODO: Chèn ảnh chụp màn hình giao diện AWS VPC Dashboard (danh sách Subnet) của bạn vào đây -->
 ![VPC Dashboard](/images/5-Workshop/placeholder-vpc.png)
-
 Đầu tiên, chúng ta tạo một Virtual Private Cloud đóng vai trò là "biên giới mạng" cho toàn bộ hệ thống Snaptics.
 
 Vào **AWS Console ➔ VPC ➔ Your VPCs ➔ Create VPC**:

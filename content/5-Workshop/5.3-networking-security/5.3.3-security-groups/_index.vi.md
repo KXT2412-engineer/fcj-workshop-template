@@ -7,10 +7,8 @@ pre: " <b> 5.3.3. </b> "
 ---
 
 
-
 <!-- TODO: ChÃ¨n áº£nh chá»¥p mÃ n hÃ¬nh giao diá»‡n cáº¥u hÃ¬nh Security Group vÃ o Ä‘Ã¢y -->
 ![Security Groups](/images/5-Workshop/placeholder-sg.png)
-
 Security Group (SG) hoạt động như một tường lửa ảo cấp độ Interface. Kiến trúc chuẩn quy định các tầng ứng dụng chỉ được phép giao tiếp với tầng liền kề nó. 
 
 Vào **EC2 ➔ Security Groups ➔ Create security group** và cấu hình chặt chẽ theo 3 lớp sau:
