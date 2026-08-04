@@ -6,15 +6,13 @@ chapter: false
 pre: " <b> 5.1. </b> "
 ---
 
-# Overview & Architecture
-
 This module provides a comprehensive overview of the **Snaptics API** system architecture, diving deep into the technology services used, data flow, and operational cost estimation on AWS.
 
 ## 1. System Architecture Diagram
 
 The Snaptics Multi-Stack network design strictly adheres to security principles: isolating Public and Private tiers, and controlling traffic flow through an Application Load Balancer and specific Security Groups.
 
-![Snaptics System Architecture](/images/5.1.1snaptics-architecture.png)
+![Snaptics System Architecture](/fcj-workshop-template/images/5.1.1snaptics-architecture.png)
 
 ### Data Flow Analysis
 1. **User Request:** Users call the API or upload invoices via the Mobile App.
@@ -24,7 +22,7 @@ The Snaptics Multi-Stack network design strictly adheres to security principles:
 5. **AI Integration:** ECS calls out through the `NAT Gateway` to communicate with `Azure Document Intelligence` or `Gemini API`.
 
 ## 2. Tech Stack & AWS Services
-- **C# .NET 8 / 9:** Core API framework.
+- **C# .NET 10:** Core API framework.
 - **Entity Framework Core (EF Core):** ORM to communicate with SQL Server.
 - **Hangfire & SignalR:** Background job processing and real-time WebSockets.
 - **Amazon ECS Fargate:** Runs Docker containers without EC2 servers.

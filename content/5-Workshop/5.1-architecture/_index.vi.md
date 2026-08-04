@@ -6,15 +6,13 @@ chapter: false
 pre: " <b> 5.1. </b> "
 ---
 
-# Tổng quan & Kiến trúc
-
 Phân hệ này cung cấp cái nhìn toàn cảnh về kiến trúc hệ thống của **Snaptics API**, phân tích sâu vào các dịch vụ công nghệ được sử dụng, luồng dữ liệu (Data flow) và dự toán chi phí vận hành trên AWS.
 
 ## 1. Sơ đồ Kiến trúc Hệ thống
 
 Thiết kế mạng Multi-Stack của Snaptics tuân thủ nghiêm ngặt các nguyên tắc bảo mật: tách biệt tầng Public và Private, kiểm soát luồng truy cập thông qua Application Load Balancer.
 
-![Snaptics System Architecture](/images/5.1.1snaptics-architecture.png)
+![Snaptics System Architecture](/fcj-workshop-template/images/5.1.1snaptics-architecture.png)
 
 ### Phân tích Luồng Hoạt động (Data Flow)
 1. **User Request:** Người dùng gọi API hoặc tải hóa đơn lên thông qua Mobile App.
@@ -24,7 +22,7 @@ Thiết kế mạng Multi-Stack của Snaptics tuân thủ nghiêm ngặt các n
 5. **AI Integration:** ECS gọi qua `NAT Gateway` ra ngoài Internet để giao tiếp với `Azure Document Intelligence` hoặc `Gemini API`.
 
 ## 2. Tech Stack & AWS Services
-- **C# .NET 8 / 9:** Framework lõi xây dựng API.
+- **C# .NET 10:** Framework lõi xây dựng API.
 - **Entity Framework Core (EF Core):** ORM giao tiếp với cơ sở dữ liệu.
 - **Hangfire & SignalR:** Chạy tác vụ nền (Background Jobs) và đẩy thông báo thời gian thực (WebSockets).
 - **Amazon ECS Fargate:** Đóng gói ứng dụng thành container và chạy không cần EC2.

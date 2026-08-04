@@ -20,7 +20,7 @@ Cài đặt các công cụ sau trên máy tính của bạn:
   ```
   Nhập Access Key, Secret Key, đặt region mặc định là `ap-southeast-1`, format là `json`.
 - **Docker Desktop:** Để đóng gói ứng dụng .NET thành Image trước khi đưa lên ECS Fargate.
-- **.NET 8 / 9 SDK:** Hỗ trợ chạy Entity Framework Migrations tại máy.
+- **.NET 10 SDK:** Hỗ trợ chạy Entity Framework Migrations tại máy.
 - **AI API Keys:** 
   - Lấy Google Gemini API Key từ Google AI Studio.
   - Lấy Endpoint và Key của Azure Document Intelligence từ Azure Portal.

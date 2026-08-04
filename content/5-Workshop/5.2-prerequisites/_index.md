@@ -20,7 +20,7 @@ Install the following tools on your computer:
   ```
   Provide your Access Key, Secret Key, set default region to `ap-southeast-1`, and format to `json`.
 - **Docker Desktop:** Required to build container images for ECS Fargate.
-- **.NET 8 / 9 SDK:** Useful for running EF Migrations locally.
+- **.NET 10 SDK:** Useful for running EF Migrations locally.
 - **AI API Keys:** 
   - Get a Google Gemini API Key from Google AI Studio.
   - Get an Azure Document Intelligence Endpoint and Key from the Azure Portal.
