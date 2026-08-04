@@ -1,4 +1,4 @@
----
+﻿---
 title: "SQS Queues & SNS Topics"
 date: 2024-01-01
 weight: 1
@@ -7,6 +7,11 @@ pre: " <b> 5.5.1. </b> "
 ---
 
 # Hàng đợi SQS & Thông báo SNS
+
+
+<!-- TODO: ChÃ¨n áº£nh mÃ n hÃ¬nh hÃ ng Ä‘á»£i Amazon SQS (snaptics-ai-queue) vÃ  Amazon SNS topic vÃ o Ä‘Ã¢y -->
+![SQS Queue](/images/5-Workshop/placeholder-sqs.png)
+![SNS Topic](/images/5-Workshop/placeholder-sns.png)
 
 AWS SQS (Simple Queue Service) và SNS (Simple Notification Service) kết hợp với nhau tạo thành xương sống cho kiến trúc Event-Driven của Snaptics.
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "VPC & Subnets Design"
 date: 2024-01-01
 weight: 1
@@ -7,6 +7,10 @@ pre: " <b> 5.3.1. </b> "
 ---
 
 # VPC & Subnets Design
+
+
+<!-- TODO: Insert screenshot of AWS VPC Dashboard showing your Subnets here -->
+![VPC Dashboard](/images/5-Workshop/placeholder-vpc.png)
 
 First, we create a Virtual Private Cloud acting as the "network boundary" for the entire Snaptics system.
 

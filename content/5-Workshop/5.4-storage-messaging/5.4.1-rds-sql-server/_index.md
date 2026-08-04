@@ -1,4 +1,4 @@
----
+﻿---
 title: "Amazon RDS SQL Server"
 date: 2024-01-01
 weight: 1
@@ -7,6 +7,10 @@ pre: " <b> 5.4.1. </b> "
 ---
 
 # Deploying Amazon RDS SQL Server
+
+
+<!-- TODO: Insert screenshot of Amazon RDS Database showing the Endpoint here -->
+![RDS Database](/images/5-Workshop/placeholder-rds.png)
 
 The Snaptics project uses C# with Entity Framework Core, making Microsoft SQL Server the most optimal choice.
 

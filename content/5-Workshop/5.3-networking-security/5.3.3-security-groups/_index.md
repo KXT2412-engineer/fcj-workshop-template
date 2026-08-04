@@ -1,4 +1,4 @@
----
+﻿---
 title: "Security Groups"
 date: 2024-01-01
 weight: 3
@@ -7,6 +7,10 @@ pre: " <b> 5.3.3. </b> "
 ---
 
 # Security Groups Configuration
+
+
+<!-- TODO: Insert screenshot of AWS EC2 Security Groups here -->
+![Security Groups](/images/5-Workshop/placeholder-sg.png)
 
 A Security Group (SG) acts as an Interface-level virtual firewall. Standard architecture dictates that application layers can only communicate with their adjacent layers.
 

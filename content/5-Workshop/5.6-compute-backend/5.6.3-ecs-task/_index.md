@@ -1,4 +1,4 @@
----
+﻿---
 title: "ECS Cluster & Task Definition"
 date: 2024-01-01
 weight: 3
@@ -7,6 +7,10 @@ pre: " <b> 5.6.3. </b> "
 ---
 
 # Initialize ECS Cluster & Task
+
+
+<!-- TODO: Insert screenshot of Amazon ECS Cluster showing running Fargate tasks here -->
+![ECS Fargate](/images/5-Workshop/placeholder-ecs.png)
 
 Once the application is an Image on ECR and the Load Balancer is ready to distribute the load, we will create the Serverless server to run that Image.
 

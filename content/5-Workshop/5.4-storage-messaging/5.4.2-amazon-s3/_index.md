@@ -1,4 +1,4 @@
----
+﻿---
 title: "Amazon S3 for Uploads"
 date: 2024-01-01
 weight: 2
@@ -7,6 +7,10 @@ pre: " <b> 5.4.2. </b> "
 ---
 
 # Amazon S3 for Uploads
+
+
+<!-- TODO: Insert screenshot of Amazon S3 Bucket creation/list here -->
+![S3 Bucket](/images/5-Workshop/placeholder-s3.png)
 
 Whenever a Snaptics user uploads an invoice for AI analysis, that image is not saved in the Database or the Container's hard drive; it is pushed to S3.
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "SQS Queues & SNS Topics"
 date: 2024-01-01
 weight: 1
@@ -7,6 +7,11 @@ pre: " <b> 5.5.1. </b> "
 ---
 
 # SQS Queues & SNS Topics
+
+
+<!-- TODO: Insert screenshots of Amazon SQS queue (snaptics-ai-queue) and Amazon SNS topic here -->
+![SQS Queue](/images/5-Workshop/placeholder-sqs.png)
+![SNS Topic](/images/5-Workshop/placeholder-sns.png)
 
 AWS SQS (Simple Queue Service) and SNS (Simple Notification Service) combine to form the backbone for Snaptics' Event-Driven architecture.
 

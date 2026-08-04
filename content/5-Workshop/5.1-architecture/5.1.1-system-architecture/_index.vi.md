@@ -6,9 +6,11 @@ chapter: false
 pre: " <b> 5.1.1. </b> "
 ---
 
-# Sơ đồ Kiến trúc Hệ thống
+# System Architecture Diagram
 
-Thiết kế mạng Multi-Stack của Snaptics tuân thủ nghiêm ngặt các nguyên tắc bảo mật: tách biệt tầng Public và Private, kiểm soát luồng truy cập thông qua Application Load Balancer và các Security Groups đặc thù.
+![Snaptics AWS Architecture](/fcj-workshop-template/images/5.1.1snaptics-architecture.png)
+
+Thiết kế mạng Multi-Stack của Snaptics tuân thủ nghiêm ngặt nguyên tắc bảo mật: cô lập hoàn toàn tầng Public và Private, đồng thời kiểm soát luồng truy cập qua Application Load Balancer và các Security Groups đặc thù.
 
 ```mermaid
 graph TD

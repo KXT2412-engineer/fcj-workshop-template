@@ -8,6 +8,8 @@ pre: " <b> 5.1.1. </b> "
 
 # System Architecture Diagram
 
+![Snaptics AWS Architecture](/fcj-workshop-template/images/5.1.1snaptics-architecture.png)
+
 The Snaptics Multi-Stack network design strictly adheres to security principles: isolating Public and Private tiers, and controlling traffic flow through an Application Load Balancer and specific Security Groups.
 
 ```mermaid

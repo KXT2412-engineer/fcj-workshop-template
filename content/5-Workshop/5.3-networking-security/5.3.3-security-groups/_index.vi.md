@@ -1,4 +1,4 @@
----
+﻿---
 title: "Cấu hình Security Groups"
 date: 2024-01-01
 weight: 3
@@ -7,6 +7,10 @@ pre: " <b> 5.3.3. </b> "
 ---
 
 # Cấu hình Security Groups
+
+
+<!-- TODO: ChÃ¨n áº£nh chá»¥p mÃ n hÃ¬nh giao diá»‡n cáº¥u hÃ¬nh Security Group vÃ o Ä‘Ã¢y -->
+![Security Groups](/images/5-Workshop/placeholder-sg.png)
 
 Security Group (SG) hoạt động như một tường lửa ảo cấp độ Interface. Kiến trúc chuẩn quy định các tầng ứng dụng chỉ được phép giao tiếp với tầng liền kề nó. 
 

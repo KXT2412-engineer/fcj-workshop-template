@@ -1,4 +1,4 @@
----
+﻿---
 title: "ECS Cluster & Task Definition"
 date: 2024-01-01
 weight: 3
@@ -7,6 +7,10 @@ pre: " <b> 5.6.3. </b> "
 ---
 
 # Khởi tạo ECS Cluster & Task
+
+
+<!-- TODO: ChÃ¨n áº£nh mÃ n hÃ¬nh Amazon ECS Cluster (cho tháº¥y Task Fargate Ä‘ang cháº¡y) vÃ o Ä‘Ã¢y -->
+![ECS Fargate](/images/5-Workshop/placeholder-ecs.png)
 
 Sau khi ứng dụng đã thành Image trên ECR và Load Balancer đã sẵn sàng chia tải, chúng ta sẽ tạo máy chủ Serverless chạy Image đó.
 

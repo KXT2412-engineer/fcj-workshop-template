@@ -1,4 +1,4 @@
----
+﻿---
 title: "Thiết kế VPC & Subnets"
 date: 2024-01-01
 weight: 1
@@ -7,6 +7,10 @@ pre: " <b> 5.3.1. </b> "
 ---
 
 # Thiết kế VPC & Subnets
+
+
+<!-- TODO: ChÃ¨n áº£nh chá»¥p mÃ n hÃ¬nh giao diá»‡n AWS VPC Dashboard (danh sÃ¡ch Subnet) cá»§a báº¡n vÃ o Ä‘Ã¢y -->
+![VPC Dashboard](/images/5-Workshop/placeholder-vpc.png)
 
 Đầu tiên, chúng ta tạo một Virtual Private Cloud đóng vai trò là "biên giới mạng" cho toàn bộ hệ thống Snaptics.
 

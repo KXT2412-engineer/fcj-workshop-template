@@ -1,4 +1,4 @@
----
+﻿---
 title: "Amazon RDS SQL Server"
 date: 2024-01-01
 weight: 1
@@ -7,6 +7,10 @@ pre: " <b> 5.4.1. </b> "
 ---
 
 # Triển khai Amazon RDS SQL Server
+
+
+<!-- TODO: ChÃ¨n áº£nh chá»¥p giao diá»‡n Amazon RDS (chá»— cÃ³ link Endpoint) vÃ o Ä‘Ã¢y -->
+![RDS Database](/images/5-Workshop/placeholder-rds.png)
 
 Dự án Snaptics sử dụng C# với Entity Framework Core, do đó Microsoft SQL Server là lựa chọn tối ưu nhất.
 
