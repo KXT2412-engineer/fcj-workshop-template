@@ -19,7 +19,7 @@ Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duy�
 ## 2. Kiểm thử API & Trí tuệ Nhân tạo (Swagger)
 
 1. **Đăng nhập (Auth):** Dùng Endpoint `/api/Auth/register` rồi `/api/Auth/login`. Bước này chứng minh ECS Container đã đọc được mật khẩu từ **Parameter Store** và kết nối thành công tới **SQL Server Database**!
-2. **Upload Hóa đơn:** Dùng Endpoint `/api/Transactions/scan-receipt` tải lên một bức ảnh hóa đơn thật.
+2. **Upload Hóa đơn:** Dùng Endpoint `/api/Transaction/from-bill` tải lên một bức ảnh hóa đơn thật.
 3. **Xác thực Luồng Data:**
    - Mở **S3**, bức ảnh đã nằm đó (Chứng minh **VPC Gateway Endpoint** xuyên mạng nội bộ thành công).
    - Mở **SQS**, một message nhảy lên ở hàng đợi `snaptics-ai-queue`.

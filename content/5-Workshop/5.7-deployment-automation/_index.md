@@ -21,7 +21,7 @@ GitHub needs your AWS credentials to push Docker images and deploy to Amplify.
 
 ## 2. Backend CI/CD Pipeline (ECS Fargate)
 
-Create a YAML file inside your repository at `.github/workflows/deploy-backend.yml`:
+Create a YAML file inside your repository at `.github/workflows/deploy.yml`:
 
 ```yaml
 name: Deploy Backend to Amazon ECS
@@ -29,7 +29,7 @@ name: Deploy Backend to Amazon ECS
 on:
   push:
     branches: [ "main" ]
-    paths: [ "Backend/**" ]
+    
 
 env:
   AWS_REGION: ap-southeast-1
@@ -63,7 +63,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./Backend
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY --all-tags
         
     - name: Force ECS to deploy new Image (Rolling Update)

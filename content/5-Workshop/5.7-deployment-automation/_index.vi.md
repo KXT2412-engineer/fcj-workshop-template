@@ -21,7 +21,7 @@ GitHub Actions cần quyền vào tài khoản AWS của bạn để đẩy Dock
 
 ## 2. Pipeline Triển khai Backend (ECS Fargate)
 
-Trong thư mục code của bạn, hãy tạo một file tại đường dẫn `.github/workflows/deploy-backend.yml` với nội dung siêu ngầu sau:
+Trong thư mục code của bạn, hãy tạo một file tại đường dẫn `.github/workflows/deploy.yml` với nội dung siêu ngầu sau:
 
 ```yaml
 name: Deploy Backend to Amazon ECS
@@ -29,7 +29,7 @@ name: Deploy Backend to Amazon ECS
 on:
   push:
     branches: [ "main" ]
-    paths: [ "Backend/**" ] # Chỉ chạy khi có thay đổi trong thư mục Backend
+     # Chỉ chạy khi có thay đổi trong thư mục Backend
 
 env:
   AWS_REGION: ap-southeast-1
@@ -63,7 +63,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./Backend
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY --all-tags
         
     - name: Force ECS to deploy new Image (Rolling Update)
