@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.6.1. </b> "
 ---
 
-# Đóng gói (Dockerizing) .NET API
 
 
 <!-- TODO: ChÃ¨n áº£nh mÃ n hÃ¬nh Amazon ECR chá»©a Docker image cá»§a Backend vÃ o Ä‘Ã¢y -->

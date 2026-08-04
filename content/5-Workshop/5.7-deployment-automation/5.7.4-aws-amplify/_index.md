@@ -1,4 +1,4 @@
----
+﻿---
 title: "Deploy Frontend to AWS Amplify"
 date: 2024-01-01
 weight: 4
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7.4. </b> "
 ---
 
-# Deploy Frontend to AWS Amplify
 
 For the user-facing Client (Angular application), Snaptics utilizes **AWS Amplify** for seamless deployment and hosting. Amplify connects directly to our GitHub repository, meaning any push to the `main` branch automatically triggers a new frontend build and deployment.
 

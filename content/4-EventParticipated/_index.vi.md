@@ -34,7 +34,7 @@ Trong quá trình thực tập, tôi đã có cơ hội tuyệt vời để tham
 
 &emsp;**Thời gian:** Ngày 3 tháng 8 năm 2026
 
-&emsp;**Địa điểm:** Online / AWS Study Group
+&emsp;**Địa điểm:** Tòa nhà Bitexco Financial Tower, Quận 1, TP. Hồ Chí Minh
 
 &emsp;**Vai trò trong sự kiện:** Người tham dự
 

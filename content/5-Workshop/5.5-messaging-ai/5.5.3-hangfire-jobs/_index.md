@@ -1,4 +1,4 @@
----
+﻿---
 title: "Background Jobs (Hangfire)"
 date: 2024-01-01
 weight: 3
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.5.3. </b> "
 ---
 
-# Background Jobs with Hangfire
 
 Financial systems require periodic tasks that run without user intervention (e.g., closing the books at 23:59 on the 30th, or sending an expense report email). Snaptics solves this problem excellently with the **Hangfire** library.
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Phân tích Chi phí (Cost Estimation)"
 date: 2024-01-01
 weight: 3
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.1.3. </b> "
 ---
 
-# Phân tích Chi phí (Cost Estimation)
 
 Việc hiểu rõ cấu trúc chi phí (Billing) trên AWS là kỹ năng sống còn của một Cloud Engineer. Kiến trúc của Snaptics bao gồm nhiều thành phần Managed Services có thể phát sinh chi phí hàng tháng khá lớn nếu không tối ưu. 
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Cost Estimation"
 date: 2024-01-01
 weight: 3
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.1.3. </b> "
 ---
 
-# Cost Estimation
 
 Understanding the AWS billing structure is a vital skill for a Cloud Engineer. Snaptics' architecture includes multiple Managed Services that can incur significant monthly costs if not optimized.
 

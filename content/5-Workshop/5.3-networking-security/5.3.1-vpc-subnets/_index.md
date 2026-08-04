@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.3.1. </b> "
 ---
 
-# VPC & Subnets Design
 
 
 <!-- TODO: Insert screenshot of AWS VPC Dashboard showing your Subnets here -->

@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.6.3. </b> "
 ---
 
-# Initialize ECS Cluster & Task
 
 
 <!-- TODO: Insert screenshot of Amazon ECS Cluster showing running Fargate tasks here -->

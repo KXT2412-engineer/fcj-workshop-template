@@ -1,4 +1,4 @@
----
+﻿---
 title: "Tech Stack & AWS Services"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.1.2. </b> "
 ---
 
-# Tech Stack & AWS Services
 
 Để vận hành một hệ thống tài chính mượt mà như Snaptics, chúng ta sử dụng một hệ sinh thái kết hợp giữa .NET Core và hệ sinh thái Managed Services của AWS. Dưới đây là bảng phân tích vai trò của từng công nghệ trong dự án:
 

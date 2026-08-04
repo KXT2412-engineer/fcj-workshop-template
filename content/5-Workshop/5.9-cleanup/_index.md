@@ -1,4 +1,4 @@
----
+﻿---
 title: "Cleanup"
 date: 2024-01-01
 weight: 9
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.9. </b> "
 ---
 
-# Resources Cleanup
 
 The cleanup step is the most critical step for students and Cloud learners to avoid credit card charges. Please follow this sequentially from top to bottom to ensure resources do not lock each other out (e.g., a VPC cannot be deleted if the NAT Gateway is still alive).
 

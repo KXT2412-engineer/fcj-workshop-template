@@ -1,4 +1,4 @@
----
+﻿---
 title: "E2E Testing"
 date: 2024-01-01
 weight: 8
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.8. </b> "
 ---
 
-# System-Wide Testing (End-to-End Testing)
 
 Once every component from Network, Database, ECS to AI has successfully started, we proceed with End-to-End (E2E) testing to ensure the data flow works as designed.
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Kiểm thử WebSocket (SignalR)"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.8.2. </b> "
 ---
 
-# Kiểm thử WebSocket (SignalR)
 
 Tính năng "Real-time Notification" của Snaptics yêu cầu kết nối 2 chiều liên tục (WebSocket). ALB của AWS mặc định hỗ trợ WebSocket rất tốt mà không cần cấu hình thêm.
 

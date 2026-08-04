@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.4.1. </b> "
 ---
 
-# Triển khai Amazon RDS SQL Server
 
 
 <!-- TODO: ChÃ¨n áº£nh chá»¥p giao diá»‡n Amazon RDS (chá»— cÃ³ link Endpoint) vÃ o Ä‘Ã¢y -->

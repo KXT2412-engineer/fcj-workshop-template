@@ -1,4 +1,4 @@
----
+﻿---
 title: "GitHub Actions CI/CD"
 date: 2024-01-01
 weight: 3
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7.3. </b> "
 ---
 
-# CI/CD with GitHub Actions
 
 While the `deploy.ps1` script is great for manual deployments from your local machine, real production environments require automated pipelines. Snaptics utilizes **GitHub Actions** to automate the build and deployment process directly from the repository.
 

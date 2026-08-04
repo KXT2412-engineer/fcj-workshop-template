@@ -1,4 +1,4 @@
----
+﻿---
 title: "Sơ đồ Kiến trúc Hệ thống"
 date: 2024-01-01
 weight: 1
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.1.1. </b> "
 ---
 
-# System Architecture Diagram
 
 ![Snaptics AWS Architecture](/fcj-workshop-template/images/5.1.1snaptics-architecture.png)
 

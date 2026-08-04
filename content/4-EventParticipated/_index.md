@@ -35,7 +35,7 @@ During my internship, I had the great opportunity to participate in three events
 
 &emsp;**Date & Time:** August 3, 2026  
 
-&emsp;**Location:** Online / AWS Study Group
+&emsp;**Location:** 26th Floor, Bitexco Financial Tower, District 1, Ho Chi Minh City 
 
 &emsp;**Role:** Attendee  
 

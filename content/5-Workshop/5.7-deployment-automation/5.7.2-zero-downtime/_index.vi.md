@@ -1,4 +1,4 @@
----
+﻿---
 title: "Cơ chế Zero-Downtime Deployment"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7.2. </b> "
 ---
 
-# Cơ chế Không gián đoạn (Zero-Downtime Deployment)
 
 Lệnh `--force-new-deployment` trong script `deploy.ps1` kích hoạt một cơ chế cực kỳ tinh vi của AWS ECS, thường được biết đến với tên gọi **Rolling Update (Cập nhật cuốn chiếu)**.
 

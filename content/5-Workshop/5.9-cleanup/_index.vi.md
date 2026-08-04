@@ -1,4 +1,4 @@
----
+﻿---
 title: "Dọn dẹp Tài nguyên (Cleanup)"
 date: 2024-01-01
 weight: 9
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.9. </b> "
 ---
 
-# Dọn dẹp Tài nguyên (Cleanup)
 
 Bước dọn dẹp là bước quan trọng nhất đối với sinh viên và những người học Cloud để tránh bị trừ tiền thẻ tín dụng. Hãy thực hiện tuần tự từ trên xuống dưới để đảm bảo các tài nguyên không bị khóa chéo lẫn nhau (VD: VPC không thể xóa nếu NAT Gateway vẫn còn sống).
 

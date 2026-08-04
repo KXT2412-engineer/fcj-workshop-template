@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.6.3. </b> "
 ---
 
-# Khởi tạo ECS Cluster & Task
 
 
 <!-- TODO: ChÃ¨n áº£nh mÃ n hÃ¬nh Amazon ECS Cluster (cho tháº¥y Task Fargate Ä‘ang cháº¡y) vÃ o Ä‘Ã¢y -->

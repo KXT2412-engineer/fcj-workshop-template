@@ -1,4 +1,4 @@
----
+﻿---
 title: "Thiết lập Môi trường Local"
 date: 2024-01-01
 weight: 1
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.2.1. </b> "
 ---
 
-# Thiết lập Môi trường Local
 
 Bạn cần cài đặt các công cụ sau trên máy tính của mình. 
 

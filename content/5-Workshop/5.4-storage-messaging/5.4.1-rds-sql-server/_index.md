@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.4.1. </b> "
 ---
 
-# Deploying Amazon RDS SQL Server
 
 
 <!-- TODO: Insert screenshot of Amazon RDS Database showing the Endpoint here -->

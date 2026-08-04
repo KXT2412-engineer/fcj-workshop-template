@@ -1,4 +1,4 @@
----
+﻿---
 title: "AI Integrations"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.5.2. </b> "
 ---
 
-# Artificial Intelligence (AI) Integrations
 
 Snaptics communicates with 2 leading AI models via REST API (Keys are stored in SSM Parameter Store).
 

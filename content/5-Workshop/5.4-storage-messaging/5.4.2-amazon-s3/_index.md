@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.4.2. </b> "
 ---
 
-# Amazon S3 for Uploads
 
 
 <!-- TODO: Insert screenshot of Amazon S3 Bucket creation/list here -->

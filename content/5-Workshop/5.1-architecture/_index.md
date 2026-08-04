@@ -6,6 +6,4 @@ chapter: false
 pre: " <b> 5.1. </b> "
 ---
 
-# Overview & Architecture
-
 This module provides a comprehensive overview of the **Snaptics API** system architecture, diving deep into the technology services used, data flow, and operational cost estimation on AWS. Understanding the overall architecture is extremely important before getting hands-on with actual resource configuration.

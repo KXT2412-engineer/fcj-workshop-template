@@ -1,4 +1,4 @@
----
+﻿---
 title: "Background Jobs (Hangfire)"
 date: 2024-01-01
 weight: 3
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.5.3. </b> "
 ---
 
-# Tác vụ nền (Background Jobs) với Hangfire
 
 Hệ thống tài chính yêu cầu phải có những tác vụ chạy định kỳ mà không cần người dùng can thiệp (ví dụ: Chốt sổ cuối tháng lúc 23:59 ngày 30, hoặc gửi email báo cáo chi tiêu). Snaptics giải quyết bài toán này cực tốt bằng thư viện **Hangfire**.
 

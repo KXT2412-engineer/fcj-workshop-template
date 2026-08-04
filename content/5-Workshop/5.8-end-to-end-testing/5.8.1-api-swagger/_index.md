@@ -1,4 +1,4 @@
----
+﻿---
 title: "API Testing (Swagger)"
 date: 2024-01-01
 weight: 1
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.8.1. </b> "
 ---
 
-# API Testing (Swagger)
 
 If you configure the environment variable `ASPNETCORE_ENVIRONMENT = Development` on ECS, the Swagger UI interface will be enabled by default.
 

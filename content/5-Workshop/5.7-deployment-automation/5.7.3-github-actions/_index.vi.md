@@ -1,4 +1,4 @@
----
+﻿---
 title: "GitHub Actions CI/CD"
 date: 2024-01-01
 weight: 3
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7.3. </b> "
 ---
 
-# CI/CD với GitHub Actions
 
 Mặc dù script `deploy.ps1` rất tiện lợi cho việc triển khai thủ công từ máy cá nhân, nhưng môi trường Production thực tế đòi hỏi một hệ thống tự động hoàn toàn (CI/CD). Snaptics sử dụng **GitHub Actions** để tự động hóa quá trình Build & Deploy ngay khi có thay đổi mã nguồn.
 

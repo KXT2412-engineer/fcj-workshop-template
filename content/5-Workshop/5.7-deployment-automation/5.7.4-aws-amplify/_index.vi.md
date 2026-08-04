@@ -1,4 +1,4 @@
----
+﻿---
 title: "Triển khai Frontend bằng AWS Amplify"
 date: 2024-01-01
 weight: 4
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7.4. </b> "
 ---
 
-# Triển khai Frontend lên AWS Amplify
 
 Đối với giao diện người dùng (Angular app), Snaptics sử dụng **AWS Amplify** để hosting và triển khai cực kỳ dễ dàng. Amplify được kết nối trực tiếp với GitHub Repository của dự án, đồng nghĩa với việc mọi commit đẩy lên nhánh `main` đều tự động kích hoạt tiến trình Build & Deploy giao diện mới nhất.
 

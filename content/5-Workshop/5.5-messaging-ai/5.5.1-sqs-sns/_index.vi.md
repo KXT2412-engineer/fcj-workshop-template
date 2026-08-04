@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.5.1. </b> "
 ---
 
-# Hàng đợi SQS & Thông báo SNS
 
 
 <!-- TODO: ChÃ¨n áº£nh mÃ n hÃ¬nh hÃ ng Ä‘á»£i Amazon SQS (snaptics-ai-queue) vÃ  Amazon SNS topic vÃ o Ä‘Ã¢y -->

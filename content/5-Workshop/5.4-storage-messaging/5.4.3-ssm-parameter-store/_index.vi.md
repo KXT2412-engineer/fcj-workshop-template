@@ -1,4 +1,4 @@
----
+﻿---
 title: "Quản lý Secret (SSM)"
 date: 2024-01-01
 weight: 3
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.4.3. </b> "
 ---
 
-# Quản lý Secret với SSM Parameter Store
 
 Để ứng dụng .NET kết nối được tới RDS và gọi được AI APIs, nó cần các khóa bí mật. Thay vì đẩy file `appsettings.Production.json` lên Git và làm lộ mật khẩu, chúng ta sẽ lưu chúng lên Parameter Store. Khi Container khởi động, .NET sẽ tự động gọi AWS SDK lấy cấu hình về.
 

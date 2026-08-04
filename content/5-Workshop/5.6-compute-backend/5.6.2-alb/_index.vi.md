@@ -1,4 +1,4 @@
----
+﻿---
 title: "Application Load Balancer"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.6.2. </b> "
 ---
 
-# Application Load Balancer (ALB)
 
 Trước khi cấu hình ECS, chúng ta cần một Load Balancer đứng ở ngoài Public Subnet để nhận request từ người dùng và phân tải ngược lại cho các container Fargate nằm trong mạng Private.
 

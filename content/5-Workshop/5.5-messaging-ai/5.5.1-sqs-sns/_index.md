@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.5.1. </b> "
 ---
 
-# SQS Queues & SNS Topics
 
 
 <!-- TODO: Insert screenshots of Amazon SQS queue (snaptics-ai-queue) and Amazon SNS topic here -->

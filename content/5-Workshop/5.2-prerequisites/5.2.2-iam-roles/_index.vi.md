@@ -1,4 +1,4 @@
----
+﻿---
 title: "Phân quyền IAM Roles"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.2.2. </b> "
 ---
 
-# Phân quyền IAM Roles
 
 Để ứng dụng .NET chạy trên container ECS có thể giao tiếp được với các dịch vụ khác của AWS (như gửi file vào S3, đọc biến môi trường từ Parameter Store, thả message vào SQS), chúng ta cần cấp phát các quyền truy cập hợp lệ (IAM Policies) thay vì nhúng trực tiếp API Key của AWS vào source code.
 

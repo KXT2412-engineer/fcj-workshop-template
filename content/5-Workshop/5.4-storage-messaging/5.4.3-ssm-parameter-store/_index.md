@@ -1,4 +1,4 @@
----
+﻿---
 title: "Secrets Management (SSM)"
 date: 2024-01-01
 weight: 3
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.4.3. </b> "
 ---
 
-# Secrets Management with SSM Parameter Store
 
 For the .NET application to connect to RDS and call AI APIs, it needs secret keys. Instead of pushing the `appsettings.Production.json` file to Git and exposing passwords, we will store them in Parameter Store. When the Container starts, .NET will automatically invoke the AWS SDK to fetch configurations.
 

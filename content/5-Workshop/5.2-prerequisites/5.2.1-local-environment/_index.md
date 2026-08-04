@@ -1,4 +1,4 @@
----
+﻿---
 title: "Local Environment"
 date: 2024-01-01
 weight: 1
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.2.1. </b> "
 ---
 
-# Local Environment Setup
 
 You need to install the following tools on your computer.
 

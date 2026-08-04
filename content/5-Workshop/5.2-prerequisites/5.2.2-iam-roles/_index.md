@@ -1,4 +1,4 @@
----
+﻿---
 title: "IAM Roles"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.2.2. </b> "
 ---
 
-# IAM Roles Configuration
 
 For a .NET application running on an ECS container to communicate with other AWS services (like sending files to S3, reading environment variables from Parameter Store, or dropping messages into SQS), we need to grant valid access permissions (IAM Policies) instead of hardcoding AWS API Keys directly into the source code.
 

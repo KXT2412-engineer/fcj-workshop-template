@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.4.2. </b> "
 ---
 
-# Amazon S3 cho Upload
 
 
 <!-- TODO: ChÃ¨n áº£nh mÃ n hÃ¬nh danh sÃ¡ch Amazon S3 Bucket chá»©a áº£nh hÃ³a Ä‘Æ¡n vÃ o Ä‘Ã¢y -->

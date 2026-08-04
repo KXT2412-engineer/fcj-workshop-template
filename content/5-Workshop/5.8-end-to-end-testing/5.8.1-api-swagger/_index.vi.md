@@ -1,4 +1,4 @@
----
+﻿---
 title: "Kiểm thử API (Swagger)"
 date: 2024-01-01
 weight: 1
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.8.1. </b> "
 ---
 
-# Kiểm thử API (Swagger)
 
 Nếu bạn cấu hình biến môi trường `ASPNETCORE_ENVIRONMENT = Development` trên ECS, giao diện Swagger UI sẽ được bật mặc định.
 

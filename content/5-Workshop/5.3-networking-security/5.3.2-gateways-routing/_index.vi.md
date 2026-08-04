@@ -1,4 +1,4 @@
----
+﻿---
 title: "Gateways & Định tuyến"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.3.2. </b> "
 ---
 
-# Internet & NAT Gateways
 
 Private Subnet bản chất là mạng kín, các container bên trong (như ECS Snaptics) sẽ không thể chủ động gọi ra ngoài Google Gemini API hay tải thư viện về nếu không có lối thoát (Outbound traffic). Giải pháp là dùng NAT Gateway.
 

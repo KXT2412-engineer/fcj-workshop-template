@@ -1,4 +1,4 @@
----
+﻿---
 title: "Deployment Script"
 date: 2024-01-01
 weight: 1
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7.1. </b> "
 ---
 
-# Deployment Script (`deploy.ps1`)
 
 Snaptics possesses an automated PowerShell script named `deploy.ps1` located in the root directory. Whenever you complete a feature and want to push it to the real system, you only need to type a single command:
 

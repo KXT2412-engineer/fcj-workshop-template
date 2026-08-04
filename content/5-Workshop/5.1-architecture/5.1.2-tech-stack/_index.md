@@ -1,4 +1,4 @@
----
+﻿---
 title: "Tech Stack & AWS Services"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.1.2. </b> "
 ---
 
-# Tech Stack & AWS Services
 
 To operate a smooth financial system like Snaptics, we use a hybrid ecosystem combining .NET Core and AWS Managed Services. Below is a breakdown of the role of each technology in the project:
 

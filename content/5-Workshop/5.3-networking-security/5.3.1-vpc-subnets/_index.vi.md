@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.3.1. </b> "
 ---
 
-# Thiết kế VPC & Subnets
 
 
 <!-- TODO: ChÃ¨n áº£nh chá»¥p mÃ n hÃ¬nh giao diá»‡n AWS VPC Dashboard (danh sÃ¡ch Subnet) cá»§a báº¡n vÃ o Ä‘Ã¢y -->

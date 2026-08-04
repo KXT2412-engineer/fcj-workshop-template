@@ -1,4 +1,4 @@
----
+﻿---
 title: "Zero-Downtime Deployment"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7.2. </b> "
 ---
 
-# Zero-Downtime Deployment
 
 The `--force-new-deployment` flag in the `deploy.ps1` script triggers a highly sophisticated AWS ECS mechanism, commonly known as **Rolling Update**.
 

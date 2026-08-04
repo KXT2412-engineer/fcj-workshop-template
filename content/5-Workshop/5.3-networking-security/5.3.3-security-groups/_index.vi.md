@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.3.3. </b> "
 ---
 
-# Cấu hình Security Groups
 
 
 <!-- TODO: ChÃ¨n áº£nh chá»¥p mÃ n hÃ¬nh giao diá»‡n cáº¥u hÃ¬nh Security Group vÃ o Ä‘Ã¢y -->

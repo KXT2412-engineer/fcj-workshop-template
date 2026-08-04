@@ -1,4 +1,4 @@
----
+﻿---
 title: "Script Triển khai (deploy.ps1)"
 date: 2024-01-01
 weight: 1
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7.1. </b> "
 ---
 
-# Script Triển khai (deploy.ps1)
 
 Snaptics sở hữu một kịch bản PowerShell tự động tên là `deploy.ps1` nằm ở thư mục gốc. Mỗi khi bạn hoàn tất một tính năng và muốn đưa lên hệ thống thật, bạn chỉ cần gõ duy nhất một lệnh:
 

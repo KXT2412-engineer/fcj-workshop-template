@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.3.3. </b> "
 ---
 
-# Security Groups Configuration
 
 
 <!-- TODO: Insert screenshot of AWS EC2 Security Groups here -->

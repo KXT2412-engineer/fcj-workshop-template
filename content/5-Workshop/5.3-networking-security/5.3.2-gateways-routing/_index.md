@@ -1,4 +1,4 @@
----
+﻿---
 title: "Gateways & Routing"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.3.2. </b> "
 ---
 
-# Internet & NAT Gateways
 
 Private Subnets are essentially closed networks; containers inside (like Snaptics ECS) cannot proactively call out to Google Gemini API or download libraries without an exit route (Outbound traffic). The solution is to use a NAT Gateway.
 

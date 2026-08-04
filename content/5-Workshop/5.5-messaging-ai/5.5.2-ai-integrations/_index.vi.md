@@ -1,4 +1,4 @@
----
+﻿---
 title: "Tích hợp Trí tuệ Nhân tạo (AI)"
 date: 2024-01-01
 weight: 2
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.5.2. </b> "
 ---
 
-# Tích hợp Trí tuệ Nhân tạo (AI)
 
 Snaptics giao tiếp với 2 mô hình AI hàng đầu thông qua REST API (đã được lưu Key ở SSM Parameter Store).
 

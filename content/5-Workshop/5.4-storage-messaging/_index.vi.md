@@ -1,4 +1,4 @@
----
+﻿---
 title: "Database, Storage & Secrets"
 date: 2024-01-01
 weight: 4
@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.4. </b> "
 ---
 
-# Database, Storage & Secrets
 
 Ở phân hệ này, chúng ta sẽ thiết lập lớp Lưu trữ Dữ liệu (Data Storage Layer). Snaptics có nhu cầu lưu trữ hỗn hợp:
 - Dữ liệu có cấu trúc (Giao dịch, User, Hạng mục chi tiêu) sẽ nằm trong **SQL Server**.
