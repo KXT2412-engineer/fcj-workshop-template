@@ -50,25 +50,18 @@ Invoice images must be stored efficiently. Since we configured a **VPC Gateway E
 [
     {
         "AllowedMethods": [ "GET", "PUT", "POST" ],
-        "AllowedOrigins": [ "https://your-amplify-app-url.com" ],
+        "AllowedOrigins": [ "*" ],
         "AllowedHeaders": [ "*" ]
     }
 ]
 ```
 
-## 3. Secrets Management (AWS Systems Manager Parameter Store)
+## 3. Parameter Management (AWS Systems Manager Parameter Store)
 
-Never hardcode your SQL Server DB password or AI API Keys in your GitHub repo! Instead of SSM Parameter Store, Enterprise architectures favor AWS Systems Manager Parameter Store because it supports automatic password rotation.
+Never hardcode your SQL Server DB password or AI API Keys in your GitHub repo! We use **AWS Systems Manager Parameter Store** to inject these securely at runtime.
 
-- Go to **AWS Systems Manager Parameter Store ➔ Store a new secret**.
-- **Secret type:** Choose **Other type of secret**.
-- **Key/value pairs:** Add the following keys:
-  - `DbConnectionString`: `Server=<AURORA_ENDPOINT>,3306;Database=SnapticsDB;Uid=admin;Pwd=SnapticsAurora2024!;`
-  - `JwtKey`: `Enter_a_very_long_secure_string_here_for_token_signing`
-  - `GeminiApiKey`: `Paste_your_google_ai_key`
-  - `AzureDocIntelKey`: `Paste_your_azure_key`
-  - `AzureDocIntelEndpoint`: `Paste_your_azure_url`
-- **Secret name:** `/snaptics/prod/db-connection`
-- Click **Next** and **Store**.
-
-In your `.NET` `Program.cs`, install the `Amazon.Extensions.Configuration.SystemsManager` (Wait, for Parameter Store, install `Amazon.SecretsManager.Extensions.Caching` or use the AWS SDK) to automatically inject these secrets during application startup without exposing them in `appsettings.json`.
+- Go to **AWS Systems Manager -> Parameter Store -> Create parameter**.
+- **Name:** `/Snaptics/Production/ConnectionStrings:DefaultConnection`
+- **Type:** SecureString
+- **Value:** Your actual database connection string.
+- Repeat this for other required keys like `/Snaptics/Production/TokenKey`, `/Snaptics/Production/AiSettings:GeminiApiKey`, `/Snaptics/Production/AWS:AccessKey`, etc.

@@ -50,7 +50,7 @@ Vì ở bài trước chúng ta đã tạo **VPC Gateway Endpoint**, Code C# ch�
 [
     {
         "AllowedMethods": [ "GET", "PUT", "POST" ],
-        "AllowedOrigins": [ "https://your-amplify-app-url.com" ],
+        "AllowedOrigins": [ "*" ],
         "AllowedHeaders": [ "*" ]
     }
 ]

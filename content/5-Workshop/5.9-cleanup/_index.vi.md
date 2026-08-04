@@ -23,7 +23,7 @@ Hãy làm đúng trình tự ngược từ ngoài vào trong dưới đây để
 - **Target Groups:** Nhảy qua tab Target Groups, xóa `snaptics-ecs-tg`.
 
 ### 3. Tầng Dữ liệu & Storage (Nơi đốt tiền nhiều nhất)
-- **Amazon RDS for SQL Server:** Vào RDS ➔ Databases. Chọn cụm `snaptics-aurora-cluster`. Bấm Actions ➔ **Delete**. *Cực kỳ cẩn thận: BỎ tick dòng "Create final snapshot", tick đồng ý mọi cảnh báo rủi ro, gõ chữ `delete me` vào ô xác nhận.*
+- **Amazon RDS for SQL Server:** Vào RDS ➔ Databases. Chọn cụm `snaptics-sql-server`. Bấm Actions ➔ **Delete**. *Cực kỳ cẩn thận: BỎ tick dòng "Create final snapshot", tick đồng ý mọi cảnh báo rủi ro, gõ chữ `delete me` vào ô xác nhận.*
 - **AWS Systems Manager Parameter Store:** Chọn `/snaptics/prod/db-connection` ➔ Actions ➔ **Schedule secret deletion** (Hẹn 7 ngày sau tự xóa vĩnh viễn).
 - **Amazon S3:** Vào Bucket của bạn. Bấm **Empty** để dọn sạch rác hóa đơn ảnh bên trong. Sau đó mới bấm **Delete** Bucket được.
 - **Amazon ECR:** Xóa Repository chứa file Docker.
