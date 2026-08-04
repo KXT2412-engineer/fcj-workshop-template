@@ -24,18 +24,19 @@ GitHub needs your AWS credentials to push Docker images and deploy to Amplify.
 Create a YAML file inside your repository at `.github/workflows/deploy.yml`:
 
 ```yaml
-name: Deploy Backend to Amazon ECS
+name: Deploy Backend to Fargate
 
 on:
   push:
-    branches: [ "main" ]
-    
+    branches:
+      - main
+      - master
 
 env:
   AWS_REGION: ap-southeast-1
   ECR_REPOSITORY: snaptics-api
-  ECS_CLUSTER: Snaptics-Cluster
   ECS_SERVICE: snaptics-backend-service
+  ECS_CLUSTER: Snaptics-Cluster
 
 jobs:
   deploy:
@@ -43,11 +44,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Source Code
-      uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v4
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -55,20 +56,23 @@ jobs:
 
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      uses: aws-actions/amazon-ecr-login@v2
 
-    - name: Build, tag, and push Docker image to ECR
+    - name: Build, tag, and push image to ECR
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: latest
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY --all-tags
-        
-    - name: Force ECS to deploy new Image (Rolling Update)
+        echo "Building docker image..."
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        echo "Pushing image to ECR..."
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Force New Deployment in Fargate
       run: |
-        aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --force-new-deployment
+        echo "Telling ECS to fetch the new image..."
+        aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --force-new-deployment --region ${{ env.AWS_REGION }}
 ```
 
 ### Zero-Downtime Deployment

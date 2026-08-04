@@ -46,7 +46,7 @@ Vào **IAM ➔ Roles ➔ Create role** và tạo lần lượt 2 Role sau:
 Role này cấp quyền cho nền tảng phần cứng ECS để nó tự động tải Docker Image từ ECR và tạo Log trong CloudWatch.
 - **Trusted Entity:** `Elastic Container Service Task`
 - **Managed Policy:** Tìm và gắn `AmazonECSTaskExecutionRolePolicy`.
-- Gắn thêm quyền `SecretsManagerReadWrite` để ECS có quyền đọc mật khẩu DB khi khởi động.
+- Gắn thêm quyền `AmazonSSMReadOnlyAccess` để ECS có quyền đọc mật khẩu DB khi khởi động.
 
 ### B. Snaptics ECS Task Role (`snaptics-ecs-task-role`)
 Role này cấp quyền cho **chính mã nguồn C#** của bạn.
@@ -58,13 +58,13 @@ Role này cấp quyền cho **chính mã nguồn C#** của bạn.
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "AllowSecretsManager",
+            "Sid": "AllowParameterStore",
             "Effect": "Allow",
             "Action": [
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:DescribeSecret"
+                "ssm:GetParameter",
+                "ssm:GetParametersByPath"
             ],
-            "Resource": "arn:aws:secretsmanager:ap-southeast-1:*:secret:/snaptics/prod/db-connection-*"
+            "Resource": "arn:aws:ssm:ap-southeast-1:*:parameter/Snaptics/Production/*"
         },
         {
             "Sid": "AllowS3Storage",

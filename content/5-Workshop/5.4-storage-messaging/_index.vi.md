@@ -25,7 +25,7 @@ Snaptics yêu cầu một DB không bao giờ được phép sập (High Availab
 - **Edition:** Chọn MySQL hoặc PostgreSQL (Tùy thuộc vào thư viện EF Core bạn gắn trong code C#).
 - **Templates:** Production.
 - **Settings:**
-  - DB cluster identifier: `snaptics-aurora-cluster`
+  - DB cluster identifier: `snaptics-sql-server`
   - Master username: `admin`
   - Master password: Gõ một mật khẩu thật mạnh (Ví dụ `SnapticsAurora2024!`).
 - **Instance configuration:** Chọn cấu hình máy chủ ảo, ví dụ `db.t3.medium`.
@@ -34,7 +34,7 @@ Snaptics yêu cầu một DB không bao giờ được phép sập (High Availab
   - VPC: Chọn `snaptics-vpc`
   - DB subnet group: `snaptics-db-subnet-group`
   - **Public access: No** (Rất quan trọng, để No để hacker không thể quét ra cổng DB của bạn).
-  - VPC security group: Chọn `snaptics-aurora-sg`.
+  - VPC security group: Chọn `snaptics-db-sg`.
 - Bấm **Create database**. Cụm SQL Server sẽ mất khoảng 15 phút để tạo. Sau khi xong, copy lấy chuỗi **Writer Endpoint**.
 
 ## 2. Kho lưu trữ Hóa đơn (Amazon S3)
@@ -42,7 +42,7 @@ Snaptics yêu cầu một DB không bao giờ được phép sập (High Availab
 Vì ở bài trước chúng ta đã tạo **VPC Gateway Endpoint**, Code C# chạy trong ECS giờ đây sẽ đẩy thẳng file ảnh hóa đơn vào S3 xuyên qua mạng nội bộ, tốc độ cực cao và hoàn toàn miễn phí băng thông.
 
 - Vào **Amazon S3 ➔ Create bucket**.
-- **Bucket name:** `s3-bucket-snaptics-enterprise` (Phải gõ thêm số linh tinh vì tên S3 là duy nhất toàn cầu).
+- **Bucket name:** `s3-bucket-snaptics` (Phải gõ thêm số linh tinh vì tên S3 là duy nhất toàn cầu).
 - **Region:** `ap-southeast-1`.
 - **Block Public Access:** Giữ trạng thái **ON** để bảo mật tuyệt đối ảnh hóa đơn tài chính của người dùng.
 - **Cấu hình CORS (Tab Permissions):** Cho phép Frontend trên AWS Amplify gọi trực tiếp vào S3 thông qua URL ký sẵn (Pre-signed URL).

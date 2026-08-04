@@ -46,7 +46,7 @@ Go to **IAM ➔ Roles ➔ Create role**:
 This role allows the underlying ECS platform to pull your Docker image from ECR and stream logs to CloudWatch.
 - **Trusted Entity:** `Elastic Container Service Task`
 - **Managed Policy:** Search for and attach `AmazonECSTaskExecutionRolePolicy`.
-- Also attach `SecretsManagerReadWrite` so it can fetch the DB password during container startup.
+- Also attach `AmazonSSMReadOnlyAccess` so it can fetch the DB password during container startup.
 
 ### B. Snaptics ECS Task Role (`snaptics-ecs-task-role`)
 This role grants permissions to your **C# code** executing inside the container.
@@ -58,13 +58,13 @@ This role grants permissions to your **C# code** executing inside the container.
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "AllowSecretsManager",
+            "Sid": "AllowParameterStore",
             "Effect": "Allow",
             "Action": [
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:DescribeSecret"
+                "ssm:GetParameter",
+                "ssm:GetParametersByPath"
             ],
-            "Resource": "arn:aws:secretsmanager:ap-southeast-1:*:secret:/snaptics/prod/db-connection-*"
+            "Resource": "arn:aws:ssm:ap-southeast-1:*:parameter/Snaptics/Production/*"
         },
         {
             "Sid": "AllowS3Storage",

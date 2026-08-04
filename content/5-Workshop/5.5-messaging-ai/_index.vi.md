@@ -57,7 +57,7 @@ var requestBody = new {
 };
 
 var response = await _httpClient.PostAsJsonAsync(
-    $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={_secrets["GeminiApiKey"]}", 
+    $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={_secrets["GeminiApiKey"]}", 
     requestBody);
 ```
 
@@ -68,13 +68,13 @@ Bên cạnh SQS xử lý sự kiện tức thời, Snaptics còn dùng Hangfire 
 ```csharp
 // Hangfire tận dụng luôn cụm SQL Server Database siêu mạnh để lưu trạng thái Job
 builder.Services.AddHangfire(config => config
-    .UseMySQLStorage(_secrets["DbConnectionString"]));
+    .UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddHangfireServer();
 
 // Chạy tác vụ tự động lúc 00:00 ngày mùng 1 hàng tháng
 RecurringJob.AddOrUpdate<IReportService>(
-    "monthly-financial-report",
-    service => service.CompileAndSendReportAsync(),
+    "monthly-ai-insight",
+    job => job.GenerateMonthlyInsightsAsync(),
     "0 0 1 * *"); // Cú pháp Cron
 ```
 

@@ -51,14 +51,14 @@ double total = result.Documents[0].Fields["Total"].Value.AsDouble();
 
 ### Google Gemini (Smart Consulting)
 Users can ask the system: "Based on my receipts, how can I save money?"
-Snaptics queries the Gemini 1.5 model to provide instant insights:
+Snaptics queries the Gemini 2.5 model to provide instant insights:
 ```csharp
 var requestBody = new {
     contents = new[] { new { parts = new[] { new { text = userPrompt } } } }
 };
 
 var response = await _httpClient.PostAsJsonAsync(
-    $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={_secrets["GeminiApiKey"]}", 
+    $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={_secrets["GeminiApiKey"]}", 
     requestBody);
 ```
 
@@ -69,13 +69,13 @@ For scheduled tasks (like rolling over budget limits at midnight), Snaptics uses
 ```csharp
 // Hangfire uses the same SQL Server Database for job storage
 builder.Services.AddHangfire(config => config
-    .UseMySQLStorage(_secrets["DbConnectionString"]));
+    .UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddHangfireServer();
 
 // Automatically send financial reports on the 1st of every month
 RecurringJob.AddOrUpdate<IReportService>(
-    "monthly-financial-report",
-    service => service.CompileAndSendReportAsync(),
+    "monthly-ai-insight",
+    job => job.GenerateMonthlyInsightsAsync(),
     "0 0 1 * *"); // Cron expression
 ```
 

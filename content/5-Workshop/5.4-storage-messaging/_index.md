@@ -22,10 +22,10 @@ Snaptics requires a robust, highly available database. SQL Server automatically 
 ### B. Create SQL Server Cluster
 - Open **RDS ➔ Databases ➔ Create database**.
 - **Engine options:** Select **Amazon RDS for SQL Server**.
-- **Edition:** Choose MySQL or PostgreSQL compatible (Depending on your EF Core provider in the `.NET` code).
+- **Edition:** Choose SQL Server Express or Standard.
 - **Templates:** Production.
 - **Settings:**
-  - DB cluster identifier: `snaptics-aurora-cluster`
+  - DB cluster identifier: `snaptics-sql-server`
   - Master username: `admin`
   - Master password: Generate a strong password (e.g., `SnapticsAurora2024!`).
 - **Instance configuration:** Choose a serverless or provisioned instance class (e.g., `db.t3.medium`).
@@ -34,7 +34,7 @@ Snaptics requires a robust, highly available database. SQL Server automatically 
   - VPC: `snaptics-vpc`
   - DB subnet group: `snaptics-db-subnet-group`
   - **Public access: No** (Crucial for security).
-  - VPC security group: Choose the `snaptics-aurora-sg` created earlier.
+  - VPC security group: Choose the `snaptics-db-sg` created earlier.
 - Click **Create database**. Wait ~15 minutes and copy the **Writer Endpoint**.
 
 ## 2. Secure Storage (Amazon S3)
@@ -42,7 +42,7 @@ Snaptics requires a robust, highly available database. SQL Server automatically 
 Invoice images must be stored efficiently. Since we configured a **VPC Gateway Endpoint** in the previous step, our containers can save files to S3 internally without internet bandwidth costs.
 
 - Open **Amazon S3 ➔ Create bucket**.
-- **Bucket name:** `s3-bucket-snaptics-enterprise` (Must be globally unique).
+- **Bucket name:** `s3-bucket-snaptics` (Must be globally unique).
 - **Region:** `ap-southeast-1`.
 - **Block Public Access:** **ON** (Keep invoices 100% private).
 - **CORS Configuration (Permissions tab):** Allows frontend applications hosted on AWS Amplify to fetch pre-signed URLs directly.
