@@ -22,7 +22,7 @@ Trong quá trình thực tập, tôi đã có cơ hội tuyệt vời để tham
 
 &emsp;**Tên sự kiện:** FCAJ – Agentic AI Build Week
 
-&emsp;**Thời gian:** Ngày 4 tháng 7 năm 2026
+&emsp;**Thời gian:** Ngày 25 tháng 7 năm 2026
 
 &emsp;**Địa điểm:** Tòa nhà Bitexco Financial Tower, Quận 1, TP. Hồ Chí Minh
 
@@ -32,7 +32,7 @@ Trong quá trình thực tập, tôi đã có cơ hội tuyệt vời để tham
 
 &emsp;**Tên sự kiện:** AWS FCAJ Agent Forge - Deepdive
 
-&emsp;**Thời gian:** Ngày 3 tháng 8 năm 2026
+&emsp;**Thời gian:** Ngày 1 tháng 8 năm 2026
 
 &emsp;**Địa điểm:** Tòa nhà Bitexco Financial Tower, Quận 1, TP. Hồ Chí Minh
 
