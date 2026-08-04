@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.8. </b> "
 ---
 
-# System-Wide Testing (End-to-End Testing)
 
 Test the data flow via REST API and WebSockets to ensure the system is fully operational.
 

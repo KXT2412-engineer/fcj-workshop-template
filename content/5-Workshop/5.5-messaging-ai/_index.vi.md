@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.5. </b> "
 ---
 
-# AI & Tác vụ nền (Messaging)
 
 Trái tim sức mạnh của Snaptics nằm ở khả năng xử lý bất đồng bộ. Thay vì bắt người dùng chờ, các tác vụ nặng (như OCR) được ném vào hàng đợi (Queue) xử lý ngầm.
 

@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.6. </b> "
 ---
 
-# Compute & Load Balancing (ECS)
 
 Deploy the Snaptics .NET codebase as Serverless Containers using **Amazon ECS Fargate** and an Application Load Balancer.
 

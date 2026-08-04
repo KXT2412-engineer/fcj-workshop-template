@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.4. </b> "
 ---
 
-# Database, Storage & Secrets
 
 In this module, we will set up the Data Storage Layer for both structured and unstructured data, as well as securely manage secrets.
 

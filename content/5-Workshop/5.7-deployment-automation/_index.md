@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-# Deployment Automation (CI/CD)
 
 Snaptics uses a local PowerShell script to automate the deployment process, eliminating manual steps.
 

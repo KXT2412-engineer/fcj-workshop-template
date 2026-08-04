@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.2. </b> "
 ---
 
-# Prerequisites
 
 To ensure the deployment of Snaptics goes smoothly, you must set up your Local Environment and configure IAM Permissions.
 

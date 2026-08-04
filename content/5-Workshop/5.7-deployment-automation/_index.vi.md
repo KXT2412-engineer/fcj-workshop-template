@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-# Tự động hóa Triển khai (CI/CD)
 
 Snaptics áp dụng phương pháp tự động hóa bằng Script cục bộ (Local CI/CD) để tiết kiệm thời gian và tránh lỗi con người.
 

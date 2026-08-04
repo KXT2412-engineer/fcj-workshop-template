@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.2. </b> "
 ---
 
-# Chuẩn bị Môi trường (Prerequisites)
 
 Để quá trình triển khai diễn ra suôn sẻ, bạn cần chuẩn bị công cụ ở Local và phân quyền IAM hợp lệ trên AWS.
 

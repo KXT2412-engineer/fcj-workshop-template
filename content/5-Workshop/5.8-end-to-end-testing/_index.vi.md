@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.8. </b> "
 ---
 
-# Kiểm thử Toàn hệ thống (End-to-End Testing)
 
 Kiểm thử đảm bảo luồng dữ liệu HTTP và WebSockets đi đúng thiết kế.
 

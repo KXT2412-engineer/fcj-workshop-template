@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.9. </b> "
 ---
 
-# Dọn dẹp Tài nguyên (Cleanup)
 
 Bước dọn dẹp rất quan trọng để tránh bị trừ tiền oan. Hãy thực hiện tuần tự để tránh lỗi khóa chéo tài nguyên.
 

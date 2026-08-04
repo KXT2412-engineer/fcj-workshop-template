@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.9. </b> "
 ---
 
-# Resources Cleanup
 
 Clean up resources strictly in this order to avoid AWS charges and dependency lock errors.
 

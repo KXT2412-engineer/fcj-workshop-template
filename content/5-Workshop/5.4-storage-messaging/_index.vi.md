@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.4. </b> "
 ---
 
-# Database, Storage & Secrets
 
 Ở phân hệ này, chúng ta sẽ thiết lập lớp Lưu trữ dữ liệu có cấu trúc, phi cấu trúc và bảo mật các khóa bí mật.
 

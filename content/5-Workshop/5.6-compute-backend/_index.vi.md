@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.6. </b> "
 ---
 
-# Compute & Load Balancing (ECS)
 
 Đưa mã nguồn .NET của Snaptics lên chạy trực tiếp trên Đám mây qua mô hình Serverless Containers sử dụng **Amazon ECS Fargate** và Load Balancer.
 

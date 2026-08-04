@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.5. </b> "
 ---
 
-# AI & Background Tasks (Messaging)
 
 Snaptics offloads heavy tasks (OCR, AI Insights) to background queues using SQS and Hangfire to provide a snappy User Experience.
 

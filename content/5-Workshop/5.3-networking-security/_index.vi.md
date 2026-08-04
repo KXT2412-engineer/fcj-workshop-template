@@ -6,7 +6,6 @@ chapter: false
 pre: " <b> 5.3. </b> "
 ---
 
-# Mạng & Bảo mật (VPC & Security)
 
 Để cô lập Snaptics khỏi rủi ro từ Internet, chúng ta sẽ xây dựng một kiến trúc Virtual Private Cloud (VPC) phân tầng.
 
