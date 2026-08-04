@@ -6,44 +6,77 @@ chapter: false
 pre: " <b> 5.5. </b> "
 ---
 
+# Tích hợp AI & Hàng đợi Xử lý ngầm
 
-Trái tim sức mạnh của Snaptics nằm ở khả năng xử lý bất đồng bộ. Thay vì bắt người dùng chờ, các tác vụ nặng (như OCR) được ném vào hàng đợi (Queue) xử lý ngầm.
+Trái tim sức mạnh của Snaptics nằm ở khả năng xử lý bất đồng bộ. Việc gọi API bóc tách ảnh hóa đơn có thể mất từ 5-10 giây, do đó ta không thể bắt người dùng ngồi nhìn vòng tròn xoay loading. Thay vào đó, ta sẽ quăng tác vụ đó vào hàng đợi SQS.
 
-## 1. Hàng đợi SQS & Thông báo SNS
-- **SQS Queue:** Tạo queue Standard tên là `snaptics-main-queue`, đặt Visibility timeout là 1 phút.
-- **SNS Topic:** Tạo topic Standard tên `snaptics-alerts` và cấu hình Subscription gửi Email cho Admin.
+## 1. Cấu hình SQS & Hàng đợi chết (Dead Letter Queue)
 
-**Tích hợp vào .NET:**
-Thay vì gọi thẳng hàm quét ảnh mất thời gian, API chỉ đơn giản quăng message vào SQS:
+Trong môi trường Enterprise, chỉ tạo 1 Queue là không đủ an toàn. Giả sử API AI của Azure bị sập tạm thời, hệ thống đọc hóa đơn thất bại, message đó sẽ cứ bị đẩy lại vào Queue và gây ra vòng lặp lỗi vô tận (Infinite Loop). Để chặn đứng việc này, ta phải tạo **Dead Letter Queue (DLQ)**.
+
+### A. Tạo Hàng đợi chết (DLQ)
+- Vào **Amazon SQS ➔ Create queue**.
+- **Type:** Standard.
+- **Name:** Đặt là `snaptics-ai-queue-dlq` (Có hậu tố DLQ).
+- Các cài đặt khác giữ nguyên, bấm Create.
+
+### B. Tạo Hàng đợi Chính (Main Queue)
+- Quay lại và bấm **Create queue**.
+- **Type:** Standard.
+- **Name:** Đặt chính xác là `snaptics-ai-queue` (Khớp 100% với sơ đồ kiến trúc).
+- **Visibility timeout:** `1 minutes`.
+- **Dead-letter queue:** Mở khóa phần này ra, bật **Enabled**.
+- Chọn DLQ vừa tạo ở bước A.
+- **Maximum receives:** Đặt là `3`. *(Điều này có nghĩa là: Code C# trên ECS chỉ được phép thử quét hóa đơn lỗi tối đa 3 lần. Nếu lần thứ 3 vẫn thất bại do AI sập, SQS sẽ tự động hất cái message lỗi đó sang chuồng DLQ để cách ly, giúp hệ thống không bị kẹt).*
+- Bấm Create.
+
+## 2. Tích hợp AI (Trí tuệ nhân tạo)
+
+ECS Container sẽ móc message từ Queue ra và âm thầm gọi sang 2 con AI hàng đầu thế giới để xử lý:
+
+### Azure Document Intelligence (OCR)
+Khi ảnh hóa đơn nằm trên S3, AWS sẽ gọi Azure để bóc tách text:
 ```csharp
-var requestMessage = new SendMessageRequest {
-    QueueUrl = "https://sqs.ap-southeast-1.amazonaws.com/123/snaptics-main-queue",
-    MessageBody = JsonSerializer.Serialize(new { InvoiceId = invoice.Id, S3FilePath = s3Key })
-};
-await _sqsClient.SendMessageAsync(requestMessage);
-```
+// Lấy Key bảo mật từ AWS Secrets Manager thay vì gõ cứng
+var credential = new AzureKeyCredential(_secrets["AzureDocIntelKey"]);
+var client = new DocumentAnalysisClient(new Uri(_secrets["AzureDocIntelEndpoint"]), credential);
 
-## 2. Tích hợp Trí tuệ Nhân tạo (AI)
-**Azure Document Intelligence (Quét Hóa Đơn OCR):**
-```csharp
-var client = new DocumentAnalysisClient(new Uri(_config["AiSettings:AzureDocIntelEndpoint"]), new AzureKeyCredential(azureKey));
+// Phân tích ảnh hóa đơn (Ảnh được gọi qua đường hầm VPC Endpoint an toàn)
 AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-receipt", new Uri(preSignedUrl));
-// Bóc tách tự động tên cửa hàng
-string merchantName = operation.Value.Documents[0].Fields["MerchantName"].Value.AsString();
+var result = operation.Value;
+
+// Nhặt tên Cửa hàng và Giá tiền lưu vào Database Aurora
+string merchantName = result.Documents[0].Fields["MerchantName"].Value.AsString();
+double total = result.Documents[0].Fields["Total"].Value.AsDouble();
 ```
 
-**Google Gemini (Tư vấn Tài chính):**
+### Google Gemini (Tư vấn Tài chính)
+Khi người dùng hỏi: "Với mức chi tiêu này, tôi nên tiết kiệm thế nào?", hệ thống sẽ ném dữ liệu cho Gemini xử lý:
 ```csharp
-var requestBody = new { contents = new[] { new { parts = new[] { new { text = "Ngân sách tháng này là 5 triệu. Khuyên tôi đi." } } } } };
-var response = await _httpClient.PostAsJsonAsync($"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={geminiKey}", requestBody);
+var requestBody = new {
+    contents = new[] { new { parts = new[] { new { text = userPrompt } } } }
+};
+
+var response = await _httpClient.PostAsJsonAsync(
+    $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={_secrets["GeminiApiKey"]}", 
+    requestBody);
 ```
 
-## 3. Tác vụ nền (Hangfire)
-Hangfire dùng chính SQL Server để lưu thông tin các Job đang xử lý.
+## 3. Quản lý Tác vụ định kỳ (Hangfire)
+
+Bên cạnh SQS xử lý sự kiện tức thời, Snaptics còn dùng Hangfire để chạy các Cron Job định kỳ (ví dụ: Chốt sổ tài chính lúc nửa đêm).
+
 ```csharp
-builder.Services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
+// Hangfire tận dụng luôn cụm Aurora Database siêu mạnh để lưu trạng thái Job
+builder.Services.AddHangfire(config => config
+    .UseMySQLStorage(_secrets["DbConnectionString"]));
 builder.Services.AddHangfireServer();
 
-// Chạy tác vụ báo cáo định kỳ mỗi tháng
-RecurringJob.AddOrUpdate<IAiInsightService>("monthly-ai-insight", service => service.GenerateMonthlyInsightAsync(), Cron.Monthly());
+// Chạy tác vụ tự động lúc 00:00 ngày mùng 1 hàng tháng
+RecurringJob.AddOrUpdate<IReportService>(
+    "monthly-financial-report",
+    service => service.CompileAndSendReportAsync(),
+    "0 0 1 * *"); // Cú pháp Cron
 ```
+
+Sự kết hợp hoàn hảo giữa SQS (Cho luồng dữ liệu biến động tức thời) và Hangfire (Cho lịch trình cố định) giúp kiến trúc Backend của Snaptics vận hành trơn tru như một cỗ máy công nghiệp!

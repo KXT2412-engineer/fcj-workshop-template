@@ -6,17 +6,34 @@ chapter: false
 pre: " <b> 5.8. </b> "
 ---
 
+# Kiểm thử Toàn hệ thống (End-to-End Testing)
 
-Kiểm thử đảm bảo luồng dữ liệu HTTP và WebSockets đi đúng thiết kế.
+Chúc mừng bạn đã dựng xong khối kiến trúc Enterprise đồ sộ! Giờ là lúc kiểm chứng xem mọi mảnh ghép (CloudFront ➔ WAF ➔ ALB ➔ ECS ➔ Aurora/S3/SQS) có đang mượt mà vắt chéo nhau không.
 
-## 1. Kiểm thử API (Swagger)
-Truy cập `http://<ALB_DNS_NAME>/swagger`.
-1. **Đăng nhập (Auth):** Dùng Endpoint `/api/Auth/register` rồi `/api/Auth/login` lấy token JWT. Nhập token vào nút Authorize.
-2. **Upload Hóa đơn:** Dùng Endpoint `/api/Transactions/scan-receipt` tải lên một bức ảnh hóa đơn.
-3. **Xác thực:** Bạn sẽ thấy file ảnh hiện trong Bucket S3, một message nhảy lên ở hàng đợi SQS, và Swagger trả về chuỗi JSON bóc tách chính xác tên cửa hàng nhờ Azure OCR.
+## 1. Kiểm chứng Tường lửa WAF & CloudFront
 
-## 2. Kiểm thử WebSocket (SignalR)
-1. Dùng công cụ Client kết nối tới `ws://<ALB_DNS_NAME>/hubs/notification?access_token=<TOKEN>`.
+Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duyệt và gõ **Domain của CloudFront** (Ví dụ `https://d1234abcd.cloudfront.net/swagger` hoặc Domain xịn của bạn trên Route 53).
+
+1. **Test Tường lửa WAF:** Hãy thử gõ thêm một câu lệnh hack SQL Injection vào đuôi URL: `?id=1' OR '1'='1`. Nếu WAF hoạt động đúng, nó sẽ vả bạn ngay lập tức bằng một trang trắng bóc lỗi `403 Forbidden`. Quá an toàn!
+2. **Test Load Tĩnh:** Truy cập lại trang Swagger bình thường, bạn sẽ thấy nó load nhanh khủng khiếp vì CloudFront đã cache lại các file giao diện tĩnh (HTML/CSS) ở các trạm phát sóng (Edge location).
+
+## 2. Kiểm thử API & Trí tuệ Nhân tạo (Swagger)
+
+1. **Đăng nhập (Auth):** Dùng Endpoint `/api/Auth/register` rồi `/api/Auth/login`. Bước này chứng minh ECS Container đã đọc được mật khẩu từ **Secrets Manager** và kết nối thành công tới **Aurora Database**!
+2. **Upload Hóa đơn:** Dùng Endpoint `/api/Transactions/scan-receipt` tải lên một bức ảnh hóa đơn thật.
+3. **Xác thực Luồng Data:**
+   - Mở **S3**, bức ảnh đã nằm đó (Chứng minh **VPC Gateway Endpoint** xuyên mạng nội bộ thành công).
+   - Mở **SQS**, một message nhảy lên ở hàng đợi `snaptics-ai-queue`.
+   - Mở **CloudWatch Logs**, bạn sẽ thấy log của Hangfire đang bốc message ra và gọi sang Azure OCR.
+   - Quay lại Swagger, bạn nhận được chuỗi JSON bóc tách chính xác tên cửa hàng!
+
+## 3. Kiểm thử WebSocket xuyên tường (SignalR)
+
+Để xem Real-time Notification có đâm xuyên qua được CloudFront và ALB không.
+
+1. Dùng công cụ Client kết nối tới: `wss://<CLOUDFRONT_DOMAIN>/hubs/notification?access_token=<TOKEN>`
 2. Kiểm tra log thấy báo `101 Switching Protocols` là thành công.
-3. Quay lại Swagger, gọi Endpoint tạo 1 giao dịch thủ công (Ví dụ: Ăn sáng 50.000đ).
-4. Ngay lập tức màn hình WebSocket Client nhận được một chuỗi JSON đẩy về: `{"type": "NEW_TRANSACTION_ADDED"}`. Chứng minh tính năng Real-time Notification thông qua ALB hoạt động hoàn hảo!
+3. Mở song song trang Swagger, gọi Endpoint tạo 1 giao dịch thủ công.
+4. Ngay lập tức màn hình WebSocket Client nhận được một chuỗi JSON đẩy về: `{"type": "NEW_TRANSACTION_ADDED"}`. 
+
+Điều này chứng minh CloudFront và ALB đã làm rất tốt việc Upgrade giao thức HTTP lên WebSocket và giữ đường hầm kết nối liên tục (Persistent tunnel) thẳng tới lõi Fargate bên trong mạng Private!

@@ -6,38 +6,69 @@ chapter: false
 pre: " <b> 5.6. </b> "
 ---
 
+# Compute & Load Balancing (ECS Fargate)
 
-Deploy the Snaptics .NET codebase as Serverless Containers using **Amazon ECS Fargate** and an Application Load Balancer.
+Snaptics backend operates on a Serverless Container architecture. We package the `.NET` application into a Docker container and run it on Amazon ECS Fargate.
 
-## 1. Dockerizing the .NET API
-Use this multi-stage `Dockerfile` to build a lightweight image:
-```dockerfile
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-WORKDIR /app
-EXPOSE 8080
+## 1. Application Load Balancer (ALB)
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
-COPY ["API/API.csproj", "API/"]
-RUN dotnet restore "API/API.csproj"
-COPY . .
-WORKDIR "/src/API"
-RUN dotnet build "API.csproj" -c Release -o /app/build
-RUN dotnet publish "API.csproj" -c Release -o /app/publish
+Since the containers run in Private Subnets, we need an ALB in the Public Subnets to act as the traffic distributor.
 
-FROM base AS final
-WORKDIR /app
-COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "API.dll"]
-```
-**Push to ECR:** Create a Private repository `snaptics-api` on Amazon ECR and push the image via AWS CLI/Docker CLI.
+### A. Create Target Group
+- Open **EC2 ➔ Target Groups ➔ Create target group**.
+- **Target type:** Select **IP addresses** (Required for Fargate `awsvpc` networking).
+- **Target group name:** `snaptics-ecs-tg`.
+- **Protocol / Port:** `HTTP / 8080`.
+- **VPC:** `snaptics-vpc`.
+- Leave targets blank (ECS will auto-register them later) and click Create.
 
-## 2. Application Load Balancer (ALB)
-ALB sits in the Public Subnet to route incoming traffic to Private containers.
-- **Target Group:** Create `snaptics-tg`. Must choose **IP addresses** as the target type. Protocol HTTP 8080.
-- **Load Balancer:** Create `snaptics-alb` (Internet-facing). Select both Public Subnets. Apply `snaptics-alb-sg`. Set the listener (Port 80) to forward traffic to `snaptics-tg`.
+### B. Create ALB
+- Open **EC2 ➔ Load Balancers ➔ Create Load Balancer ➔ Application Load Balancer**.
+- **Name:** `snaptics-alb`.
+- **Scheme:** **Internal** OR **Internet-facing**. Since we have CloudFront in front of it, it can technically be Internal if configured with advanced routing, but for simplicity, we keep it **Internet-facing**.
+- **Network mapping:** Select `snaptics-vpc` and check the 2 **Public Subnets**.
+- **Security groups:** Apply `snaptics-alb-sg`.
+- **Listeners and routing:** Add HTTP (80) and forward traffic to `snaptics-ecs-tg`.
+- Click Create.
+
+## 2. Amazon Elastic Container Registry (ECR)
+
+Before creating the ECS Cluster, we need a place to store our Docker Images.
+- Open **Amazon ECR ➔ Repositories ➔ Create repository**.
+- **Visibility settings:** Private.
+- **Repository name:** `snaptics-api`.
+- Click Create. Copy the **URI** (e.g., `123456789.dkr.ecr.ap-southeast-1.amazonaws.com/snaptics-api`).
+
+*(Note: We don't push images manually here. GitHub Actions will do this in the next section).*
 
 ## 3. ECS Cluster & Task Definition
-- **Create Cluster:** Name it `Snaptics-Cluster` (Infrastructure: AWS Fargate).
-- **Task Definition:** Create `snaptics-api-task`. Set CPU (1 vCPU) and RAM (2 GB). Assign `snaptics-ecs-task-role` and `ecsTaskExecutionRole`. Point the container to your ECR Image URI at port 8080.
-- **Deploy Service:** Create a Service inside the cluster. Set **Desired tasks** to 2. Place it in the 2 Private Subnets (Turn off Public IP). Apply `snaptics-ecs-sg`. Link it to the ALB and Target Group created earlier.
+
+### A. Create Cluster
+- Open **Amazon ECS ➔ Clusters ➔ Create Cluster**.
+- **Name:** `Snaptics-Cluster`.
+- **Infrastructure:** AWS Fargate.
+- Enable **Container Insights** (This activates advanced CloudWatch monitoring as seen in the architecture diagram).
+
+### B. Task Definition
+- Open **Task definitions ➔ Create new task definition**.
+- **Family:** `snaptics-api-task`.
+- **Infrastructure:** Fargate (Linux/X86_64).
+- **CPU:** `0.5 vCPU`.
+- **Memory:** `2 GB` (Provides enough headroom for `.NET` and Hangfire).
+- **Task role:** Select `snaptics-ecs-task-role`.
+- **Task execution role:** Select `ecsTaskExecutionRole`.
+- **Container - 1:**
+  - Name: `snaptics-app`
+  - Image URI: Paste the ECR URI you copied earlier. *(It will fail to boot initially since the image doesn't exist yet, but GitHub Actions will fix this).*
+  - Container port: `8080`.
+
+### C. Deploy ECS Service
+- Go to `Snaptics-Cluster` ➔ **Services** tab ➔ **Create**.
+- **Launch type:** Fargate.
+- **Service name:** `snaptics-backend-service`.
+- **Desired tasks:** `2` (Runs 2 containers across the 2 private subnets for High Availability).
+- **Networking:** Select the 2 **Private Subnets**. Turn **OFF** Public IP. Apply `snaptics-ecs-sg`.
+- **Load balancing:** Choose the ALB `snaptics-alb` and target group `snaptics-ecs-tg` created above.
+- Click Create.
+
+The service will try to start tasks but will fail because the ECR repository is currently empty. Move to the next section to unleash the power of GitHub Actions CI/CD!

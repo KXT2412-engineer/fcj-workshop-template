@@ -6,31 +6,85 @@ chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
+# CI/CD Automation (GitHub Actions)
 
-Snaptics uses a local PowerShell script to automate the deployment process, eliminating manual steps.
+Forget manual deployment scripts! In a true Enterprise architecture, the developer only needs to write code and commit to GitHub. **GitHub Actions** will completely automate the build, test, and deployment processes for both the Backend (.NET) and the Frontend (React).
 
-## 1. Deployment Script (`deploy.ps1`)
-Whenever you complete a feature, simply run `.\deploy.ps1`:
-```powershell
-$ECR_REGISTRY = "<ACCOUNT_ID>.dkr.ecr.ap-southeast-1.amazonaws.com"
-$IMAGE_NAME = "snaptics-api"
-$CLUSTER_NAME = "Snaptics-Cluster"
-$SERVICE_NAME = "snaptics-backend-service"
+## 1. Configuring GitHub Secrets
 
-# Log into AWS ECR
-aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin $ECR_REGISTRY
-# Build and Push Image
-docker build -t ${IMAGE_NAME}:latest .
-docker tag ${IMAGE_NAME}:latest ${ECR_REGISTRY}/${IMAGE_NAME}:latest
-docker push ${ECR_REGISTRY}/${IMAGE_NAME}:latest
+GitHub needs your AWS credentials to push Docker images and deploy to Amplify.
+1. Open your Snaptics repository on GitHub.
+2. Go to **Settings ➔ Secrets and variables ➔ Actions**.
+3. Click **New repository secret**. Add the following:
+   - `AWS_ACCESS_KEY_ID`: Paste the Access Key ID from the `github-actions-snaptics` user.
+   - `AWS_SECRET_ACCESS_KEY`: Paste the Secret Key.
+   - `AWS_REGION`: `ap-southeast-1`
 
-# Force ECS to pull new code
-aws ecr update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
+## 2. Backend CI/CD Pipeline (ECS Fargate)
+
+Create a YAML file inside your repository at `.github/workflows/deploy-backend.yml`:
+
+```yaml
+name: Deploy Backend to Amazon ECS
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: [ "Backend/**" ]
+
+env:
+  AWS_REGION: ap-southeast-1
+  ECR_REPOSITORY: snaptics-api
+  ECS_CLUSTER: Snaptics-Cluster
+  ECS_SERVICE: snaptics-backend-service
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push Docker image to ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./Backend
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY --all-tags
+        
+    - name: Force ECS to deploy new Image (Rolling Update)
+      run: |
+        aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --force-new-deployment
 ```
 
-## 2. Zero-Downtime Deployment
-The `--force-new-deployment` flag triggers a **Rolling Update** in ECS, resulting in zero downtime:
-1. **Provision New Tasks:** ECS pulls the new image and starts new tasks.
-2. **Health Check:** ALB pings port 8080 until they are healthy.
-3. **Traffic Routing:** ALB shifts incoming user traffic to the new tasks.
-4. **Draining:** Old tasks are safely terminated without dropping active requests.
+### Zero-Downtime Deployment
+The final command `--force-new-deployment` executes an intelligent **Rolling Update**. The ALB routes traffic to the old containers while the new ones boot up. Once the new containers return a healthy status, the ALB instantly redirects all traffic to them and safely drains the old ones. Your users will experience exactly zero downtime!
+
+## 3. Frontend CI/CD Pipeline (AWS Amplify)
+
+AWS Amplify makes hosting React SPAs incredibly easy. Instead of writing a complex YAML file for Amplify, AWS provides direct GitHub integration.
+
+### Setting up Amplify Auto-Deploy
+1. Go to the AWS Console, open **AWS Amplify**.
+2. Click **Create new app** ➔ Select **GitHub**.
+3. Authenticate with GitHub and select your `Snaptics` repository.
+4. Point to the `Frontend` branch or folder.
+5. Amplify will auto-detect the React build settings (e.g., `npm run build`).
+6. Click **Save and Deploy**.
+
+From now on, whenever a developer pushes a frontend change to the repository, Amplify automatically catches the webhook, rebuilds the site, and pushes the new assets to its edge CDN instantly.

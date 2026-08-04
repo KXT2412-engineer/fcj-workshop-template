@@ -6,46 +6,70 @@ chapter: false
 pre: " <b> 5.4. </b> "
 ---
 
+# Database, Storage & Secrets chuẩn Doanh nghiệp
 
-Ở phân hệ này, chúng ta sẽ thiết lập lớp Lưu trữ dữ liệu có cấu trúc, phi cấu trúc và bảo mật các khóa bí mật.
+Ở bài này, chúng ta sẽ xây dựng tầng lưu trữ. Vì hệ thống hướng tới môi trường Production, ta sẽ loại bỏ các DB thông thường và file cấu hình thô sơ để thay thế bằng Aurora và AWS Secrets Manager.
 
-## 1. Amazon RDS SQL Server
-Dự án Snaptics sử dụng C# với Entity Framework Core nên sẽ dùng SQL Server.
-- **DB Subnet Group:** Tạo `snaptics-db-subnet-group` và nhóm 2 mạng **Private Subnets** vào.
-- **Tạo Database:** 
-  - **Engine:** Microsoft SQL Server (Chọn Express Edition nếu muốn xài Free Tier).
-  - **Identifier:** `snaptics-db`
-  - **Tài khoản:** `admin` / `Snaptics@StrongPass123!`
-  - **Mạng:** VPC `snaptics-vpc`, Subnet `snaptics-db-subnet-group`. **Public access: No** (Bắt buộc).
-  - **Security group:** `snaptics-rds-sg`.
-Chờ 15 phút cho trạng thái chuyển sang **Available** và copy chuỗi **Endpoint**.
+## 1. Cơ sở dữ liệu Cốt lõi (Amazon Aurora Multi-AZ)
 
-## 2. Amazon S3 cho Upload
-Hóa đơn ảnh tải lên không lưu vào DB mà đẩy lên S3.
-- **Tạo Bucket:** `s3-bucket-snaptics-123` tại `ap-southeast-1`.
-- **Bảo mật:** Bật Block Public Access để bảo mật tuyệt đối file hóa đơn.
-- **Cấu hình CORS (Tab Permissions):** Để frontend gọi thẳng S3 bằng Pre-signed URL.
+Snaptics yêu cầu một DB không bao giờ được phép sập (High Availability). Aurora tự động sao chép dữ liệu của bạn ra nhiều Availability Zones khác nhau.
+
+### A. Khởi tạo DB Subnet Group
+- Vào **Amazon RDS ➔ Subnet groups ➔ Create DB subnet group**.
+- **Name:** `snaptics-db-subnet-group`.
+- **VPC:** Chọn `snaptics-vpc`.
+- **Subnets:** Ở mục này phải chọn cẩn thận! Chọn 2 Availability Zones và chỉ tick vào **2 mạng Private Subnets** (`10.0.3.0/24` và `10.0.4.0/24`).
+
+### B. Khởi tạo Cụm Aurora Cluster
+- Vào **RDS ➔ Databases ➔ Create database**.
+- **Engine options:** Bắt buộc chọn **Amazon Aurora**.
+- **Edition:** Chọn MySQL hoặc PostgreSQL (Tùy thuộc vào thư viện EF Core bạn gắn trong code C#).
+- **Templates:** Production.
+- **Settings:**
+  - DB cluster identifier: `snaptics-aurora-cluster`
+  - Master username: `admin`
+  - Master password: Gõ một mật khẩu thật mạnh (Ví dụ `SnapticsAurora2024!`).
+- **Instance configuration:** Chọn cấu hình máy chủ ảo, ví dụ `db.t3.medium`.
+- **Availability & Durability:** Chọn **Create an Aurora Replica/Reader node in a different AZ** (Đây chính là tính năng Multi-AZ thần thánh).
+- **Connectivity:**
+  - VPC: Chọn `snaptics-vpc`
+  - DB subnet group: `snaptics-db-subnet-group`
+  - **Public access: No** (Rất quan trọng, để No để hacker không thể quét ra cổng DB của bạn).
+  - VPC security group: Chọn `snaptics-aurora-sg`.
+- Bấm **Create database**. Cụm Aurora sẽ mất khoảng 15 phút để tạo. Sau khi xong, copy lấy chuỗi **Writer Endpoint**.
+
+## 2. Kho lưu trữ Hóa đơn (Amazon S3)
+
+Vì ở bài trước chúng ta đã tạo **VPC Gateway Endpoint**, Code C# chạy trong ECS giờ đây sẽ đẩy thẳng file ảnh hóa đơn vào S3 xuyên qua mạng nội bộ, tốc độ cực cao và hoàn toàn miễn phí băng thông.
+
+- Vào **Amazon S3 ➔ Create bucket**.
+- **Bucket name:** `s3-bucket-snaptics-enterprise` (Phải gõ thêm số linh tinh vì tên S3 là duy nhất toàn cầu).
+- **Region:** `ap-southeast-1`.
+- **Block Public Access:** Giữ trạng thái **ON** để bảo mật tuyệt đối ảnh hóa đơn tài chính của người dùng.
+- **Cấu hình CORS (Tab Permissions):** Cho phép Frontend trên AWS Amplify gọi trực tiếp vào S3 thông qua URL ký sẵn (Pre-signed URL).
 ```json
 [
     {
         "AllowedMethods": [ "GET", "PUT", "POST" ],
-        "AllowedOrigins": [ "*" ],
+        "AllowedOrigins": [ "https://your-amplify-app-url.com" ],
         "AllowedHeaders": [ "*" ]
     }
 ]
 ```
 
-## 3. Quản lý Secret (SSM Parameter Store)
-Thay vì đẩy file config chứa pass lên Git, ta mã hóa chúng trên AWS. Khởi tạo các tham số `SecureString` sau:
-1. **Chuỗi kết nối SQL Server:** `/Snaptics/Production/ConnectionStrings:DefaultConnection` ➔ `Server=<ENDPOINT>,1433;Database=SnapticsDB;User Id=admin;Password=Snaptics@StrongPass123!;TrustServerCertificate=True;`
-2. **JWT Secret Key:** `/Snaptics/Production/TokenKey`
-3. **Google Gemini API:** `/Snaptics/Production/AiSettings:GeminiApiKey`
-4. **Azure Document Intelligence:** `/Snaptics/Production/AiSettings:AzureDocIntelKey`
+## 3. Két sắt Bí mật (AWS Secrets Manager)
 
-Trong code .NET (`Program.cs`), các cấu hình này được lấy tự động vào hệ thống:
-```csharp
-builder.Configuration.AddSystemsManager(configureSource => {
-    configureSource.Path = "/Snaptics/Production/";
-    configureSource.ReloadAfter = TimeSpan.FromMinutes(5);
-});
-```
+TUYỆT ĐỐI KHÔNG lưu mật khẩu Aurora hay API Key của AI vào file `appsettings.json` và đẩy lên GitHub! Thay vì dùng SSM Parameter Store cơ bản, hệ thống Enterprise ưa chuộng **AWS Secrets Manager** vì nó có tính năng tự động đổi mật khẩu (Auto-rotation).
+
+- Vào **AWS Secrets Manager ➔ Store a new secret**.
+- **Secret type:** Chọn **Other type of secret**.
+- **Key/value pairs:** Tạo lần lượt các key sau và điền value tương ứng:
+  - `DbConnectionString`: `Server=<AURORA_ENDPOINT>,3306;Database=SnapticsDB;Uid=admin;Pwd=SnapticsAurora2024!;`
+  - `JwtKey`: `Gõ_Một_Chuỗi_Thật_Dài_Để_Làm_Chìa_Khóa_Ký_Token_Đăng_Nhập`
+  - `GeminiApiKey`: `Dán_Key_Google_AI_Của_Bạn`
+  - `AzureDocIntelKey`: `Dán_Key_Azure_OCR`
+  - `AzureDocIntelEndpoint`: `Dán_Đường_Dẫn_Azure`
+- **Secret name:** Đặt tên là `SnapticsProdSecret`.
+- Bấm **Next** và **Store**.
+
+Ở trong code `.NET`, bạn chỉ cần xài SDK để gọi tên `SnapticsProdSecret`, AWS sẽ trả về toàn bộ cụm JSON chứa mật khẩu, giữ cho mã nguồn của bạn hoàn toàn sạch sẽ và an toàn.

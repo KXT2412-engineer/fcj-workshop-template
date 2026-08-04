@@ -6,20 +6,37 @@ chapter: false
 pre: " <b> 5. </b> "
 ---
 
-# Triển khai Snaptics API trên AWS (Multi-Stack Pattern)
+# Triển khai Snaptics trên AWS (Kiến trúc Enterprise)
 
-**Snaptics** là một hệ thống lõi tài chính thông minh, được xây dựng trên nền tảng **.NET 8/9**. Hệ thống tích hợp các dịch vụ AI hàng đầu (Google Gemini, Azure Document Intelligence) để trích xuất dữ liệu hóa đơn, kết hợp kiến trúc hướng sự kiện (Event-Driven) với AWS SQS/SNS và xử lý tác vụ nền bằng Hangfire.
+Chào mừng bạn đến với hướng dẫn triển khai toàn diện dự án **Snaptics** - một hệ thống lõi tài chính thông minh được xây dựng bằng **.NET 8/9** và Frontend React/Amplify.
 
-Trong workshop nâng cao này, chúng ta sẽ áp dụng mô hình **Multi-Stack Architecture** để triển khai toàn bộ hệ thống Snaptics lên AWS. Việc triển khai Backend API sẽ được thực hiện dưới dạng Serverless Containers trên **Amazon ECS Fargate**, giúp loại bỏ hoàn toàn gánh nặng quản lý hạ tầng máy chủ ảo (EC2).
+Trong workshop này, bạn sẽ học cách triển khai một môi trường Production thực thụ, có tính khả dụng cao và bảo mật tuyệt đối trên AWS. Kiến trúc đã được nâng cấp mạnh mẽ từ mức cơ bản lên chuẩn **Enterprise (Doanh nghiệp)**, tuân thủ nghiêm ngặt khung AWS Well-Architected Framework.
 
-#### Mô hình Cấu trúc Workshop
+### Những Điểm Nâng cấp Đáng giá trong Kiến trúc này:
+- **Phân phối Toàn cầu & Bảo mật:** Triển khai **Route 53** (Quản lý DNS), **Amazon CloudFront** (Mạng phân phối nội dung CDN) để tăng tốc độ truy cập, kết hợp **AWS WAF** (Tường lửa Web) để chặn đứng các cuộc tấn công DDoS/Botnet.
+- **Hosting Frontend:** Tự động hóa hoàn toàn việc hosting ứng dụng Frontend thông qua **AWS Amplify**.
+- **Serverless Compute:** Vận hành Backend .NET Core trên **Amazon ECS Fargate** thông qua Application Load Balancer (ALB) trong mạng Private.
+- **Database Chuẩn Doanh nghiệp:** Chuyển đổi từ SQL Server thông thường sang **Amazon Aurora (RDS)** với cơ chế sao chép Primary/Standby (Multi-AZ) để đảm bảo High Availability.
+- **Bảo mật Storage & Bí mật:** Loại bỏ việc gọi file S3 qua NAT Gateway đắt đỏ, thay bằng **VPC Gateway Endpoint** siêu bảo mật. Quản lý chuỗi kết nối an toàn với **AWS Secrets Manager**.
+- **Hàng đợi AI Bền bỉ:** Nâng cấp hàng đợi Amazon SQS `snaptics-ai-queue` bằng cách gắn thêm **Dead Letter Queue (DLQ)**, giúp hứng và xử lý lại các message lỗi khi gọi AI.
+- **Tự động hóa CI/CD 100%:** Xóa bỏ việc chạy script thủ công ở máy cá nhân. Chúng ta sẽ dùng **GitHub Actions** để tự động Build Docker, đẩy lên ECR và cập nhật cụm ECS mỗi khi có code mới.
+- **Giám sát (Observability):** Tập trung log và cảnh báo hệ thống thông qua **Amazon CloudWatch**, **SNS**, và **AWS Budgets**.
 
-1. **Tổng quan & Kiến trúc**: Thiết kế hệ thống, công nghệ và dự toán chi phí.
-2. **Chuẩn bị (Prerequisites)**: Thiết lập môi trường Local và phân quyền IAM.
-3. **Mạng & Bảo mật (VPC & Security)**: Xây dựng nền tảng mạng an toàn với Public/Private Subnets.
-4. **Database, Storage & Secrets**: Triển khai Amazon RDS SQL Server, S3 và SSM Parameter Store.
-5. **AI & Tác vụ nền (Messaging)**: Tích hợp AI Insights và cấu hình hàng đợi SQS/SNS.
-6. **Compute & Load Balancing (ECS)**: Container hóa ứng dụng .NET và chạy trên Fargate.
-7. **Tự động hóa (CI/CD)**: Cơ chế Blue/Green Deployment với script tự động hóa.
-8. **Kiểm thử (E2E Testing)**: Xác thực luồng dữ liệu thời gian thực qua SignalR và Swagger.
-9. **Dọn dẹp (Cleanup)**: Thu hồi tài nguyên AWS.
+---
+
+### Cấu trúc Workshop (Đã được tinh gọn)
+
+Để việc theo dõi menu bên trái được gọn gàng nhất nhưng nội dung bên trong vẫn giữ nguyên độ sâu và chi tiết khổng lồ, workshop được chia thành 9 phân hệ chính. Vui lòng làm theo đúng thứ tự:
+
+1. **Tổng quan & Kiến trúc:** Phân tích chuyên sâu sơ đồ hệ thống Enterprise và luồng dữ liệu.
+2. **Chuẩn bị (Prerequisites):** Thiết lập tài khoản GitHub, IAM Users và lấy API Key cho AI (Gemini / Azure).
+3. **Mạng & Bảo mật:** Khởi tạo Multi-Tier VPC, cấu hình Route 53, CloudFront, WAF và VPC Endpoints.
+4. **Database, Storage & Secrets:** Triển khai Aurora RDS, S3 Bucket và khởi tạo kho khóa Secrets Manager.
+5. **AI & Tác vụ nền (Messaging):** Cấu hình SQS `snaptics-ai-queue` kèm DLQ, tích hợp các API Trí tuệ nhân tạo.
+6. **Compute & Backend (ECS):** Đóng gói Docker và điều phối các task Fargate ẩn sau lớp ALB.
+7. **CI/CD Pipeline (GitHub Actions):** Viết script YAML để tự động hóa toàn bộ quy trình Deploy cho cả Frontend lẫn Backend.
+8. **Kiểm thử Toàn hệ thống (E2E Testing):** Xác thực luồng API và kết nối WebSocket (SignalR) xuyên qua CloudFront.
+9. **Dọn dẹp Tài nguyên:** Bước cực kỳ quan trọng để xóa sạch hạ tầng, tránh bị AWS trừ tiền thẻ tín dụng.
+
+> [!NOTE]  
+> Hướng dẫn này được viết cực kỳ chi tiết từ A đến Z, bạn chỉ cần đọc chậm rãi và copy/paste cấu hình chính xác. Hãy chuẩn bị một ly cà phê và bắt tay vào xây dựng hệ thống tỷ đô của riêng bạn nào!

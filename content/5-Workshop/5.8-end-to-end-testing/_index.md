@@ -6,17 +6,34 @@ chapter: false
 pre: " <b> 5.8. </b> "
 ---
 
+# System-Wide Testing (End-to-End Testing)
 
-Test the data flow via REST API and WebSockets to ensure the system is fully operational.
+Congratulations on deploying the Enterprise architecture! Now it's time to verify that all components (CloudFront ➔ WAF ➔ ALB ➔ ECS ➔ Aurora/S3/SQS) are communicating perfectly.
 
-## 1. API Testing (Swagger)
-Access `http://<ALB_DNS_NAME>/swagger`.
-1. **Auth:** Call `/api/Auth/register` then `/api/Auth/login` to get a JWT Token. Use it to authorize requests.
+## 1. CloudFront & WAF Verification
+
+Instead of hitting the ALB directly, open your browser and navigate to your **CloudFront Domain** (e.g., `https://d1234abcd.cloudfront.net/swagger` or your Custom Route 53 Domain).
+
+1. **Test WAF Blocking:** Try appending a malicious SQL Injection string to the URL: `?id=1' OR '1'='1`. If WAF is working correctly, you should be instantly blocked with a `403 Forbidden` page.
+2. **Test Normal Traffic:** Access the normal Swagger UI. It should load exceptionally fast because CloudFront caches the static Swagger assets at the edge.
+
+## 2. API & AI Integration Testing (Swagger)
+
+1. **Auth:** Call `/api/Auth/register` then `/api/Auth/login`. This proves the ECS container can successfully connect to the **Aurora Database** to verify credentials using the password fetched from **Secrets Manager**.
 2. **Upload Invoice:** Call `/api/Transactions/scan-receipt` and upload an image file.
-3. **Verify:** You should see the image uploaded to the S3 bucket, a background message pushed to SQS, and eventually, Azure OCR returning accurately extracted data in Swagger.
+3. **Verify Pipeline:**
+   - Go to **S3**, you should see the image. (Proving the **VPC Gateway Endpoint** works).
+   - Go to **SQS**, you should see a message briefly appear in `snaptics-ai-queue`.
+   - Go to **CloudWatch Logs**, you should see the Hangfire worker picking up the message and calling Azure/Gemini AI.
+   - Finally, Swagger should return the accurately extracted merchant name and total price!
 
-## 2. WebSocket Testing (SignalR)
-1. Connect a WebSocket client to `ws://<ALB_DNS_NAME>/hubs/notification?access_token=<TOKEN>`.
+## 3. WebSocket Testing (SignalR)
+
+Real-time notifications must survive the journey through CloudFront and ALB.
+
+1. Connect your WebSocket client to: `wss://<CLOUDFRONT_DOMAIN>/hubs/notification?access_token=<TOKEN>`
 2. Ensure you receive a `101 Switching Protocols` status.
-3. Call `/api/Transactions` in Swagger to manually add a new spending transaction.
-4. Verify the server pushes a real-time JSON event `{"type": "NEW_TRANSACTION_ADDED"}` to your WebSocket client. This confirms the ALB is properly routing WebSocket upgrades to Fargate containers.
+3. Keep the connection open. Go back to Swagger and manually add a new spending transaction.
+4. Your WebSocket client should instantly receive a JSON payload: `{"type": "NEW_TRANSACTION_ADDED"}`. 
+
+This confirms that CloudFront and the ALB are correctly upgrading HTTP connections to WebSockets and maintaining persistent tunnels to the Fargate containers!
