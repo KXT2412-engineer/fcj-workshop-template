@@ -7,7 +7,7 @@ pre: " <b> 5.3. </b> "
 ---
 
 
-Trong kiến trúc Enterprise, tầng Mạng đóng vai trò quyết định. Chúng ta phải bảo vệ luồng truy cập từ bên ngoài bằng CloudFront + WAF, đồng thời tối ưu hóa luồng mạng nội bộ bằng VPC Endpoints để giảm thiểu chi phí băng thông đắt đỏ.
+Trong kiến trúc Enterprise, tầng Mạng đóng vai trò quyết định. Chúng ta phải bảo vệ luồng truy cập từ bên ngoài và phân phối qua CloudFront, đồng thời tối ưu hóa luồng mạng nội bộ bằng VPC Endpoints để giảm thiểu chi phí băng thông đắt đỏ.
 
 ## 1. Quản lý Domain với Route 53 (Tùy chọn)
 
@@ -16,25 +16,16 @@ Nếu bạn đã mua một tên miền thật (ví dụ `snaptics.com`), hãy c�
 - Nhập tên miền của bạn. Lấy 4 dòng Name Servers (NS) dán ngược lại vào nơi bạn mua tên miền để trỏ DNS về AWS.
 - Sử dụng **AWS Certificate Manager (ACM)** để xin một chứng chỉ SSL miễn phí tại vùng `us-east-1` (Bắt buộc phải là `us-east-1` mới gắn được vào CloudFront).
 
-## 2. Mạng Phân phối (CloudFront) & Tường lửa (WAF)
+## 2. Mạng Phân phối (CloudFront)
 
-Thay vì phơi trần Load Balancer (ALB) ra Internet cho hacker nhòm ngó, ta sẽ giấu nó sau CloudFront và bọc thép bằng WAF.
+Thay vì phơi trần Load Balancer (ALB) ra Internet, ta sẽ giấu nó sau CloudFront để tăng tốc độ phản hồi và ẩn IP thực. *(Lưu ý: Tính năng tường lửa WAF đã được tích hợp sẵn tự động khi chúng ta host Frontend bằng AWS Amplify, nên ta không cần tốn tiền tạo WAF rườm rà ở ngoài nữa).*
 
-### A. AWS WAF (Web Application Firewall)
-- Vào **AWS WAF ➔ Web ACLs ➔ Create web ACL**.
-- Name: `snaptics-waf-acl`.
-- Resource type: **CloudFront distributions**.
-- Ở bước Add rules, chọn Managed rules và thêm: 
-  - `AWSManagedRulesCommonRuleSet` (Chặn chèn mã độc SQL Injection, XSS).
-  - `AWSManagedRulesBotControlRuleSet` (Chặn các con bot cào dữ liệu tự động).
-- Default action để là **Allow**.
-
-### B. Amazon CloudFront
+### Cấu hình Amazon CloudFront cho API
 - Vào **CloudFront ➔ Create Distribution**.
 - **Origin domain:** Chọn Application Load Balancer của bạn (Mình sẽ tạo ở phần Compute).
 - **Viewer Protocol Policy:** Chọn Redirect HTTP to HTTPS.
-- **Web Application Firewall (WAF):** Bật lên và chọn bộ `snaptics-waf-acl` vừa tạo.
-- **Custom SSL Certificate:** Gắn cái chứng chỉ SSL bạn tạo ở bước 1 vào.
+- **Cache key and origin requests:** Chọn **Cache policy and origin request policy** ➔ CachingDisabled và AllViewer (bắt buộc với API).
+- **Custom SSL Certificate:** Gắn cái chứng chỉ SSL bạn xin được ở bước 1 vào.
 - Bấm Create.
 
 ## 3. Thiết kế Multi-Tier VPC

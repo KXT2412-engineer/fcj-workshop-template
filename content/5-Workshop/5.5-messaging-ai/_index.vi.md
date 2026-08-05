@@ -36,29 +36,33 @@ ECS Container sẽ móc message từ Queue ra và âm thầm gọi sang 2 con AI
 ### Azure Document Intelligence - OCR
 Khi ảnh hóa đơn nằm trên S3, AWS sẽ gọi Azure để bóc tách text:
 ```csharp
-// Lấy Key bảo mật từ AWS Systems Manager Parameter Store thay vì gõ cứng
-var credential = new AzureKeyCredential(_secrets["AzureDocIntelKey"]);
-var client = new DocumentAnalysisClient(new Uri(_secrets["AzureDocIntelEndpoint"]), credential);
+// Lấy Key bảo mật từ AWS Systems Manager thông qua IConfiguration
+var azureKey = _config["AiSettings:AzureDocIntelKey"];
+var azureEndpoint = _config["AiSettings:AzureDocIntelEndpoint"];
+var credential = new AzureKeyCredential(azureKey);
+var client = new DocumentAnalysisClient(new Uri(azureEndpoint), credential);
 
 // Phân tích ảnh hóa đơn (Ảnh được gọi qua đường hầm VPC Endpoint an toàn)
 AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-receipt", new Uri(preSignedUrl));
 var result = operation.Value;
 
-// Nhặt tên Cửa hàng và Giá tiền lưu vào Database SQL Server
+// Nhặt tên Cửa hàng và Giá tiền
 string merchantName = result.Documents[0].Fields["MerchantName"].Value.AsString();
 double total = result.Documents[0].Fields["Total"].Value.AsDouble();
 ```
 
-### Google Gemini (Tư vấn Tài chính)
-Khi người dùng hỏi: "Với mức chi tiêu này, tôi nên tiết kiệm thế nào?", hệ thống sẽ ném dữ liệu cho Gemini xử lý:
+### Google Gemini (Nhận diện siêu tốc & Tư vấn)
+Snaptics sử dụng model Gemini thế hệ mới nhất (Gemini 2.5 Flash) để trích xuất hóa đơn siêu tốc và tư vấn tài chính thông minh:
 ```csharp
 var requestBody = new {
     contents = new[] { new { parts = new[] { new { text = userPrompt } } } }
 };
 
-var response = await _httpClient.PostAsJsonAsync(
-    $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={_secrets["GeminiApiKey"]}", 
-    requestBody);
+var apiKey = _config["AiSettings:GeminiApiKey"];
+var modelName = _config["AiSettings:GeminiModel"]; // Ví dụ: gemini-2.5-flash
+var endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/{modelName}:generateContent?key={apiKey}";
+
+var response = await _httpClient.PostAsJsonAsync(endpoint, requestBody);
 ```
 
 ## 3. Quản lý Tác vụ định kỳ (Hangfire)

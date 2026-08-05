@@ -7,12 +7,12 @@ pre: " <b> 5. </b> "
 ---
 
 
-Welcome to the ultimate deployment guide for **Snaptics**, a smart financial core system built on **.NET 10** and Angular/Amplify. 
+Welcome to the comprehensive implementation guide for **Snaptics** – an intelligent financial management system built on the **.NET 10** and Angular/Amplify platforms
 
 In this workshop, you will learn how to deploy a full-fledged, highly available, and secure production environment on AWS. We have upgraded the architecture from a basic deployment to an **Enterprise-grade** setup that aligns with the AWS Well-Architected Framework.
 
 ### Key Upgrades in this Architecture:
-- **Global Delivery & Security:** Implementation of **Route 53** (DNS), **Amazon CloudFront** (CDN) for blazing fast content delivery, and **AWS WAF** (Web Application Firewall) to protect against malicious attacks.
+- **Global Delivery & Security:** Implementation of **Route 53** (DNS) and **Amazon CloudFront** (CDN) for blazing fast content delivery.
 - **Frontend Hosting:** Fully automated deployment of the Angular frontend using **AWS Amplify**.
 - **Serverless Compute:** Running the .NET Core backend on **Amazon ECS Fargate** behind an Application Load Balancer (ALB).
 - **Enterprise Database:** Migrating from basic SQL Server to **Amazon RDS for SQL Server** with Primary/Standby replication for High Availability (Multi-AZ).
@@ -29,7 +29,7 @@ To keep navigation simple while delivering deep technical insights, this worksho
 
 1. **Overview & Architecture:** Deep dive into the Enterprise Architecture diagram and component roles.
 2. **Prerequisites:** Setting up GitHub, AWS IAM Users, and API Keys for Google Gemini / Azure OCR.
-3. **Networking & Security:** Creating the Multi-Tier VPC, CloudFront, Route 53, WAF, and VPC Endpoints.
+3. **Networking & Security:** Creating the Multi-Tier VPC, CloudFront, Route 53, and VPC Endpoints.
 4. **Database, Storage & Secrets:** Deploying RDS SQL Server, S3 Buckets, and AWS Systems Manager Parameter Store.
 5. **Messaging & AI Integration:** Configuring the SQS `snaptics-ai-queue` with DLQ and integrating AI APIs.
 6. **Compute & Backend (ECS):** Building the Docker image and orchestrating Fargate tasks via ALB.

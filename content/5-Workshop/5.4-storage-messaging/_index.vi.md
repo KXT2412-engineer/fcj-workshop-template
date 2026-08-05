@@ -58,17 +58,19 @@ Vì ở bài trước chúng ta đã tạo **VPC Gateway Endpoint**, Code C# ch�
 
 ## 3. Két sắt Bí mật (AWS Systems Manager Parameter Store)
 
-TUYỆT ĐỐI KHÔNG lưu mật khẩu SQL Server hay API Key của AI vào file `appsettings.json` và đẩy lên GitHub! Thay vì dùng SSM Parameter Store cơ bản, hệ thống Enterprise ưa chuộng **AWS Systems Manager Parameter Store** vì nó có tính năng tự động đổi mật khẩu (Auto-rotation).
+TUYỆT ĐỐI KHÔNG lưu mật khẩu SQL Server hay API Key của AI vào file `appsettings.json` và đẩy lên GitHub! Chúng ta sẽ sử dụng **AWS Systems Manager Parameter Store** để lưu trữ các thông tin này an toàn theo dạng phân cấp.
 
-- Vào **AWS Systems Manager Parameter Store ➔ Store a new secret**.
-- **Secret type:** Chọn **Other type of secret**.
-- **Key/value pairs:** Tạo lần lượt các key sau và điền value tương ứng:
-  - `DbConnectionString`: `Server=<AURORA_ENDPOINT>,3306;Database=SnapticsDB;Uid=admin;Pwd=SnapticsAurora2024!;`
-  - `JwtKey`: `Gõ_Một_Chuỗi_Thật_Dài_Để_Làm_Chìa_Khóa_Ký_Token_Đăng_Nhập`
-  - `GeminiApiKey`: `Dán_Key_Google_AI_Của_Bạn`
-  - `AzureDocIntelKey`: `Dán_Key_Azure_OCR`
-  - `AzureDocIntelEndpoint`: `Dán_Đường_Dẫn_Azure`
-- **Secret name:** Đặt tên là `/snaptics/prod/db-connection`.
-- Bấm **Next** và **Store**.
+- Vào **AWS Systems Manager ➔ Parameter Store ➔ Create parameter**.
+- Tạo lần lượt các parameter sau. Với các chuỗi mật khẩu/khóa, hãy chọn Type là **SecureString** để mã hóa (AWS tự động dùng KMS), còn các chuỗi bình thường chọn Type là **String**:
 
-Ở trong code `.NET`, bạn chỉ cần xài SDK để gọi tên `/snaptics/prod/db-connection`, AWS sẽ trả về toàn bộ cụm JSON chứa mật khẩu, giữ cho mã nguồn của bạn hoàn toàn sạch sẽ và an toàn.
+  - `/Snaptics/Production/AWS/AccessKey` (Type: **SecureString**)
+  - `/Snaptics/Production/AWS/SecretKey` (Type: **SecureString**)
+  - `/Snaptics/Production/AiSettings/AzureDocIntelKey` (Type: **SecureString**)
+  - `/Snaptics/Production/AiSettings/GeminiApiKey` (Type: **SecureString**)
+  - `/Snaptics/Production/AwsSns/TopicArn` (Type: **String**)
+  - `/Snaptics/Production/ConnectionStrings/DefaultConnection` (Type: **SecureString**)
+  - `/Snaptics/Production/EmailSettings/Email` (Type: **SecureString**)
+  - `/Snaptics/Production/EmailSettings/Password` (Type: **SecureString**)
+  - `/Snaptics/Production/TokenKey` (Type: **SecureString**)
+
+Ở trong code `.NET`, nhờ thư viện AWS SDK, ứng dụng sẽ tự động tải các thông số này theo đường dẫn `/Snaptics/Production/*` đè lên `appsettings.json`, giữ cho mã nguồn của bạn hoàn toàn sạch sẽ và an toàn.

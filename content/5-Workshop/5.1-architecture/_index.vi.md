@@ -17,9 +17,9 @@ Trước khi bắt tay vào cấu hình thực tế trên AWS Console, việc th
 
 Hãy nhìn kỹ vào các vòng tròn số màu đen trên sơ đồ. Chúng thể hiện vòng đời của một Request từ người dùng:
 
-1. **Phân giải DNS (Route 53):** Khi người dùng gõ `app.snaptics.com` vào trình duyệt, request sẽ chạm tới **Amazon Route 53**. Route 53 sẽ định tuyến domain này thẳng vào mạn lưới CloudFront.
-2. **CDN & Tường lửa (CloudFront + WAF):** Request đi vào mạng lưới toàn cầu của AWS qua **CloudFront**. Tại đây, **AWS WAF** sẽ quét request để chặn các luồng traffic độc hại (SQL Injection, DDoS). Nếu an toàn, CloudFront sẽ lấy nội dung Frontend (HTML/JS) từ **AWS Amplify** để trả về cực nhanh cho người dùng.
-3. **Xâm nhập VPC (IGW tới ALB):** Đối với các request gọi API động (Backend), CloudFront sẽ điều hướng luồng mạng xuyên qua **Internet Gateway**, đi vào **Application Load Balancer (ALB)** đang đứng gác ở `Public Subnet`.
+1. **Phân giải DNS (Route 53):** Khi người dùng truy cập ứng dụng, request sẽ chạm tới **Amazon Route 53**. Route 53 định tuyến các request của giao diện Frontend vào **AWS Amplify** và các request gọi API vào **CloudFront**.
+2. **CDN (CloudFront):** Request gọi API đi vào mạng lưới toàn cầu của AWS qua **CloudFront**. CloudFront giúp tối ưu hóa luồng mạng và tăng tốc độ truyền tải dữ liệu.
+3. **Xâm nhập VPC (IGW tới ALB):** Từ CloudFront, luồng mạng đi xuyên qua **Internet Gateway**, tiến vào **Application Load Balancer (ALB)** đang đứng gác ở `Public Subnet`.
 4. **Tầng Compute (ECS Fargate):** ALB đóng vai trò phân tải, đẩy request vào các container `.NET` đang chạy trên **ECS Fargate**. Các server này được giấu kín đáo và an toàn tuyệt đối bên trong `Private Subnet`.
 5. **Lưu trữ An toàn (VPC Gateway Endpoint):** Khi Code .NET cần lưu file ảnh hóa đơn lên **S3 Bucket**, nó KHÔNG đi đường vòng ra Internet. Nhờ có **Gateway Endpoint**, dữ liệu được bắn trực tiếp từ mạng nội bộ VPC sang S3, giúp bảo mật tuyệt đối và loại bỏ hoàn toàn phí băng thông của NAT Gateway!
 6. **Lưu trữ CSDL (SQL Server):** Dữ liệu giao dịch được ghi vào cụm **Amazon RDS for SQL Server**. Cụm này chạy chế độ **Primary/Standby** trải dài trên 2 Availability Zones. Nếu server chính sập, server phụ lập tức lên thay mà không gây sập hệ thống (High Availability).
@@ -49,7 +49,7 @@ Hãy nhìn kỹ vào các vòng tròn số màu đen trên sơ đồ. Chúng th�
 - **Database:** Amazon RDS for SQL Server & RDS Multi-AZ (Chống lỗi phần cứng).
 - **Containerization:** Docker / Amazon Elastic Container Registry (ECR).
 - **Compute:** Amazon ECS (Fargate) Serverless.
-- **Networking:** Route 53, CloudFront, WAF, ALB, VPC Endpoints, NAT Gateway.
+- **Networking:** Route 53, CloudFront, ALB, VPC Endpoints, NAT Gateway.
 - **CI/CD:** Tự động hóa bằng GitHub Actions.
 - **AI Services:** Google Gemini API, Azure Document Intelligence.
 

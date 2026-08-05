@@ -7,14 +7,13 @@ pre: " <b> 5.8. </b> "
 ---
 
 
-Chúc mừng bạn đã dựng xong khối kiến trúc Enterprise đồ sộ! Giờ là lúc kiểm chứng xem mọi mảnh ghép (CloudFront ➔ WAF ➔ ALB ➔ ECS ➔ SQL Server/S3/SQS) có đang mượt mà vắt chéo nhau không.
+Chúc mừng bạn đã dựng xong khối kiến trúc Enterprise đồ sộ! Giờ là lúc kiểm chứng xem mọi mảnh ghép (CloudFront ➔ ALB ➔ ECS ➔ SQL Server/S3/SQS) có đang mượt mà vắt chéo nhau không.
 
-## 1. Kiểm chứng Tường lửa WAF & CloudFront
+## 1. Kiểm chứng Mạng Phân phối (CloudFront)
 
-Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duyệt và gõ **Domain của CloudFront** (Ví dụ `https://d1234abcd.cloudfront.net/swagger` hoặc Domain xịn của bạn trên Route 53).
+Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duyệt và gõ **Domain của CloudFront** (Ví dụ `https://d1234abcd.cloudfront.net/swagger` hoặc Domain của bạn trên Route 53).
 
-1. **Test Tường lửa WAF:** Hãy thử gõ thêm một câu lệnh hack SQL Injection vào đuôi URL: `?id=1' OR '1'='1`. Nếu WAF hoạt động đúng, nó sẽ vả bạn ngay lập tức bằng một trang trắng bóc lỗi `403 Forbidden`. Quá an toàn!
-2. **Test Load Tĩnh:** Truy cập lại trang Swagger bình thường, bạn sẽ thấy nó load nhanh khủng khiếp vì CloudFront đã cache lại các file giao diện tĩnh (HTML/CSS) ở các trạm phát sóng (Edge location).
+1. **Test Load Tĩnh:** Truy cập trang Swagger bình thường, bạn sẽ thấy nó load nhanh vì CloudFront đã tối ưu đường truyền ở các trạm phát sóng (Edge location).
 
 ## 2. Kiểm thử API & Trí tuệ Nhân tạo (Swagger)
 

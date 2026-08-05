@@ -7,12 +7,12 @@ pre: " <b> 5. </b> "
 ---
 
 
-Chào mừng bạn đến với hướng dẫn triển khai toàn diện dự án **Snaptics** - một hệ thống lõi tài chính thông minh được xây dựng bằng **.NET 10** và Frontend Angular/Amplify.
+Chào mừng bạn đến với hướng dẫn triển khai toàn diện dự án **Snaptics** - một hệ thống quản lý tài chính thông minh được xây dựng bằng **.NET 10** và Frontend Angular/Amplify.
 
 Trong workshop này, bạn sẽ học cách triển khai một môi trường Production thực thụ, có tính khả dụng cao và bảo mật tuyệt đối trên AWS. Kiến trúc đã được nâng cấp mạnh mẽ từ mức cơ bản lên chuẩn **Enterprise (Doanh nghiệp)**, tuân thủ nghiêm ngặt khung AWS Well-Architected Framework.
 
 ### Những Điểm Nâng cấp Đáng giá trong Kiến trúc này:
-- **Phân phối Toàn cầu & Bảo mật:** Triển khai **Route 53** (Quản lý DNS), **Amazon CloudFront** (Mạng phân phối nội dung CDN) để tăng tốc độ truy cập, kết hợp **AWS WAF** (Tường lửa Web) để chặn đứng các cuộc tấn công DDoS/Botnet.
+- **Phân phối Toàn cầu & Bảo mật:** Triển khai **Route 53** (Quản lý DNS) và **Amazon CloudFront** (Mạng phân phối nội dung CDN) để tăng tốc độ truy cập toàn cầu.
 - **Hosting Frontend:** Tự động hóa hoàn toàn việc hosting ứng dụng Frontend thông qua **AWS Amplify**.
 - **Serverless Compute:** Vận hành Backend .NET Core trên **Amazon ECS Fargate** thông qua Application Load Balancer (ALB) trong mạng Private.
 - **Database Chuẩn Doanh nghiệp:** Chuyển đổi từ SQL Server thông thường sang **Amazon RDS for SQL Server** với cơ chế sao chép Primary/Standby (Multi-AZ) để đảm bảo High Availability.
@@ -29,7 +29,7 @@ Trong workshop này, bạn sẽ học cách triển khai một môi trường Pr
 
 1. **Tổng quan & Kiến trúc:** Phân tích chuyên sâu sơ đồ hệ thống Enterprise và luồng dữ liệu.
 2. **Chuẩn bị (Prerequisites):** Thiết lập tài khoản GitHub, IAM Users và lấy API Key cho AI (Gemini / Azure).
-3. **Mạng & Bảo mật:** Khởi tạo Multi-Tier VPC, cấu hình Route 53, CloudFront, WAF và VPC Endpoints.
+3. **Mạng & Bảo mật:** Khởi tạo Multi-Tier VPC, cấu hình Route 53, CloudFront và VPC Endpoints.
 4. **Database, Storage & Secrets:** Triển khai RDS SQL Server, S3 Bucket và khởi tạo kho khóa Parameter Store.
 5. **AI & Tác vụ nền (Messaging):** Cấu hình SQS `snaptics-ai-queue` kèm DLQ, tích hợp các API Trí tuệ nhân tạo.
 6. **Compute & Backend (ECS):** Đóng gói Docker và điều phối các task Fargate ẩn sau lớp ALB.
