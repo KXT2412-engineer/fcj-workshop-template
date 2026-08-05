@@ -16,13 +16,13 @@ Trong thời gian qua, em đã tham gia vào các công việc chính sau:
 
 - **Thiết kế Cơ sở dữ liệu:** Phân tích yêu cầu và thiết kế Database schema, quản lý các luồng dữ liệu (swimlane diagrams) và tương tác với cơ sở dữ liệu thông qua Entity Framework.
 - **Nghiên cứu & Áp dụng công nghệ:** Trực tiếp tìm tòi, khám phá và áp dụng các best practices trong việc thiết kế API thay vì chỉ dựa vào kiến thức nền tảng học thuật.
-- **Tham gia quy trình phát triển phần mềm:** Phối hợp cùng team làm rõ các requirement specifications, phân tích nghiệp vụ (như quy trình quản lý hệ thống trạm sạc hoặc các luồng dữ liệu phức tạp khác).
+- **Tham gia quy trình phát triển phần mềm:** Phối hợp cùng team làm rõ các requirement specifications, phân tích nghiệp vụ (như quy trình tự động hóa xử lý hóa đơn AI và quản lý tài chính hoặc các luồng dữ liệu phức tạp khác).
 
 ### Kỹ năng đã phát triển
 
 Qua quá trình làm việc, em đã cải thiện đáng kể các kỹ năng sau:
 
-- **Kỹ năng chuyên môn:** Nâng cao tư duy thiết kế hệ thống Backend, thành thạo hơn trong việc xử lý logic với C#/.NET và tối ưu hóa truy vấn cơ sở dữ liệu.
+- **Kỹ năng chuyên môn:** Nâng cao tư duy thiết kế hệ thống Backend, thành thạo hơn trong việc xử lý logic với C#/.NET 10 và tối ưu hóa truy vấn cơ sở dữ liệu.
 - **Kỹ năng thiết kế API:** Phát triển mạnh mẽ tư duy thiết kế API thông qua quá trình chủ động học hỏi và khám phá thực tế, giúp các endpoint trở nên bảo mật và dễ bảo trì hơn.
 - **Kỹ năng làm việc nhóm:** Học cách phối hợp hiệu quả với các thành viên trong dự án, chia sẻ kiến thức và giải quyết các bài toán tích hợp hệ thống.
 - **Kỹ năng quản lý thời gian:** Cải thiện khả năng chia nhỏ task, bám sát tiến độ (deadline) và báo cáo công việc rõ ràng.
@@ -40,7 +40,7 @@ Về tác phong, em luôn cố gắng:
 
 | STT | Tiêu chí                               | Mô tả                                                                                  | Tốt | Khá | Trung bình |
 | --- | -------------------------------------- | -------------------------------------------------------------------------------------- | --- | --- | ---------- |
-| 1   | **Kiến thức chuyên môn**               | Nắm vững C#/.NET, thiết kế Database schema, áp dụng kiến thức vào thực tế              | ✅  | ☐   | ☐          |
+| 1   | **Kiến thức chuyên môn**               | Nắm vững C#/.NET 10, thiết kế Database schema, áp dụng kiến thức vào thực tế              | ✅  | ☐   | ☐          |
 | 2   | **Kỹ năng Thiết kế API**               | Xây dựng API thông qua học hỏi, khám phá và áp dụng chuẩn thiết kế                     | ☐   | ✅  | ☐          |
 | 3   | **Tinh thần Chủ động & Học hỏi**       | Tự nghiên cứu công nghệ mới, đề xuất giải pháp, không ngại khó                         | ✅  | ☐   | ☐          |
 | 4   | **Quản lý Thời gian & Deadline**       | Ưu tiên task hợp lý, hoàn thành code đúng tiến độ, báo cáo kịp thời                    | ✅  | ☐   | ☐          |
@@ -55,7 +55,7 @@ Về tác phong, em luôn cố gắng:
 
 ### Những điểm mạnh
 
-- **Nền tảng kỹ thuật lập trình vững chắc:** Nắm bắt nhanh các logic nghiệp vụ phức tạp và chuyển hóa thành mã nguồn C#/.NET tối ưu.
+- **Nền tảng kỹ thuật lập trình vững chắc:** Nắm bắt nhanh các logic nghiệp vụ phức tạp và chuyển hóa thành mã nguồn C#/.NET 10 tối ưu.
 - **Tinh thần tự học và khám phá cao:** Không rập khuôn theo lý thuyết hàn lâm mà luôn chủ động tìm tòi, thử nghiệm các giải pháp kiến trúc API mới.
 - **Trách nhiệm với sản phẩm:** Luôn kiểm tra kỹ lưỡng (test) các luồng dữ liệu trước khi bàn giao, đảm bảo hạn chế tối đa lỗi phát sinh.
 

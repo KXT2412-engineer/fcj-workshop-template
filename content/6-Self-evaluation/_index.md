@@ -16,13 +16,13 @@ During this time, I participated in the following main tasks:
 
 - **Database Design:** Analyzed requirements and designed Database schemas, managed data flows (swimlane diagrams), and interacted with the database via Entity Framework.
 - **Research & Technology Application:** Actively explored, researched, and applied best practices in API design rather than relying solely on academic foundational knowledge.
-- **Participation in Software Development Process:** Collaborated with the team to clarify requirement specifications and analyze business logic (such as the EV charging station management process or other complex data flows).
+- **Participation in Software Development Process:** Collaborated with the team to clarify requirement specifications and analyze business logic (such as the AI-powered automated invoice processing and financial management process or other complex data flows).
 
 ### Skills Developed
 
 Through the working process, I have significantly improved the following skills:
 
-- **Professional Skills:** Enhanced Backend system design thinking, became more proficient in handling logic with C#/.NET, and optimized database queries.
+- **Professional Skills:** Enhanced Backend system design thinking, became more proficient in handling logic with C#/.NET 10, and optimized database queries.
 - **API Design Skills:** Strongly developed API design thinking through active learning and real-world exploration, making endpoints more secure and maintainable.
 - **Teamwork Skills:** Learned how to coordinate effectively with project members, share knowledge, and solve system integration problems.
 - **Time Management Skills:** Improved the ability to break down tasks, adhere to schedules (deadlines), and report work progress clearly.
@@ -40,7 +40,7 @@ To objectively reflect on the working process, I would like to self-evaluate bas
 
 | No. | Criteria | Description | Good | Fair | Average |
 | --- | --- | --- | :---: | :---: | :---: |
-| 1 | **Professional Knowledge** | Solid grasp of C#/.NET, Database schema design, and practical application of knowledge | ✅ | ☐ | ☐ |
+| 1 | **Professional Knowledge** | Solid grasp of C#/.NET 10, Database schema design, and practical application of knowledge | ✅ | ☐ | ☐ |
 | 2 | **API Design Skills** | Building APIs through learning, exploration, and applying design standards | ☐ | ✅ | ☐ |
 | 3 | **Proactiveness & Learning** | Self-studying new technologies, proposing solutions, and not shying away from difficulties | ✅ | ☐ | ☐ |
 | 4 | **Time & Deadline Management** | Prioritizing tasks reasonably, completing code on schedule, reporting in a timely manner | ✅ | ☐ | ☐ |
@@ -55,7 +55,7 @@ To objectively reflect on the working process, I would like to self-evaluate bas
 
 ### Strengths
 
-- **Solid programming technical foundation:** Quickly grasping complex business logic and transforming it into optimized C#/.NET source code.
+- **Solid programming technical foundation:** Quickly grasping complex business logic and transforming it into optimized C#/.NET 10 source code.
 - **High spirit of self-learning and exploration:** Not rigidly following academic theories but always proactively seeking out and experimenting with new API architectural solutions.
 - **Responsibility for the product:** Always thoroughly testing data flows before handoff, ensuring bugs are minimized.
 
