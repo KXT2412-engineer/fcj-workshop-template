@@ -7,7 +7,7 @@ pre: " <b> 5.3. </b> "
 ---
 
 
-In an Enterprise architecture, the networking layer is highly complex. We must secure incoming traffic at the edge (CloudFront + WAF) and optimize internal backend traffic (VPC Endpoints) to reduce bandwidth costs.
+In an Enterprise architecture, the networking layer is highly complex. We must secure incoming traffic at the edge and distribute it via CloudFront, while optimizing internal backend traffic (VPC Endpoints) to reduce bandwidth costs.
 
 ## 1. Custom Domain with Route 53 (Optional)
 
@@ -16,25 +16,15 @@ If you own a domain (e.g., `snaptics.com`), you should use Route 53 to route tra
 - Enter your domain name. Update your domain registrar's Name Servers (NS) to match the ones provided by Route 53.
 - Request a free SSL certificate via **AWS Certificate Manager (ACM)** in the `us-east-1` region (Required for CloudFront).
 
-## 2. CDN & Firewall (CloudFront + WAF)
+## 2. Content Delivery Network (CloudFront)
 
-Instead of exposing the Application Load Balancer (ALB) directly to the world, we hide it behind CloudFront to cache static assets and protect it with a firewall.
+Instead of exposing the Application Load Balancer (ALB) directly to the world, we hide it behind CloudFront to optimize performance and hide the real IP. *(Note: WAF is already integrated automatically when we host the Frontend with AWS Amplify, so we don't need to configure an external WAF here).*
 
-### A. AWS WAF (Web Application Firewall)
-- Open **AWS WAF ➔ Web ACLs ➔ Create web ACL**.
-- Name: `snaptics-waf-acl`.
-- Resource type: **CloudFront distributions**.
-- Add managed rules: 
-  - `AWSManagedRulesCommonRuleSet` (Blocks SQLi, XSS).
-  - `AWSManagedRulesBotControlRuleSet` (Blocks malicious scrapers).
-- Set Default action to **Allow**.
-
-### B. Amazon CloudFront
+### Configure Amazon CloudFront for API
 - Open **CloudFront ➔ Create Distribution**.
 - **Origin domain:** Select your Application Load Balancer (which we will create in the Compute section).
-- **Protocol:** HTTP Only (Since ALB is in the VPC).
 - **Viewer Protocol Policy:** Redirect HTTP to HTTPS.
-- **Web Application Firewall (WAF):** Choose the `snaptics-waf-acl` created above.
+- **Cache key and origin requests:** Choose **Cache policy and origin request policy** ➔ CachingDisabled and AllViewer (mandatory for dynamic APIs).
 - **Custom SSL Certificate:** Attach the ACM certificate you created.
 - Click Create.
 

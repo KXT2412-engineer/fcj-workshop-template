@@ -55,7 +55,7 @@ Hãy nhìn kỹ vào các vòng tròn số màu đen trên sơ đồ. Chúng th�
 
 ---
 
-## 3. Ngân sách dự kiến (Dự toán chi phí)
+## 3. Ngân sách dự kiến 
 
 Dưới đây là bảng ước tính chi phí chính xác cho môi trường Demo (1 tháng phát triển & demo), cũng như bảng tham khảo khi mở rộng lên môi trường Production Multi-AZ.
 

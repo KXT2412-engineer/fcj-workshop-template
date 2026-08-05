@@ -58,10 +58,19 @@ Invoice images must be stored efficiently. Since we configured a **VPC Gateway E
 
 ## 3. Parameter Management (AWS Systems Manager Parameter Store)
 
-Never hardcode your SQL Server DB password or AI API Keys in your GitHub repo! We use **AWS Systems Manager Parameter Store** to inject these securely at runtime.
+NEVER hardcode your SQL Server DB password or AI API Keys in your GitHub repo! We will use **AWS Systems Manager Parameter Store** to store these securely in a hierarchical structure.
 
-- Go to **AWS Systems Manager -> Parameter Store -> Create parameter**.
-- **Name:** `/Snaptics/Production/ConnectionStrings:DefaultConnection`
-- **Type:** SecureString
-- **Value:** Your actual database connection string.
-- Repeat this for other required keys like `/Snaptics/Production/TokenKey`, `/Snaptics/Production/AiSettings:GeminiApiKey`, `/Snaptics/Production/AWS:AccessKey`, etc.
+- Open **AWS Systems Manager ➔ Parameter Store ➔ Create parameter**.
+- Create the following parameters one by one. For passwords/keys, choose Type **SecureString** to encrypt them (AWS automatically uses KMS). For normal strings, choose Type **String**:
+
+  - `/Snaptics/Production/AWS/AccessKey` (Type: **SecureString**)
+  - `/Snaptics/Production/AWS/SecretKey` (Type: **SecureString**)
+  - `/Snaptics/Production/AiSettings/AzureDocIntelKey` (Type: **SecureString**)
+  - `/Snaptics/Production/AiSettings/GeminiApiKey` (Type: **SecureString**)
+  - `/Snaptics/Production/AwsSns/TopicArn` (Type: **String**)
+  - `/Snaptics/Production/ConnectionStrings/DefaultConnection` (Type: **SecureString**)
+  - `/Snaptics/Production/EmailSettings/Email` (Type: **SecureString**)
+  - `/Snaptics/Production/EmailSettings/Password` (Type: **SecureString**)
+  - `/Snaptics/Production/TokenKey` (Type: **SecureString**)
+
+In your `.NET` code, thanks to the AWS SDK, the application will automatically fetch these parameters using the `/Snaptics/Production/*` path to override `appsettings.json`, keeping your source code completely clean and secure.

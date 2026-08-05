@@ -17,9 +17,9 @@ Before getting hands-on with the AWS Console, it is crucial to thoroughly unders
 
 Take a close look at the numbered black circles in the diagram above. They represent the lifecycle of a user's request:
 
-1. **DNS Resolution (Route 53):** When a user enters the domain `app.snaptics.com` in their browser, the request hits **Amazon Route 53**. Route 53 resolves the domain and points it to the CloudFront distribution.
-2. **CDN & Firewall (CloudFront + WAF):** Traffic enters the AWS Global Network via **CloudFront**. At this edge location, **AWS WAF** inspects the request to block malicious payloads (SQL Injection, DDoS). If valid, CloudFront checks its cache. For frontend assets (HTML/JS/CSS), it fetches them from **AWS Amplify**.
-3. **VPC Ingress (IGW to ALB):** For dynamic API requests, CloudFront routes traffic through the **Internet Gateway** down to the **Application Load Balancer** residing in the `Public Subnet`.
+1. **DNS Resolution (Route 53):** When a user accesses the application, the request hits **Amazon Route 53**. Route 53 routes frontend requests to **AWS Amplify** and API requests to **CloudFront**.
+2. **CDN (CloudFront):** API requests enter the AWS Global Network via **CloudFront**. CloudFront optimizes network traffic and accelerates data delivery.
+3. **VPC Ingress (IGW to ALB):** From CloudFront, the traffic routes through the **Internet Gateway** down to the **Application Load Balancer (ALB)** residing in the `Public Subnet`.
 4. **Compute Layer (ECS Fargate):** The ALB forwards the request to the `.NET Containers` running on **ECS Fargate**, safely isolated within the `Private Subnet`.
 5. **Secure Storage (VPC Gateway Endpoint):** When the ECS container needs to save an uploaded invoice image to the **S3 Bucket**, it routes traffic directly through a **Gateway Endpoint**. This keeps the traffic within the internal AWS network, avoiding the expensive NAT Gateway.
 6. **Database Persistence (SQL Server):** Structured transaction data is saved to the **Amazon RDS for SQL Server** cluster. The cluster operates in a **Primary/Standby** configuration across two Availability Zones for extreme fault tolerance.
@@ -49,7 +49,7 @@ Take a close look at the numbered black circles in the diagram above. They repre
 - **Database:** Amazon RDS for SQL Server & RDS Multi-AZ.
 - **Containerization:** Docker / Amazon Elastic Container Registry (ECR).
 - **Compute:** Amazon ECS (Fargate) Serverless.
-- **Networking:** Route 53, CloudFront, WAF, ALB, VPC Endpoints.
+- **Networking:** Route 53, CloudFront, ALB, VPC Endpoints.
 - **CI/CD:** GitHub Actions.
 - **AI Services:** Google Gemini API, Azure Document Intelligence.
 

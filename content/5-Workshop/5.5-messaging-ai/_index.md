@@ -34,32 +34,35 @@ In a production environment, simply having a queue is not enough. What happens i
 The `.NET` container pulls messages from `snaptics-ai-queue` and calls external AI APIs.
 
 ### Azure Document Intelligence (OCR)
-When a user uploads a receipt, Azure extracts specific fields (Merchant, Total, Tax) automatically.
+When a user uploads a receipt, AWS routes it to Azure for text extraction:
 ```csharp
-// Fetch the secure key injected from Parameter Store
-var credential = new AzureKeyCredential(_secrets["AzureDocIntelKey"]);
-var client = new DocumentAnalysisClient(new Uri(_secrets["AzureDocIntelEndpoint"]), credential);
+// Fetch the secure key injected from AWS Systems Manager via IConfiguration
+var azureKey = _config["AiSettings:AzureDocIntelKey"];
+var azureEndpoint = _config["AiSettings:AzureDocIntelEndpoint"];
+var credential = new AzureKeyCredential(azureKey);
+var client = new DocumentAnalysisClient(new Uri(azureEndpoint), credential);
 
 // Analyze the S3 Image via the Gateway Endpoint pre-signed URL
 AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-receipt", new Uri(preSignedUrl));
 var result = operation.Value;
 
-// Save extracted fields to SQL Server
+// Extract Merchant and Total
 string merchantName = result.Documents[0].Fields["MerchantName"].Value.AsString();
 double total = result.Documents[0].Fields["Total"].Value.AsDouble();
 ```
 
-### Google Gemini (Smart Consulting)
-Users can ask the system: "Based on my receipts, how can I save money?"
-Snaptics queries the Gemini 2.5 model to provide instant insights:
+### Google Gemini (Lightning-fast OCR & Consulting)
+Snaptics leverages the latest generation Gemini model (Gemini 2.5 Flash) for super-fast invoice extraction and smart financial advice:
 ```csharp
 var requestBody = new {
     contents = new[] { new { parts = new[] { new { text = userPrompt } } } }
 };
 
-var response = await _httpClient.PostAsJsonAsync(
-    $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={_secrets["GeminiApiKey"]}", 
-    requestBody);
+var apiKey = _config["AiSettings:GeminiApiKey"];
+var modelName = _config["AiSettings:GeminiModel"]; // e.g. gemini-2.5-flash
+var endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/{modelName}:generateContent?key={apiKey}";
+
+var response = await _httpClient.PostAsJsonAsync(endpoint, requestBody);
 ```
 
 ## 3. Background Jobs with Hangfire

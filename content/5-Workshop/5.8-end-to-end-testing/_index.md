@@ -7,14 +7,13 @@ pre: " <b> 5.8. </b> "
 ---
 
 
-Congratulations on deploying the Enterprise architecture! Now it's time to verify that all components (CloudFront ➔ WAF ➔ ALB ➔ ECS ➔ SQL Server/S3/SQS) are communicating perfectly.
+Congratulations on deploying the Enterprise architecture! Now it's time to verify that all components (CloudFront ➔ ALB ➔ ECS ➔ SQL Server/S3/SQS) are communicating perfectly.
 
-## 1. CloudFront & WAF Verification
+## 1. CloudFront Verification
 
 Instead of hitting the ALB directly, open your browser and navigate to your **CloudFront Domain** (e.g., `https://d1234abcd.cloudfront.net/swagger` or your Custom Route 53 Domain).
 
-1. **Test WAF Blocking:** Try appending a malicious SQL Injection string to the URL: `?id=1' OR '1'='1`. If WAF is working correctly, you should be instantly blocked with a `403 Forbidden` page.
-2. **Test Normal Traffic:** Access the normal Swagger UI. It should load exceptionally fast because CloudFront caches the static Swagger assets at the edge.
+1. **Test Normal Traffic:** Access the normal Swagger UI. It should load exceptionally fast because CloudFront optimizes the delivery through its edge locations.
 
 ## 2. API & AI Integration Testing (Swagger)
 

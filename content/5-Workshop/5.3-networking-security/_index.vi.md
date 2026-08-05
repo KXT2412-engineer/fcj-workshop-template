@@ -9,7 +9,7 @@ pre: " <b> 5.3. </b> "
 
 Trong kiến trúc Enterprise, tầng Mạng đóng vai trò quyết định. Chúng ta phải bảo vệ luồng truy cập từ bên ngoài và phân phối qua CloudFront, đồng thời tối ưu hóa luồng mạng nội bộ bằng VPC Endpoints để giảm thiểu chi phí băng thông đắt đỏ.
 
-## 1. Quản lý Domain với Route 53 (Tùy chọn)
+## 1. Quản lý Domain với Route 53 
 
 Nếu bạn đã mua một tên miền thật (ví dụ `snaptics.com`), hãy cấu hình Route 53.
 - Mở **Route 53 ➔ Hosted zones ➔ Create hosted zone**.
@@ -38,7 +38,7 @@ Tạo 4 Subnet tại `ap-southeast-1`:
 3. `snaptics-private-1a`: `10.0.3.0/24` (Nơi chứa ECS & Database SQL Server)
 4. `snaptics-private-1b`: `10.0.4.0/24` (Nơi chứa ECS & Database SQL Server)
 
-## 4. Gateways & VPC Endpoints (Tuyệt chiêu tiết kiệm chi phí)
+## 4. Gateways & VPC Endpoints 
 
 ### A. Internet Gateway & NAT Gateway
 - Tạo **Internet Gateway** `snaptics-igw` và gắn vào VPC.
@@ -56,7 +56,7 @@ Nếu Container gọi API upload hóa đơn ảnh nặng 5MB lên S3 thông qua 
 - Bấm Create.
 Kể từ giờ, dữ liệu bắn từ Code ECS sang S3 sẽ đi qua đường hầm Endpoint nội bộ, nhanh hơn gấp bội và **Miễn phí 100% băng thông**!
 
-## 5. Security Groups (Lớp giáp cuối cùng)
+## 5. Security Groups 
 
 Bạn phải cấu hình Firewall cứng (Security Group) theo nguyên tắc từng tầng:
 
