@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Dọn dẹp Tài nguyên"
 date: 2024-01-01
 weight: 9
@@ -11,7 +11,7 @@ Vì đây là kiến trúc Enterprise siêu to khổng lồ, việc để nó ch
 
 Hãy làm đúng trình tự ngược từ ngoài vào trong dưới đây để tránh bị lỗi "tài nguyên đang bị khóa":
 
-### 1. Tầng Frontend & Mạng ngoài
+### 1. Tầng Frontend & DNS
 - **AWS Amplify:** Vào giao diện Amplify, chọn App Snaptics, bấm Actions ➔ **Delete app**.
 - **AWS WAF:** Vào mục Web ACLs, chọn `snaptics-waf-acl` và bấm **Delete**.
 - **Route 53:** Xóa các Record CNAME/A bạn đã trỏ. (Đừng xóa Hosted Zone nếu đó là domain bạn mua bằng tiền).

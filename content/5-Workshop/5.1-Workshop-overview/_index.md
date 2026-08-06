@@ -19,13 +19,13 @@ Take a close look at the numbered black circles in the diagram above. They repre
 
 1. **DNS Resolution (Route 53):** When a user accesses the application, the request hits **Amazon Route 53**. Route 53 routes frontend requests to **AWS Amplify** and API requests to **Application Load Balancer (ALB)**.
 2. **VPC Ingress (IGW to ALB):** From Route 53, the traffic routes through the **Internet Gateway** down to the **Application Load Balancer (ALB)** residing in the `Public Subnet`.
-4. **Compute Layer (ECS Fargate):** The ALB forwards the request to the `.NET Containers` running on **ECS Fargate**, safely isolated within the `Private Subnet`.
-5. **Secure Storage (VPC Gateway Endpoint):** When the ECS container needs to save an uploaded invoice image to the **S3 Bucket**, it routes traffic directly through a **Gateway Endpoint**. This keeps the traffic within the internal AWS network, avoiding the expensive NAT Gateway.
-6. **Database Persistence (SQL Server):** Structured transaction data is saved to the **Amazon RDS for SQL Server** cluster. The cluster operates in a **Primary/Standby** configuration across two Availability Zones for extreme fault tolerance.
-7. **Asynchronous Messaging (SQS):** To keep the API response time lightning fast, AI processing tasks are published to the `snaptics-ai-queue` (Amazon SQS). If a task fails repeatedly, it gets moved to a **Dead Letter Queue (DLQ)** for manual inspection.
-8. **NAT Gateway Routing:** For tasks that truly require external internet access, the private ECS containers route traffic through the **NAT Gateway** located in the Public Subnet.
-9. **Internet Egress:** The NAT Gateway passes the traffic to the Internet Gateway.
-10. **External AI Integration:** The request finally leaves the AWS Cloud to hit **External AI APIs** (Google Gemini, Azure Document Intelligence) to perform OCR and smart financial analysis.
+3. **Compute Layer (ECS Fargate):** The ALB forwards the request to the `.NET Containers` running on **ECS Fargate**, safely isolated within the `Private Subnet`.
+4. **Secure Storage (VPC Gateway Endpoint):** When the ECS container needs to save an uploaded invoice image to the **S3 Bucket**, it routes traffic directly through a **Gateway Endpoint**. This keeps the traffic within the internal AWS network, avoiding the expensive NAT Gateway.
+5. **Database Storage (SQL Server):** Transactional data is recorded in the **Amazon RDS for SQL Server** cluster running in **Primary/Standby** mode across 2 Availability Zones for High Availability.
+6. **Asynchronous Processing (SQS):** Heavy tasks like calling AI APIs are pushed into the `snaptics-ai-queue`. If a task fails repeatedly, it gets moved to a **Dead Letter Queue (DLQ)** for manual intervention.
+7. **NAT Gateway Routing:** For tasks that must connect to the external Internet, the ECS Container routes traffic through the **NAT Gateway** (in the Public Subnet).
+8. **Internet Egress:** The NAT Gateway forwards the traffic to the Internet Gateway.
+9. **External AI Integration:** The request officially leaves the AWS Cloud, connecting to **External AI APIs** (Google Gemini, Azure Document Intelligence) for invoice reading and financial analysis.
 
 ### CI/CD Pipeline Flow 
 - **Developer** commits code to the **GitHub Repo**.

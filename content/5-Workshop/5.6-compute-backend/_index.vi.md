@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Compute & Load Balancing (ECS)"
 date: 2024-01-01
 weight: 6
@@ -11,7 +11,7 @@ Hệ thống Backend của Snaptics hoạt động trên nền tảng Serverless
 
 ## 1. Application Load Balancer
 
-Vì các Server Fargate nằm nấp ở mạng Private, ta phải xây một con ALB đứng ngoài mạng Public để nhận request từ Route 53 và chia đều tải vào trong.
+Vì các Server Fargate nằm nấp ở mạng Private, ta phải xây một con ALB đứng ngoài mạng Public để nhận request từ Internet và chia đều tải vào trong.
 
 ### A. Khởi tạo Target Group
 - Vào **EC2 ➔ Target Groups ➔ Create target group**.

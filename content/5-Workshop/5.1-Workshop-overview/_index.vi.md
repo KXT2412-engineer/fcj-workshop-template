@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Tổng quan & Kiến trúc"
 date: 2024-01-01
 weight: 1
@@ -19,13 +19,13 @@ Hãy nhìn kỹ vào các vòng tròn số màu đen trên sơ đồ. Chúng th�
 
 1. **Phân giải DNS (Route 53):** Khi người dùng truy cập ứng dụng, request sẽ chạm tới **Amazon Route 53**. Route 53 định tuyến các request của giao diện Frontend vào **AWS Amplify** và các request gọi API vào **Application Load Balancer (ALB)**.
 2. **Xâm nhập VPC (IGW tới ALB):** Từ Route 53, luồng mạng đi xuyên qua **Internet Gateway**, tiến vào **Application Load Balancer (ALB)** đang đứng gác ở `Public Subnet`.
-4. **Tầng Compute (ECS Fargate):** ALB đóng vai trò phân tải, đẩy request vào các container `.NET` đang chạy trên **ECS Fargate**. Các server này được giấu kín đáo và an toàn tuyệt đối bên trong `Private Subnet`.
-5. **Lưu trữ An toàn (VPC Gateway Endpoint):** Khi Code .NET cần lưu file ảnh hóa đơn lên **S3 Bucket**, nó KHÔNG đi đường vòng ra Internet. Nhờ có **Gateway Endpoint**, dữ liệu được bắn trực tiếp từ mạng nội bộ VPC sang S3, giúp bảo mật tuyệt đối và loại bỏ hoàn toàn phí băng thông của NAT Gateway!
-6. **Lưu trữ CSDL (SQL Server):** Dữ liệu giao dịch được ghi vào cụm **Amazon RDS for SQL Server**. Cụm này chạy chế độ **Primary/Standby** trải dài trên 2 Availability Zones. Nếu server chính sập, server phụ lập tức lên thay mà không gây sập hệ thống (High Availability).
-7. **Xử lý Bất đồng bộ (SQS):** Các tác vụ nặng như gọi AI sẽ được ném vào hàng đợi `snaptics-ai-queue`. Đặc biệt, nếu tác vụ bị lỗi quá nhiều lần, nó sẽ bị tống vào **Dead Letter Queue (DLQ)** để chờ Admin vào xử lý thủ công, đảm bảo không nghẽn hệ thống.
-8. **Định tuyến NAT Gateway:** Đối với các tác vụ thực sự cần kết nối ra Internet bên ngoài, ECS Container (ở mạng Private) sẽ phải đi qua cổng **NAT Gateway** (ở mạng Public).
-9. **Lối ra Internet:** NAT Gateway chuyển tiếp luồng mạng tới Internet Gateway.
-10. **Tích hợp AI Ngoại vi:** Request chính thức rời khỏi AWS Cloud, kết nối đến **External AI APIs** (Google Gemini, Azure Document Intelligence) để đọc hóa đơn và phân tích tài chính.
+3. **Tầng Compute (ECS Fargate):** ALB đóng vai trò phân tải, đẩy request vào các container `.NET` đang chạy trên **ECS Fargate**. Các server này được giấu kín đáo và an toàn tuyệt đối bên trong `Private Subnet`.
+4. **Lưu trữ An toàn (VPC Gateway Endpoint):** Khi Code .NET cần lưu file ảnh hóa đơn lên **S3 Bucket**, nó KHÔNG đi đường vòng ra Internet. Nhờ có **Gateway Endpoint**, dữ liệu được bắn trực tiếp từ mạng nội bộ VPC sang S3, giúp bảo mật tuyệt đối và loại bỏ hoàn toàn phí băng thông của NAT Gateway!
+5. **Lưu trữ CSDL (SQL Server):** Dữ liệu giao dịch được ghi vào cụm **Amazon RDS for SQL Server**. Cụm này chạy chế độ **Primary/Standby** trải dài trên 2 Availability Zones. Nếu server chính sập, server phụ lập tức lên thay mà không gây sập hệ thống (High Availability).
+6. **Xử lý Bất đồng bộ (SQS):** Các tác vụ nặng như gọi AI sẽ được ném vào hàng đợi `snaptics-ai-queue`. Đặc biệt, nếu tác vụ bị lỗi quá nhiều lần, nó sẽ bị tống vào **Dead Letter Queue (DLQ)** để chờ Admin vào xử lý thủ công, đảm bảo không nghẽn hệ thống.
+7. **Định tuyến NAT Gateway:** Đối với các tác vụ thực sự cần kết nối ra Internet bên ngoài, ECS Container (ở mạng Private) sẽ phải đi qua cổng **NAT Gateway** (ở mạng Public).
+8. **Lối ra Internet:** NAT Gateway chuyển tiếp luồng mạng tới Internet Gateway.
+9. **Tích hợp AI Ngoại vi:** Request chính thức rời khỏi AWS Cloud, kết nối đến **External AI APIs** (Google Gemini, Azure Document Intelligence) để đọc hóa đơn và phân tích tài chính.
 
 ### Luồng Triển khai Tự động CI/CD 
 - **Developer** viết code và Push lên **GitHub Repo**.

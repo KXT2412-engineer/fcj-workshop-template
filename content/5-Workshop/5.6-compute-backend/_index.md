@@ -11,7 +11,7 @@ Snaptics backend operates on a Serverless Container architecture. We package the
 
 ## 1. Application Load Balancer (ALB)
 
-Since the containers run in Private Subnets, we need an ALB in the Public Subnets to act as the traffic distributor.
+Since the Fargate Servers are hidden in the Private network, we must build an ALB in the Public network to receive requests from the Internet and distribute the load.
 
 ### A. Create Target Group
 - Open **EC2 ➔ Target Groups ➔ Create target group**.
