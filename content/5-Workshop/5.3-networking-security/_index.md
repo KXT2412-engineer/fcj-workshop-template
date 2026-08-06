@@ -17,7 +17,7 @@ If you own a domain (e.g., `snaptics.com`), you should use Route 53 to route tra
 
 
 
-## 3. Multi-Tier VPC & Subnets
+## 2. Multi-Tier VPC & Subnets
 
 Create the internal network (`snaptics-vpc`) with CIDR `10.0.0.0/16`.
 
@@ -27,7 +27,7 @@ Create 4 subnets in `ap-southeast-1`:
 3. `snaptics-private-1a`: `10.0.3.0/24` (For ECS & SQL Server)
 4. `snaptics-private-1b`: `10.0.4.0/24` (For ECS & SQL Server)
 
-## 4. Gateways & VPC Endpoints
+## 3. Gateways & VPC Endpoints
 
 ### A. Internet Gateway & NAT Gateway
 
@@ -74,7 +74,7 @@ If the ECS container uploads heavy invoice images to S3 via the NAT Gateway, AWS
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.jpg" >
   </div>
 
-## 5. Security Groups (Virtual Firewalls)
+## 4. Security Groups (Virtual Firewalls)
 
 Strictly control traffic flow using Security Groups:
 

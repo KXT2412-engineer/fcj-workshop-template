@@ -15,7 +15,7 @@ Nếu bạn đã mua một tên miền thật (ví dụ `snaptics.com`), hãy c�
 - Mở **Route 53 ➔ Hosted zones ➔ Create hosted zone**.
 - Nhập tên miền của bạn. Lấy 4 dòng Name Servers (NS) dán ngược lại vào nơi bạn mua tên miền để trỏ DNS về AWS.
 
-## 3. Thiết kế Multi-Tier VPC
+## 2. Thiết kế Multi-Tier VPC
 
 Tạo mạng nội bộ (`snaptics-vpc`) với dải IP `10.0.0.0/16`.
 
@@ -25,7 +25,7 @@ Tạo 4 Subnet tại `ap-southeast-1`:
 3. `snaptics-private-1a`: `10.0.3.0/24` (Nơi chứa ECS & Database SQL Server)
 4. `snaptics-private-1b`: `10.0.4.0/24` (Nơi chứa ECS & Database SQL Server)
 
-## 4. Gateways & VPC Endpoints 
+## 3. Gateways & VPC Endpoints 
 
 ### A. Internet Gateway & NAT Gateway
 
@@ -73,7 +73,7 @@ Nếu Container gọi API upload hóa đơn ảnh nặng 5MB lên S3 thông qua 
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.jpg" >
   </div>
 
-## 5. Security Groups 
+## 4. Security Groups 
 
 Bạn phải cấu hình Firewall cứng (Security Group) theo nguyên tắc từng tầng:
 
