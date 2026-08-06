@@ -41,20 +41,49 @@ Create 4 subnets in `ap-southeast-1`:
 ## 4. Gateways & VPC Endpoints
 
 ### A. Internet Gateway & NAT Gateway
-- Create **Internet Gateway** `snaptics-igw` and attach it to the VPC.
-- Create **NAT Gateway** `snaptics-nat-gw` in `snaptics-public-1a` with an Elastic IP. This allows our ECS containers to call Google Gemini and Azure APIs out on the internet.
-- Configure Route Tables so Public subnets route `0.0.0.0/0` to IGW, and Private subnets route `0.0.0.0/0` to NAT Gateway.
+
+**1. Create the Internet Gateway (`snaptics-igw`):**
+- Open **VPC ➔ Internet Gateways ➔ Create internet gateway**.
+- Name: `snaptics-igw`.
+- Click **Create internet gateway**.
+- Select the newly created IGW → **Actions ➔ Attach to VPC** → choose `snaptics-vpc` → **Attach internet gateway**.
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_internetgateway_create_internetgateway.jpg" >
+  </div>
+
+**2. Create the NAT Gateway (`snaptics-nat-gw`):**
+- Open **VPC ➔ NAT Gateways ➔ Create NAT gateway**.
+- Name: `snaptics-nat-gw`.
+- Subnet: select the **Public subnet** `snaptics-public-1a`.
+- Connectivity type: **Public**.
+- VPC is automatically set to `snaptics-vpc` (based on the selected subnet).
+- Elastic IP: click **Allocate Elastic IP** to create a static public IP for the NAT Gateway.
+- Scroll down and click **Create NAT gateway**, then wait until the status changes from **Pending** to **Available**.
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_natgateway.jpg" >
+  </div>
+
+**3. Configure Route Tables:**
+- Public subnets route `0.0.0.0/0` to the Internet Gateway.
+- Private subnets route `0.0.0.0/0` to the NAT Gateway.
+
+The NAT Gateway allows our ECS containers in the Private subnets to call Google Gemini and Azure APIs out on the internet.
 
 ### B. VPC Gateway Endpoint for S3 (Cost Optimization)
-If the ECS container uploads heavy invoice images to S3 via the NAT Gateway, AWS will charge massive data processing fees. To fix this, we use a VPC Endpoint.
+If the ECS container uploads heavy invoice images to S3 via the NAT Gateway, AWS will charge massive data processing fees. To fix this, we use a VPC Endpoint so all S3 traffic stays inside the AWS backbone network (faster and 100% free).
+
+**Lab Steps:**
 - Open **VPC ➔ Endpoints ➔ Create endpoint**.
-- Service category: **AWS services**.
-- Service: Search for `s3` and select the **Gateway** type (`com.amazonaws.ap-southeast-1.s3`).
-- VPC: `snaptics-vpc`.
-- Route tables: Check the **Private Route Table**.
-- Policy: **Full Access**.
-- Click Create.
-Now, all traffic from ECS to S3 will stay inside the AWS backbone network, which is faster and 100% Free!
+- **Name tag:** `snaptics-s3-endpoint`.
+- **Type:** AWS service.
+- **Service:** In the service search box, type `s3`, then select `com.amazonaws.ap-southeast-1.s3` which has the type **Gateway**.
+- **VPC:** select `snaptics-vpc`.
+- **Route tables:** check the **Private Route Table**.
+- **Policy:** **Full Access**.
+- Scroll down and click **Create endpoint**.
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.jpg" >
+  </div>
 
 ## 5. Security Groups (Virtual Firewalls)
 

@@ -9,7 +9,7 @@ pre: " <b> 5.4. </b> "
 
 Ở bài này, chúng ta sẽ xây dựng tầng lưu trữ. Vì hệ thống hướng tới môi trường Production, ta sẽ loại bỏ các DB thông thường và file cấu hình thô sơ để thay thế bằng SQL Server và AWS Systems Manager Parameter Store.
 
-## 1. Cơ sở dữ liệu Cốt lõi (Amazon RDS for SQL Server Multi-AZ)
+## 1. Cơ sở dữ liệu Cốt lõi (Amazon RDS for SQL Server)
 
 Snaptics yêu cầu một DB không bao giờ được phép sập (High Availability). SQL Server tự động sao chép dữ liệu của bạn ra nhiều Availability Zones khác nhau.
 
@@ -21,23 +21,30 @@ Snaptics yêu cầu một DB không bao giờ được phép sập (High Availab
 
 ### B. Khởi tạo Cụm SQL Server Cluster
 - Vào **RDS ➔ Databases ➔ Create database**.
-- **Engine options:** Bắt buộc chọn **Amazon RDS for SQL Server**.
-- **Edition:** Chọn MySQL hoặc PostgreSQL (Tùy thuộc vào thư viện EF Core bạn gắn trong code C#).
-- **Templates:** Production.
+- **Engine options:** Bắt buộc chọn **SQL Server**.
+- **Choose a database creation method:** Chọn **Full configuration**.
+- **Templates:** Chọn **Dev/Test**.
 - **Settings:**
   - DB cluster identifier: `snaptics-sql-server`
   - Master username: `admin`
   - Master password: Gõ một mật khẩu thật mạnh (Ví dụ `SnapticsAurora2024!`).
-- **Instance configuration:** Chọn cấu hình máy chủ ảo, ví dụ `db.t3.medium`.
-- **Availability & Durability:** Chọn **Create an SQL Server Replica/Reader node in a different AZ** (Đây chính là tính năng Multi-AZ thần thánh).
+- **Instance configuration:**
+  - Chọn **Burstable classes (includes t classes)**.
+  - Instance type: `db.t3.micro`.
+- **Storage:**
+  - Storage type: **General purpose SSD (gp3)**.
+  - Allocated Storage: `200`.
+  - Provisioned IOPS: `3000`.
+  - Storage throughput: `125`.
 - **Connectivity:**
-  - VPC: Chọn `snaptics-vpc`
-  - DB subnet group: `snaptics-db-subnet-group`
+  - Compute resource: chọn **Don't connect to an EC2 compute resource**.
+  - VPC: Chọn `snaptics-vpc`.
   - **Public access: No** (Rất quan trọng, để No để hacker không thể quét ra cổng DB của bạn).
-  - VPC security group: Chọn `snaptics-db-sg`.
-- Bấm **Create database**. Cụm SQL Server sẽ mất khoảng 15 phút để tạo. Sau khi xong, copy lấy chuỗi **Writer Endpoint**.
+  - VPC security group: chọn **Choose existing**, sau đó chọn `default`.
+  - Availability Zone: **No preference**.
+- Các mục còn lại giữ nguyên, sau đó bấm **Create database**. Cụm SQL Server sẽ mất khoảng 15 phút để tạo. Sau khi xong, copy lấy chuỗi **Writer Endpoint**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/rds.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/aurora_and_rds_create_db.jpg" >
   </div>
 
 ## 2. Kho lưu trữ Hóa đơn (Amazon S3)
@@ -58,8 +65,7 @@ Vì ở bài trước chúng ta đã tạo **VPC Gateway Endpoint**, Code C# ch�
     }
 ]
 ```
-
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/s3.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/amazon_s3_create.jpg" >
   </div>
 
 ## 3. Két sắt Bí mật (AWS Systems Manager Parameter Store)

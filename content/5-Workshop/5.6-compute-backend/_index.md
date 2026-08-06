@@ -21,7 +21,10 @@ Since the containers run in Private Subnets, we need an ALB in the Public Subnet
 - **VPC:** `snaptics-vpc`.
 - Leave targets blank (ECS will auto-register them later) and click Create.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create.jpg" >
+  </div>
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_tg_create_2.jpg" >
   </div>
 
 ### B. Create ALB
@@ -33,7 +36,10 @@ Since the containers run in Private Subnets, we need an ALB in the Public Subnet
 - **Listeners and routing:** Add HTTP (80) and forward traffic to `snaptics-ecs-tg`.
 - Click Create.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.jpg" >
+  </div>
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/alb_create_1.2.jpg" >
   </div>
 
 ## 2. Amazon Elastic Container Registry (ECR)
@@ -44,7 +50,10 @@ Before creating the ECS Cluster, we need a place to store our Docker Images.
 - **Repository name:** `snaptics-api`.
 - Click Create. Copy the **URI** (e.g., `123456789.dkr.ecr.ap-southeast-1.amazonaws.com/snaptics-api`).
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.jpg" >
+  </div>
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecr_create_1.2.jpg" >
   </div>
 
 *(Note: We don't push images manually here. GitHub Actions will do this in the next section).*
@@ -57,8 +66,9 @@ Before creating the ECS Cluster, we need a place to store our Docker Images.
 - **Infrastructure:** AWS Fargate.
 - Enable **Container Insights** (This activates advanced CloudWatch monitoring as seen in the architecture diagram).
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecscluster.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/ecs_cluster_create.jpg" >
   </div>
+
 ### B. Task Definition
 - Open **Task definitions ➔ Create new task definition**.
 - **Family:** `snaptics-api-task`.
@@ -71,6 +81,10 @@ Before creating the ECS Cluster, we need a place to store our Docker Images.
   - Name: `snaptics-app`
   - Image URI: Paste the ECR URI you copied earlier. *(It will fail to boot initially since the image doesn't exist yet, but GitHub Actions will fix this).*
   - Container port: `8080`.
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.6-compute-backend/task_definition_create.jpg" >
+  </div>
+
 
 ### C. Deploy ECS Service
 - Go to `Snaptics-Cluster` ➔ **Services** tab ➔ **Create**.

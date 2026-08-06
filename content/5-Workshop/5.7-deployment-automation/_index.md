@@ -81,7 +81,14 @@ The final command `--force-new-deployment` executes an intelligent **Rolling Upd
 ## 3. Frontend CI/CD Pipeline (AWS Amplify)
 
 AWS Amplify makes hosting Angular SPAs incredibly easy. Instead of writing a complex YAML file for Amplify, AWS provides direct GitHub integration.
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify.jpg" >
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.jpg" >
+  </div>
+    <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.2.jpg" >
+  </div>
+    <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.3.jpg" >
+  </div>
+    <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.4.jpg" >
   </div>
 
 ### Setting up Amplify Auto-Deploy

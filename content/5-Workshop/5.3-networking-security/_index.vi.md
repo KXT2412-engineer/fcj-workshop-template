@@ -41,20 +41,50 @@ Tạo 4 Subnet tại `ap-southeast-1`:
 ## 4. Gateways & VPC Endpoints 
 
 ### A. Internet Gateway & NAT Gateway
-- Tạo **Internet Gateway** `snaptics-igw` và gắn vào VPC.
-- Tạo **NAT Gateway** `snaptics-nat-gw` nằm ở `snaptics-public-1a`. Cục NAT này có nhiệm vụ giúp Container đứng trong mạng Private có đường Internet để gọi ra API Google Gemini và Azure OCR.
-- Sửa Route Tables: Mạng Public trỏ `0.0.0.0/0` ra IGW, mạng Private trỏ `0.0.0.0/0` ra NAT Gateway.
+
+**1. Tạo Internet Gateway (`snaptics-igw`):**
+- Vào **VPC ➔ Internet Gateways ➔ Create internet gateway**.
+- Name: `snaptics-igw`.
+- Bấm **Create internet gateway**.
+- Chọn IGW vừa tạo → **Actions ➔ Attach to VPC** → chọn `snaptics-vpc` → **Attach internet gateway**.
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_internetgateway_create_internetgateway.jpg" >
+  </div>
+
+**2. Tạo NAT Gateway (`snaptics-nat-gw`):**
+- Vào **VPC ➔ NAT Gateways ➔ Create NAT gateway**.
+- Name: `snaptics-nat-gw`.
+- Subnet: chọn **Public subnet** `snaptics-public-1a`.
+- Connectivity type: **Public**.
+- VPC tự động là `snaptics-vpc` (dựa theo subnet đã chọn).
+- Elastic IP: bấm **Allocate Elastic IP** để tạo IP tĩnh cho NAT Gateway.
+- Cuộn xuống bấm **Create NAT gateway** và chờ status từ **Pending** chuyển sang **Available**.
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_natgateway.jpg" >
+  </div>
+
+**3. Cấu hình Route Tables:**
+- Mạng Public trỏ `0.0.0.0/0` ra Internet Gateway.
+- Mạng Private trỏ `0.0.0.0/0` ra NAT Gateway.
+
+NAT Gateway có nhiệm vụ giúp các Container ECS trong mạng Private có đường Internet để gọi ra API Google Gemini và Azure OCR.
 
 ### B. VPC Gateway Endpoint cho S3 (Rất Quan Trọng)
-Nếu Container gọi API upload hóa đơn ảnh nặng 5MB lên S3 thông qua vòng lặp NAT Gateway, AWS sẽ tính tiền "Data Processing" rất đắt. Giải pháp là dùng VPC Endpoint!
+Nếu Container gọi API upload hóa đơn ảnh nặng 5MB lên S3 thông qua vòng lặp NAT Gateway, AWS sẽ tính tiền "Data Processing" rất đắt. Giải pháp là dùng VPC Endpoint để dữ liệu đi qua đường hầm nội bộ của AWS (nhanh hơn và **Miễn phí 100% băng thông**).
+
+**Các bước thực hiện Lab:**
 - Vào **VPC ➔ Endpoints ➔ Create endpoint**.
-- Service category: **AWS services**.
-- Service: Gõ chữ `s3` và tìm mục có Type là **Gateway** (`com.amazonaws.ap-southeast-1.s3`).
-- VPC: `snaptics-vpc`.
-- Route tables: Tick chọn bảng định tuyến của mạng **Private**.
-- Policy: **Full Access**.
-- Bấm Create.
-Kể từ giờ, dữ liệu bắn từ Code ECS sang S3 sẽ đi qua đường hầm Endpoint nội bộ, nhanh hơn gấp bội và **Miễn phí 100% băng thông**!
+- **Name tag:** `snaptics-s3-endpoint`.
+- **Type:** AWS service.
+- **Service:** Gõ chữ `s3` vào ô tìm kiếm, sau đó tích chọn `com.amazonaws.ap-southeast-1.s3` có type là **Gateway**.
+- **VPC:** chọn `snaptics-vpc`.
+- **Route tables:** Tick chọn bảng định tuyến của mạng **Private**.
+- **Policy:** **Full Access**.
+- Cuộn xuống bấm **Create endpoint**.
+
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.jpg" >
+  </div>
 
 ## 5. Security Groups 
 

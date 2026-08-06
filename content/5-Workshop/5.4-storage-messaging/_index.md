@@ -9,7 +9,7 @@ pre: " <b> 5.4. </b> "
 
 In this module, we will provision the data persistence layer. Because we are building a production-ready application, we replace standard databases and basic config files with AWS SQL Server and Parameter Store.
 
-## 1. Amazon RDS for SQL Server (Multi-AZ)
+## 1. Amazon RDS for SQL Server
 
 Snaptics requires a robust, highly available database. SQL Server automatically replicates your data across multiple Availability Zones, ensuring zero data loss if a data center goes offline.
 
@@ -21,25 +21,32 @@ Snaptics requires a robust, highly available database. SQL Server automatically 
 
 ### B. Create SQL Server Cluster
 - Open **RDS ➔ Databases ➔ Create database**.
-- **Engine options:** Select **Amazon RDS for SQL Server**.
-- **Edition:** Choose SQL Server Express or Standard.
-- **Templates:** Production.
+- **Engine options:** Select **SQL Server**.
+- **Choose a database creation method:** **Full configuration**.
+- **Templates:** **Dev/Test**.
 - **Settings:**
   - DB cluster identifier: `snaptics-sql-server`
   - Master username: `admin`
   - Master password: Generate a strong password (e.g., `SnapticsAurora2024!`).
-- **Instance configuration:** Choose a serverless or provisioned instance class (e.g., `db.t3.medium`).
-- **Availability & Durability:** **Create an SQL Server Replica/Reader node in a different AZ** (Multi-AZ deployment).
+- **Instance configuration:**
+  - Select **Burstable classes (includes t classes)**.
+  - Instance type: `db.t3.micro`.
+- **Storage:**
+  - Storage type: **General purpose SSD (gp3)**.
+  - Allocated Storage: `200`.
+  - Provisioned IOPS: `3000`.
+  - Storage throughput: `125`.
 - **Connectivity:**
-  - VPC: `snaptics-vpc`
-  - DB subnet group: `snaptics-db-subnet-group`
+  - Compute resource: select **Don't connect to an EC2 compute resource**.
+  - VPC: `snaptics-vpc`.
   - **Public access: No** (Crucial for security).
-  - VPC security group: Choose the `snaptics-db-sg` created earlier.
-- Click **Create database**. Wait ~15 minutes and copy the **Writer Endpoint**.
+  - VPC security group: select **Choose existing**, then choose `default`.
+  - Availability Zone: **No preference**.
+- Keep all other settings as default, then click **Create database**. Wait ~15 minutes and copy the **Writer Endpoint**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/rds.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/aurora_and_rds_create_db.jpg" >
   </div>
-
+  
 ## 2. Secure Storage (Amazon S3)
 
 Invoice images must be stored efficiently. Since we configured a **VPC Gateway Endpoint** in the previous step, our containers can save files to S3 internally without internet bandwidth costs.
@@ -58,6 +65,9 @@ Invoice images must be stored efficiently. Since we configured a **VPC Gateway E
     }
 ]
 ```
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/amazon_s3_create.jpg" >
+  </div>
+
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/s3.jpg" >
   </div>
 
