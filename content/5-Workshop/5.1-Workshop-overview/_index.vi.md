@@ -1,4 +1,4 @@
----
+﻿---
 title: "Tổng quan & Kiến trúc"
 date: 2024-01-01
 weight: 1
@@ -17,9 +17,8 @@ Trước khi bắt tay vào cấu hình thực tế trên AWS Console, việc th
 
 Hãy nhìn kỹ vào các vòng tròn số màu đen trên sơ đồ. Chúng thể hiện vòng đời của một Request từ người dùng:
 
-1. **Phân giải DNS (Route 53):** Khi người dùng truy cập ứng dụng, request sẽ chạm tới **Amazon Route 53**. Route 53 định tuyến các request của giao diện Frontend vào **AWS Amplify** và các request gọi API vào **CloudFront**.
-2. **CDN (CloudFront):** Request gọi API đi vào mạng lưới toàn cầu của AWS qua **CloudFront**. CloudFront giúp tối ưu hóa luồng mạng và tăng tốc độ truyền tải dữ liệu.
-3. **Xâm nhập VPC (IGW tới ALB):** Từ CloudFront, luồng mạng đi xuyên qua **Internet Gateway**, tiến vào **Application Load Balancer (ALB)** đang đứng gác ở `Public Subnet`.
+1. **Phân giải DNS (Route 53):** Khi người dùng truy cập ứng dụng, request sẽ chạm tới **Amazon Route 53**. Route 53 định tuyến các request của giao diện Frontend vào **AWS Amplify** và các request gọi API vào **Application Load Balancer (ALB)**.
+2. **Xâm nhập VPC (IGW tới ALB):** Từ Route 53, luồng mạng đi xuyên qua **Internet Gateway**, tiến vào **Application Load Balancer (ALB)** đang đứng gác ở `Public Subnet`.
 4. **Tầng Compute (ECS Fargate):** ALB đóng vai trò phân tải, đẩy request vào các container `.NET` đang chạy trên **ECS Fargate**. Các server này được giấu kín đáo và an toàn tuyệt đối bên trong `Private Subnet`.
 5. **Lưu trữ An toàn (VPC Gateway Endpoint):** Khi Code .NET cần lưu file ảnh hóa đơn lên **S3 Bucket**, nó KHÔNG đi đường vòng ra Internet. Nhờ có **Gateway Endpoint**, dữ liệu được bắn trực tiếp từ mạng nội bộ VPC sang S3, giúp bảo mật tuyệt đối và loại bỏ hoàn toàn phí băng thông của NAT Gateway!
 6. **Lưu trữ CSDL (SQL Server):** Dữ liệu giao dịch được ghi vào cụm **Amazon RDS for SQL Server**. Cụm này chạy chế độ **Primary/Standby** trải dài trên 2 Availability Zones. Nếu server chính sập, server phụ lập tức lên thay mà không gây sập hệ thống (High Availability).
@@ -49,7 +48,7 @@ Hãy nhìn kỹ vào các vòng tròn số màu đen trên sơ đồ. Chúng th�
 - **Database:** Amazon RDS for SQL Server & RDS Multi-AZ (Chống lỗi phần cứng).
 - **Containerization:** Docker / Amazon Elastic Container Registry (ECR).
 - **Compute:** Amazon ECS (Fargate) Serverless.
-- **Networking:** Route 53, CloudFront, ALB, VPC Endpoints, NAT Gateway.
+- **Networking:** Route 53, ALB, VPC Endpoints, NAT Gateway.
 - **CI/CD:** Tự động hóa bằng GitHub Actions.
 - **AI Services:** Google Gemini API, Azure Document Intelligence.
 
@@ -63,7 +62,7 @@ Dưới đây là bảng ước tính chi phí chính xác cho môi trường De
 
 | STT | Hạng mục dịch vụ | Cơ sở ước tính | Chi phí (USD) |
 | :--- | :--- | :--- | :--- |
-| 1 | **AWS Amplify, CloudFront & Route 53** | Build/hosting Frontend, CDN lưu lượng thấp và 01 Hosted Zone | $4.50 |
+| 1 | **AWS Amplify & Route 53** | Build/hosting Frontend và 01 Hosted Zone | $4.50 |
 | 2 | **Amazon S3** | Lưu khoảng 20 GB ảnh hóa đơn và request upload/download | $1.00 |
 | 3 | **ECS Fargate - Backend & AI Worker** | Task cấu hình nhỏ, tổng khoảng 200-220 giờ chạy | $8.00 |
 | 4 | **Application Load Balancer (ALB)** | Hoạt động trong giai đoạn triển khai và demo, lưu lượng thấp | $7.00 |
@@ -82,9 +81,14 @@ Dưới đây là bảng ước tính chi phí chính xác cho môi trường De
 | **ECS Fargate & Application Load Balancer (Auto Scaling)** | $60 - $150 USD |
 | **SQL Server Primary/Standby (Multi-AZ)**| $150 - $300 USD |
 | **Dual NAT Gateway & Data Transfer** | $70 - $120 USD |
-| **S3, CloudFront, SQS, SNS, ECR & CloudWatch**| $20 - $60 USD |
+| **S3, SQS, SNS, ECR & CloudWatch**| $20 - $60 USD |
 | **External AI APIs (Azure Document Intelligence & Gemini)** | Phụ thuộc số lượng hóa đơn thực tế |
 | **Tổng chi phí dự kiến Production** | **$300 - $600 USD / tháng** (chưa gồm AI API) |
 
 > [!WARNING]
 > **CẢNH BÁO TÀI CHÍNH CỰC KỲ QUAN TRỌNG:** Nếu bạn đang thực hành Workshop này trên tài khoản AWS cá nhân để học tập, **BẠN BẮT BUỘC** phải làm theo mục **5.9 Dọn dẹp Tài nguyên (Cleanup)** ngay sau khi test xong. Việc quên tắt SQL Server Multi-AZ và NAT Gateway có thể "đốt" sạch tiền trong thẻ tín dụng của bạn chỉ trong vài ngày!
+
+
+
+
+

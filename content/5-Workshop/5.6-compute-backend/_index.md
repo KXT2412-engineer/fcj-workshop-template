@@ -30,7 +30,7 @@ Since the containers run in Private Subnets, we need an ALB in the Public Subnet
 ### B. Create ALB
 - Open **EC2 ➔ Load Balancers ➔ Create Load Balancer ➔ Application Load Balancer**.
 - **Name:** `snaptics-alb`.
-- **Scheme:** **Internal** OR **Internet-facing**. Since we have CloudFront in front of it, it can technically be Internal if configured with advanced routing, but for simplicity, we keep it **Internet-facing**.
+- **Scheme:** **Internet-facing** so the Load Balancer can communicate with the Internet.
 - **Network mapping:** Select `snaptics-vpc` and check the 2 **Public Subnets**.
 - **Security groups:** Apply `snaptics-alb-sg`.
 - **Listeners and routing:** Add HTTP (80) and forward traffic to `snaptics-ecs-tg`.
@@ -96,3 +96,4 @@ Before creating the ECS Cluster, we need a place to store our Docker Images.
 - Click Create.
 
 The service will try to start tasks but will fail because the ECR repository is currently empty. Move to the next section to unleash the power of GitHub Actions CI/CD!
+

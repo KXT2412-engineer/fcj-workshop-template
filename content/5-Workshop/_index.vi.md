@@ -12,7 +12,7 @@ Chào mừng bạn đến với hướng dẫn triển khai toàn diện dự á
 Trong workshop này, bạn sẽ học cách triển khai một môi trường Production thực thụ, có tính khả dụng cao và bảo mật tuyệt đối trên AWS. Kiến trúc đã được nâng cấp mạnh mẽ từ mức cơ bản lên chuẩn **Enterprise (Doanh nghiệp)**, tuân thủ nghiêm ngặt khung AWS Well-Architected Framework.
 
 ### Những Điểm Nâng cấp Đáng giá trong Kiến trúc này:
-- **Phân phối Toàn cầu & Bảo mật:** Triển khai **Route 53** (Quản lý DNS) và **Amazon CloudFront** (Mạng phân phối nội dung CDN) để tăng tốc độ truy cập toàn cầu.
+- **Phân phối Toàn cầu & Bảo mật:** Triển khai **Route 53** (Quản lý DNS) và **Application Load Balancer** để phân tải tốc độ cao.
 - **Hosting Frontend:** Tự động hóa hoàn toàn việc hosting ứng dụng Frontend thông qua **AWS Amplify**.
 - **Serverless Compute:** Vận hành Backend .NET Core trên **Amazon ECS Fargate** thông qua Application Load Balancer (ALB) trong mạng Private.
 - **Database Chuẩn Doanh nghiệp:** Chuyển đổi từ SQL Server thông thường sang **Amazon RDS for SQL Server** với cơ chế sao chép Primary/Standby (Multi-AZ) để đảm bảo High Availability.
@@ -29,13 +29,15 @@ Trong workshop này, bạn sẽ học cách triển khai một môi trường Pr
 
 1. **Tổng quan & Kiến trúc:** Phân tích chuyên sâu sơ đồ hệ thống Enterprise và luồng dữ liệu.
 2. **Chuẩn bị (Prerequisites):** Thiết lập tài khoản GitHub, IAM Users và lấy API Key cho AI (Gemini / Azure).
-3. **Mạng & Bảo mật:** Khởi tạo Multi-Tier VPC, cấu hình Route 53, CloudFront và VPC Endpoints.
+3. **Mạng & Bảo mật:** Khởi tạo Multi-Tier VPC, cấu hình Route 53, ALB và VPC Endpoints.
 4. **Database, Storage & Secrets:** Triển khai RDS SQL Server, S3 Bucket và khởi tạo kho khóa Parameter Store.
 5. **AI & Tác vụ nền (Messaging):** Cấu hình SQS `snaptics-ai-queue` kèm DLQ, tích hợp các API Trí tuệ nhân tạo.
 6. **Compute & Backend (ECS):** Đóng gói Docker và điều phối các task Fargate ẩn sau lớp ALB.
 7. **CI/CD Pipeline (GitHub Actions):** Viết script YAML để tự động hóa toàn bộ quy trình Deploy cho cả Frontend lẫn Backend.
-8. **Kiểm thử Toàn hệ thống (E2E Testing):** Xác thực luồng API và kết nối WebSocket (SignalR) xuyên qua CloudFront.
+8. **Kiểm thử Toàn hệ thống (E2E Testing):** Xác thực luồng API và kết nối WebSocket (SignalR) xuyên qua ALB.
 9. **Dọn dẹp Tài nguyên:** Bước cực kỳ quan trọng để xóa sạch hạ tầng, tránh bị AWS trừ tiền thẻ tín dụng.
 
 > [!NOTE]  
 > Hướng dẫn này được viết cực kỳ chi tiết từ A đến Z, bạn chỉ cần đọc chậm rãi và copy/paste cấu hình chính xác. Hãy chuẩn bị một ly cà phê và bắt tay vào xây dựng hệ thống tỷ đô của riêng bạn nào!
+
+

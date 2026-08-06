@@ -1,4 +1,4 @@
----
+﻿---
 title: "Kiểm thử Hệ thống (E2E Testing)"
 date: 2024-01-01
 weight: 8
@@ -7,15 +7,14 @@ pre: " <b> 5.8. </b> "
 ---
 
 
-Chúc mừng bạn đã dựng xong khối kiến trúc Enterprise đồ sộ! Giờ là lúc kiểm chứng xem mọi mảnh ghép (CloudFront ➔ ALB ➔ ECS ➔ SQL Server/S3/SQS) có đang mượt mà vắt chéo nhau không.
+Chúc mừng bạn đã dựng xong khối kiến trúc Enterprise đồ sộ! Giờ là lúc kiểm chứng xem mọi mảnh ghép (ALB ➔ ECS ➔ SQL Server/S3/SQS) có đang mượt mà vắt chéo nhau không.
 
-## 1. Kiểm chứng Mạng Phân phối (CloudFront)
+## 1. Kiểm chứng Load Balancer & DNS
 
-Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duyệt và gõ **Domain của CloudFront** (Ví dụ `https://d1234abcd.cloudfront.net/swagger` hoặc Domain của bạn trên Route 53).
+Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duyệt và gõ **DNS Name của ALB** (Hoặc Domain của bạn trên Route 53).
 
-1. **Test Load Tĩnh:** Truy cập trang Swagger bình thường, bạn sẽ thấy nó load nhanh vì CloudFront đã tối ưu đường truyền ở các trạm phát sóng (Edge location).
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.8-end-to-end-testing/cloudfront.jpg" >
-  </div>
+1. **Test Load Tĩnh:** Truy cập trang Swagger bình thường, bạn sẽ thấy nó load nhanh chóng thông qua Load Balancer.
+  
 
 ## 2. Kiểm thử API & Trí tuệ Nhân tạo (Swagger)
 
@@ -29,11 +28,18 @@ Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duy�
 
 ## 3. Kiểm thử WebSocket xuyên tường (SignalR)
 
-Để xem Real-time Notification có đâm xuyên qua được CloudFront và ALB không.
+Để xem Real-time Notification có đâm xuyên qua được ALB không.
 
-1. Dùng công cụ Client kết nối tới: `wss://<CLOUDFRONT_DOMAIN>/hubs/notification?access_token=<TOKEN>`
+1. Dùng công cụ Client kết nối tới: `wss://<ALB_DOMAIN>/hubs/notification?access_token=<TOKEN>`
 2. Kiểm tra log thấy báo `101 Switching Protocols` là thành công.
 3. Mở song song trang Swagger, gọi Endpoint tạo 1 giao dịch thủ công.
 4. Ngay lập tức màn hình WebSocket Client nhận được một chuỗi JSON đẩy về: `{"type": "NEW_TRANSACTION_ADDED"}`. 
 
-Điều này chứng minh CloudFront và ALB đã làm rất tốt việc Upgrade giao thức HTTP lên WebSocket và giữ đường hầm kết nối liên tục (Persistent tunnel) thẳng tới lõi Fargate bên trong mạng Private!
+Điều này chứng minh ALB đã làm rất tốt việc Upgrade giao thức HTTP lên WebSocket và giữ đường hầm kết nối liên tục (Persistent tunnel) thẳng tới lõi Fargate bên trong mạng Private!
+
+
+
+
+
+
+

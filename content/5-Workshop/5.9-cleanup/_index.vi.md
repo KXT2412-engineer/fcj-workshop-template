@@ -1,4 +1,4 @@
----
+﻿---
 title: "Dọn dẹp Tài nguyên"
 date: 2024-01-01
 weight: 9
@@ -13,7 +13,6 @@ Hãy làm đúng trình tự ngược từ ngoài vào trong dưới đây để
 
 ### 1. Tầng Frontend & Mạng ngoài
 - **AWS Amplify:** Vào giao diện Amplify, chọn App Snaptics, bấm Actions ➔ **Delete app**.
-- **CloudFront:** Chọn Distribution của bạn, bấm **Disable**. Khúc này phải ngồi đợi khoảng 5 phút cho nó tắt hẳn (Deploying). Khi nào xong mới hiện nút **Delete** để xóa.
 - **AWS WAF:** Vào mục Web ACLs, chọn `snaptics-waf-acl` và bấm **Delete**.
 - **Route 53:** Xóa các Record CNAME/A bạn đã trỏ. (Đừng xóa Hosted Zone nếu đó là domain bạn mua bằng tiền).
 

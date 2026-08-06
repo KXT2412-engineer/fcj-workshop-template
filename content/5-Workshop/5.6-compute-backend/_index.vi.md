@@ -1,4 +1,4 @@
----
+﻿---
 title: "Compute & Load Balancing (ECS)"
 date: 2024-01-01
 weight: 6
@@ -11,7 +11,7 @@ Hệ thống Backend của Snaptics hoạt động trên nền tảng Serverless
 
 ## 1. Application Load Balancer
 
-Vì các Server Fargate nằm nấp ở mạng Private, ta phải xây một con ALB đứng ngoài mạng Public để nhận request từ CloudFront và chia đều tải vào trong.
+Vì các Server Fargate nằm nấp ở mạng Private, ta phải xây một con ALB đứng ngoài mạng Public để nhận request từ Route 53 và chia đều tải vào trong.
 
 ### A. Khởi tạo Target Group
 - Vào **EC2 ➔ Target Groups ➔ Create target group**.
@@ -30,7 +30,7 @@ Vì các Server Fargate nằm nấp ở mạng Private, ta phải xây một con
 ### B. Khởi tạo ALB
 - Vào **EC2 ➔ Load Balancers ➔ Create Load Balancer ➔ Application Load Balancer**.
 - **Name:** `snaptics-alb`.
-- **Scheme:** Chọn **Internet-facing** để CloudFront có thể vươn tới được.
+- **Scheme:** Chọn **Internet-facing** để Load Balancer có thể giao tiếp với Internet.
 - **Network mapping:** Chọn `snaptics-vpc` và tick vào 2 mạng **Public Subnets**.
 - **Security groups:** Chọn `snaptics-alb-sg`.
 - **Listeners and routing:** Mở cổng HTTP (80) và trỏ luồng Forward vào `snaptics-ecs-tg`.
@@ -95,3 +95,4 @@ Trước khi cấu hình ECS, ta cần một kho chứa an toàn để GitHub Ac
 - Bấm Create.
 
 Lúc này Service sẽ cố gắng khởi động nhưng báo lỗi vì kho ECR đang trống không. Hãy chuyển ngay sang mục Kế tiếp để thiết lập đường ống CI/CD siêu cấp vũ trụ của GitHub Actions!
+

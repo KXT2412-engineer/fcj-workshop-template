@@ -7,26 +7,15 @@ pre: " <b> 5.3. </b> "
 ---
 
 
-In an Enterprise architecture, the networking layer is highly complex. We must secure incoming traffic at the edge and distribute it via CloudFront, while optimizing internal backend traffic (VPC Endpoints) to reduce bandwidth costs.
+In an Enterprise architecture, the networking layer is highly complex. We must secure incoming traffic at the edge, while optimizing internal backend traffic (VPC Endpoints) to reduce bandwidth costs.
 
 ## 1. Custom Domain with Route 53 (Optional)
 
 If you own a domain (e.g., `snaptics.com`), you should use Route 53 to route traffic.
 - Open **Route 53 ➔ Hosted zones ➔ Create hosted zone**.
 - Enter your domain name. Update your domain registrar's Name Servers (NS) to match the ones provided by Route 53.
-- Request a free SSL certificate via **AWS Certificate Manager (ACM)** in the `us-east-1` region (Required for CloudFront).
 
-## 2. Content Delivery Network (CloudFront)
 
-Instead of exposing the Application Load Balancer (ALB) directly to the world, we hide it behind CloudFront to optimize performance and hide the real IP. *(Note: WAF is already integrated automatically when we host the Frontend with AWS Amplify, so we don't need to configure an external WAF here).*
-
-### Configure Amazon CloudFront for API
-- Open **CloudFront ➔ Create Distribution**.
-- **Origin domain:** Select your Application Load Balancer (which we will create in the Compute section).
-- **Viewer Protocol Policy:** Redirect HTTP to HTTPS.
-- **Cache key and origin requests:** Choose **Cache policy and origin request policy** ➔ CachingDisabled and AllViewer (mandatory for dynamic APIs).
-- **Custom SSL Certificate:** Attach the ACM certificate you created.
-- Click Create.
 
 ## 3. Multi-Tier VPC & Subnets
 
@@ -91,7 +80,7 @@ Strictly control traffic flow using Security Groups:
 
 - **ALB Security Group (`snaptics-alb-sg`):** 
   - Allow HTTP (80) and HTTPS (443).
-  - *Advanced:* You can restrict the source IP to only CloudFront prefix lists, completely blocking direct internet access to the ALB!
+
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/alb-sg.jpg" >
   </div>
 - **ECS Security Group (`snaptics-ecs-sg`):**
@@ -102,3 +91,6 @@ Strictly control traffic flow using Security Groups:
   - Allow MySQL/SQL Server (3306) or PostgreSQL (5432) ONLY from `snaptics-ecs-sg`.
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/db_sg.png" >
   </div>
+
+
+

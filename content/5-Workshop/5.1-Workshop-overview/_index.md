@@ -17,9 +17,8 @@ Before getting hands-on with the AWS Console, it is crucial to thoroughly unders
 
 Take a close look at the numbered black circles in the diagram above. They represent the lifecycle of a user's request:
 
-1. **DNS Resolution (Route 53):** When a user accesses the application, the request hits **Amazon Route 53**. Route 53 routes frontend requests to **AWS Amplify** and API requests to **CloudFront**.
-2. **CDN (CloudFront):** API requests enter the AWS Global Network via **CloudFront**. CloudFront optimizes network traffic and accelerates data delivery.
-3. **VPC Ingress (IGW to ALB):** From CloudFront, the traffic routes through the **Internet Gateway** down to the **Application Load Balancer (ALB)** residing in the `Public Subnet`.
+1. **DNS Resolution (Route 53):** When a user accesses the application, the request hits **Amazon Route 53**. Route 53 routes frontend requests to **AWS Amplify** and API requests to **Application Load Balancer (ALB)**.
+2. **VPC Ingress (IGW to ALB):** From Route 53, the traffic routes through the **Internet Gateway** down to the **Application Load Balancer (ALB)** residing in the `Public Subnet`.
 4. **Compute Layer (ECS Fargate):** The ALB forwards the request to the `.NET Containers` running on **ECS Fargate**, safely isolated within the `Private Subnet`.
 5. **Secure Storage (VPC Gateway Endpoint):** When the ECS container needs to save an uploaded invoice image to the **S3 Bucket**, it routes traffic directly through a **Gateway Endpoint**. This keeps the traffic within the internal AWS network, avoiding the expensive NAT Gateway.
 6. **Database Persistence (SQL Server):** Structured transaction data is saved to the **Amazon RDS for SQL Server** cluster. The cluster operates in a **Primary/Standby** configuration across two Availability Zones for extreme fault tolerance.
@@ -49,7 +48,7 @@ Take a close look at the numbered black circles in the diagram above. They repre
 - **Database:** Amazon RDS for SQL Server & RDS Multi-AZ.
 - **Containerization:** Docker / Amazon Elastic Container Registry (ECR).
 - **Compute:** Amazon ECS (Fargate) Serverless.
-- **Networking:** Route 53, CloudFront, ALB, VPC Endpoints.
+- **Networking:** Route 53, ALB, VPC Endpoints.
 - **CI/CD:** GitHub Actions.
 - **AI Services:** Google Gemini API, Azure Document Intelligence.
 
@@ -63,7 +62,7 @@ Below is an accurate cost estimation for a Demo environment (1 month of developm
 
 | No. | Service Category | Basis of Estimate | Cost (USD) |
 | :--- | :--- | :--- | :--- |
-| 1 | **AWS Amplify, CloudFront & Route 53** | Build/hosting Frontend, low traffic CDN and 01 Hosted Zone | $4.50 |
+| 1 | **AWS Amplify & Route 53** | Build/hosting Frontend and 01 Hosted Zone | $4.50 |
 | 2 | **Amazon S3** | Storing ~20 GB of invoice images and upload/download requests | $1.00 |
 | 3 | **ECS Fargate - Backend & AI Worker** | Small configuration task, total ~200-220 running hours | $8.00 |
 | 4 | **Application Load Balancer (ALB)** | Operating during deployment & demo, low traffic | $7.00 |
@@ -82,9 +81,14 @@ Below is an accurate cost estimation for a Demo environment (1 month of developm
 | **ECS Fargate & Application Load Balancer (Auto Scaling)** | $60 - $150 USD |
 | **SQL Server Primary/Standby (Multi-AZ)**| $150 - $300 USD |
 | **Dual NAT Gateway & Data Transfer** | $70 - $120 USD |
-| **S3, CloudFront, SQS, SNS, ECR & CloudWatch**| $20 - $60 USD |
+| **S3, SQS, SNS, ECR & CloudWatch**| $20 - $60 USD |
 | **External AI APIs (Azure Document Intelligence & Gemini)** | Depends on actual invoice volume |
 | **Total Estimated Production Cost** | **$300 - $600 USD / month** (Excl. AI APIs) |
 
 > [!WARNING]
 > **Extremely Important:** If you are running this workshop for learning purposes on your personal account, **YOU MUST** execute the steps in the **5.9 Cleanup** section immediately after testing to destroy the resources. Leaving SQL Server Multi-AZ and NAT Gateway running will drain your credit card rapidly!
+
+
+
+
+
