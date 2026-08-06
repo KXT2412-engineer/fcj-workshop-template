@@ -7,20 +7,21 @@ pre: " <b> 1.13. </b> "
 ---
 
 ### Week 13 Objectives:
-- Refine the final features of the Snaptic project and fix remaining bugs.
-- Complete and submit the internship summary report.
-- Hand over the project and conclude the internship process.
+- Refine the final features of the Snaptic project and conduct End-to-End testing.
+- Finalize all documentation: Workshop, Proposal, and summary report.
+- Record a comprehensive Demo Video of the entire project for the final presentation.
+- Package, hand over the project, and conclude the internship process.
 
 ### Tasks to be implemented this week:
 
-| Day | Task | Start Date | End Date | Resources |
+| Day | Task | Start Date | End Date | Notes |
 |---|---|---|---|---|
-| Monday | - **Snaptic - Final Refinements:** <br>&emsp; + Update evaluation status feature <br>&emsp; + Update and fine-tune configurations in the `Program.cs` file | 03/08/2026 | 03/08/2026 | |
-| Tuesday | - **Final Testing:** <br>&emsp; + Perform end-to-end testing of all functional flows <br>&emsp; + Fix remaining minor UI/UX bugs | 04/08/2026 | 04/08/2026 | |
-| Wednesday | - **Write Internship Report:** <br>&emsp; + Summarize data and results achieved over 13 weeks <br>&emsp; + Complete the draft of the summary report | 05/08/2026 | 05/08/2026 | |
-| Thursday | - **Presentation & Evaluation:** <br>&emsp; + Present internship results to mentor and team <br>&emsp; + Record feedback and project acceptance for Snaptic | 06/08/2026 | 06/08/2026 | |
-| Friday | - **Handover & Conclusion:** <br>&emsp; + Package all source code and related documentation <br>&emsp; + Complete internship conclusion procedures | 07/08/2026 | 07/08/2026 | |
+| 2 | **System Demo & Final Refinements:** <br>&emsp; - Team meeting to demo the entire system and review missing features <br>&emsp; - Update and fine-tune the final features of Snaptic | 03/08/2026 | 03/08/2026 | |
+| 3 | **Final Testing:** <br>&emsp; - Perform end-to-end testing of all functional flows <br>&emsp; - Review and fix remaining minor UI/UX bugs | 04/08/2026 | 04/08/2026 | |
+| 4 | **Document Finalization & Record Video:** <br>&emsp; - Finalize remaining content for Workshop and Proposal documentation <br>&emsp; - Record and edit a Demo Video showcasing the entire workflow of the project | 05/08/2026 | 05/08/2026 | |
+| 5 | **Final Review & Submission:** <br>&emsp; - Final check of all products and report documents before acceptance <br>&emsp; - Complete the internship report and execute project submission | 06/08/2026 | 06/08/2026 | |
+| 6 | **Internship Conclusion:** <br>&emsp; - Summarize results achieved throughout the internship <br>&emsp; - Hand over all source code, documentation, and complete internship conclusion procedures | 07/08/2026 | 07/08/2026 | |
 
 ### Week 13 Results Achieved:
-*   **Project Completion:** The Snaptic project has reached a stable state, ready for acceptance, with no critical bugs remaining.
-*   **Internship Conclusion:** Successfully completed the 13-week internship at First Cloud Journey with complete handover documentation and a highly evaluated summary report.
+*   **Project & Documentation Completed:** The Snaptic project has reached a stable state. 100% completion of Workshop, Proposal, and demo video.
+*   **Internship Conclusion:** Successfully submitted the project and excellently completed the internship at First Cloud Journey with highly evaluated handover documentation.
