@@ -58,7 +58,7 @@ Even though this is an L300 topic (very heavy on cloud architecture), Mr. Nghia'
 
 
 #### Event Images
-![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.jpg)
-![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.1.jpg)
+![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.png)
+![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.1.png)
 
 

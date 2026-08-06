@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Mạng & Bảo mật"
 date: 2024-01-01
 weight: 3
@@ -35,7 +35,7 @@ Tạo 4 Subnet tại `ap-southeast-1`:
 - Bấm **Create internet gateway**.
 - Chọn IGW vừa tạo → **Actions ➔ Attach to VPC** → chọn `snaptics-vpc` → **Attach internet gateway**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_internetgateway_create_internetgateway.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_internetgateway_create_internetgateway.png" >
   </div>
 
 **2. Tạo NAT Gateway (`snaptics-nat-gw`):**
@@ -47,7 +47,7 @@ Tạo 4 Subnet tại `ap-southeast-1`:
 - Elastic IP: bấm **Allocate Elastic IP** để tạo IP tĩnh cho NAT Gateway.
 - Cuộn xuống bấm **Create NAT gateway** và chờ status từ **Pending** chuyển sang **Available**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_natgateway.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_natgateway.png" >
   </div>
 
 **3. Cấu hình Route Tables:**
@@ -70,7 +70,7 @@ Nếu Container gọi API upload hóa đơn ảnh nặng 5MB lên S3 thông qua 
 - Cuộn xuống bấm **Create endpoint**.
 
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.png" >
   </div>
 
 ## 4. Security Groups 
@@ -80,7 +80,7 @@ Bạn phải cấu hình Firewall cứng (Security Group) theo nguyên tắc t�
 - **ALB Security Group (`snaptics-alb-sg`):** 
   - Mở cổng HTTP (80) và HTTPS (443).
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/alb-sg.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/alb-sg.png" >
   </div>
 - **ECS Security Group (`snaptics-ecs-sg`):**
   - Mở cổng Custom TCP `8080`. Source CHỈ CHO PHÉP gọi từ `snaptics-alb-sg`.

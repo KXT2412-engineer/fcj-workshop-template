@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Blog 1"
 date: 2024-01-01
 weight: 1
@@ -12,7 +12,7 @@ Hello everyone,
 
 Based on the post about building a Generative AI Chatbot on AWS, I have gained valuable insights into deploying a real-world Serverless AI application. Here is what I learned:
 
-![Kiến trúc chatbot tích hợp AI trên AWS](/fcj-workshop-template/images/3-BlogsPosted/3.1-Blog1/blog1.jpg)
+![Kiến trúc chatbot tích hợp AI trên AWS](/fcj-workshop-template/images/3-BlogsPosted/3.1-Blog1/blog1.png)
 
 ## 1. Serverless AI Architecture Mindset
 - **Knowledge acquired:** Instead of managing servers to run Large Language Models (LLMs), AWS provides a Serverless ecosystem that allows for easy and cost-effective AI integration.

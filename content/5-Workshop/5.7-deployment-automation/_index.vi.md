@@ -82,13 +82,13 @@ Dòng lệnh cuối cùng `--force-new-deployment` kích hoạt cơ chế **Roll
 
 Việc Hosting một trang Angular SPA lên AWS cực kỳ dễ dàng nhờ **AWS Amplify**. Bạn thậm chí không cần viết file YAML lằng nhằng, Amplify có sẵn cổng giao tiếp với GitHub.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.png" >
   </div>
-    <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.2.jpg" >
+    <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.2.png" >
   </div>
-    <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.3.jpg" >
+    <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.3.png" >
   </div>
-    <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.4.jpg" >
+    <div> <img src="/fcj-workshop-template/images/5-Workshop/5.7-deployment-automation/amplify_create_1.4.png" >
   </div>
 
 ### Thiết lập Amplify Auto-Deploy

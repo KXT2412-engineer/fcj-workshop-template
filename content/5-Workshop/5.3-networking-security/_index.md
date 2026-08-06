@@ -37,7 +37,7 @@ Create 4 subnets in `ap-southeast-1`:
 - Click **Create internet gateway**.
 - Select the newly created IGW → **Actions ➔ Attach to VPC** → choose `snaptics-vpc` → **Attach internet gateway**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_internetgateway_create_internetgateway.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_internetgateway_create_internetgateway.png" >
   </div>
 
 **2. Create the NAT Gateway (`snaptics-nat-gw`):**
@@ -49,7 +49,7 @@ Create 4 subnets in `ap-southeast-1`:
 - Elastic IP: click **Allocate Elastic IP** to create a static public IP for the NAT Gateway.
 - Scroll down and click **Create NAT gateway**, then wait until the status changes from **Pending** to **Available**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_natgateway.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_natgateway.png" >
   </div>
 
 **3. Configure Route Tables:**
@@ -71,7 +71,7 @@ If the ECS container uploads heavy invoice images to S3 via the NAT Gateway, AWS
 - **Policy:** **Full Access**.
 - Scroll down and click **Create endpoint**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/vpc_endpoint_s3.png" >
   </div>
 
 ## 4. Security Groups (Virtual Firewalls)
@@ -81,7 +81,7 @@ Strictly control traffic flow using Security Groups:
 - **ALB Security Group (`snaptics-alb-sg`):** 
   - Allow HTTP (80) and HTTPS (443).
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/alb-sg.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/alb-sg.png" >
   </div>
 - **ECS Security Group (`snaptics-ecs-sg`):**
   - Allow Custom TCP `8080` ONLY from `snaptics-alb-sg`.

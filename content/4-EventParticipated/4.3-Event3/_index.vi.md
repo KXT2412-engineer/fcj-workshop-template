@@ -58,7 +58,7 @@ Dù đây là một chủ đề L300 (rất nặng về kiến trúc đám mây)
 
 
 #### Hình ảnh sự kiện 
-![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.jpg)
-![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.1.jpg)
+![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.png)
+![](/fcj-workshop-template/images/4-EventParticipated/4.3-Event3/event3.1.png)
 
 

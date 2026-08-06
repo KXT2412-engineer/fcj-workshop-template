@@ -17,6 +17,9 @@ Instead of hitting the ALB directly, open your browser and navigate to your **AL
 
   
 
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.8-end-to-end-testing/cloudfront.png" >
+
 ## 2. API & AI Integration Testing (Swagger)
 
 1. **Auth:** Call `/api/Auth/register` then `/api/Auth/login`. This proves the ECS container can successfully connect to the **SQL Server Database** to verify credentials using the password fetched from **Parameter Store**.

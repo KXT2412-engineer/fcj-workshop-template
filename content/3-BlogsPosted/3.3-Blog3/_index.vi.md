@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Blog 3"
 date: 2024-01-01
 weight: 1
@@ -12,7 +12,7 @@ Xin chào mọi người,
 
 Sau khi nghiên cứu bài đăng về kiến trúc website thương mại điện tử trên AWS, mình đã vỡ ra được rất nhiều điều về cách thiết kế một hệ thống chịu tải cao. Dưới đây là những gì mình đã đúc kết được:
 
-![Kiến trúc website thương mại điện tử có khả năng mở rộng trên AWS](/fcj-workshop-template/images/3-BlogsPosted/3.3-Blog3/blog3.jpg)
+![Kiến trúc website thương mại điện tử có khả năng mở rộng trên AWS](/fcj-workshop-template/images/3-BlogsPosted/3.3-Blog3/blog3.png)
 
 ## 1. Tầm quan trọng của việc phân phối tải (Load Distribution)
 - **Bài học rút ra:** Trong các đợt khuyến mãi, lượng truy cập có thể tăng đột biến. Việc sử dụng **Amazon CloudFront** để phân phối nội dung tĩnh kết hợp với **Application Load Balancer (ALB)** giúp giảm thiểu áp lực trực tiếp lên máy chủ, đảm bảo người dùng luôn có trải nghiệm mượt mà.

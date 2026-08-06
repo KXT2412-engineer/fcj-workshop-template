@@ -36,6 +36,15 @@ Since GitHub Actions will be deploying infrastructure on your behalf, it needs p
 4. Choose **Command Line Interface (CLI)**, check the confirmation box, and click Next.
 5. Copy the **Access key ID** and **Secret access key**. **Save them securely!** You will need to paste these into GitHub Repository Secrets later.
 
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iamuser_create_1.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_create_2.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_create_complete.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_permission.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials_2.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials_3.png" >
+
 ## 3. AWS IAM Roles for ECS Containers
 
 When the .NET code runs inside the ECS Fargate container, it needs permissions to talk to S3, SQS, and Parameter Store. We must create 2 specific IAM Roles.
@@ -47,6 +56,10 @@ This role allows the underlying ECS platform to pull your Docker image from ECR 
 - **Trusted Entity:** `Elastic Container Service Task`
 - **Managed Policy:** Search for and attach `AmazonECSTaskExecutionRolePolicy`.
 - Also attach `AmazonSSMReadOnlyAccess` so it can fetch the DB password during container startup.
+
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3a_ecs_role_create.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3a_ecs_role_create_1.png" >
 
 ### B. Snaptics ECS Task Role (`snaptics-ecs-task-role`)
 This role grants permissions to your **C# code** executing inside the container.
@@ -97,3 +110,14 @@ This role grants permissions to your **C# code** executing inside the container.
 
 > [!TIP]
 > By strictly defining these roles, we follow the **Principle of Least Privilege**. If a hacker somehow gains access to the container, they still cannot delete your SQL Server database because this role has no RDS deletion permissions!
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_1.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_2.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_3.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_4.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_5.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_6.png" >
+
+### C. Assign Role
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3c_ecs_assign_role_1.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3c_ecs_assign_role_2.png" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3c_ecs_assign_role_3.png" >

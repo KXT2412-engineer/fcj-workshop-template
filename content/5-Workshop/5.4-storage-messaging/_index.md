@@ -44,7 +44,7 @@ Snaptics requires a robust, highly available database. SQL Server automatically 
   - Availability Zone: **No preference**.
 - Keep all other settings as default, then click **Create database**. Wait ~15 minutes and copy the **Writer Endpoint**.
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/aurora_and_rds_create_db.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/aurora_and_rds_create_db.png" >
   </div>
   
 ## 2. Secure Storage (Amazon S3)
@@ -65,10 +65,10 @@ Invoice images must be stored efficiently. Since we configured a **VPC Gateway E
     }
 ]
 ```
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/amazon_s3_create.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/amazon_s3_create.png" >
   </div>
 
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/s3.jpg" >
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.4-storage-messaging/s3.png" >
   </div>
 
 ## 3. Parameter Management (AWS Systems Manager Parameter Store)

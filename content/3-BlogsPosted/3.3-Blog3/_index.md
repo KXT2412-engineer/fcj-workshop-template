@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Blog 3"
 date: 2024-01-01
 weight: 1
@@ -12,7 +12,7 @@ Hello everyone,
 
 After studying the post on e-commerce website architectures on AWS, I gained a much deeper understanding of how to design high-traffic systems. Here is what I learned:
 
-![Scalable e-commerce website architecture on AWS](/fcj-workshop-template/images/3-BlogsPosted/3.3-Blog3/blog3.jpg)
+![Scalable e-commerce website architecture on AWS](/fcj-workshop-template/images/3-BlogsPosted/3.3-Blog3/blog3.png)
 
 ## 1. The Importance of Load Distribution
 - **Lesson learned:** During promotional events, traffic can spike unpredictably. Using **Amazon CloudFront** to distribute static content combined with an **Application Load Balancer (ALB)** minimizes direct pressure on the servers, ensuring users always have a smooth experience.

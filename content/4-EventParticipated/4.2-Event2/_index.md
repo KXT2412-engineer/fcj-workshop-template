@@ -70,5 +70,5 @@ I realized that in the AI era, no one can learn and do everything alone. The mos
 "Just by daring to start, you have already conquered yourself." The FCAJ x Agentic AI Build Week event didn't just give me knowledge about Cloud or AI, but also handed me the courage to step out of my comfort zone. Technology is always evolving, and the best way not to be left behind is to roll up your sleeves, find like-minded teammates, and start to "Build."
 
 #### Some Pictures Taken at the Event
-![](/fcj-workshop-template/images/4-EventParticipated/4.2-Event2/event2.jpg)
-![](/fcj-workshop-template/images/4-EventParticipated/4.2-Event2/event2.1.jpg)
+![](/fcj-workshop-template/images/4-EventParticipated/4.2-Event2/event2.png)
+![](/fcj-workshop-template/images/4-EventParticipated/4.2-Event2/event2.1.png)

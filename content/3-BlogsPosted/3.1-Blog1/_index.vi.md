@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Blog 1"
 date: 2024-01-01
 weight: 1
@@ -12,7 +12,7 @@ Chào các bạn,
 
 Dựa trên bài đăng về việc xây dựng Chatbot tích hợp Generative AI trên AWS, mình đã đúc kết được rất nhiều kiến thức quý giá về cách triển khai một ứng dụng AI Serverless thực tế. Dưới đây là những gì mình đã học được:
 
-![Kiến trúc chatbot tích hợp AI trên AWS](/fcj-workshop-template/images/3-BlogsPosted/3.1-Blog1/blog1.jpg)
+![Kiến trúc chatbot tích hợp AI trên AWS](/fcj-workshop-template/images/3-BlogsPosted/3.1-Blog1/blog1.png)
 
 ## 1. Tư duy xây dựng kiến trúc Serverless AI
 - **Kiến thức tiếp thu:** Thay vì tự quản lý máy chủ để chạy các mô hình ngôn ngữ lớn (LLMs), AWS cung cấp một hệ sinh thái Serverless cho phép tích hợp AI một cách dễ dàng và tiết kiệm chi phí.
