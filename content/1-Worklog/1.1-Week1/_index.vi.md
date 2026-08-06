@@ -23,4 +23,4 @@ pre: " <b> 1.1. </b> "
 
 ### Kết quả đạt được tuần 1:
 *   **Kiến thức Cloud:** Nắm vững bức tranh tổng quan về hệ sinh thái Đám mây (Cloud Computing) của AWS, các mô hình dịch vụ và kiến trúc cơ bản.
-*   **Thực hành AWS:** Hoàn tất quá trình setup môi trường làm việc chuyên nghiệp với AWS CLI, hiểu rõ cách bảo mật tài khoản bằng IAM (Access/Secret Key)..
+*   **Thực hành AWS:** Hoàn tất quá trình setup môi trường làm việc chuyên nghiệp với AWS CLI, hiểu rõ cách bảo mật tài khoản bằng IAM (Access/Secret Key).
