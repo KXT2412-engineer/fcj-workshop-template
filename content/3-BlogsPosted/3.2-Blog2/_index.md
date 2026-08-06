@@ -40,3 +40,9 @@ pre: " <b> 3.2. </b> "
 ![Image: C# Service source code for S3](/fcj-workshop-template/images/3-BlogsPosted/3.2-Blog2/blog2.1.jpg)
 
 **Conclusion:** The internship not only helped me learn how to use a storage tool (Amazon S3), but more importantly, it reshaped my software design mindset. The lessons on security (IAM), architecture optimization, and working with Cloud SDKs are solid baggage for me to continue developing towards a Backend / Cloud-Native Engineer path in the future.
+
+---
+
+### References:
+- 📌 **[Amazon S3 with the AWS SDK for .NET](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/s3-apis.html)**
+- 📌 **[Managing access with IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)**

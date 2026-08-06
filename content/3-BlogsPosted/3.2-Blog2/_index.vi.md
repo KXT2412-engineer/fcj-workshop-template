@@ -40,3 +40,9 @@ pre: " <b> 3.2. </b> "
 ![Hình ảnh: Mã nguồn Service C# cho S3](/fcj-workshop-template/images/3-BlogsPosted/3.2-Blog2/blog2.1.jpg)
 
 **Tổng kết:** Kỳ thực tập không chỉ giúp mình biết cách sử dụng một công cụ lưu trữ (Amazon S3), mà quan trọng hơn là định hình lại tư duy thiết kế phần mềm.Những bài học về bảo mật (IAM), tối ưu hóa kiến trúc và thao tác với Cloud SDK là hành trang vững chắc để mình tiếp tục phát triển theo định hướng Kỹ sư Backend / Cloud-Native trong tương lai.
+
+---
+
+### Bài viết tham khảo:
+- 📌 **[Amazon S3 with the AWS SDK for .NET](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/s3-apis.html)**
+- 📌 **[Managing access with IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)**

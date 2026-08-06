@@ -1,4 +1,4 @@
----
+﻿---
 title: "Blog 3"
 date: 2024-01-01
 weight: 1
@@ -6,39 +6,30 @@ chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# KIẾN TRÚC WEBSITE THƯƠNG MẠI ĐIỆN TỬ CÓ KHẢ NĂNG MỞ RỘNG TRÊN AWS
+# NHỮNG BÀI HỌC TỪ KIẾN TRÚC WEBSITE THƯƠNG MẠI ĐIỆN TỬ MỞ RỘNG TRÊN AWS
 
 Xin chào mọi người,
 
-Website thương mại điện tử thường có lượng truy cập thay đổi rất lớn, đặc biệt trong các chương trình khuyến mãi hoặc mùa mua sắm cao điểm. Nếu toàn bộ request chỉ được xử lý trên một máy chủ và truy cập trực tiếp vào database, hệ thống rất dễ bị chậm, quá tải hoặc gián đoạn.
+Sau khi nghiên cứu bài đăng về kiến trúc website thương mại điện tử trên AWS, mình đã vỡ ra được rất nhiều điều về cách thiết kế một hệ thống chịu tải cao. Dưới đây là những gì mình đã đúc kết được:
 
 ![Kiến trúc website thương mại điện tử có khả năng mở rộng trên AWS](/fcj-workshop-template/images/3-BlogsPosted/3.3-Blog3/blog3.jpg)
 
-Một kiến trúc có khả năng mở rộng trên AWS có thể được xây dựng theo luồng:
+## 1. Tầm quan trọng của việc phân phối tải (Load Distribution)
+- **Bài học rút ra:** Trong các đợt khuyến mãi, lượng truy cập có thể tăng đột biến. Việc sử dụng **Amazon CloudFront** để phân phối nội dung tĩnh kết hợp với **Application Load Balancer (ALB)** giúp giảm thiểu áp lực trực tiếp lên máy chủ, đảm bảo người dùng luôn có trải nghiệm mượt mà.
 
-**User → Route 53 → CloudFront → AWS WAF → Application Load Balancer → ECS Fargate → ElastiCache/Aurora**
+## 2. Quản lý Container hiệu quả với ECS Fargate
+- **Bài học rút ra:** Thay vì phải đau đầu quản lý từng máy chủ EC2 cho ứng dụng Backend, bài đăng đã cho thấy sức mạnh của việc triển khai ứng dụng dưới dạng Container trên **Amazon ECS Fargate**. Điều này giúp tự động mở rộng (auto-scaling) linh hoạt dựa trên lưu lượng thực tế.
 
-### Khi người dùng truy cập website:
+## 3. Tối ưu hóa hiệu suất cơ sở dữ liệu
+- **Bài học rút ra:** Cơ sở dữ liệu thường là "nút thắt cổ chai" lớn nhất. Mình học được cách kết hợp **Amazon ElastiCache** để lưu trữ tạm các dữ liệu thường xuyên được truy vấn (như giỏ hàng, thông tin phiên), và sử dụng **Amazon Aurora Serverless v2** để tự động co giãn tài nguyên dữ liệu lõi theo nhu cầu mà không lo bị sập hệ thống.
 
-- **Amazon Route 53:** Định tuyến request đến hệ thống.
-- **Amazon CloudFront:** Phân phối nội dung từ vị trí gần người dùng, giúp giảm độ trễ.
-- **AWS WAF:** Kiểm tra và chặn các request có dấu hiệu bất thường.
-- **Application Load Balancer:** Phân phối request đến các container Backend chạy trên Amazon ECS với AWS Fargate.
-- **Amazon Cognito:** Hỗ trợ đăng ký, đăng nhập và xác thực người dùng.
-- **Amazon ElastiCache:** Lưu tạm dữ liệu được truy cập thường xuyên, giúp giảm tải cho database.
-- **Amazon Aurora Serverless v2:** Lưu trữ dữ liệu chính như người dùng, sản phẩm, tồn kho và đơn hàng.
+## 4. Giám sát và phản ứng nhanh với sự cố
+- **Bài học rút ra:** Không một hệ thống nào là hoàn hảo. Việc thiết lập **Amazon CloudWatch** để theo dõi sức khỏe ứng dụng và tự động kích hoạt **Amazon SNS** gửi cảnh báo qua Email/SMS là cực kỳ quan trọng để đội ngũ vận hành phản ứng kịp thời trước khi người dùng nhận ra lỗi.
 
-Bên cạnh đó, **Amazon CloudWatch** theo dõi hoạt động của ECS và Aurora. Khi phát hiện CPU tăng cao, ứng dụng xuất hiện nhiều lỗi hoặc database sử dụng tài nguyên bất thường, CloudWatch Alarm sẽ kích hoạt **Amazon SNS** để gửi cảnh báo qua email hoặc SMS.
-
-### Luồng cảnh báo:
-
-> **CloudWatch → CloudWatch Alarm → Amazon SNS → Email/SMS**
-
-Nhờ kết hợp các dịch vụ trên, website có thể tăng tốc độ truy cập, cải thiện bảo mật, giảm tải cơ sở dữ liệu, mở rộng linh hoạt và phát hiện sự cố sớm khi lượng người dùng tăng cao.
+**Tổng kết:** Kiến trúc này đã cung cấp cho mình một bức tranh toàn cảnh về cách các doanh nghiệp lớn vận hành hệ thống thương mại điện tử. Nó không chỉ là về việc chọn đúng dịch vụ, mà còn là cách kết nối chúng lại để tạo ra một hệ thống tự động, bảo mật và chịu lỗi cao.
 
 ---
 
 ### Bài viết tham khảo:
-
-- 🔗 **[Guidance for Web Store on AWS](https://docs.aws.amazon.com/solutions/web-store-on-aws/)**
-- 🔗 **[Guidance for Building a Containerized and Scalable Web Application on AWS](https://docs.aws.amazon.com/solutions/building-a-containerized-and-scalable-web-application-on-aws/)**
+- 📌 **[Guidance for Web Store on AWS](https://docs.aws.amazon.com/solutions/web-store-on-aws/)**
+- 📌 **[Guidance for Building a Containerized and Scalable Web Application on AWS](https://docs.aws.amazon.com/solutions/building-a-containerized-and-scalable-web-application-on-aws/)**

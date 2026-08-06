@@ -1,4 +1,4 @@
----
+﻿---
 title: "Blog 3"
 date: 2024-01-01
 weight: 1
@@ -6,39 +6,30 @@ chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# SCALABLE E-COMMERCE WEBSITE ARCHITECTURE ON AWS
+# WHAT I LEARNED FROM SCALABLE E-COMMERCE ARCHITECTURES ON AWS
 
 Hello everyone,
 
-E-commerce websites often experience highly variable traffic, especially during promotions or peak shopping seasons. If all requests are handled by a single server and access the database directly, the system can easily become slow, overloaded, or disrupted.
+After studying the post on e-commerce website architectures on AWS, I gained a much deeper understanding of how to design high-traffic systems. Here is what I learned:
 
 ![Scalable e-commerce website architecture on AWS](/fcj-workshop-template/images/3-BlogsPosted/3.3-Blog3/blog3.jpg)
 
-A scalable architecture on AWS can be built following this flow:
+## 1. The Importance of Load Distribution
+- **Lesson learned:** During promotional events, traffic can spike unpredictably. Using **Amazon CloudFront** to distribute static content combined with an **Application Load Balancer (ALB)** minimizes direct pressure on the servers, ensuring users always have a smooth experience.
 
-**User → Route 53 → CloudFront → AWS WAF → Application Load Balancer → ECS Fargate → ElastiCache/Aurora**
+## 2. Efficient Container Management with ECS Fargate
+- **Lesson learned:** Instead of struggling to manage individual EC2 instances for Backend applications, the post demonstrated the power of deploying containerized applications on **Amazon ECS Fargate**. This allows for flexible auto-scaling based on real-time traffic without managing the underlying infrastructure.
 
-### When a user accesses the website:
+## 3. Database Performance Optimization
+- **Lesson learned:** The database is often the biggest bottleneck. I learned how to integrate **Amazon ElastiCache** to temporarily store frequently queried data (like shopping carts and sessions) and use **Amazon Aurora Serverless v2** to automatically scale core data resources on demand without system crashes.
 
-- **Amazon Route 53:** Routes requests to the system.
-- **Amazon CloudFront:** Distributes content from locations close to users, helping to reduce latency.
-- **AWS WAF:** Inspects and blocks requests with suspicious signs.
-- **Application Load Balancer:** Distributes requests to Backend containers running on Amazon ECS with AWS Fargate.
-- **Amazon Cognito:** Supports user registration, login, and authentication.
-- **Amazon ElastiCache:** Temporarily stores frequently accessed data, helping to reduce the load on the database.
-- **Amazon Aurora Serverless v2:** Stores primary data such as users, products, inventory, and orders.
+## 4. Monitoring and Incident Response
+- **Lesson learned:** No system is flawless. Setting up **Amazon CloudWatch** to monitor application health and automatically triggering **Amazon SNS** to send Email/SMS alerts is crucial for the operations team to respond promptly before users even notice an error.
 
-Additionally, **Amazon CloudWatch** monitors the operations of ECS and Aurora. When it detects high CPU usage, numerous application errors, or abnormal database resource utilization, a CloudWatch Alarm triggers **Amazon SNS** to send alerts via email or SMS.
-
-### Alert flow:
-
-> **CloudWatch → CloudWatch Alarm → Amazon SNS → Email/SMS**
-
-By combining these services, the website can accelerate access speed, improve security, reduce database load, scale flexibly, and detect issues early when user traffic spikes.
+**Conclusion:** This architecture provided a comprehensive overview of how large enterprises operate e-commerce systems. It is not just about picking the right services, but about connecting them to create an automated, secure, and highly fault-tolerant system.
 
 ---
 
 ### References:
-
-- 🔗 **[Guidance for Web Store on AWS](https://docs.aws.amazon.com/solutions/web-store-on-aws/)**
-- 🔗 **[Guidance for Building a Containerized and Scalable Web Application on AWS](https://docs.aws.amazon.com/solutions/building-a-containerized-and-scalable-web-application-on-aws/)**
+- 📌 **[Guidance for Web Store on AWS](https://docs.aws.amazon.com/solutions/web-store-on-aws/)**
+- 📌 **[Guidance for Building a Containerized and Scalable Web Application on AWS](https://docs.aws.amazon.com/solutions/building-a-containerized-and-scalable-web-application-on-aws/)**
