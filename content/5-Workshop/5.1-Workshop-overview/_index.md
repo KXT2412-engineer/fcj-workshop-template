@@ -1,4 +1,4 @@
----
+﻿---
 title: "Overview & Architecture"
 date: 2024-01-01
 weight: 1
@@ -11,7 +11,7 @@ Before getting hands-on with the AWS Console, it is crucial to thoroughly unders
 
 ## 1. Enterprise System Architecture Diagram
 
-![Snaptics System Architecture](/fcj-workshop-template/images/5-Workshop/5.1-Workshop-overview/snaptics-architecture.jpg)
+![Snaptics System Architecture](/fcj-workshop-template/images/5-Workshop/5.1-Workshop-overview/snaptics-architecture.png)
 
 ### Deep Dive into the Data Flow
 
@@ -87,6 +87,7 @@ Below is an accurate cost estimation for a Demo environment (1 month of developm
 
 > [!WARNING]
 > **Extremely Important:** If you are running this workshop for learning purposes on your personal account, **YOU MUST** execute the steps in the **5.9 Cleanup** section immediately after testing to destroy the resources. Leaving SQL Server Multi-AZ and NAT Gateway running will drain your credit card rapidly!
+
 
 
 

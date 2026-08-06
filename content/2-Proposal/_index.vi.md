@@ -1,4 +1,4 @@
----
+﻿---
 title: "Bản đề xuất"
 date: 2024-01-01
 weight: 2
@@ -136,7 +136,7 @@ Snaptics sử dụng kiến trúc Cloud-Native trên AWS, kết hợp Web SPA, C
 
 #### 4.4. Sơ đồ kiến trúc tổng thể
 
-![Sơ đồ kiến trúc hệ thống Snaptics trên AWS](/fcj-workshop-template/images/2-Proposal/snaptics-architecture.jpg)
+![Sơ đồ kiến trúc hệ thống Snaptics trên AWS](/fcj-workshop-template/images/2-Proposal/snaptics-architecture.png)
 *Hình 1. Kiến trúc mục tiêu của hệ thống Snaptics trên AWS*
 
 #### 4.5. Bảo mật, giám sát và kiểm soát chi phí

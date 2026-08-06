@@ -1,4 +1,4 @@
----
+﻿---
 title: "Proposal"
 date: 2024-01-01
 weight: 2
@@ -136,7 +136,7 @@ Snaptics utilizes an AWS Cloud-Native architecture combining a Single Page Appli
 
 #### 4.4. Overall Architecture Diagram
 
-![Snaptics AWS Cloud Architecture](/fcj-workshop-template/images/2-Proposal/snaptics-architecture.jpg)
+![Snaptics AWS Cloud Architecture](/fcj-workshop-template/images/2-Proposal/snaptics-architecture.png)
 *Figure 1. Target AWS Cloud Architecture for Snaptics System*
 
 #### 4.5. Security, Observability & Cost Control
