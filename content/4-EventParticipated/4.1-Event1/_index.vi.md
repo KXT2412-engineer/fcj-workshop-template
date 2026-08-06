@@ -1,4 +1,4 @@
----
+﻿---
 title: "Event 1"
 date: 2026-07-18
 weight: 1
@@ -97,4 +97,5 @@ Tốc độ phát triển của AI hiện tại là quá nhanh. Qua sự kiện 
 
 
 #### Một số hình ảnh khi tham gia sự kiện
-![](/fcj-workshop-template/images/4-EventParticipated/4.1-Event1/event1.jpg)
+![](/fcj-workshop-template/images/4-EventParticipated/4.1-Event1/event1.png)
+

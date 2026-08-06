@@ -1,4 +1,4 @@
----
+﻿---
 title: "Event 1"
 date: 2026-07-18
 weight: 1
@@ -95,4 +95,5 @@ The dynamic atmosphere of the seminar broke down barriers of hesitation, creatin
 The current development speed of AI is incredibly fast. Through this event, I realized that continuous learning is mandatory. Seminars like this are perfect stimulants, helping me maintain my enthusiasm and gain more motivation to conquer the long journey ahead.
 
 #### Some Pictures Taken at the Event
-![](/fcj-workshop-template/images/4-EventParticipated/4.1-Event1/event1.jpg)
+![](/fcj-workshop-template/images/4-EventParticipated/4.1-Event1/event1.png)
+

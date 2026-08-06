@@ -1,4 +1,4 @@
----
+﻿---
 title: "Blog 2"
 date: 2024-01-01
 weight: 1
@@ -8,7 +8,7 @@ pre: " <b> 3.2. </b> "
 
 # HÀNH TRANG AWS & TƯ DUY CLOUD-NATIVE TỪ KỲ THỰC TẬP THỰC TẾ
 
-![Sơ đồ Kiến trúc Chuyển đổi Lưu trữ Đơn khối sang S3 Decoupled](/fcj-workshop-template/images/3-BlogsPosted/3.2-Blog2/blog2.jpg)
+![Sơ đồ Kiến trúc Chuyển đổi Lưu trữ Đơn khối sang S3 Decoupled](/fcj-workshop-template/images/3-BlogsPosted/3.2-Blog2/blog2.png)
 
 ## 1. Hiểu và ứng dụng tư duy phân tách hệ thống (Decoupling)
 
@@ -37,7 +37,7 @@ pre: " <b> 3.2. </b> "
 - **Áp dụng thực tế:** Mình đã nghiên cứu và triển khai thành công kỹ thuật Pre-signed URL. Khi Client cần hiển thị tài liệu hoặc hình ảnh, Backend sẽ dùng thông tin xác thực của AWS để sinh ra một đường link tạm thời (chỉ có hiệu lực trong khoảng thời gian ngắn, ví dụ 15 - 30 phút). Kỹ thuật này giúp hệ thống chia sẻ file cho đúng người dùng một cách an toàn mà không cần mở toang quyền Public cho toàn bộ Bucket.
 - **Kỷ niệm thực chiến với CORS:** Một bẫy thực tế mình gặp phải là khi Frontend gọi Pre-signed URL để tải file trực tiếp lên S3 thì liên tục bị trình duyệt chặn lỗi CORS (Cross-Origin Resource Sharing). Dù test bằng Postman thành công, nhưng lên trình duyệt thì thất bại do chính sách Same-Origin Policy. Giải pháp của mình là quay lại cấu hình CORS Policy ngay trên S3 Bucket, khai báo rõ các domain được phép (localhost khi dev, domain staging khi test) và cho phép các method GET/PUT tương ứng. Qua sự cố này, mình hiểu rõ hơn rằng bảo mật Cloud không chỉ dừng ở tầng Server-to-Server (IAM, Secret Key) mà còn phải tính đến tầng trình duyệt (Browser-level security).
 
-![Hình ảnh: Mã nguồn Service C# cho S3](/fcj-workshop-template/images/3-BlogsPosted/3.2-Blog2/blog2.1.jpg)
+![Hình ảnh: Mã nguồn Service C# cho S3](/fcj-workshop-template/images/3-BlogsPosted/3.2-Blog2/blog2.1.png)
 
 **Tổng kết:** Kỳ thực tập không chỉ giúp mình biết cách sử dụng một công cụ lưu trữ (Amazon S3), mà quan trọng hơn là định hình lại tư duy thiết kế phần mềm.Những bài học về bảo mật (IAM), tối ưu hóa kiến trúc và thao tác với Cloud SDK là hành trang vững chắc để mình tiếp tục phát triển theo định hướng Kỹ sư Backend / Cloud-Native trong tương lai.
 
@@ -46,3 +46,5 @@ pre: " <b> 3.2. </b> "
 ### Bài viết tham khảo:
 - 📌 **[Amazon S3 with the AWS SDK for .NET](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/s3-apis.html)**
 - 📌 **[Managing access with IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)**
+
+
