@@ -88,7 +88,7 @@ Strictly control traffic flow using Security Groups:
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/fargate_sg.png" >
   </div>
 - **SQL Server Security Group (`snaptics-aurora-sg`):**
-  - Allow MySQL/SQL Server (3306) or PostgreSQL (5432) ONLY from `snaptics-ecs-sg`.
+  - Allow SQL Server (1433) ONLY from `snaptics-ecs-sg`.
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.3-networking-security/db_sg.png" >
   </div>
 

@@ -29,6 +29,18 @@ Since GitHub Actions will be deploying infrastructure on your behalf, it needs p
 5. Attach the `AdministratorAccess` policy. *(Note: In a real strict enterprise environment, you should only grant specific ECS/ECR/S3 permissions. For the sake of this workshop, Admin access simplifies the pipeline setup).*
 6. Complete the creation.
 
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iamuser_create_1.png" >
+  </div>
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_permission.png" >
+  </div>
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_create_2.png" >
+  </div>
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_create_complete.png" >
+  </div>
+
 ### B. Generate Access Keys
 1. Click on the newly created `github-actions-snaptics` user.
 2. Go to the **Security credentials** tab.
@@ -36,14 +48,14 @@ Since GitHub Actions will be deploying infrastructure on your behalf, it needs p
 4. Choose **Command Line Interface (CLI)**, check the confirmation box, and click Next.
 5. Copy the **Access key ID** and **Secret access key**. **Save them securely!** You will need to paste these into GitHub Repository Secrets later.
 
-
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iamuser_create_1.png" >
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_create_2.png" >
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_create_complete.png" >
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_permission.png" >
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials.png" >
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials_2.png" >
-  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials_3.png" >
+  </div>
+
+<div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials_2.png" >
+  </div>
+
+<div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials_3.png" >
+  </div>
 
 ## 3. AWS IAM Roles for ECS Containers
 

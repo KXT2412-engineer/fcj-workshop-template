@@ -14,7 +14,6 @@ Chúc mừng bạn đã dựng xong khối kiến trúc Enterprise đồ sộ! G
 Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duyệt và gõ **DNS Name của ALB** (Hoặc Domain của bạn trên Route 53).
 
 1. **Test Load Tĩnh:** Truy cập trang Swagger bình thường, bạn sẽ thấy nó load nhanh chóng thông qua Load Balancer.
-  
 
 ## 2. Kiểm thử API & Trí tuệ Nhân tạo (Swagger)
 
@@ -36,10 +35,3 @@ Lần này, ta KHÔNG truy cập qua DNS của ALB nữa. Hãy mở trình duy�
 4. Ngay lập tức màn hình WebSocket Client nhận được một chuỗi JSON đẩy về: `{"type": "NEW_TRANSACTION_ADDED"}`. 
 
 Điều này chứng minh ALB đã làm rất tốt việc Upgrade giao thức HTTP lên WebSocket và giữ đường hầm kết nối liên tục (Persistent tunnel) thẳng tới lõi Fargate bên trong mạng Private!
-
-
-
-
-
-
-

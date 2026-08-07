@@ -29,12 +29,33 @@ Vì GitHub Actions đóng vai trò là một "con robot" tự động đẩy cod
 5. Gắn quyền `AdministratorAccess`. *(Lưu ý: Trong dự án công ty thực tế, bạn chỉ nên cấp quyền ECS/ECR/S3 vừa đủ dùng. Ở workshop này, ta dùng Admin để rút ngắn rào cản kỹ thuật cấu hình Pipeline).*
 6. Bấm Create user.
 
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iamuser_create_1.png" >
+  </div>
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_permission.png" >
+  </div>
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_create_2.png" >
+  </div>
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_create_complete.png" >
+  </div>
+
 ### B. Cấp phát Khóa (Access Keys)
 1. Bấm vào user `github-actions-snaptics` vừa tạo.
 2. Chuyển sang tab **Security credentials**.
 3. Cuộn xuống phần **Access keys**, bấm **Create access key**.
 4. Chọn Use case là **Command Line Interface (CLI)**, xác nhận và bấm Next.
 5. Copy hai chuỗi **Access key ID** và **Secret access key**. **Hãy lưu 2 chuỗi này vào Notepad ngay lập tức!** Chút nữa ta sẽ phải dán nó vào GitHub.
+
+  <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials.png" >
+  </div>
+
+<div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials_2.png" >
+  </div>
+
+<div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/iam_user_security_credentials_3.png" >
+  </div>
 
 ## 3. Phân quyền IAM Roles cho ECS
 
