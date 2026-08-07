@@ -15,7 +15,7 @@ pre: " <b> 4.3. </b> "
 - Trải nghiệm thực hành (hands-on lab) ngay sau phần lý thuyết để áp dụng kiến thức vào việc tự tay xây dựng hệ thống Agentic AI một cách bài bản.
 
 ### Danh Sách Diễn Giả
-- **Anh Nghĩa** - Chuyên gia từ AWS Study Group, diễn giả chính dẫn dắt buổi workshop với kiến thức cực kỳ uyên thâm về kiến trúc đám mây.
+- **Nghĩa Trần** - Agentic SA a1
 
 ### Nội Dung Nổi Bật
 

@@ -15,7 +15,7 @@ pre: " <b> 4.3. </b> "
 - Participate in hands-on labs immediately after the theory session to apply knowledge in building an actual Agentic AI system systematically.
 
 ### List of Speakers
-- **Mr. Nghia** - Expert from the AWS Study Group, the main presenter leading the workshop with incredibly profound knowledge in cloud architecture.
+- **Nghia Tran** - Agentic SA a1
 
 ### Highlighted Contents
 
