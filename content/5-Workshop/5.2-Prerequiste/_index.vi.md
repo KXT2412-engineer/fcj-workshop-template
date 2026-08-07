@@ -71,7 +71,9 @@ Role này cấp quyền cho nền tảng phần cứng ECS để nó tự độn
 
 
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3a_ecs_role_create.png" >
+  </div>
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3a_ecs_role_create_1.png" >
+  </div>
 
 ### B. Snaptics ECS Task Role (`snaptics-ecs-task-role`)
 Role này cấp quyền cho **chính mã nguồn C#** của bạn.
@@ -123,13 +125,22 @@ Role này cấp quyền cho **chính mã nguồn C#** của bạn.
 > [!TIP]
 > Việc cấu hình Role khắt khe như thế này là tuân thủ nguyên tắc **Đặc quyền tối thiểu (Least Privilege)** của các hệ thống ngân hàng. Giả sử hacker có chiếm được quyền điều khiển Container của bạn, hắn cũng không thể xóa Database vì Role này hoàn toàn không có quyền đụng vào RDS!
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_1.png" >
+  </div>
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_2.png" >
+  </div>
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_3.png" >
+  </div>
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_4.png" >
+  </div>
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_5.png" >
+  </div>
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3b_ecs_role_create_6.png" >
+  </div>
 
 ### C. Assign Role
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3c_ecs_assign_role_1.png" >
+  </div>
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3c_ecs_assign_role_2.png" >
+  </div>
   <div> <img src="/fcj-workshop-template/images/5-Workshop/5.2-Prerequisite/3c_ecs_assign_role_3.png" >
+  </div>
